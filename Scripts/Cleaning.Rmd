@@ -14,26 +14,32 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # Mortality Data 
 ## 1999-2013 
-```{r}
-mortality99_13 <- read.csv("../RawData/2021-05-14_deaths_final_1999_2013_county_year_sup.csv")
+```{r importm99}
+mortality99_13 <- read.csv("../RawData/2021-05-14_deaths_final_1999_2013_state_year_sup.csv")
 ```
 
 First, we need to restrict the dataset to only observations with CA residents. We will do so by restricting the data to only cases where the `Geography_Type` column is "Residence", as per the data dictionary definition: 
 
 **Whether the geography is based on the place of residence or place of occurrence. A geography type of Residence includes events for California residents even if they occurred outside of California, whereas a geography type of Occurrence includes events that occurred within California even if they were not California residents.** 
 
-```{r}
+```{r residents}
 table(mortality99_13$Geography_Type) 
 mortality99_13 <- mortality99_13 %>% 
   filter(Geography_Type == "Residence")
 ```
 There were the same count of occurrence and residence deaths. This makes sense, as there should be a row for each county, year, and residence type. After restricting the data, we have 146,160 observations.  
 
-Next, we are going to recode the ICD codes into the same groups used in [Vaca et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21134905/). 
+Next, we are going to apply the exclusion criteria and recode the ICD codes into the same groups used in [Vaca et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21134905/): 
+
+*"The ICD-10 underlying cause of death codes were grouped as follows: disease (001-294), motor vehicle (296-306), suicide (331-337), homicide (338-346), and all other injury (295, 307-330, 347-358). We restricted the data to three racial and ethnic groups: Latinos (defined as having Hispanic ethnicity and any race), non-Latino whites, and non-Latino blacks. We used race and ethnicity data recorded on the death certificate."* 
+
+```{r}
+mortality99_13
+```
 
 ## 2014-2023
-```{r}
-mortality14_23 <- read.csv("../RawData/20241220_deaths_final_2014_2023_county_year_sup.csv")
+```{r importm14}
+mortality14_23 <- read.csv("../RawData/20250116_deaths_final_2014_2023_state_year_sup.csv")
 table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents
 ```
 # Population Data

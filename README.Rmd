@@ -14,9 +14,10 @@ Raw datafiles are in the `/RawData` directory.
 ### Data sources: 
 
 - **California Department of Public Health (CDPH)**  
-  County-level mortality data were obtained from the California Department of Public Health’s *Final Deaths by Year and County 1999-2013* and *2014-2023* datasets. These data include annual counts of deaths stratified by demographic characteristics and cause of death and are publicly available through the California Health and Human Services Open Data Portal.
+  County-level mortality data were obtained from the California Department of Public Health’s *Final Deaths by Statewide 1999-2013* and *2014-2023* datasets. These data include annual counts of deaths stratified by demographic characteristics and cause of death and are publicly available through the California Health and Human Services Open Data Portal.
   A *data dictionary* from CDPH is available in the excel sheet `/RawData/CDPH_MortalityDataDictionary.xlsx`.  
-  [https://data.chhs.ca.gov/dataset/death-profiles-by-county](https://data.chhs.ca.gov/dataset/death-profiles-by-county) 
+  [1999-2013](https://data.chhs.ca.gov/dataset/statewide-death-profiles/resource/5811c16b-ec4f-4880-bb24-1de90f69367b) 
+  [2014-2023](https://data.chhs.ca.gov/dataset/statewide-death-profiles/resource/f8bb67bf-923d-4d74-8714-dc2bcf5609b7)
  
 - **California Department of Finance – Demographic Research Unit (DOF)**  
   County- and state-level population estimates were obtained from the California Department of Finance (DOF) Demographic Research Unit. Annual population estimates were used to calculate mortality rates and denominators for analysis. Estimates are based on the E-4 population series and benchmarked to decennial census counts where applicable.
