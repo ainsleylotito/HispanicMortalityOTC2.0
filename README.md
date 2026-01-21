@@ -8,9 +8,9 @@ trends among California residents.
 
 ## Data
 
-- Mortality data (2007–2023) at the county-year level
-- Population estimates each year by age, sex, race, and ethnicity
-  (2007-2023)
+Raw datafiles are in the `/RawData` directory. - Mortality data
+(2007–2023) at the county-year level - Population estimates each year by
+age, sex, race, and ethnicity (2007-2023)
 
 ### Data sources:
 
@@ -41,7 +41,9 @@ trends among California residents.
 
 ## Methods
 
-Analyses were conducted in R using tidyverse and \[packages\] tools.
+Data are cleaned in the `Scripts/Cleaning.rmd` file. Cleaned datasets
+are in the `CleanData` Directory. Analyses were conducted in R using
+tidyverse and \[packages\] tools.
 
 ## Reproducibility
 
