@@ -16,10 +16,11 @@ age, sex, race, and ethnicity (2007-2023)
 
 - **California Department of Public Health (CDPH)**  
   County-level mortality data were obtained from the California
-  Department of Public Health’s *Death Profiles by County* dataset.
-  These data include annual counts of deaths stratified by demographic
-  characteristics and cause of death and are publicly available through
-  the California Health and Human Services Open Data Portal.  
+  Department of Public Health’s *Final Deaths by Year and County
+  2007-2013* and *2014-2023* datasets. These data include annual counts
+  of deaths stratified by demographic characteristics and cause of death
+  and are publicly available through the California Health and Human
+  Services Open Data Portal.  
   <https://data.chhs.ca.gov/dataset/death-profiles-by-county>
 
 - **California Department of Finance – Demographic Research Unit
