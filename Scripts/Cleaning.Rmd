@@ -1,9 +1,15 @@
 ---
 title: "Cleaning"
 output: html_document
----
-```{r}
-library(tidyverse)
+--- 
+```{r setup}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
 ```
 
 # Mortality Data 
@@ -14,10 +20,20 @@ mortality99_13 <- read.csv("../RawData/2021-05-14_deaths_final_1999_2013_county_
 
 First, we need to restrict the dataset to only observations with CA residents. We will do so by restricting the data to only cases where the `Geography_Type` column is "Residence", as per the data dictionary definition: 
 
-**Whether the geography is based on the place of residence or place of occurrence. A geography type of Residence includes events for California residents even if they occurred outside of California, whereas a geography type of Occurrence includes events that occurred within California even if they were not California residents.**
+**Whether the geography is based on the place of residence or place of occurrence. A geography type of Residence includes events for California residents even if they occurred outside of California, whereas a geography type of Occurrence includes events that occurred within California even if they were not California residents.** 
+
+```{r}
+table(mortality99_13$Geography_Type) 
+mortality99_13 <- mortality99_13 %>% 
+  filter(Geography_Type == "Residence")
+```
+There were the same count of occurrence and residence deaths. This makes sense, as there should be a row for each county, year, and residence type. After restricting the data, we have 146,160 observations.  
+
+Next, we are going to recode the ICD codes into the same groups used in [Vaca et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21134905/). 
 
 ## 2014-2023
 ```{r}
-mortality14_23 <- read.csv("RawData/20241220_deaths_final_2014_2023_county_year_sup.csv")
+mortality14_23 <- read.csv("../RawData/20241220_deaths_final_2014_2023_county_year_sup.csv")
+table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents
 ```
 # Population Data
