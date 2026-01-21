@@ -1,0 +1,48 @@
+Hispanic Mortality OTC 2.0
+================
+
+## Overview
+
+This repository contains code and data for analyzing Hispanic mortality
+trends among California residents.
+
+## Data
+
+- Mortality data (2007–2023) at the county-year level
+
+- Population estimates each year by age, sex, race, and ethnicity
+  (2007-2023) \### Data sources:
+
+- **California Department of Public Health (CDPH)**  
+  County-level mortality data were obtained from the California
+  Department of Public Health’s *Death Profiles by County* dataset.
+  These data include annual counts of deaths stratified by demographic
+  characteristics and cause of death and are publicly available through
+  the California Health and Human Services Open Data Portal.  
+  <https://data.chhs.ca.gov/dataset/death-profiles-by-county>
+
+- **California Department of Finance – Demographic Research Unit
+  (DOF)**  
+  County- and state-level population estimates were obtained from the
+  California Department of Finance (DOF) Demographic Research Unit.
+  Annual population estimates were used to calculate mortality rates and
+  denominators for analysis. Estimates are based on the E-4 population
+  series and benchmarked to decennial census counts where applicable.
+
+  - **Population Estimates, 2001–2010**  
+    <https://dof.ca.gov/forecasting/demographics/estimates/estimates-e4-2000-2010/>
+
+  - **Population Estimates, 2011–2020**  
+    <https://dof.ca.gov/forecasting/demographics/estimates/e-4-population-estimates-for-cities-counties-and-the-state-2011-2020-with-2010-and-2020-census-benchmark/>
+
+  - **Population Estimates, 2021–2025**  
+    <https://dof.ca.gov/forecasting/demographics/estimates/e-4-population-estimates-for-cities-counties-and-the-state-2021-2025-with-2020-census-benchmark/>
+
+## Methods
+
+Analyses were conducted in R using tidyverse and \[packages\] tools.
+
+## Reproducibility
+
+All analyses can be reproduced by running the scripts in the `/Scripts`
+directory.
