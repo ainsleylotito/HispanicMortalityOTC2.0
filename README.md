@@ -9,9 +9,10 @@ trends among California residents.
 ## Data
 
 - Mortality data (2007–2023) at the county-year level
-
 - Population estimates each year by age, sex, race, and ethnicity
-  (2007-2023) \### Data sources:
+  (2007-2023)
+
+### Data sources:
 
 - **California Department of Public Health (CDPH)**  
   County-level mortality data were obtained from the California
