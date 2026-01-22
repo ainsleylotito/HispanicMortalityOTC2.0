@@ -47,17 +47,27 @@ table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents
 
 Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 3 separate datasets we will need to clean and merge (2001-2010, 2011-2020, 2021-2025). 
 
-### 2001-2010 
-```{r dof1}
+### 2000-2010  
 
+I was unable to locate an Intercensal estimate record that was statewide, just county-level. We will have to sum the values for corresponding Year, Race, Gender, and Age to get the state-level total. 
+
+```{r dof1}
+dof1 <- read.csv("../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt") 
+head(dof1)
 ```
 ### 2010-2020 
 
 ```{r dof2}
 dof2 <- read_excel("../RawData/dof/Intercensal_Excel_California.xlsx",
                    sheet = "California-State",
-                   col_names = TRUE)
-head(dof2)
+                   col_names = TRUE) 
+dof2 <- dof2 %>% 
+  select(Sex:"April 1, 2020") %>% 
+  rename(age = "Age (0-100+)",
+         race_eth = "Race/ethnicity recode") %>% 
+  rename_with(tolower)
+head(dof2) 
+
 ```
 Each row contains the population count for a given age, race, and sex. We can organize each group to produce summary counts and make some graphs to explore the population distribution of each group. We also will need to combine ages to make the same age groups as those in the paper we are replicating. 
 
