@@ -53,7 +53,15 @@ I was unable to locate an Intercensal estimate record that was statewide, just c
 
 ```{r dof1}
 dof1 <- read.csv("../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt") 
-head(dof1)
+head(dof1) 
+
+dof1_grouped <- dof1 %>% 
+  group_by(Year, RaceCode, RaceName, Gender, Age) %>% 
+  summarise(
+    Population = sum(Population, na.rm = TRUE),
+    .groups = "drop"
+  )
+head(dof1_grouped)
 ```
 ### 2010-2020 
 
