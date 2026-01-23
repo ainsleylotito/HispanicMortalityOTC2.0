@@ -77,6 +77,13 @@ dof2 <- dof2 %>%
 head(dof2) 
 
 ```
-Each row contains the population count for a given age, race, and sex. We can organize each group to produce summary counts and make some graphs to explore the population distribution of each group. We also will need to combine ages to make the same age groups as those in the paper we are replicating. 
+Each row contains the population count for a given age, race, and sex. We are going to tidy this data by making a new "Year" variable and "Population" variable to contain the values that are in wide format right now. 
+
+
+
+
+
+
+We can organize each group to produce summary counts and make some graphs to explore the population distribution of each group. We also will need to combine ages to make the same age groups as those in the paper we are replicating. 
 
 ## 2021-2025
