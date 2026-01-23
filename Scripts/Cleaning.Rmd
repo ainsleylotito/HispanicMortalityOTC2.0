@@ -6,7 +6,8 @@ output: html_document
 # Load packages
 library(tidyverse)
 library(ggplot2) 
-library(readxl)
+library(readxl) 
+library(lubridate)
 
 # Global options
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -61,8 +62,18 @@ dof1_grouped <- dof1 %>%
     Population = sum(Population, na.rm = TRUE),
     .groups = "drop"
   )
-head(dof1_grouped)
+head(dof1_grouped) 
 ```
+We need to do some cleaning to make the variables consistent with other datasets. 
+
+```{r tidy_dof1}
+dof1_tidy <- dof1_grouped %>% 
+  mutate(
+    Year = year(mdy_hms(Year))
+  )
+head(dof1_tidy)
+```
+
 ### 2010-2020 
 
 ```{r dof2}
@@ -79,14 +90,17 @@ head(dof2)
 ```
 Each row contains the population count for a given age, race, and sex. We are going to tidy this data by making a new "Year" variable and "Population" variable to contain the values that are in wide format right now. We also have two population values for 2010 (April, when the census took effect, then July). We will retain just the April counts, as they require no estimation and are the most accurate approximation of the population that year. 
 
-```{r tidying}
+```{r tidy_dof2}
 temp <- pivot_longer(dof2,
                      cols = 'april 1, 2010':'april 1, 2020',
                      names_to = "Year",
                      values_to = "Population")
 temp <- temp %>% 
-  filter(Year != "july 1, 2010")
-unique(temp$Year)
+  filter(Year != "july 1, 2010") %>% 
+  mutate(
+    Year = year(mdy(Year))
+  )
+
 ```
 We can organize each group to produce summary counts and make some graphs to explore the population distribution of each group. We also will need to combine ages to make the same age groups as those in the paper we are replicating. 
 
