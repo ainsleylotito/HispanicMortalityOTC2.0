@@ -52,38 +52,33 @@ Next, we are going to import the Population Estimates from 2001-2025 from the DO
 
 I was unable to locate an Intercensal estimate record that was statewide, just county-level. We will have to sum the values for corresponding Year, Race, Gender, and Age to get the state-level total. 
 
+We need to do some cleaning to make the variables consistent with other datasets. We will convert the Year to a proper "date" variable and select only the races/ethnic groups to be used in the study.
+
 ```{r dof1}
 dof1 <- read.csv("../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt") 
 head(dof1) 
 
-dof1_grouped <- dof1 %>% 
-  group_by(Year, RaceCode, RaceName, Gender, Age) %>% 
-  summarise(
-    Population = sum(Population, na.rm = TRUE),
-    .groups = "drop"
-  )
-head(dof1_grouped) 
-```
-We need to do some cleaning to make the variables consistent with other datasets. We will convert the Year to a proper "date" variable, select only the races/ethnic groups to be used in the study,
-
-```{r tidy_dof1}
-dof1_tidy <- dof1_grouped %>% 
+dof1 <- dof1 %>%
   mutate(
-    Year = year(mdy_hms(Year))
-  ) %>% 
-  rename(race_eth = RaceName,
-         sex = Gender) %>%
-  filter(race_eth %in% c("White", "Black", "Hispanic")) %>% 
-  select(-RaceCode) %>% 
-   rename_with(tolower) %>% 
-  mutate(
-    sex = str_to_lower(sex), 
-    race_eth = str_to_lower(race_eth)
+    year = year(mdy_hms(Year)),  # convert Year to numeric
+    age = as.numeric(Age),
+    population = as.numeric(Population),
+    race_eth = str_to_lower(RaceName),
+    sex = str_to_lower(Gender)
   )
-head(dof1_tidy) 
-unique(dof1_tidy$race_eth)
 
-```
+dof1 <- dof1 %>%
+  filter(race_eth %in% c("white", "black", "hispanic"))
+
+dof1_tidy <- dof1 %>%
+  group_by(year, race_eth, sex, age) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop") %>%
+  arrange(year, race_eth, sex, age)
+
+nrow(dof1_tidy) 
+
+``` 
+
 
 ### 2010-2020 
 
@@ -117,26 +112,35 @@ dof2_tidy <- dof2_tidy %>%
     race_eth, 
     "White NH" = "White", 
     "Black NH" = "Black"),
-    race_eth = str_to_lower(race_eth)
+    race_eth = str_to_lower(race_eth),
+    population = as.numeric(population)
   )
   
-head(dof2_tidy)
-unique(dof2_tidy$race_eth)
 ```
 Now that our datasets have consistent tidy structure and naming conventions, we can stack them. 
 
 ```{r merge}
 #Checking counts prior to merge
-nrow(dof1_tidy) #7272
+nrow(dof1_tidy) #6666
 nrow(dof2_tidy) #6666
 
 dof_data <- full_join(dof1_tidy, dof2_tidy)
 head(dof_data) 
-nrow(dof_data) #13938, correct number of observations
+nrow(dof_data) #13332, correct number of observations
 ```
 
-We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.  
+We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.   
 
+```{r age_groups}
+age_breaks <- c(seq(0, 90, by = 5), Inf)  # 0,5,10,...,90, Inf
+age_labels <- c(paste(seq(0, 85, by = 5), seq(4, 89, by = 5), sep = "-"), "90+")
+
+dof_data_grouped <- dof_data %>%
+  mutate(age_group = cut(age, breaks = age_breaks, labels = age_labels, right = TRUE, include.lowest = TRUE)) %>%
+  group_by(sex, race_eth, age_group, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop") 
+head(dof_data_grouped)
+```
 ## 2021-2025
 
 ????
