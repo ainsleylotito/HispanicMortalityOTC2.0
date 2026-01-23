@@ -49,7 +49,7 @@ agg_period <- dof_data_grouped %>%
    mutate(pop_per_100k = total_population / 100000)
 
 ggplot(agg_period, aes(x = age_group, y = pop_per_100k, color = race_eth, group = race_eth)) +
-  facet_wrap(~period)+
+  facet_wrap(~period, ncol = 1) +
   geom_line(size = 1.2) +
   geom_point(size = 2) +
   labs(
