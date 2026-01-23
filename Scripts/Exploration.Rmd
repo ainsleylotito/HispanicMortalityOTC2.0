@@ -1,0 +1,71 @@
+---
+title: "Exploration"
+output: html_document
+---
+
+#Exploring population data 
+We are going to explore the distribution of our population data by individual ages and age categories, respectively. 
+
+```{r explore_population}
+dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
+dof_data <- read.csv("../CleanData/dof_data.csv")
+```
+
+Let's examine the trends for the whole study period (data for 2000-2009):
+```{r explore_age_groups} 
+agg_data <- dof_data_grouped %>%
+  group_by(race_eth, age_group) %>%
+  summarise(total_population = sum(population, na.rm = TRUE)) %>%
+  ungroup() %>%
+  # convert to per 100,000
+  mutate(pop_per_100k = total_population / 100000)
+
+ggplot(agg_data, aes(x = age_group, y = pop_per_100k, color = race_eth, group = race_eth)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = "Overall Population by Age Group and Race/Ethnicity (per 100,000)",
+    x = "Age Group",
+    y = "Population per 100,000",
+    color = "Race/Ethnicity"
+  ) +
+  theme_minimal()
+
+
+``` 
+
+Now let's look through the decades: 
+```{r}
+agg_period <- dof_data_grouped %>%
+  mutate(period = case_when(
+    year >= 2000 & year <= 2009 ~ "2000-2009",
+    year >= 2010 & year <= 2020 ~ "2010-2020",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(period)) %>%
+  group_by(race_eth, age_group, period) %>%
+  summarise(total_population = sum(population, na.rm = TRUE)) %>%
+  ungroup() %>% 
+   mutate(pop_per_100k = total_population / 100000)
+
+ggplot(agg_period, aes(x = age_group, y = pop_per_100k, color = race_eth, group = race_eth)) +
+  facet_wrap(~period)+
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = "Overall Population by Age Group and Race/Ethnicity (per 100,000)",
+    x = "Age Group",
+    y = "Population per 100,000",
+    color = "Race/Ethnicity"
+  ) +
+  theme_minimal()
+
+```
+#sex differences 
+```{r}
+ggplot(dof_data_grouped, aes(x = year, y = population, color = sex)) +
+  geom_line() +
+  facet_wrap(~age_group) +
+  labs(title = "Population by Sex Over Time")
+
+```
