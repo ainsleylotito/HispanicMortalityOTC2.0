@@ -64,14 +64,25 @@ dof1_grouped <- dof1 %>%
   )
 head(dof1_grouped) 
 ```
-We need to do some cleaning to make the variables consistent with other datasets. 
+We need to do some cleaning to make the variables consistent with other datasets. We will convert the Year to a proper "date" variable, select only the races/ethnic groups to be used in the study,
 
 ```{r tidy_dof1}
 dof1_tidy <- dof1_grouped %>% 
   mutate(
     Year = year(mdy_hms(Year))
+  ) %>% 
+  rename(race_eth = RaceName,
+         sex = Gender) %>%
+  filter(race_eth %in% c("White", "Black", "Hispanic")) %>% 
+  select(-RaceCode) %>% 
+   rename_with(tolower) %>% 
+  mutate(
+    sex = str_to_lower(sex), 
+    race_eth = str_to_lower(race_eth)
   )
-head(dof1_tidy)
+head(dof1_tidy) 
+unique(dof1_tidy$race_eth)
+
 ```
 
 ### 2010-2020 
@@ -85,23 +96,49 @@ dof2 <- dof2 %>%
   rename(age = "Age (0-100+)",
          race_eth = "Race/ethnicity recode") %>% 
   rename_with(tolower)
-head(dof2) 
-
+ 
 ```
 Each row contains the population count for a given age, race, and sex. We are going to tidy this data by making a new "Year" variable and "Population" variable to contain the values that are in wide format right now. We also have two population values for 2010 (April, when the census took effect, then July). We will retain just the April counts, as they require no estimation and are the most accurate approximation of the population that year. 
 
 ```{r tidy_dof2}
-temp <- pivot_longer(dof2,
+dof2_tidy <- pivot_longer(dof2,
                      cols = 'april 1, 2010':'april 1, 2020',
                      names_to = "Year",
                      values_to = "Population")
-temp <- temp %>% 
+dof2_tidy <- dof2_tidy %>% 
   filter(Year != "july 1, 2010") %>% 
   mutate(
-    Year = year(mdy(Year))
+    Year = year(mdy(Year)),
+    sex = str_to_lower(sex)
+  ) %>% 
+   rename_with(tolower) %>% 
+  filter(race_eth %in% c("White NH", "Black NH", "Hispanic")) %>% 
+  mutate(race_eth = recode(
+    race_eth, 
+    "White NH" = "White", 
+    "Black NH" = "Black"),
+    race_eth = str_to_lower(race_eth)
   )
-
+  
+head(dof2_tidy)
+unique(dof2_tidy$race_eth)
 ```
-We can organize each group to produce summary counts and make some graphs to explore the population distribution of each group. We also will need to combine ages to make the same age groups as those in the paper we are replicating. 
+Now that our datasets have consistent tidy structure and naming conventions, we can stack them. 
+
+```{r merge}
+#Checking counts prior to merge
+nrow(dof1_tidy) #7272
+nrow(dof2_tidy) #6666
+
+dof_data <- full_join(dof1_tidy, dof2_tidy)
+head(dof_data) 
+nrow(dof_data) #13938, correct number of observations
+```
+
+We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.  
 
 ## 2021-2025
+
+????
+
+
