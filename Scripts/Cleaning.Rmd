@@ -83,6 +83,7 @@ glimpse(mortality99_13_all) #546 rows
 all_cause_mort <- full_join(mortality14_23_all,mortality99_13_all)  
 glimpse(all_cause_mort)
 
+write_csv(all_cause_mort, "../CleanData/all_cause_mort.csv")
 ```
 
 

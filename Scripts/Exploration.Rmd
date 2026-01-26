@@ -69,3 +69,32 @@ ggplot(dof_data_grouped, aes(x = year, y = population, color = sex)) +
   labs(title = "Population by Sex Over Time")
 
 ```
+
+
+#All-cause mortality
+To start, let's just look at all-cause mortality for males by racial/ethnic group
+```{r}
+all_cause_mort <- read.csv("../CleanData/all_cause_mort.csv")
+unique(all_cause_mort$Strata_Name)
+
+race_eth_all_cause <- all_cause_mort %>% 
+  filter(Strata_Name %in% c("Female * Black", 
+                            "Female * Hispanic", "Female * White",
+                            "Male * Black", "Male * Hispanic",
+                            "Male * White")) #excluding deaths for Multi-Race and Other/Unknown 
+
+race_eth_all_cause <- race_eth_all_cause %>% #tidying
+  separate(
+    Strata_Name,
+    into = c("sex", "race_eth"),
+    sep = " \\* "
+  ) %>% 
+  select(-Strata) %>% 
+  rename_with(tolower)
+head(race_eth_all_cause)
+
+
+```
+
+
+

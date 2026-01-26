@@ -16,6 +16,7 @@ We will first calculate the all-cause mortality rates stratified by sex and age.
 
 
 
+
 #Overall comparisons 
 "For the overall comparisons, mortality rates were
 adjusted to the age distribution of the 2000 California Department of Finance population estimates." 
