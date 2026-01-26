@@ -72,8 +72,8 @@ ggplot(dof_data_grouped, aes(x = year, y = population, color = sex)) +
 
 
 #All-cause mortality
-To start, let's just look at all-cause mortality for males by racial/ethnic group
-```{r}
+To start, let's just look at all-cause mortality for males by racial/ethnic group. We are going to create a new dataframe for just this information: 
+```{r all_cause_mort}
 all_cause_mort <- read.csv("../CleanData/all_cause_mort.csv")
 unique(all_cause_mort$Strata_Name)
 
@@ -90,11 +90,29 @@ race_eth_all_cause <- race_eth_all_cause %>% #tidying
     sep = " \\* "
   ) %>% 
   select(-Strata) %>% 
-  rename_with(tolower)
+  rename_with(tolower) %>% 
+  mutate(sex = str_to_lower(sex),
+         race_eth = str_to_lower(race_eth))
 head(race_eth_all_cause)
 
-
 ```
+Now that all of the naming conventions are the same as the population data, we can bring in the pop dataset and merge it with our race_eth_all_cause dataframe and calculate the death rate: 
+
+```{r all_cause_with_pop}
+dof_no_age <- read_csv("../CleanData/dof_no_age.csv")
+
+all_cause_with_pop <- left_join(race_eth_all_cause,dof_no_age,
+                                by = c("year", "sex", "race_eth"))
+
+head(all_cause_with_pop) 
+
+all_cause_with_pop <- all_cause_with_pop %>% 
+  mutate(rate = count/population,
+         rate_per_100k = rate*100000)
+head(all_cause_with_pop)
+``` 
+
+
 
 
 
