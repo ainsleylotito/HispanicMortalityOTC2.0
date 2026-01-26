@@ -215,10 +215,19 @@ dof3 <- dof3 %>%
  
 ```
 
+I am also going to create a dataset that is just the population by gender and race_eth, ignoring age all together. 
+
+```{r}
+dof_no_age <- dof_data %>% 
+  group_by(year, race_eth, sex) %>% 
+  summarize(population = sum(population))
+  
+```
 #Saving population datasets 
 
 ```{r save}
 write_csv(dof_data_grouped, "../CleanData/dof_data_grouped.csv") 
 write_csv(dof_data, "../CleanData/dof_data.csv")
+write_csv(dof_no_age, "../CleanData/dof_no_age.csv")
 ```
 
