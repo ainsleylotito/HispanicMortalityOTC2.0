@@ -29,21 +29,66 @@ table(mortality99_13$Geography_Type)
 mortality99_13 <- mortality99_13 %>% 
   filter(Geography_Type == "Residence")
 ```
-There were the same count of occurrence and residence deaths. This makes sense, as there should be a row for each residence type and strata. After restricting the data, we have 2744 observations.  
+There were the same count of occurrence and residence deaths. This makes sense, as there should be a row for each residence type and strata. After restricting the data, we have 2744 observations. 
+
+```{r tidy_99}
+glimpse(mortality99_13)
+
+
+```
+We will retain this data to calculate an all-cause mortality count, but we also need to create another dataframe that only includes the Cause of Death included in the analysis.
 
 Next, we are going to apply the exclusion criteria and recode the ICD codes into the same groups used in [Vaca et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21134905/): 
 
 *"The ICD-10 underlying cause of death codes were grouped as follows: disease (001-294), motor vehicle (296-306), suicide (331-337), homicide (338-346), and all other injury (295, 307-330, 347-358). We restricted the data to three racial and ethnic groups: Latinos (defined as having Hispanic ethnicity and any race), non-Latino whites, and non-Latino blacks. We used race and ethnicity data recorded on the death certificate."* 
 
 ```{r}
-mortality99_13
+#mortality99_13_icd
 ```
 
 ## 2014-2023
 ```{r importm14}
 mortality14_23 <- read.csv("../RawData/cdph/20250116_deaths_final_2014_2023_state_year_sup.csv")
-table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents
+table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents 
+
+mortality14_23 <- mortality14_23 %>% 
+  filter(Geography_Type == "Residence",
+         Strata != "Place Type")
 ```
+
+
+### All-cause mortality 
+We are going to merge the mortality datasets so we may calculate all-cause mortality rates. We will start by looking at how many unique combinations of Gender, Age, and Race_Eth exist for the All-cause mortality data within each set.
+
+```{r all_cause_data}
+mortality99_13 %>%
+  filter(Cause == "ALL") %>%
+  count(Year, Strata, name = "n_rows") 
+
+mortality14_23 %>%
+  filter(Cause == "ALL") %>%
+  count(Year, Strata, name = "n_rows")
+
+
+mortality14_23_all <- mortality14_23 %>% 
+  filter(Cause == "ALL") %>% 
+  select(Year, Strata, Strata_Name, Count) 
+glimpse(mortality14_23_all) #481 rows
+
+mortality99_13_all <- mortality99_13 %>% 
+   filter(Cause == "ALL") %>% 
+ select(Year, Strata, Strata_Name, Count)
+glimpse(mortality99_13_all) #546 rows
+
+all_cause_mort <- full_join(mortality14_23_all,mortality99_13_all)  
+glimpse(all_cause_mort)
+
+```
+
+
+
+### ICD-specific mortality
+
 # Population Data 
 
 Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 3 separate datasets we will need to clean and merge (2001-2010, 2011-2020, 2021-2025). 

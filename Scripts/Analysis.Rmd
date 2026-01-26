@@ -1,0 +1,29 @@
+---
+title: "Analysis"
+output: html_document
+---
+
+This document contains the analyses used to replicate Vaca et al. (2011). Datasets are pulled from the `/Cleandata` directory, which were produced in the `/scripts/Cleaning.Rmd` document.  
+
+#Mortality rates per 100,000 
+
+"Mortality rates per 100 000 population were computed for
+Latinos, non-Latino whites, and non-Latino blacks by sex and by
+5 year age groups (with ages 90 and older forming one age
+group)." 
+
+We will first calculate the all-cause mortality rates stratified by sex and age. 
+
+
+
+#Overall comparisons 
+"For the overall comparisons, mortality rates were
+adjusted to the age distribution of the 2000 California Department of Finance population estimates." 
+
+#Racial/ethnic mortality rate ratios 
+"To compare Latino and
+non-Latino black mortality to non-Latino white mortality, we
+calculated mortality rate ratios. For both mortality rates and rate
+ratios, confidence intervals (95% CI) were calculated using the
+log normal approximation to the Poisson distribution. Trends
+were assessed using variance weighted least squares regression"
