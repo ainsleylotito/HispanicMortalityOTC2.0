@@ -160,7 +160,12 @@ dof3 <- dof3 %>%
     race_eth, 
     "1" = "White", 
     "2" = "Black",
-    "7" = "Hispanic"))
+    "7" = "Hispanic")) %>% 
+  pivot_longer(
+                     cols = '2021':'2025',
+                     names_to = "year",
+                     values_to = "population"
+                     )
  
 ```
 
