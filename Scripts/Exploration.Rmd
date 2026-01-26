@@ -96,7 +96,7 @@ race_eth_all_cause <- race_eth_all_cause %>% #tidying
 head(race_eth_all_cause)
 
 ```
-Now that all of the naming conventions are the same as the population data, we can bring in the pop dataset and merge it with our race_eth_all_cause dataframe and calculate the death rate: 
+Now that all of the naming conventions are the same as the population data, we can bring in the pop dataset and merge it with our race_eth_all_cause dataframe and calculate the death rate. We also need to apply the log-normal (Posson) CI for the rates.
 
 ```{r all_cause_with_pop}
 dof_no_age <- read_csv("../CleanData/dof_no_age.csv")
@@ -107,12 +107,56 @@ all_cause_with_pop <- left_join(race_eth_all_cause,dof_no_age,
 head(all_cause_with_pop) 
 
 all_cause_with_pop <- all_cause_with_pop %>% 
-  mutate(rate = count/population,
-         rate_per_100k = rate*100000)
+  mutate( #mortality rate
+          rate = count/population,
+         rate_per_100k = rate*100000,
+         
+         # log-normal Poisson CI
+    rate_lcl = rate * exp(-1.96 / sqrt(count)),
+    rate_ucl = rate * exp( 1.96 / sqrt(count)),
+
+    rate_lcl_100k = rate_lcl * 100000,
+    rate_ucl_100k = rate_ucl * 100000)
 head(all_cause_with_pop)
 ``` 
 
 
+Let's summarize these trends: 
 
+```{r all_c_no_age_trends}
+all_cause_table <- all_cause_with_pop %>%
+  mutate(
+    rate_ci = sprintf(
+      "%.1f (%.1f–%.1f)",
+      rate_per_100k,
+      rate_lcl_100k,
+      rate_ucl_100k
+    )
+  )
 
+#females
+female_table <- all_cause_table %>%
+  filter(sex == "female") %>%
+  select(year, race_eth, rate_ci)
 
+female_table
+
+#males 
+male_table <- all_cause_table %>%
+  filter(sex == "male") %>%
+  select(year, race_eth, rate_ci)
+
+male_table
+
+#sex stratified table
+sex_stratified_table <- all_cause_table %>%
+  select(year, sex, race_eth, rate_ci) %>%
+  pivot_wider(
+    names_from = sex,
+    values_from = rate_ci
+  )
+
+sex_stratified_table
+```
+
+*Mortality rates are expressed per 100,000 persons. 95% confidence intervals were calculated using the log-normal approximation to the Poisson distribution.*
