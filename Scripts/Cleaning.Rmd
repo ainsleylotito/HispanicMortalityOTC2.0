@@ -143,7 +143,26 @@ head(dof_data_grouped)
 ```
 ## 2021-2025
 
-???? 
+For 2021-2025, the only option (that I can ascertain) is to use the population projections for the years 2021-2025. We will be using the "Complete P-3 Race/Ethnicity and Sex by Age for California and Counties, Excel Compatible" California-State section from the [Projection webpage of the dof](https://dof.ca.gov/forecasting/demographics/projections/). 
+
+```{r dof3}
+dof3 <- read_excel("../RawData/dof/Projections/P3_California-and-Counties.xlsx",
+                   sheet = "California-State",
+                   col_names = TRUE) 
+dof3 <- dof3 %>% 
+  select(Sex:"2025", -"2020") %>% 
+  rename(age = "Age (0-110+)",
+         race_eth = "Race/ethnicity recode") %>% 
+  rename_with(tolower) %>% 
+  filter(race_eth %in% c(1,2,7)) %>% 
+  mutate(sex = str_to_lower(sex),
+         race_eth = recode(
+    race_eth, 
+    "1" = "White", 
+    "2" = "Black",
+    "7" = "Hispanic"))
+ 
+```
 
 #Saving population datasets 
 
