@@ -160,3 +160,61 @@ sex_stratified_table
 ```
 
 *Mortality rates are expressed per 100,000 persons. 95% confidence intervals were calculated using the log-normal approximation to the Poisson distribution.*
+
+Now, we are going to plot. We are going to use White as the referent category. 
+```{r plot_no_age_rr}
+rr_data <- all_cause_with_pop %>%
+  group_by(year, sex) %>%
+  mutate(
+    ref_rate  = rate[race_eth == "white"],
+    ref_count = count[race_eth == "white"]
+  ) %>%
+  ungroup() %>%
+  filter(race_eth != "white") %>%   # drop reference from RR plot
+  mutate(
+    rr = rate / ref_rate,
+    rr_lcl = rr * exp(-1.96 * sqrt(1/count + 1/ref_count)),
+    rr_ucl = rr * exp( 1.96 * sqrt(1/count + 1/ref_count))
+  )
+rr_data
+#females
+ggplot(
+  rr_data %>% filter(sex == "female"),
+  aes(x = year, y = rr, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rr_lcl, ymax = rr_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Mortality Rate Ratios by Race/Ethnicity — Females",
+    subtitle = "Reference group: White",
+    x = "Year",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal()
+
+#males 
+ggplot(
+  rr_data %>% filter(sex == "male"),
+  aes(x = year, y = rr, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rr_lcl, ymax = rr_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Mortality Rate Ratios by Race/Ethnicity — Males",
+    subtitle = "Reference group: White",
+    x = "Year",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal()
+
+```

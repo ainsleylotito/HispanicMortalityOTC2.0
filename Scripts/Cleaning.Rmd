@@ -80,9 +80,9 @@ mortality99_13_all <- mortality99_13 %>%
  select(Year, Strata, Strata_Name, Count)
 glimpse(mortality99_13_all) #546 rows
 
-all_cause_mort <- full_join(mortality14_23_all,mortality99_13_all)  
+all_cause_mort <- full_join(mortality99_13_all, mortality14_23_all)  
 glimpse(all_cause_mort)
-
+range(all_cause_mort$Year)
 write_csv(all_cause_mort, "../CleanData/all_cause_mort.csv")
 ```
 
@@ -212,7 +212,6 @@ dof3 <- dof3 %>%
                      names_to = "year",
                      values_to = "population"
                      )
- 
 ```
 
 I am also going to create a dataset that is just the population by gender and race_eth, ignoring age all together. 
