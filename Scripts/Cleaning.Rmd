@@ -105,10 +105,10 @@ white_black_clean <- function(df, cod_character) {
                 "Year.Code",
                 "Sex.Code",
                 "Race.Code",
-                "Single.Race.6.Code"))
+                "Single.Race.6.Code",
+                "Population"))
     )
 
-  # Differential race variables
   if ("Race" %in% names(df)) {
     df <- df %>% rename(race_eth = Race)
   } else if ("Single.Race.6" %in% names(df)) {
@@ -117,10 +117,15 @@ white_black_clean <- function(df, cod_character) {
 
   df %>% 
     rename(age_group = Five.Year.Age.Groups) %>% 
-    mutate(cod = cod_character) %>% 
-    rename_with(tolower) %>% 
+        rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
     filter(!is.na(year))
 }
+
 
 
 hispanic_clean <- function(df, cod_character) {
@@ -130,16 +135,20 @@ hispanic_clean <- function(df, cod_character) {
       -any_of(c("Notes",
                 "Five.Year.Age.Groups.Code",
                 "Year.Code",
-                "Sex.Code"))
+                "Sex.Code",
+                "Population"))
     ) %>% 
     rename(age_group = Five.Year.Age.Groups) %>% 
+    rename_with(tolower) %>% 
     mutate(
       cod = cod_character,
-      race_eth = "Hispanic"
+      race_eth = "Hispanic",
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
     ) %>% 
-    rename_with(tolower) %>% 
     filter(!is.na(year))
 }
+
 
 
 #all_cause datasets
@@ -297,6 +306,56 @@ sui_hispanic_18_23_clean <- hispanic_clean(
 
 ```
 
+Merging the cleaned data: 
+```{r bind_rows}
+
+all_cleaned <- bind_rows(
+  # all-cause
+  all_cause_white_black_99_17_clean,
+  all_cause_white_black_18_23_clean,
+  all_cause_hispanic_99_17_clean,
+  all_cause_hispanic_18_23_clean,
+
+  # homicide
+  hom_white_black_99_17_clean,
+  hom_white_black_18_23_clean,
+  hom_hispanic_99_17_clean,
+  hom_hispanic_18_23_clean,
+
+  # MVC
+  mvc_white_black_99_17_clean,
+  mvc_white_black_18_23_clean,
+  mvc_hispanic_99_17_clean,
+  mvc_hispanic_18_23_clean,
+
+  # other disease
+  disease_white_black_99_17_clean,
+  disease_white_black_18_23_clean,
+  disease_hispanic_99_17_clean,
+  disease_hispanic_18_23_clean,
+
+  # other injury
+  inj_white_black_99_17_clean,
+  inj_white_black_18_23_clean,
+  inj_hispanic_99_17_clean,
+  inj_hispanic_18_23_clean,
+
+  # suicide
+  sui_white_black_99_17_clean,
+  sui_white_black_18_23_clean,
+  sui_hispanic_99_17_clean,
+  sui_hispanic_18_23_clean
+)
+
+glimpse(all_cleaned)
+
+count(all_cleaned, cod)
+
+count(all_cleaned, cod, race_eth)
+
+range(all_cleaned$year, na.rm = TRUE)
+
+```
 # Population Data 
 
 Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 3 separate datasets we will need to clean and merge (2001-2010, 2011-2020, 2021-2025). 
