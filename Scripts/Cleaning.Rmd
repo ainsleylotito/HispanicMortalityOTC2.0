@@ -92,21 +92,66 @@ write_csv(all_cause_mort, "../CleanData/all_cause_mort.csv")
 
 This is just where I am going to import all of the data from CDC Wonder. The goal of this data cleaning process will be to add a col for race_eth, add a cause of death (cod) column, and merge all my data. 
 
-Let's start just with the all-cause mortality datasets. 
+Let's start just with the all-cause mortality datasets. I am going to make a cleaning function for both white_black dfs and hispanic dfs that can be reused for the rest of this process.
 
 ```{r all_cause_cdc}
+#function creation 
+white_black_clean <- function(df, cod_character) {
+
+  df <- df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five.Year.Age.Groups.Code",
+                "Year.Code",
+                "Sex.Code",
+                "Race.Code",
+                "Single.Race.6.Code"))
+    )
+
+  # Differential race variables
+  if ("Race" %in% names(df)) {
+    df <- df %>% rename(race_eth = Race)
+  } else if ("Single.Race.6" %in% names(df)) {
+    df <- df %>% rename(race_eth = Single.Race.6)
+  }
+
+  df %>% 
+    rename(age_group = Five.Year.Age.Groups) %>% 
+    mutate(cod = cod_character) %>% 
+    rename_with(tolower)
+}
+
+
+hispanic_clean <- function(df, cod_character) {
+
+  df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five.Year.Age.Groups.Code",
+                "Year.Code",
+                "Sex.Code"))
+    ) %>% 
+    rename(age_group = Five.Year.Age.Groups) %>% 
+    mutate(
+      cod = cod_character,
+      race_eth = "Hispanic"
+    ) %>% 
+    rename_with(tolower)
+}
+
+
+#all_cause datasets
 all_cause_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_White_Black.csv")
-glimpse(all_cause_white_black_99_17) 
+all_cause_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_Hispanic.csv") 
+all_cause_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/All_Cause/All_Cause_White_Black.csv")
+all_cause_hispanic_18_23    <- read.csv("../RawData/cdcWONDER/2018_2023/All_Cause/All_Cause_Hispanic.csv")
 
-#where i would start a function for datacleaning for all white_black dataframes 
-all_cause_white_black_99_17 %>% 
-  select(-Notes, -Five.Year.Age.Groups.Code, -Year.Code, -Sex.Code, -Race.Code) %>% 
-  rename(race_eth = Race,
-         age_group = Five.Year.Age.Groups) %>% 
-  mutate(cod = "all_cause") 
 
-#where i would start a function for all Hispanic dataframes 
-
+#cleaning all cause 
+all_cause_white_black_99_17 <- white_black_clean(all_cause_white_black_99_17, "all_cause")
+all_cause_hispanic_99_17 <- hispanic_clean(all_cause_hispanic_99_17, "all_cause") 
+all_cause_white_black_18_23 <- white_black_clean(all_cause_white_black_18_23, "all_cause")
+all_cause_hispanic_18_23 <- hispanic_clean(all_cause_hispanic_18_23, "all_cause") 
 ```
 
 # Population Data 
