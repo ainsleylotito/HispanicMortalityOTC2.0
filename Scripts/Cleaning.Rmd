@@ -151,7 +151,27 @@ all_cause_hispanic_18_23    <- read.csv("../RawData/cdcWONDER/2018_2023/All_Caus
 all_cause_white_black_99_17 <- white_black_clean(all_cause_white_black_99_17, "all_cause")
 all_cause_hispanic_99_17 <- hispanic_clean(all_cause_hispanic_99_17, "all_cause") 
 all_cause_white_black_18_23 <- white_black_clean(all_cause_white_black_18_23, "all_cause")
-all_cause_hispanic_18_23 <- hispanic_clean(all_cause_hispanic_18_23, "all_cause") 
+all_cause_hispanic_18_23 <- hispanic_clean(all_cause_hispanic_18_23, "all_cause")  
+
+#homicide datasets 
+
+#homicide cleaning 
+
+#mvc datasets 
+
+#mvc cleaning 
+
+#other_disease datasets 
+
+#other_disease cleaning 
+
+#other_injuries datasets 
+
+#other_injuries cleaning 
+
+#suicide datasets 
+
+#suicide cleaning
 ```
 
 # Population Data 
