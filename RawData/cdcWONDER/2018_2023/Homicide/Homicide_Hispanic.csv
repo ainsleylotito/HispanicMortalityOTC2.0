@@ -1,0 +1,185 @@
+"Notes","Five-Year Age Groups","Five-Year Age Groups Code","Year","Year Code","Sex","Sex Code",Deaths,Population,Crude Rate
+,"15-19 years","15-19","2018","2018","Female","F",11,632857,Unreliable
+,"15-19 years","15-19","2018","2018","Male","M",75,654000,11.5
+,"15-19 years","15-19","2019","2019","Female","F",10,633329,Unreliable
+,"15-19 years","15-19","2019","2019","Male","M",82,652942,12.6
+,"15-19 years","15-19","2020","2020","Female","F",11,632768,Unreliable
+,"15-19 years","15-19","2020","2020","Male","M",114,652535,17.5
+,"15-19 years","15-19","2021","2021","Female","F",12,653636,Unreliable
+,"15-19 years","15-19","2021","2021","Male","M",120,677551,17.7
+,"15-19 years","15-19","2022","2022","Male","M",117,681724,17.2
+,"15-19 years","15-19","2023 ","2023","Female","F",16,669078,Unreliable
+,"15-19 years","15-19","2023 ","2023","Male","M",110,697539,15.8
+,"20-24 years","20-24","2018","2018","Female","F",20,640699,3.1
+,"20-24 years","20-24","2018","2018","Male","M",152,662759,22.9
+,"20-24 years","20-24","2019","2019","Female","F",13,632239,Unreliable
+,"20-24 years","20-24","2019","2019","Male","M",138,650853,21.2
+,"20-24 years","20-24","2020","2020","Female","F",21,627055,3.3
+,"20-24 years","20-24","2020","2020","Male","M",182,646731,28.1
+,"20-24 years","20-24","2021","2021","Female","F",22,622909,3.5
+,"20-24 years","20-24","2021","2021","Male","M",145,640615,22.6
+,"20-24 years","20-24","2022","2022","Female","F",18,652909,Unreliable
+,"20-24 years","20-24","2022","2022","Male","M",131,675311,19.4
+,"20-24 years","20-24","2023 ","2023","Male","M",118,639605,18.4
+,"25-29 years","25-29","2018","2018","Female","F",12,644367,Unreliable
+,"25-29 years","25-29","2018","2018","Male","M",122,692367,17.6
+,"25-29 years","25-29","2019","2019","Female","F",23,652649,3.5
+,"25-29 years","25-29","2019","2019","Male","M",117,696035,16.8
+,"25-29 years","25-29","2020","2020","Female","F",19,651742,Unreliable
+,"25-29 years","25-29","2020","2020","Male","M",145,688076,21.1
+,"25-29 years","25-29","2021","2021","Female","F",19,637189,Unreliable
+,"25-29 years","25-29","2021","2021","Male","M",212,658177,32.2
+,"25-29 years","25-29","2022","2022","Female","F",24,622816,3.9
+,"25-29 years","25-29","2022","2022","Male","M",151,649228,23.3
+,"25-29 years","25-29","2023 ","2023","Female","F",12,619764,Unreliable
+,"25-29 years","25-29","2023 ","2023","Male","M",113,633105,17.8
+,"30-34 years","30-34","2018","2018","Female","F",17,563058,Unreliable
+,"30-34 years","30-34","2018","2018","Male","M",95,618191,15.4
+,"30-34 years","30-34","2019","2019","Male","M",101,623267,16.2
+,"30-34 years","30-34","2020","2020","Female","F",20,579882,3.4
+,"30-34 years","30-34","2020","2020","Male","M",130,633634,20.5
+,"30-34 years","30-34","2021","2021","Female","F",20,593866,3.4
+,"30-34 years","30-34","2021","2021","Male","M",166,639889,25.9
+,"30-34 years","30-34","2022","2022","Female","F",15,599257,Unreliable
+,"30-34 years","30-34","2022","2022","Male","M",154,645193,23.9
+,"30-34 years","30-34","2023 ","2023","Female","F",23,613976,3.7
+,"30-34 years","30-34","2023 ","2023","Male","M",133,647103,20.6
+,"35-39 years","35-39","2018","2018","Female","F",11,547520,Unreliable
+,"35-39 years","35-39","2018","2018","Male","M",94,581641,16.2
+,"35-39 years","35-39","2019","2019","Female","F",10,547537,Unreliable
+,"35-39 years","35-39","2019","2019","Male","M",80,584613,13.7
+,"35-39 years","35-39","2020","2020","Female","F",20,543192,3.7
+,"35-39 years","35-39","2020","2020","Male","M",121,581493,20.8
+,"35-39 years","35-39","2021","2021","Female","F",18,546700,Unreliable
+,"35-39 years","35-39","2021","2021","Male","M",131,597970,21.9
+,"35-39 years","35-39","2022","2022","Female","F",15,537025,Unreliable
+,"35-39 years","35-39","2022","2022","Male","M",114,592395,19.2
+,"35-39 years","35-39","2023 ","2023","Female","F",13,542452,Unreliable
+,"35-39 years","35-39","2023 ","2023","Male","M",96,590376,16.3
+,"40-44 years","40-44","2018","2018","Male","M",59,525165,11.2
+,"40-44 years","40-44","2019","2019","Female","F",12,511598,Unreliable
+,"40-44 years","40-44","2019","2019","Male","M",54,524300,10.3
+,"40-44 years","40-44","2020","2020","Male","M",82,530990,15.4
+,"40-44 years","40-44","2021","2021","Female","F",13,520609,Unreliable
+,"40-44 years","40-44","2021","2021","Male","M",93,551409,16.9
+,"40-44 years","40-44","2022","2022","Female","F",11,518027,Unreliable
+,"40-44 years","40-44","2022","2022","Male","M",102,555938,18.3
+,"40-44 years","40-44","2023 ","2023","Female","F",12,525188,Unreliable
+,"40-44 years","40-44","2023 ","2023","Male","M",91,558627,16.3
+,"45-49 years","45-49","2018","2018","Male","M",32,498377,6.4
+,"45-49 years","45-49","2019","2019","Male","M",33,494664,6.7
+,"45-49 years","45-49","2020","2020","Female","F",11,491041,Unreliable
+,"45-49 years","45-49","2020","2020","Male","M",51,489706,10.4
+,"45-49 years","45-49","2021","2021","Male","M",64,502200,12.7
+,"45-49 years","45-49","2022","2022","Female","F",10,487419,Unreliable
+,"45-49 years","45-49","2022","2022","Male","M",57,503199,11.3
+,"45-49 years","45-49","2023 ","2023","Male","M",56,501588,11.2
+,"50-54 years","50-54","2018","2018","Male","M",37,445752,8.3
+,"50-54 years","50-54","2019","2019","Male","M",14,449680,Unreliable
+,"50-54 years","50-54","2020","2020","Male","M",39,455565,8.6
+,"50-54 years","50-54","2021","2021","Female","F",10,456603,Unreliable
+,"50-54 years","50-54","2021","2021","Male","M",45,476484,9.4
+,"50-54 years","50-54","2022","2022","Male","M",43,478487,9.0
+,"50-54 years","50-54","2023 ","2023","Male","M",43,474146,9.1
+,"55-59 years","55-59","2018","2018","Male","M",17,366539,Unreliable
+,"55-59 years","55-59","2019","2019","Male","M",28,376619,7.4
+,"55-59 years","55-59","2020","2020","Female","F",11,389668,Unreliable
+,"55-59 years","55-59","2020","2020","Male","M",22,383763,5.7
+,"55-59 years","55-59","2021","2021","Female","F",12,400028,Unreliable
+,"55-59 years","55-59","2021","2021","Male","M",19,407263,Unreliable
+,"55-59 years","55-59","2022","2022","Male","M",28,412277,6.8
+,"55-59 years","55-59","2023 ","2023","Male","M",25,420858,5.9
+,"60-64 years ","60-64","2018","2018","Male","M",10,278571,Unreliable
+,"60-64 years ","60-64","2019","2019","Male","M",18,289491,Unreliable
+,"60-64 years ","60-64","2020","2020","Male","M",15,301700,Unreliable
+,"60-64 years ","60-64","2021","2021","Male","M",22,321068,6.9
+,"60-64 years ","60-64","2022","2022","Male","M",19,328304,Unreliable
+,"60-64 years ","60-64","2023 ","2023","Male","M",13,339723,Unreliable
+,"65-69 years","65-69","2018","2018","Male","M",11,192036,Unreliable
+,"65-69 years","65-69","2021","2021","Male","M",14,229428,Unreliable
+"---"
+"Dataset: Multiple Cause of Death, 2018-2023, Single Race"
+"Query Parameters:"
+"Hispanic Origin: Hispanic or Latino"
+"States: California (06)"
+"UCD - ICD-10 Codes: X85-Y09 (Assault)"
+"Group By: Five-Year Age Groups; Year; Sex"
+"Show Totals: Disabled"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd-expanded.html for more information."
+"---"
+"Query Date: Jan 28, 2026 8:18:12 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 2018-2023 on CDC WONDER Online Database, released in 2024. Data are from the Multiple Cause of Death Files,"
+"2018-2023, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10-expanded.html on Jan 28, 2026 8:18:12 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"2. Rows with zero Deaths are hidden. Use Quick Options above to show zero rows."
+"3. Rows with suppressed Deaths are hidden. Use Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Ages 85-100."
+"2. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Assurance of Confidentiality."
+"3. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Unreliable."
+"4. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"5. Deaths of persons with Hispanic origin ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among"
+"Hispanic Origin groups, so are not included in the Hispanic Origin specific counts and rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"6. Information included on the death certificate about the race and Hispanic ethnicity of the decedent is reported by the"
+"funeral director as provided by an informant, often the surviving next of kin, or, in the absence of an informant, on the basis"
+"of observation. Race and ethnicity information from the census is by self-report. To the extent that race and Hispanic origin"
+"are inconsistent between these two data sources, death rates will be biased. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Racial Differences."
+"7. The population figures for years 2023 are single-race estimates of the July 1 resident population, from the Vintage 2023"
+"postcensal series released by the Census Bureau on June 27, 2024. The 2023 series is based on the Modified Blended Base produced"
+"by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The Modified Blended Base consists of the blend"
+"of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic Analysis Estimates, and 2020 Census data"
+"from the internal Census Edited File (CEF). The population figures for years 2022 are single-race estimates of the July 1"
+"resident population, from the Vintage 2022 postcensal series released by the Census Bureau on June 22, 2023. The 2022 series is"
+"based on the Modified Blended Base produced by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The"
+"Modified Blended Base consists of the blend of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic"
+"Analysis Estimates, and 2020 Census data from the internal Census Edited File (CEF). The population figures for year 2021 are"
+"single-race estimates of the July 1 resident population, based on the Blended Base produced by the US Census Bureau in lieu of"
+"the April 1, 2020 decennial population count, from the Vintage 2021 postcensal series released by the Census Bureau on June 30,"
+"2022. The population figures for year 2020 are single-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series based on April 2010 Census, released by the Census Bureau on July 27, 2021. The population figures for year"
+"2019 are single-race estimates of the July 1 resident population, from the Vintage 2019 postcensal series based on April 2010"
+"Census, released by the Census Bureau on June 25, 2020. The population figures for year 2018 are single-race estimates of the"
+"July 1 resident population, from the Vintage 2018 postcensal series based on April 2010 Census, released by the Census Bureau on"
+"June 20, 2019. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Population Data."
+"8. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Age"
+"Group."
+"9. On March 11, 2021, the 2019 mortality data on CDC WONDER was updated with the 2019 mortality data updated by NCHS on March 4,"
+"2021 to include corrected information for residents of Texas affecting 5 records previously coded to cause code *U01.4,"
+"Terrorism involving firearms (homicide). The underlying and multiple cause of death codes for 5 records were corrected in the"
+"2019 data. Underlying and multiple cause of death codes for those 5 records were recoded to Assault (homicide) by other and"
+"unspecified firearm discharge, ICD-10 code X95. The corrected final death records replaces the data released on December 22,"
+"2020."
+"10. The U.S. - Mexico Border Regions distinguish between counties near the U.S. - Mexico border in the border states of Arizona,"
+"California, New Mexico, and Texas, and other areas. To simplify the Border region analysis, two mutually exclusive regions"
+"within the United States are available: 1) U.S. - Mexico Border Region (i.e., 44 counties within 100 kilometers (62 miles) of"
+"the U.S. - Mexico border), and 2) the U.S. Non-Border Region with the remaining counties of the selected four border states. The"
+"Border counties selection was based on the 1983 La Paz Agreement:"
+"https://www.epa.gov/sites/production/files/2015-09/documents/lapazagreement.pdf.. (i.e., counties for each state which fall"
+"within 100 kilometers of the Border). Statistics are also available by each of the USA border counties along the U.S.-Mexico"
+"area."
+"11. After the creation of the final 2023 dataset, North Carolina updated the cause of death information for over 900 death"
+"certificates to include a cause of death code indicating drug overdose (ICD-10 underlying cause-of-death codes: X40-X44,"
+"X60-X64, X85, and Y10-Y14). Jurisdictions can continue to update death certificates after the closing of the mortality file. As"
+"a result, users should consider that the actual death count for drug overdose deaths for North Carolina in 2023 is over 4,400"
+"deaths, with a crude rate of approximately 41.0 per 100,000 population, and an age-adjusted rate of approximately 42.1 per"
+"100,000 population. These deaths will not be updated on the final mortality datasets."

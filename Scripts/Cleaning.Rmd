@@ -88,7 +88,26 @@ write_csv(all_cause_mort, "../CleanData/all_cause_mort.csv")
 
 
 
-### ICD-specific mortality
+### CDC Wonder
+
+This is just where I am going to import all of the data from CDC Wonder. The goal of this data cleaning process will be to add a col for race_eth, add a cause of death (cod) column, and merge all my data. 
+
+Let's start just with the all-cause mortality datasets. 
+
+```{r all_cause_cdc}
+all_cause_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_White_Black.csv")
+glimpse(all_cause_white_black_99_17) 
+
+#where i would start a function for datacleaning for all white_black dataframes 
+all_cause_white_black_99_17 %>% 
+  select(-Notes, -Five.Year.Age.Groups.Code, -Year.Code, -Sex.Code, -Race.Code) %>% 
+  rename(race_eth = Race,
+         age_group = Five.Year.Age.Groups) %>% 
+  mutate(cod = "all_cause") 
+
+#where i would start a function for all Hispanic dataframes 
+
+```
 
 # Population Data 
 

@@ -1,0 +1,365 @@
+"Notes","Five-Year Age Groups","Five-Year Age Groups Code","Year","Year Code","Sex","Sex Code",Deaths,Population,Crude Rate
+,"15-19 years","15-19","1999","1999","Male","M",27,507053,5.3
+,"15-19 years","15-19","2000","2000","Female","F",12,468885,Unreliable
+,"15-19 years","15-19","2000","2000","Male","M",33,520598,6.3
+,"15-19 years","15-19","2001","2001","Male","M",31,536049,5.8
+,"15-19 years","15-19","2002","2002","Male","M",32,546518,5.9
+,"15-19 years","15-19","2003","2003","Male","M",42,560448,7.5
+,"15-19 years","15-19","2004","2004","Female","F",14,528893,Unreliable
+,"15-19 years","15-19","2004","2004","Male","M",34,578416,5.9
+,"15-19 years","15-19","2005","2005","Male","M",38,601491,6.3
+,"15-19 years","15-19","2006","2006","Female","F",15,579570,Unreliable
+,"15-19 years","15-19","2006","2006","Male","M",32,625753,5.1
+,"15-19 years","15-19","2007","2007","Female","F",11,604871,Unreliable
+,"15-19 years","15-19","2007","2007","Male","M",29,649553,4.5
+,"15-19 years","15-19","2008","2008","Male","M",38,670642,5.7
+,"15-19 years","15-19","2009","2009","Female","F",11,646788,Unreliable
+,"15-19 years","15-19","2009","2009","Male","M",42,688217,6.1
+,"15-19 years","15-19","2010","2010","Female","F",14,656442,Unreliable
+,"15-19 years","15-19","2010","2010","Male","M",49,696238,7.0
+,"15-19 years","15-19","2011","2011","Female","F",19,657413,Unreliable
+,"15-19 years","15-19","2011","2011","Male","M",36,696205,5.2
+,"15-19 years","15-19","2012","2012","Female","F",11,651121,Unreliable
+,"15-19 years","15-19","2012","2012","Male","M",35,685614,5.1
+,"15-19 years","15-19","2013","2013","Female","F",17,643712,Unreliable
+,"15-19 years","15-19","2013","2013","Male","M",44,674237,6.5
+,"15-19 years","15-19","2014","2014","Female","F",13,639802,Unreliable
+,"15-19 years","15-19","2014","2014","Male","M",43,664392,6.5
+,"15-19 years","15-19","2015","2015","Female","F",17,637112,Unreliable
+,"15-19 years","15-19","2015","2015","Male","M",53,660711,8.0
+,"15-19 years","15-19","2016","2016","Female","F",19,635775,Unreliable
+,"15-19 years","15-19","2016","2016","Male","M",48,657180,7.3
+,"15-19 years","15-19","2017","2017","Female","F",22,634931,3.5
+,"15-19 years","15-19","2017","2017","Male","M",58,656388,8.8
+,"20-24 years","20-24","1999","1999","Male","M",55,529882,10.4
+,"20-24 years","20-24","2000","2000","Male","M",53,551509,9.6
+,"20-24 years","20-24","2001","2001","Male","M",53,568662,9.3
+,"20-24 years","20-24","2002","2002","Male","M",44,582698,7.6
+,"20-24 years","20-24","2003","2003","Male","M",69,592385,11.6
+,"20-24 years","20-24","2004","2004","Female","F",16,519373,Unreliable
+,"20-24 years","20-24","2004","2004","Male","M",83,600408,13.8
+,"20-24 years","20-24","2005","2005","Female","F",13,524196,Unreliable
+,"20-24 years","20-24","2005","2005","Male","M",73,603262,12.1
+,"20-24 years","20-24","2006","2006","Female","F",11,527964,Unreliable
+,"20-24 years","20-24","2006","2006","Male","M",77,605268,12.7
+,"20-24 years","20-24","2007","2007","Female","F",16,532402,Unreliable
+,"20-24 years","20-24","2007","2007","Male","M",60,607338,9.9
+,"20-24 years","20-24","2008","2008","Male","M",63,615020,10.2
+,"20-24 years","20-24","2009","2009","Female","F",11,558413,Unreliable
+,"20-24 years","20-24","2009","2009","Male","M",71,626773,11.3
+,"20-24 years","20-24","2010","2010","Female","F",15,575551,Unreliable
+,"20-24 years","20-24","2010","2010","Male","M",90,641028,14.0
+,"20-24 years","20-24","2011","2011","Female","F",18,605278,Unreliable
+,"20-24 years","20-24","2011","2011","Male","M",86,666050,12.9
+,"20-24 years","20-24","2012","2012","Female","F",17,625420,Unreliable
+,"20-24 years","20-24","2012","2012","Male","M",71,680781,10.4
+,"20-24 years","20-24","2013","2013","Female","F",14,639936,Unreliable
+,"20-24 years","20-24","2013","2013","Male","M",85,691807,12.3
+,"20-24 years","20-24","2014","2014","Female","F",21,656849,3.2
+,"20-24 years","20-24","2014","2014","Male","M",78,698054,11.2
+,"20-24 years","20-24","2015","2015","Female","F",20,658092,3.0
+,"20-24 years","20-24","2015","2015","Male","M",97,695482,13.9
+,"20-24 years","20-24","2016","2016","Female","F",13,651723,Unreliable
+,"20-24 years","20-24","2016","2016","Male","M",93,686006,13.6
+,"20-24 years","20-24","2017","2017","Female","F",19,649075,Unreliable
+,"20-24 years","20-24","2017","2017","Male","M",104,678018,15.3
+,"25-29 years","25-29","1999","1999","Male","M",46,554152,8.3
+,"25-29 years","25-29","2000","2000","Male","M",52,554421,9.4
+,"25-29 years","25-29","2001","2001","Male","M",69,558149,12.4
+,"25-29 years","25-29","2002","2002","Male","M",55,561368,9.8
+,"25-29 years","25-29","2003","2003","Male","M",57,566120,10.1
+,"25-29 years","25-29","2004","2004","Male","M",63,571862,11.0
+,"25-29 years","25-29","2005","2005","Male","M",64,580808,11.0
+,"25-29 years","25-29","2006","2006","Female","F",15,527272,Unreliable
+,"25-29 years","25-29","2006","2006","Male","M",60,588931,10.2
+,"25-29 years","25-29","2007","2007","Female","F",15,535851,Unreliable
+,"25-29 years","25-29","2007","2007","Male","M",64,597093,10.7
+,"25-29 years","25-29","2008","2008","Female","F",11,545878,Unreliable
+,"25-29 years","25-29","2008","2008","Male","M",61,605018,10.1
+,"25-29 years","25-29","2009","2009","Female","F",13,554306,Unreliable
+,"25-29 years","25-29","2009","2009","Male","M",55,609737,9.0
+,"25-29 years","25-29","2010","2010","Female","F",13,558578,Unreliable
+,"25-29 years","25-29","2010","2010","Male","M",58,611480,9.5
+,"25-29 years","25-29","2011","2011","Female","F",12,561015,Unreliable
+,"25-29 years","25-29","2011","2011","Male","M",66,623033,10.6
+,"25-29 years","25-29","2012","2012","Male","M",67,623463,10.7
+,"25-29 years","25-29","2013","2013","Female","F",13,565454,Unreliable
+,"25-29 years","25-29","2013","2013","Male","M",68,631960,10.8
+,"25-29 years","25-29","2014","2014","Female","F",21,580211,3.6
+,"25-29 years","25-29","2014","2014","Male","M",90,635703,14.2
+,"25-29 years","25-29","2015","2015","Female","F",13,595938,Unreliable
+,"25-29 years","25-29","2015","2015","Male","M",76,647910,11.7
+,"25-29 years","25-29","2016","2016","Female","F",17,614214,Unreliable
+,"25-29 years","25-29","2016","2016","Male","M",115,662625,17.4
+,"25-29 years","25-29","2017","2017","Female","F",14,634670,Unreliable
+,"25-29 years","25-29","2017","2017","Male","M",112,687255,16.3
+,"30-34 years","30-34","1999","1999","Male","M",52,528305,9.8
+,"30-34 years","30-34","2000","2000","Male","M",38,529296,7.2
+,"30-34 years","30-34","2001","2001","Male","M",54,541981,10.0
+,"30-34 years","30-34","2002","2002","Male","M",56,549750,10.2
+,"30-34 years","30-34","2003","2003","Female","F",12,506202,Unreliable
+,"30-34 years","30-34","2003","2003","Male","M",55,553869,9.9
+,"30-34 years","30-34","2004","2004","Male","M",56,554203,10.1
+,"30-34 years","30-34","2005","2005","Male","M",46,549995,8.4
+,"30-34 years","30-34","2006","2006","Male","M",63,547752,11.5
+,"30-34 years","30-34","2007","2007","Male","M",60,547857,11.0
+,"30-34 years","30-34","2008","2008","Male","M",42,552620,7.6
+,"30-34 years","30-34","2009","2009","Male","M",63,559210,11.3
+,"30-34 years","30-34","2010","2010","Male","M",56,567516,9.9
+,"30-34 years","30-34","2011","2011","Female","F",12,545087,Unreliable
+,"30-34 years","30-34","2011","2011","Male","M",68,582840,11.7
+,"30-34 years","30-34","2012","2012","Female","F",11,547744,Unreliable
+,"30-34 years","30-34","2012","2012","Male","M",56,589001,9.5
+,"30-34 years","30-34","2013","2013","Female","F",14,553584,Unreliable
+,"30-34 years","30-34","2013","2013","Male","M",66,598775,11.0
+,"30-34 years","30-34","2014","2014","Female","F",15,564451,Unreliable
+,"30-34 years","30-34","2014","2014","Male","M",77,603868,12.8
+,"30-34 years","30-34","2015","2015","Female","F",19,564089,Unreliable
+,"30-34 years","30-34","2015","2015","Male","M",80,604556,13.2
+,"30-34 years","30-34","2016","2016","Female","F",15,561279,Unreliable
+,"30-34 years","30-34","2016","2016","Male","M",66,605346,10.9
+,"30-34 years","30-34","2017","2017","Female","F",22,564042,3.9
+,"30-34 years","30-34","2017","2017","Male","M",87,615904,14.1
+,"35-39 years","35-39","1999","1999","Female","F",10,408513,Unreliable
+,"35-39 years","35-39","1999","1999","Male","M",49,443697,11.0
+,"35-39 years","35-39","2000","2000","Female","F",13,419265,Unreliable
+,"35-39 years","35-39","2000","2000","Male","M",34,455133,7.5
+,"35-39 years","35-39","2001","2001","Male","M",50,473985,10.5
+,"35-39 years","35-39","2002","2002","Male","M",47,484280,9.7
+,"35-39 years","35-39","2003","2003","Female","F",12,460967,Unreliable
+,"35-39 years","35-39","2003","2003","Male","M",45,497282,9.0
+,"35-39 years","35-39","2004","2004","Male","M",49,507493,9.7
+,"35-39 years","35-39","2005","2005","Male","M",59,519432,11.4
+,"35-39 years","35-39","2006","2006","Female","F",11,494693,Unreliable
+,"35-39 years","35-39","2006","2006","Male","M",44,526579,8.4
+,"35-39 years","35-39","2007","2007","Male","M",44,531587,8.3
+,"35-39 years","35-39","2008","2008","Female","F",13,512818,Unreliable
+,"35-39 years","35-39","2008","2008","Male","M",63,535297,11.8
+,"35-39 years","35-39","2009","2009","Female","F",16,521162,Unreliable
+,"35-39 years","35-39","2009","2009","Male","M",57,537582,10.6
+,"35-39 years","35-39","2010","2010","Female","F",13,524886,Unreliable
+,"35-39 years","35-39","2010","2010","Male","M",57,536895,10.6
+,"35-39 years","35-39","2011","2011","Male","M",55,541816,10.2
+,"35-39 years","35-39","2012","2012","Female","F",10,527386,Unreliable
+,"35-39 years","35-39","2012","2012","Male","M",57,542650,10.5
+,"35-39 years","35-39","2013","2013","Male","M",60,545802,11.0
+,"35-39 years","35-39","2014","2014","Female","F",17,534153,Unreliable
+,"35-39 years","35-39","2014","2014","Male","M",65,551424,11.8
+,"35-39 years","35-39","2015","2015","Female","F",11,539152,Unreliable
+,"35-39 years","35-39","2015","2015","Male","M",60,562267,10.7
+,"35-39 years","35-39","2016","2016","Female","F",21,539148,3.9
+,"35-39 years","35-39","2016","2016","Male","M",84,565292,14.9
+,"35-39 years","35-39","2017","2017","Female","F",21,546828,3.8
+,"35-39 years","35-39","2017","2017","Male","M",75,576703,13.0
+,"40-44 years","40-44","1999","1999","Male","M",38,347122,10.9
+,"40-44 years","40-44","2000","2000","Female","F",11,347813,Unreliable
+,"40-44 years","40-44","2000","2000","Male","M",43,359257,12.0
+,"40-44 years","40-44","2001","2001","Male","M",33,381816,8.6
+,"40-44 years","40-44","2002","2002","Male","M",45,400611,11.2
+,"40-44 years","40-44","2003","2003","Female","F",10,400817,Unreliable
+,"40-44 years","40-44","2003","2003","Male","M",45,417136,10.8
+,"40-44 years","40-44","2004","2004","Female","F",10,418141,Unreliable
+,"40-44 years","40-44","2004","2004","Male","M",36,435536,8.3
+,"40-44 years","40-44","2005","2005","Male","M",48,448313,10.7
+,"40-44 years","40-44","2006","2006","Female","F",10,440260,Unreliable
+,"40-44 years","40-44","2006","2006","Male","M",34,461273,7.4
+,"40-44 years","40-44","2007","2007","Male","M",58,469061,12.4
+,"40-44 years","40-44","2008","2008","Male","M",49,482038,10.2
+,"40-44 years","40-44","2009","2009","Female","F",12,467482,Unreliable
+,"40-44 years","40-44","2009","2009","Male","M",35,491819,7.1
+,"40-44 years","40-44","2010","2010","Male","M",43,502522,8.6
+,"40-44 years","40-44","2011","2011","Female","F",17,494429,Unreliable
+,"40-44 years","40-44","2011","2011","Male","M",51,516297,9.9
+,"40-44 years","40-44","2012","2012","Female","F",17,501073,Unreliable
+,"40-44 years","40-44","2012","2012","Male","M",46,520679,8.8
+,"40-44 years","40-44","2013","2013","Female","F",11,507381,Unreliable
+,"40-44 years","40-44","2013","2013","Male","M",52,521146,10.0
+,"40-44 years","40-44","2014","2014","Female","F",17,520691,Unreliable
+,"40-44 years","40-44","2014","2014","Male","M",56,527532,10.6
+,"40-44 years","40-44","2015","2015","Female","F",10,524194,Unreliable
+,"40-44 years","40-44","2015","2015","Male","M",60,527322,11.4
+,"40-44 years","40-44","2016","2016","Female","F",12,518323,Unreliable
+,"40-44 years","40-44","2016","2016","Male","M",62,521745,11.9
+,"40-44 years","40-44","2017","2017","Female","F",11,520345,Unreliable
+,"40-44 years","40-44","2017","2017","Male","M",66,525617,12.6
+,"45-49 years","45-49","1999","1999","Male","M",22,250940,8.8
+,"45-49 years","45-49","2000","2000","Male","M",21,264977,7.9
+,"45-49 years","45-49","2001","2001","Male","M",25,284833,8.8
+,"45-49 years","45-49","2002","2002","Male","M",24,302942,7.9
+,"45-49 years","45-49","2003","2003","Male","M",28,321213,8.7
+,"45-49 years","45-49","2004","2004","Female","F",11,338468,Unreliable
+,"45-49 years","45-49","2004","2004","Male","M",31,338080,9.2
+,"45-49 years","45-49","2005","2005","Male","M",34,356237,9.5
+,"45-49 years","45-49","2006","2006","Male","M",35,371488,9.4
+,"45-49 years","45-49","2007","2007","Male","M",37,387375,9.6
+,"45-49 years","45-49","2008","2008","Female","F",15,396559,Unreliable
+,"45-49 years","45-49","2008","2008","Male","M",41,401500,10.2
+,"45-49 years","45-49","2009","2009","Female","F",10,412661,Unreliable
+,"45-49 years","45-49","2009","2009","Male","M",46,418647,11.0
+,"45-49 years","45-49","2010","2010","Female","F",12,422011,Unreliable
+,"45-49 years","45-49","2010","2010","Male","M",56,428489,13.1
+,"45-49 years","45-49","2011","2011","Female","F",11,433224,Unreliable
+,"45-49 years","45-49","2011","2011","Male","M",34,445762,7.6
+,"45-49 years","45-49","2012","2012","Female","F",18,440584,Unreliable
+,"45-49 years","45-49","2012","2012","Male","M",50,454782,11.0
+,"45-49 years","45-49","2013","2013","Male","M",37,467834,7.9
+,"45-49 years","45-49","2014","2014","Male","M",49,483295,10.1
+,"45-49 years","45-49","2015","2015","Female","F",19,477366,Unreliable
+,"45-49 years","45-49","2015","2015","Male","M",44,495096,8.9
+,"45-49 years","45-49","2016","2016","Female","F",18,484293,Unreliable
+,"45-49 years","45-49","2016","2016","Male","M",55,496759,11.1
+,"45-49 years","45-49","2017","2017","Female","F",13,492268,Unreliable
+,"45-49 years","45-49","2017","2017","Male","M",60,501648,12.0
+,"50-54 years","50-54","1999","1999","Male","M",15,178810,Unreliable
+,"50-54 years","50-54","2000","2000","Male","M",25,189131,13.2
+,"50-54 years","50-54","2001","2001","Male","M",24,207522,11.6
+,"50-54 years","50-54","2002","2002","Male","M",23,219725,10.5
+,"50-54 years","50-54","2003","2003","Male","M",26,233136,11.2
+,"50-54 years","50-54","2004","2004","Male","M",26,247870,10.5
+,"50-54 years","50-54","2005","2005","Male","M",20,264089,7.6
+,"50-54 years","50-54","2006","2006","Male","M",13,278972,Unreliable
+,"50-54 years","50-54","2007","2007","Male","M",42,295192,14.2
+,"50-54 years","50-54","2008","2008","Male","M",30,312395,9.6
+,"50-54 years","50-54","2009","2009","Male","M",30,328866,9.1
+,"50-54 years","50-54","2010","2010","Male","M",31,342919,9.0
+,"50-54 years","50-54","2011","2011","Male","M",36,361428,10.0
+,"50-54 years","50-54","2012","2012","Male","M",32,374540,8.5
+,"50-54 years","50-54","2013","2013","Female","F",12,390072,Unreliable
+,"50-54 years","50-54","2013","2013","Male","M",46,387926,11.9
+,"50-54 years","50-54","2014","2014","Female","F",12,409291,Unreliable
+,"50-54 years","50-54","2014","2014","Male","M",36,407770,8.8
+,"50-54 years","50-54","2015","2015","Female","F",13,419610,Unreliable
+,"50-54 years","50-54","2015","2015","Male","M",34,420890,8.1
+,"50-54 years","50-54","2016","2016","Female","F",11,424416,Unreliable
+,"50-54 years","50-54","2016","2016","Male","M",55,428605,12.8
+,"50-54 years","50-54","2017","2017","Male","M",47,438278,10.7
+,"55-59 years","55-59","1999","1999","Male","M",16,121203,Unreliable
+,"55-59 years","55-59","2001","2001","Male","M",18,137173,Unreliable
+,"55-59 years","55-59","2002","2002","Male","M",19,149033,Unreliable
+,"55-59 years","55-59","2003","2003","Male","M",19,161284,Unreliable
+,"55-59 years","55-59","2004","2004","Male","M",14,173487,Unreliable
+,"55-59 years","55-59","2005","2005","Male","M",16,187987,Unreliable
+,"55-59 years","55-59","2006","2006","Male","M",18,201260,Unreliable
+,"55-59 years","55-59","2007","2007","Male","M",21,211544,9.9
+,"55-59 years","55-59","2008","2008","Male","M",26,223554,11.6
+,"55-59 years","55-59","2009","2009","Female","F",11,256844,Unreliable
+,"55-59 years","55-59","2009","2009","Male","M",27,237125,11.4
+,"55-59 years","55-59","2010","2010","Male","M",29,249424,11.6
+,"55-59 years","55-59","2011","2011","Male","M",27,269166,10.0
+,"55-59 years","55-59","2012","2012","Male","M",22,284216,7.7
+,"55-59 years","55-59","2013","2013","Male","M",23,299337,7.7
+,"55-59 years","55-59","2014","2014","Female","F",18,334362,Unreliable
+,"55-59 years","55-59","2014","2014","Male","M",33,317724,10.4
+,"55-59 years","55-59","2015","2015","Female","F",13,349653,Unreliable
+,"55-59 years","55-59","2015","2015","Male","M",27,335296,8.1
+,"55-59 years","55-59","2016","2016","Male","M",34,344527,9.9
+,"55-59 years","55-59","2017","2017","Male","M",35,356714,9.8
+,"60-64 years ","60-64","2002","2002","Male","M",11,104044,Unreliable
+,"60-64 years ","60-64","2003","2003","Male","M",13,109787,Unreliable
+,"60-64 years ","60-64","2005","2005","Male","M",15,122537,Unreliable
+,"60-64 years ","60-64","2006","2006","Male","M",16,130269,Unreliable
+,"60-64 years ","60-64","2007","2007","Male","M",10,140802,Unreliable
+,"60-64 years ","60-64","2009","2009","Male","M",14,163444,Unreliable
+,"60-64 years ","60-64","2010","2010","Male","M",18,174349,Unreliable
+,"60-64 years ","60-64","2011","2011","Male","M",21,189609,11.1
+,"60-64 years ","60-64","2012","2012","Male","M",28,198708,14.1
+,"60-64 years ","60-64","2013","2013","Male","M",25,210379,11.9
+,"60-64 years ","60-64","2014","2014","Male","M",19,225575,Unreliable
+,"60-64 years ","60-64","2015","2015","Male","M",26,241401,10.8
+,"60-64 years ","60-64","2016","2016","Male","M",23,253147,9.1
+,"60-64 years ","60-64","2017","2017","Male","M",34,267413,12.7
+,"65-69 years","65-69","1999","1999","Male","M",13,71216,Unreliable
+,"65-69 years","65-69","2001","2001","Male","M",10,75750,Unreliable
+,"65-69 years","65-69","2007","2007","Male","M",12,96353,Unreliable
+,"65-69 years","65-69","2009","2009","Male","M",16,108009,Unreliable
+,"65-69 years","65-69","2012","2012","Male","M",11,132026,Unreliable
+,"65-69 years","65-69","2013","2013","Male","M",11,142546,Unreliable
+,"65-69 years","65-69","2014","2014","Male","M",12,154592,Unreliable
+,"65-69 years","65-69","2015","2015","Male","M",18,166497,Unreliable
+,"65-69 years","65-69","2016","2016","Male","M",16,176140,Unreliable
+,"65-69 years","65-69","2017","2017","Male","M",14,183737,Unreliable
+,"70-74 years","70-74","2000","2000","Male","M",10,56491,Unreliable
+,"70-74 years","70-74","2002","2002","Male","M",12,61802,Unreliable
+,"70-74 years","70-74","2003","2003","Male","M",11,63440,Unreliable
+,"70-74 years","70-74","2004","2004","Male","M",11,64987,Unreliable
+,"70-74 years","70-74","2015","2015","Male","M",13,104998,Unreliable
+,"70-74 years","70-74","2016","2016","Male","M",10,110426,Unreliable
+,"70-74 years","70-74","2017","2017","Male","M",13,119612,Unreliable
+,"75-79 years","75-79","2008","2008","Male","M",10,54391,Unreliable
+,"75-79 years","75-79","2012","2012","Male","M",10,61907,Unreliable
+,"75-79 years","75-79","2017","2017","Male","M",11,76181,Unreliable
+,"80-84 years","80-84","2013","2013","Male","M",10,44222,Unreliable
+"---"
+"Dataset: Multiple Cause of Death, 1999-2020"
+"Query Parameters:"
+"Hispanic Origin: Hispanic or Latino"
+"MCD - ICD-10 Codes: X60-X84 (Intentional self-harm)"
+"States: California (06)"
+"Year/Month: 1999; 2000; 2001; 2002; 2003; 2004; 2005; 2006; 2007; 2008; 2009; 2010; 2011; 2012; 2013; 2014; 2015; 2016; 2017"
+"Group By: Five-Year Age Groups; Year; Sex"
+"Show Totals: Disabled"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd.html for more information."
+"---"
+"Query Date: Jan 28, 2026 7:24:56 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 1999-2020 on CDC WONDER Online Database, released in 2021. Data are from the Multiple Cause of Death Files,"
+"1999-2020, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10.html on Jan 28, 2026 7:24:56 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"2. Rows with zero Deaths are hidden. Use Quick Options above to show zero rows."
+"3. Rows with suppressed Deaths are hidden. Use Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd.html#Ages 85-100."
+"2. As of April 3, 2017, the underlying cause of death has been revised for 125 deaths in 2014. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#2014-Revision."
+"3. Circumstances in California resulted in unusually high death counts for the ICD-10 cause of death code R99, ""Other"
+"ill-defined and unspecified causes of mortality"" for deaths occurring in years 2000 and 2001. Caution should be used in"
+"interpreting these data. More information: http://wonder.cdc.gov/wonder/help/mcd.html#California-Reporting-Anomalies."
+"4. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Assurance of Confidentiality."
+"5. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Unreliable."
+"6. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Not Stated."
+"7. Deaths of persons with Hispanic origin ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among"
+"Hispanic Origin groups, so are not included in the Hispanic Origin specific counts and rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Not Stated."
+"8. Information included on the death certificate about the race and Hispanic ethnicity of the decedent is reported by the"
+"funeral director as provided by an informant, often the surviving next of kin, or, in the absence of an informant, on the basis"
+"of observation. Race and ethnicity information from the census is by self-report. To the extent that race and Hispanic origin"
+"are inconsistent between these two data sources, death rates will be biased. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Racial Differences."
+"9. The population figures for year 2020 are bridged-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series released by NCHS on September 22, 2021. The population figures for year 2019 are bridged-race estimates of the"
+"July 1 resident population, from the Vintage 2019 postcensal series released by NCHS on July 9, 2020. The population figures for"
+"year 2018 are bridged-race estimates of the July 1 resident population, from the Vintage 2018 postcensal series released by NCHS"
+"on June 25, 2019. The population figures for year 2017 are bridged-race estimates of the July 1 resident population, from the"
+"Vintage 2017 postcensal series released by NCHS on June 27, 2018. The population figures for year 2016 are bridged-race"
+"estimates of the July 1 resident population, from the Vintage 2016 postcensal series released by NCHS on June 26, 2017. The"
+"population figures for year 2015 are bridged-race estimates of the July 1 resident population, from the Vintage 2015 postcensal"
+"series released by NCHS on June 28, 2016. The population figures for year 2014 are bridged-race estimates of the July 1 resident"
+"population, from the Vintage 2014 postcensal series released by NCHS on June 30, 2015. The population figures for year 2013 are"
+"bridged-race estimates of the July 1 resident population, from the Vintage 2013 postcensal series released by NCHS on June 26,"
+"2014. The population figures for year 2012 are bridged-race estimates of the July 1 resident population, from the Vintage 2012"
+"postcensal series released by NCHS on June 13, 2013. Population figures for 2011 are bridged-race estimates of the July 1"
+"resident population, from the county-level postcensal Vintage 2011 series released by NCHS on July 18, 2012. Population figures"
+"for 2010 are April 1 Census counts. The population figures for years 2001 - 2009, are bridged-race estimates of the July 1"
+"resident population, from the revised intercensal county-level 2000 - 2009 series released by NCHS on October 26, 2012."
+"Population figures for 2000 are April 1 Census counts. Population figures for 1999 are from the 1990-1999 intercensal series of"
+"July 1 estimates. Population figures for Infant Age Groups are the number of live births. <br/><b>Note:</b> Rates and population"
+"figures for years 2001 - 2009 differ slightly from previously published reports, due to use of the population estimates which"
+"were available at the time of release."
+"10. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd.html#Age Group."

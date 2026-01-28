@@ -1,0 +1,450 @@
+"Notes","Five-Year Age Groups","Five-Year Age Groups Code","Year","Year Code","Sex","Sex Code","Single Race 6","Single Race 6 Code",Deaths,Population,Crude Rate
+,"1-4 years","1-4","2018","2018","Male","M","White","2106-3",19,260600,Unreliable
+,"1-4 years","1-4","2019","2019","Male","M","White","2106-3",13,259436,Unreliable
+,"1-4 years","1-4","2020","2020","Male","M","White","2106-3",17,237047,Unreliable
+,"1-4 years","1-4","2021","2021","Male","M","White","2106-3",14,226225,Unreliable
+,"1-4 years","1-4","2022","2022","Male","M","White","2106-3",14,212801,Unreliable
+,"1-4 years","1-4","2023 ","2023","Female","F","White","2106-3",13,197918,Unreliable
+,"1-4 years","1-4","2023 ","2023","Male","M","White","2106-3",13,208948,Unreliable
+,"15-19 years","15-19","2018","2018","Female","F","White","2106-3",13,332554,Unreliable
+,"15-19 years","15-19","2018","2018","Male","M","White","2106-3",31,353475,8.8
+,"15-19 years","15-19","2019","2019","Female","F","White","2106-3",11,327069,Unreliable
+,"15-19 years","15-19","2019","2019","Male","M","Black or African American","2054-5",16,69104,Unreliable
+,"15-19 years","15-19","2019","2019","Male","M","White","2106-3",33,347755,9.5
+,"15-19 years","15-19","2020","2020","Female","F","White","2106-3",35,320038,10.9
+,"15-19 years","15-19","2020","2020","Male","M","Black or African American","2054-5",19,66920,Unreliable
+,"15-19 years","15-19","2020","2020","Male","M","White","2106-3",83,340126,24.4
+,"15-19 years","15-19","2021","2021","Female","F","White","2106-3",33,320619,10.3
+,"15-19 years","15-19","2021","2021","Male","M","Black or African American","2054-5",17,67534,Unreliable
+,"15-19 years","15-19","2021","2021","Male","M","White","2106-3",60,341725,17.6
+,"15-19 years","15-19","2022","2022","Female","F","White","2106-3",21,312621,6.7
+,"15-19 years","15-19","2022","2022","Male","M","White","2106-3",43,334897,12.8
+,"15-19 years","15-19","2023 ","2023","Female","F","White","2106-3",18,312728,Unreliable
+,"15-19 years","15-19","2023 ","2023","Male","M","Black or African American","2054-5",13,66353,Unreliable
+,"15-19 years","15-19","2023 ","2023","Male","M","White","2106-3",43,333149,12.9
+,"20-24 years","20-24","2018","2018","Female","F","White","2106-3",42,368061,11.4
+,"20-24 years","20-24","2018","2018","Male","M","Black or African American","2054-5",19,85191,Unreliable
+,"20-24 years","20-24","2018","2018","Male","M","White","2106-3",105,407641,25.8
+,"20-24 years","20-24","2019","2019","Female","F","White","2106-3",40,356232,11.2
+,"20-24 years","20-24","2019","2019","Male","M","Black or African American","2054-5",14,81875,Unreliable
+,"20-24 years","20-24","2019","2019","Male","M","White","2106-3",146,392288,37.2
+,"20-24 years","20-24","2020","2020","Female","F","Black or African American","2054-5",13,71228,Unreliable
+,"20-24 years","20-24","2020","2020","Female","F","White","2106-3",51,344751,14.8
+,"20-24 years","20-24","2020","2020","Male","M","Black or African American","2054-5",52,79239,65.6
+,"20-24 years","20-24","2020","2020","Male","M","White","2106-3",191,379665,50.3
+,"20-24 years","20-24","2021","2021","Female","F","Black or African American","2054-5",20,68925,29.0
+,"20-24 years","20-24","2021","2021","Female","F","White","2106-3",62,330416,18.8
+,"20-24 years","20-24","2021","2021","Male","M","Black or African American","2054-5",45,76488,58.8
+,"20-24 years","20-24","2021","2021","Male","M","White","2106-3",180,362140,49.7
+,"20-24 years","20-24","2022","2022","Female","F","Black or African American","2054-5",15,70164,Unreliable
+,"20-24 years","20-24","2022","2022","Female","F","White","2106-3",52,337528,15.4
+,"20-24 years","20-24","2022","2022","Male","M","Black or African American","2054-5",46,77209,59.6
+,"20-24 years","20-24","2022","2022","Male","M","White","2106-3",137,372447,36.8
+,"20-24 years","20-24","2023 ","2023","Female","F","Black or African American","2054-5",12,65975,Unreliable
+,"20-24 years","20-24","2023 ","2023","Female","F","White","2106-3",42,319974,13.1
+,"20-24 years","20-24","2023 ","2023","Male","M","Black or African American","2054-5",39,71851,54.3
+,"20-24 years","20-24","2023 ","2023","Male","M","White","2106-3",139,351929,39.5
+,"25-29 years","25-29","2018","2018","Female","F","Black or African American","2054-5",13,93554,Unreliable
+,"25-29 years","25-29","2018","2018","Female","F","White","2106-3",63,474286,13.3
+,"25-29 years","25-29","2018","2018","Male","M","Black or African American","2054-5",22,104888,21.0
+,"25-29 years","25-29","2018","2018","Male","M","White","2106-3",226,518092,43.6
+,"25-29 years","25-29","2019","2019","Female","F","White","2106-3",65,456979,14.2
+,"25-29 years","25-29","2019","2019","Male","M","Black or African American","2054-5",34,105178,32.3
+,"25-29 years","25-29","2019","2019","Male","M","White","2106-3",243,500960,48.5
+,"25-29 years","25-29","2020","2020","Female","F","Black or African American","2054-5",14,89394,Unreliable
+,"25-29 years","25-29","2020","2020","Female","F","White","2106-3",109,431708,25.2
+,"25-29 years","25-29","2020","2020","Male","M","Black or African American","2054-5",75,103066,72.8
+,"25-29 years","25-29","2020","2020","Male","M","White","2106-3",316,475292,66.5
+,"25-29 years","25-29","2021","2021","Female","F","Black or African American","2054-5",42,83591,50.2
+,"25-29 years","25-29","2021","2021","Female","F","White","2106-3",100,396428,25.2
+,"25-29 years","25-29","2021","2021","Male","M","Black or African American","2054-5",91,95000,95.8
+,"25-29 years","25-29","2021","2021","Male","M","White","2106-3",384,429734,89.4
+,"25-29 years","25-29","2022","2022","Female","F","Black or African American","2054-5",24,79299,30.3
+,"25-29 years","25-29","2022","2022","Female","F","White","2106-3",73,375246,19.5
+,"25-29 years","25-29","2022","2022","Male","M","Black or African American","2054-5",85,90164,94.3
+,"25-29 years","25-29","2022","2022","Male","M","White","2106-3",333,409406,81.3
+,"25-29 years","25-29","2023 ","2023","Female","F","Black or African American","2054-5",29,77221,37.6
+,"25-29 years","25-29","2023 ","2023","Female","F","White","2106-3",86,363582,23.7
+,"25-29 years","25-29","2023 ","2023","Male","M","Black or African American","2054-5",69,85848,80.4
+,"25-29 years","25-29","2023 ","2023","Male","M","White","2106-3",276,388327,71.1
+,"30-34 years","30-34","2018","2018","Female","F","White","2106-3",81,472481,17.1
+,"30-34 years","30-34","2018","2018","Male","M","Black or African American","2054-5",37,88321,41.9
+,"30-34 years","30-34","2018","2018","Male","M","White","2106-3",207,514820,40.2
+,"30-34 years","30-34","2019","2019","Female","F","Black or African American","2054-5",17,83738,Unreliable
+,"30-34 years","30-34","2019","2019","Female","F","White","2106-3",92,474707,19.4
+,"30-34 years","30-34","2019","2019","Male","M","Black or African American","2054-5",46,93328,49.3
+,"30-34 years","30-34","2019","2019","Male","M","White","2106-3",253,516620,49.0
+,"30-34 years","30-34","2020","2020","Female","F","Black or African American","2054-5",23,86981,26.4
+,"30-34 years","30-34","2020","2020","Female","F","White","2106-3",123,476339,25.8
+,"30-34 years","30-34","2020","2020","Male","M","Black or African American","2054-5",68,98085,69.3
+,"30-34 years","30-34","2020","2020","Male","M","White","2106-3",411,518781,79.2
+,"30-34 years","30-34","2021","2021","Female","F","Black or African American","2054-5",24,88876,27.0
+,"30-34 years","30-34","2021","2021","Female","F","White","2106-3",140,464109,30.2
+,"30-34 years","30-34","2021","2021","Male","M","Black or African American","2054-5",114,100699,113.2
+,"30-34 years","30-34","2021","2021","Male","M","White","2106-3",487,502165,97.0
+,"30-34 years","30-34","2022","2022","Female","F","Black or African American","2054-5",30,89199,33.6
+,"30-34 years","30-34","2022","2022","Female","F","White","2106-3",122,445221,27.4
+,"30-34 years","30-34","2022","2022","Male","M","Black or African American","2054-5",107,101692,105.2
+,"30-34 years","30-34","2022","2022","Male","M","White","2106-3",484,487025,99.4
+,"30-34 years","30-34","2023 ","2023","Female","F","Black or African American","2054-5",44,90222,48.8
+,"30-34 years","30-34","2023 ","2023","Female","F","White","2106-3",123,433728,28.4
+,"30-34 years","30-34","2023 ","2023","Male","M","Black or African American","2054-5",124,101673,122.0
+,"30-34 years","30-34","2023 ","2023","Male","M","White","2106-3",456,468693,97.3
+,"35-39 years","35-39","2018","2018","Female","F","Black or African American","2054-5",19,73076,Unreliable
+,"35-39 years","35-39","2018","2018","Female","F","White","2106-3",92,446983,20.6
+,"35-39 years","35-39","2018","2018","Male","M","Black or African American","2054-5",24,77662,30.9
+,"35-39 years","35-39","2018","2018","Male","M","White","2106-3",217,485131,44.7
+,"35-39 years","35-39","2019","2019","Female","F","Black or African American","2054-5",19,73247,Unreliable
+,"35-39 years","35-39","2019","2019","Female","F","White","2106-3",82,449820,18.2
+,"35-39 years","35-39","2019","2019","Male","M","Black or African American","2054-5",54,79200,68.2
+,"35-39 years","35-39","2019","2019","Male","M","White","2106-3",262,489050,53.6
+,"35-39 years","35-39","2020","2020","Female","F","Black or African American","2054-5",24,73352,32.7
+,"35-39 years","35-39","2020","2020","Female","F","White","2106-3",111,449175,24.7
+,"35-39 years","35-39","2020","2020","Male","M","Black or African American","2054-5",96,80210,119.7
+,"35-39 years","35-39","2020","2020","Male","M","White","2106-3",372,488208,76.2
+,"35-39 years","35-39","2021","2021","Female","F","Black or African American","2054-5",28,74552,37.6
+,"35-39 years","35-39","2021","2021","Female","F","White","2106-3",160,445647,35.9
+,"35-39 years","35-39","2021","2021","Male","M","Black or African American","2054-5",101,83313,121.2
+,"35-39 years","35-39","2021","2021","Male","M","White","2106-3",460,491165,93.7
+,"35-39 years","35-39","2022","2022","Female","F","Black or African American","2054-5",37,74759,49.5
+,"35-39 years","35-39","2022","2022","Female","F","White","2106-3",130,432838,30.0
+,"35-39 years","35-39","2022","2022","Male","M","Black or African American","2054-5",91,83777,108.6
+,"35-39 years","35-39","2022","2022","Male","M","White","2106-3",443,481734,92.0
+,"35-39 years","35-39","2023 ","2023","Female","F","Black or African American","2054-5",34,77341,44.0
+,"35-39 years","35-39","2023 ","2023","Female","F","White","2106-3",119,433414,27.5
+,"35-39 years","35-39","2023 ","2023","Male","M","Black or African American","2054-5",150,86069,174.3
+,"35-39 years","35-39","2023 ","2023","Male","M","White","2106-3",454,475395,95.5
+,"40-44 years","40-44","2018","2018","Female","F","Black or African American","2054-5",14,67191,Unreliable
+,"40-44 years","40-44","2018","2018","Female","F","White","2106-3",68,397166,17.1
+,"40-44 years","40-44","2018","2018","Male","M","Black or African American","2054-5",46,68201,67.4
+,"40-44 years","40-44","2018","2018","Male","M","White","2106-3",187,426328,43.9
+,"40-44 years","40-44","2019","2019","Female","F","Black or African American","2054-5",25,67710,36.9
+,"40-44 years","40-44","2019","2019","Female","F","White","2106-3",75,398846,18.8
+,"40-44 years","40-44","2019","2019","Male","M","Black or African American","2054-5",37,69485,53.2
+,"40-44 years","40-44","2019","2019","Male","M","White","2106-3",216,429067,50.3
+,"40-44 years","40-44","2020","2020","Female","F","Black or African American","2054-5",25,68901,36.3
+,"40-44 years","40-44","2020","2020","Female","F","White","2106-3",121,403014,30.0
+,"40-44 years","40-44","2020","2020","Male","M","Black or African American","2054-5",69,71452,96.6
+,"40-44 years","40-44","2020","2020","Male","M","White","2106-3",320,433931,73.7
+,"40-44 years","40-44","2021","2021","Female","F","Black or African American","2054-5",39,69690,56.0
+,"40-44 years","40-44","2021","2021","Female","F","White","2106-3",126,409177,30.8
+,"40-44 years","40-44","2021","2021","Male","M","Black or African American","2054-5",85,74723,113.8
+,"40-44 years","40-44","2021","2021","Male","M","White","2106-3",409,448488,91.2
+,"40-44 years","40-44","2022","2022","Female","F","Black or African American","2054-5",34,69405,49.0
+,"40-44 years","40-44","2022","2022","Female","F","White","2106-3",130,406619,32.0
+,"40-44 years","40-44","2022","2022","Male","M","Black or African American","2054-5",100,75169,133.0
+,"40-44 years","40-44","2022","2022","Male","M","White","2106-3",431,450986,95.6
+,"40-44 years","40-44","2023 ","2023","Female","F","Black or African American","2054-5",40,70080,57.1
+,"40-44 years","40-44","2023 ","2023","Female","F","White","2106-3",135,413653,32.6
+,"40-44 years","40-44","2023 ","2023","Male","M","Black or African American","2054-5",119,76542,155.5
+,"40-44 years","40-44","2023 ","2023","Male","M","White","2106-3",418,454426,92.0
+,"45-49 years","45-49","2018","2018","Female","F","Black or African American","2054-5",10,72381,Unreliable
+,"45-49 years","45-49","2018","2018","Female","F","White","2106-3",124,453183,27.4
+,"45-49 years","45-49","2018","2018","Male","M","Black or African American","2054-5",37,73019,50.7
+,"45-49 years","45-49","2018","2018","Male","M","White","2106-3",247,476424,51.8
+,"45-49 years","45-49","2019","2019","Female","F","Black or African American","2054-5",23,69952,32.9
+,"45-49 years","45-49","2019","2019","Female","F","White","2106-3",139,429578,32.4
+,"45-49 years","45-49","2019","2019","Male","M","Black or African American","2054-5",39,70689,55.2
+,"45-49 years","45-49","2019","2019","Male","M","White","2106-3",255,454600,56.1
+,"45-49 years","45-49","2020","2020","Female","F","Black or African American","2054-5",35,67070,52.2
+,"45-49 years","45-49","2020","2020","Female","F","White","2106-3",151,404856,37.3
+,"45-49 years","45-49","2020","2020","Male","M","Black or African American","2054-5",65,68277,95.2
+,"45-49 years","45-49","2020","2020","Male","M","White","2106-3",306,430735,71.0
+,"45-49 years","45-49","2021","2021","Female","F","Black or African American","2054-5",29,64950,44.6
+,"45-49 years","45-49","2021","2021","Female","F","White","2106-3",155,383097,40.5
+,"45-49 years","45-49","2021","2021","Male","M","Black or African American","2054-5",79,67842,116.4
+,"45-49 years","45-49","2021","2021","Male","M","White","2106-3",362,416374,86.9
+,"45-49 years","45-49","2022","2022","Female","F","Black or African American","2054-5",34,63974,53.1
+,"45-49 years","45-49","2022","2022","Female","F","White","2106-3",114,369065,30.9
+,"45-49 years","45-49","2022","2022","Male","M","Black or African American","2054-5",103,67159,153.4
+,"45-49 years","45-49","2022","2022","Male","M","White","2106-3",367,406626,90.3
+,"45-49 years","45-49","2023 ","2023","Female","F","Black or African American","2054-5",46,64962,70.8
+,"45-49 years","45-49","2023 ","2023","Female","F","White","2106-3",134,370475,36.2
+,"45-49 years","45-49","2023 ","2023","Male","M","Black or African American","2054-5",110,67305,163.4
+,"45-49 years","45-49","2023 ","2023","Male","M","White","2106-3",330,402954,81.9
+,"50-54 years","50-54","2018","2018","Female","F","Black or African American","2054-5",31,77898,39.8
+,"50-54 years","50-54","2018","2018","Female","F","White","2106-3",167,501124,33.3
+,"50-54 years","50-54","2018","2018","Male","M","Black or African American","2054-5",46,76724,60.0
+,"50-54 years","50-54","2018","2018","Male","M","White","2106-3",304,515351,59.0
+,"50-54 years","50-54","2019","2019","Female","F","Black or African American","2054-5",39,75424,51.7
+,"50-54 years","50-54","2019","2019","Female","F","White","2106-3",134,479706,27.9
+,"50-54 years","50-54","2019","2019","Male","M","Black or African American","2054-5",66,74455,88.6
+,"50-54 years","50-54","2019","2019","Male","M","White","2106-3",323,494222,65.4
+,"50-54 years","50-54","2020","2020","Female","F","Black or African American","2054-5",48,73924,64.9
+,"50-54 years","50-54","2020","2020","Female","F","White","2106-3",165,467492,35.3
+,"50-54 years","50-54","2020","2020","Male","M","Black or African American","2054-5",80,73367,109.0
+,"50-54 years","50-54","2020","2020","Male","M","White","2106-3",387,483552,80.0
+,"50-54 years","50-54","2021","2021","Female","F","Black or African American","2054-5",51,72679,70.2
+,"50-54 years","50-54","2021","2021","Female","F","White","2106-3",173,456901,37.9
+,"50-54 years","50-54","2021","2021","Male","M","Black or African American","2054-5",102,74148,137.6
+,"50-54 years","50-54","2021","2021","Male","M","White","2106-3",501,486525,103.0
+,"50-54 years","50-54","2022","2022","Female","F","Black or African American","2054-5",44,70273,62.6
+,"50-54 years","50-54","2022","2022","Female","F","White","2106-3",174,435083,40.0
+,"50-54 years","50-54","2022","2022","Male","M","Black or African American","2054-5",100,72839,137.3
+,"50-54 years","50-54","2022","2022","Male","M","White","2106-3",452,470338,96.1
+,"50-54 years","50-54","2023 ","2023","Female","F","Black or African American","2054-5",33,69071,47.8
+,"50-54 years","50-54","2023 ","2023","Female","F","White","2106-3",148,419792,35.3
+,"50-54 years","50-54","2023 ","2023","Male","M","Black or African American","2054-5",99,70909,139.6
+,"50-54 years","50-54","2023 ","2023","Male","M","White","2106-3",424,449933,94.2
+,"55-59 years","55-59","2018","2018","Female","F","Black or African American","2054-5",37,82433,44.9
+,"55-59 years","55-59","2018","2018","Female","F","White","2106-3",198,583536,33.9
+,"55-59 years","55-59","2018","2018","Male","M","Black or African American","2054-5",79,78690,100.4
+,"55-59 years","55-59","2018","2018","Male","M","White","2106-3",396,588269,67.3
+,"55-59 years","55-59","2019","2019","Female","F","Black or African American","2054-5",35,81751,42.8
+,"55-59 years","55-59","2019","2019","Female","F","White","2106-3",169,567358,29.8
+,"55-59 years","55-59","2019","2019","Male","M","Black or African American","2054-5",72,78215,92.1
+,"55-59 years","55-59","2019","2019","Male","M","White","2106-3",445,572604,77.7
+,"55-59 years","55-59","2020","2020","Female","F","Black or African American","2054-5",48,80138,59.9
+,"55-59 years","55-59","2020","2020","Female","F","White","2106-3",202,543352,37.2
+,"55-59 years","55-59","2020","2020","Male","M","Black or African American","2054-5",116,76487,151.7
+,"55-59 years","55-59","2020","2020","Male","M","White","2106-3",483,548968,88.0
+,"55-59 years","55-59","2021","2021","Female","F","Black or African American","2054-5",61,78055,78.2
+,"55-59 years","55-59","2021","2021","Female","F","White","2106-3",204,512961,39.8
+,"55-59 years","55-59","2021","2021","Male","M","Black or African American","2054-5",147,76321,192.6
+,"55-59 years","55-59","2021","2021","Male","M","White","2106-3",582,531753,109.4
+,"55-59 years","55-59","2022","2022","Female","F","Black or African American","2054-5",47,74724,62.9
+,"55-59 years","55-59","2022","2022","Female","F","White","2106-3",192,478237,40.1
+,"55-59 years","55-59","2022","2022","Male","M","Black or African American","2054-5",132,73770,178.9
+,"55-59 years","55-59","2022","2022","Male","M","White","2106-3",524,501634,104.5
+,"55-59 years","55-59","2023 ","2023","Female","F","Black or African American","2054-5",50,73287,68.2
+,"55-59 years","55-59","2023 ","2023","Female","F","White","2106-3",199,457712,43.5
+,"55-59 years","55-59","2023 ","2023","Male","M","Black or African American","2054-5",154,72044,213.8
+,"55-59 years","55-59","2023 ","2023","Male","M","White","2106-3",586,477648,122.7
+,"60-64 years ","60-64","2018","2018","Female","F","Black or African American","2054-5",33,71477,46.2
+,"60-64 years ","60-64","2018","2018","Female","F","White","2106-3",159,576401,27.6
+,"60-64 years ","60-64","2018","2018","Male","M","Black or African American","2054-5",78,65096,119.8
+,"60-64 years ","60-64","2018","2018","Male","M","White","2106-3",325,562307,57.8
+,"60-64 years ","60-64","2019","2019","Female","F","Black or African American","2054-5",23,73206,31.4
+,"60-64 years ","60-64","2019","2019","Female","F","White","2106-3",169,568109,29.7
+,"60-64 years ","60-64","2019","2019","Male","M","Black or African American","2054-5",72,66845,107.7
+,"60-64 years ","60-64","2019","2019","Male","M","White","2106-3",339,557447,60.8
+,"60-64 years ","60-64","2020","2020","Female","F","Black or African American","2054-5",35,74776,46.8
+,"60-64 years ","60-64","2020","2020","Female","F","White","2106-3",189,560394,33.7
+,"60-64 years ","60-64","2020","2020","Male","M","Black or African American","2054-5",112,68519,163.5
+,"60-64 years ","60-64","2020","2020","Male","M","White","2106-3",451,552946,81.6
+,"60-64 years ","60-64","2021","2021","Female","F","Black or African American","2054-5",43,75173,57.2
+,"60-64 years ","60-64","2021","2021","Female","F","White","2106-3",250,547511,45.7
+,"60-64 years ","60-64","2021","2021","Male","M","Black or African American","2054-5",156,70837,220.2
+,"60-64 years ","60-64","2021","2021","Male","M","White","2106-3",552,556699,99.2
+,"60-64 years ","60-64","2022","2022","Female","F","Black or African American","2054-5",42,74167,56.6
+,"60-64 years ","60-64","2022","2022","Female","F","White","2106-3",218,528757,41.2
+,"60-64 years ","60-64","2022","2022","Male","M","Black or African American","2054-5",144,70661,203.8
+,"60-64 years ","60-64","2022","2022","Male","M","White","2106-3",533,540668,98.6
+,"60-64 years ","60-64","2023 ","2023","Female","F","Black or African American","2054-5",61,75002,81.3
+,"60-64 years ","60-64","2023 ","2023","Female","F","White","2106-3",216,520481,41.5
+,"60-64 years ","60-64","2023 ","2023","Male","M","Black or African American","2054-5",162,70981,228.2
+,"60-64 years ","60-64","2023 ","2023","Male","M","White","2106-3",548,529166,103.6
+,"65-69 years","65-69","2018","2018","Female","F","Black or African American","2054-5",15,56516,Unreliable
+,"65-69 years","65-69","2018","2018","Female","F","White","2106-3",127,515570,24.6
+,"65-69 years","65-69","2018","2018","Male","M","Black or African American","2054-5",46,46620,98.7
+,"65-69 years","65-69","2018","2018","Male","M","White","2106-3",240,479815,50.0
+,"65-69 years","65-69","2019","2019","Female","F","Black or African American","2054-5",19,57616,Unreliable
+,"65-69 years","65-69","2019","2019","Female","F","White","2106-3",129,518445,24.9
+,"65-69 years","65-69","2019","2019","Male","M","Black or African American","2054-5",54,47970,112.6
+,"65-69 years","65-69","2019","2019","Male","M","White","2106-3",248,482862,51.4
+,"65-69 years","65-69","2020","2020","Female","F","Black or African American","2054-5",21,58878,35.7
+,"65-69 years","65-69","2020","2020","Female","F","White","2106-3",147,517057,28.4
+,"65-69 years","65-69","2020","2020","Male","M","Black or African American","2054-5",81,49211,164.6
+,"65-69 years","65-69","2020","2020","Male","M","White","2106-3",310,481509,64.4
+,"65-69 years","65-69","2021","2021","Female","F","Black or African American","2054-5",25,59783,41.8
+,"65-69 years","65-69","2021","2021","Female","F","White","2106-3",162,510795,31.7
+,"65-69 years","65-69","2021","2021","Male","M","Black or African American","2054-5",97,51832,187.1
+,"65-69 years","65-69","2021","2021","Male","M","White","2106-3",369,488635,75.5
+,"65-69 years","65-69","2022","2022","Female","F","Black or African American","2054-5",29,60721,47.8
+,"65-69 years","65-69","2022","2022","Female","F","White","2106-3",162,502753,32.2
+,"65-69 years","65-69","2022","2022","Male","M","Black or African American","2054-5",95,53157,178.7
+,"65-69 years","65-69","2022","2022","Male","M","White","2106-3",389,484121,80.4
+,"65-69 years","65-69","2023 ","2023","Female","F","Black or African American","2054-5",35,63411,55.2
+,"65-69 years","65-69","2023 ","2023","Female","F","White","2106-3",148,506150,29.2
+,"65-69 years","65-69","2023 ","2023","Male","M","Black or African American","2054-5",133,55933,237.8
+,"65-69 years","65-69","2023 ","2023","Male","M","White","2106-3",420,490213,85.7
+,"70-74 years","70-74","2018","2018","Female","F","White","2106-3",117,434757,26.9
+,"70-74 years","70-74","2018","2018","Male","M","Black or African American","2054-5",14,31382,Unreliable
+,"70-74 years","70-74","2018","2018","Male","M","White","2106-3",190,391282,48.6
+,"70-74 years","70-74","2019","2019","Female","F","Black or African American","2054-5",12,43278,Unreliable
+,"70-74 years","70-74","2019","2019","Female","F","White","2106-3",127,448627,28.3
+,"70-74 years","70-74","2019","2019","Male","M","Black or African American","2054-5",36,32955,109.2
+,"70-74 years","70-74","2019","2019","Male","M","White","2106-3",214,403796,53.0
+,"70-74 years","70-74","2020","2020","Female","F","Black or African American","2054-5",11,45767,Unreliable
+,"70-74 years","70-74","2020","2020","Female","F","White","2106-3",101,457209,22.1
+,"70-74 years","70-74","2020","2020","Male","M","Black or African American","2054-5",31,35042,88.5
+,"70-74 years","70-74","2020","2020","Male","M","White","2106-3",217,410344,52.9
+,"70-74 years","70-74","2021","2021","Female","F","Black or African American","2054-5",11,47232,Unreliable
+,"70-74 years","70-74","2021","2021","Female","F","White","2106-3",139,460629,30.2
+,"70-74 years","70-74","2021","2021","Male","M","Black or African American","2054-5",46,36666,125.5
+,"70-74 years","70-74","2021","2021","Male","M","White","2106-3",235,419373,56.0
+,"70-74 years","70-74","2022","2022","Female","F","Black or African American","2054-5",14,47541,Unreliable
+,"70-74 years","70-74","2022","2022","Female","F","White","2106-3",140,447131,31.3
+,"70-74 years","70-74","2022","2022","Male","M","Black or African American","2054-5",41,36621,112.0
+,"70-74 years","70-74","2022","2022","Male","M","White","2106-3",254,404568,62.8
+,"70-74 years","70-74","2023 ","2023","Female","F","Black or African American","2054-5",18,48957,Unreliable
+,"70-74 years","70-74","2023 ","2023","Female","F","White","2106-3",139,451060,30.8
+,"70-74 years","70-74","2023 ","2023","Male","M","Black or African American","2054-5",46,38153,120.6
+,"70-74 years","70-74","2023 ","2023","Male","M","White","2106-3",242,409137,59.1
+,"75-79 years","75-79","2018","2018","Female","F","White","2106-3",119,307201,38.7
+,"75-79 years","75-79","2018","2018","Male","M","Black or African American","2054-5",15,21230,Unreliable
+,"75-79 years","75-79","2018","2018","Male","M","White","2106-3",190,260031,73.1
+,"75-79 years","75-79","2019","2019","Female","F","White","2106-3",133,319332,41.6
+,"75-79 years","75-79","2019","2019","Male","M","Black or African American","2054-5",11,21595,Unreliable
+,"75-79 years","75-79","2019","2019","Male","M","White","2106-3",169,270398,62.5
+,"75-79 years","75-79","2020","2020","Female","F","White","2106-3",124,328931,37.7
+,"75-79 years","75-79","2020","2020","Male","M","Black or African American","2054-5",15,21844,Unreliable
+,"75-79 years","75-79","2020","2020","Male","M","White","2106-3",197,278575,70.7
+,"75-79 years","75-79","2021","2021","Female","F","White","2106-3",136,321057,42.4
+,"75-79 years","75-79","2021","2021","Male","M","Black or African American","2054-5",14,21403,Unreliable
+,"75-79 years","75-79","2021","2021","Male","M","White","2106-3",199,275888,72.1
+,"75-79 years","75-79","2022","2022","Female","F","Black or African American","2054-5",12,32223,Unreliable
+,"75-79 years","75-79","2022","2022","Female","F","White","2106-3",146,353017,41.4
+,"75-79 years","75-79","2022","2022","Male","M","Black or African American","2054-5",17,22825,Unreliable
+,"75-79 years","75-79","2022","2022","Male","M","White","2106-3",199,303369,65.6
+,"75-79 years","75-79","2023 ","2023","Female","F","White","2106-3",162,365375,44.3
+,"75-79 years","75-79","2023 ","2023","Male","M","Black or African American","2054-5",23,24175,95.1
+,"75-79 years","75-79","2023 ","2023","Male","M","White","2106-3",208,316412,65.7
+,"80-84 years","80-84","2018","2018","Female","F","White","2106-3",167,214457,77.9
+,"80-84 years","80-84","2018","2018","Male","M","Black or African American","2054-5",14,14064,Unreliable
+,"80-84 years","80-84","2018","2018","Male","M","White","2106-3",213,167250,127.4
+,"80-84 years","80-84","2019","2019","Female","F","White","2106-3",166,218491,76.0
+,"80-84 years","80-84","2019","2019","Male","M","White","2106-3",185,170909,108.2
+,"80-84 years","80-84","2020","2020","Female","F","Black or African American","2054-5",19,22277,Unreliable
+,"80-84 years","80-84","2020","2020","Female","F","White","2106-3",166,220657,75.2
+,"80-84 years","80-84","2020","2020","Male","M","White","2106-3",219,172786,126.7
+,"80-84 years","80-84","2021","2021","Female","F","White","2106-3",165,210838,78.3
+,"80-84 years","80-84","2021","2021","Male","M","White","2106-3",211,166431,126.8
+,"80-84 years","80-84","2022","2022","Female","F","White","2106-3",168,225809,74.4
+,"80-84 years","80-84","2022","2022","Male","M","White","2106-3",248,175635,141.2
+,"80-84 years","80-84","2023 ","2023","Female","F","Black or African American","2054-5",13,22599,Unreliable
+,"80-84 years","80-84","2023 ","2023","Female","F","White","2106-3",191,235302,81.2
+,"80-84 years","80-84","2023 ","2023","Male","M","Black or African American","2054-5",18,14244,Unreliable
+,"80-84 years","80-84","2023 ","2023","Male","M","White","2106-3",247,186275,132.6
+,"85-89 years","85-89","2018","2018","Female","F","White","2106-3",224,Not Applicable,Not Applicable
+,"85-89 years","85-89","2018","2018","Male","M","Black or African American","2054-5",11,Not Applicable,Not Applicable
+,"85-89 years","85-89","2018","2018","Male","M","White","2106-3",218,Not Applicable,Not Applicable
+,"85-89 years","85-89","2019","2019","Female","F","White","2106-3",224,Not Applicable,Not Applicable
+,"85-89 years","85-89","2019","2019","Male","M","White","2106-3",209,Not Applicable,Not Applicable
+,"85-89 years","85-89","2020","2020","Female","F","White","2106-3",199,Not Applicable,Not Applicable
+,"85-89 years","85-89","2020","2020","Male","M","White","2106-3",202,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Female","F","White","2106-3",179,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Male","M","Black or African American","2054-5",11,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Male","M","White","2106-3",240,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Female","F","White","2106-3",214,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Male","M","Black or African American","2054-5",16,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Male","M","White","2106-3",237,Not Applicable,Not Applicable
+,"85-89 years","85-89","2023 ","2023","Female","F","White","2106-3",200,Not Applicable,Not Applicable
+,"85-89 years","85-89","2023 ","2023","Male","M","Black or African American","2054-5",12,Not Applicable,Not Applicable
+,"85-89 years","85-89","2023 ","2023","Male","M","White","2106-3",241,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Female","F","Black or African American","2054-5",10,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Female","F","White","2106-3",211,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Male","M","White","2106-3",158,Not Applicable,Not Applicable
+,"90-94 years","90-94","2019","2019","Female","F","White","2106-3",227,Not Applicable,Not Applicable
+,"90-94 years","90-94","2019","2019","Male","M","White","2106-3",190,Not Applicable,Not Applicable
+,"90-94 years","90-94","2020","2020","Female","F","White","2106-3",190,Not Applicable,Not Applicable
+,"90-94 years","90-94","2020","2020","Male","M","White","2106-3",179,Not Applicable,Not Applicable
+,"90-94 years","90-94","2021","2021","Female","F","White","2106-3",194,Not Applicable,Not Applicable
+,"90-94 years","90-94","2021","2021","Male","M","White","2106-3",146,Not Applicable,Not Applicable
+,"90-94 years","90-94","2022","2022","Female","F","White","2106-3",208,Not Applicable,Not Applicable
+,"90-94 years","90-94","2022","2022","Male","M","White","2106-3",189,Not Applicable,Not Applicable
+,"90-94 years","90-94","2023 ","2023","Female","F","White","2106-3",183,Not Applicable,Not Applicable
+,"90-94 years","90-94","2023 ","2023","Male","M","White","2106-3",165,Not Applicable,Not Applicable
+,"95-99 years","95-99","2018","2018","Female","F","White","2106-3",116,Not Applicable,Not Applicable
+,"95-99 years","95-99","2018","2018","Male","M","White","2106-3",66,Not Applicable,Not Applicable
+,"95-99 years","95-99","2019","2019","Female","F","White","2106-3",124,Not Applicable,Not Applicable
+,"95-99 years","95-99","2019","2019","Male","M","White","2106-3",60,Not Applicable,Not Applicable
+,"95-99 years","95-99","2020","2020","Female","F","White","2106-3",100,Not Applicable,Not Applicable
+,"95-99 years","95-99","2020","2020","Male","M","White","2106-3",97,Not Applicable,Not Applicable
+,"95-99 years","95-99","2021","2021","Female","F","White","2106-3",101,Not Applicable,Not Applicable
+,"95-99 years","95-99","2021","2021","Male","M","White","2106-3",82,Not Applicable,Not Applicable
+,"95-99 years","95-99","2022","2022","Female","F","White","2106-3",117,Not Applicable,Not Applicable
+,"95-99 years","95-99","2022","2022","Male","M","White","2106-3",82,Not Applicable,Not Applicable
+,"95-99 years","95-99","2023 ","2023","Female","F","White","2106-3",120,Not Applicable,Not Applicable
+,"95-99 years","95-99","2023 ","2023","Male","M","White","2106-3",58,Not Applicable,Not Applicable
+,"100+ years","100+","2018","2018","Female","F","White","2106-3",24,Not Applicable,Not Applicable
+,"100+ years","100+","2018","2018","Male","M","White","2106-3",11,Not Applicable,Not Applicable
+,"100+ years","100+","2019","2019","Female","F","White","2106-3",27,Not Applicable,Not Applicable
+,"100+ years","100+","2020","2020","Female","F","White","2106-3",25,Not Applicable,Not Applicable
+,"100+ years","100+","2021","2021","Female","F","White","2106-3",37,Not Applicable,Not Applicable
+,"100+ years","100+","2021","2021","Male","M","White","2106-3",12,Not Applicable,Not Applicable
+,"100+ years","100+","2022","2022","Female","F","White","2106-3",30,Not Applicable,Not Applicable
+,"100+ years","100+","2022","2022","Male","M","White","2106-3",15,Not Applicable,Not Applicable
+,"100+ years","100+","2023 ","2023","Female","F","White","2106-3",32,Not Applicable,Not Applicable
+,"100+ years","100+","2023 ","2023","Male","M","White","2106-3",13,Not Applicable,Not Applicable
+"---"
+"Dataset: Multiple Cause of Death, 2018-2023, Single Race"
+"Query Parameters:"
+"Hispanic Origin: Not Hispanic or Latino"
+"Single Race 6: Black or African American; White"
+"States: California (06)"
+"UCD - ICD-10 Codes: W00-X59 (Other external causes of accidental injury)"
+"Group By: Five-Year Age Groups; Year; Sex; Single Race 6"
+"Show Totals: Disabled"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd-expanded.html for more information."
+"---"
+"Query Date: Jan 28, 2026 8:13:27 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 2018-2023 on CDC WONDER Online Database, released in 2024. Data are from the Multiple Cause of Death Files,"
+"2018-2023, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10-expanded.html on Jan 28, 2026 8:13:27 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"2. Rows with zero Deaths are hidden. Use Quick Options above to show zero rows."
+"3. Rows with suppressed Deaths are hidden. Use Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Ages 85-100."
+"2. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Assurance of Confidentiality."
+"3. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Unreliable."
+"4. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"5. Deaths of persons with Hispanic origin ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among"
+"Hispanic Origin groups, so are not included in the Hispanic Origin specific counts and rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"6. Information included on the death certificate about the race and Hispanic ethnicity of the decedent is reported by the"
+"funeral director as provided by an informant, often the surviving next of kin, or, in the absence of an informant, on the basis"
+"of observation. Race and ethnicity information from the census is by self-report. To the extent that race and Hispanic origin"
+"are inconsistent between these two data sources, death rates will be biased. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Racial Differences."
+"7. The population figures for years 2023 are single-race estimates of the July 1 resident population, from the Vintage 2023"
+"postcensal series released by the Census Bureau on June 27, 2024. The 2023 series is based on the Modified Blended Base produced"
+"by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The Modified Blended Base consists of the blend"
+"of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic Analysis Estimates, and 2020 Census data"
+"from the internal Census Edited File (CEF). The population figures for years 2022 are single-race estimates of the July 1"
+"resident population, from the Vintage 2022 postcensal series released by the Census Bureau on June 22, 2023. The 2022 series is"
+"based on the Modified Blended Base produced by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The"
+"Modified Blended Base consists of the blend of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic"
+"Analysis Estimates, and 2020 Census data from the internal Census Edited File (CEF). The population figures for year 2021 are"
+"single-race estimates of the July 1 resident population, based on the Blended Base produced by the US Census Bureau in lieu of"
+"the April 1, 2020 decennial population count, from the Vintage 2021 postcensal series released by the Census Bureau on June 30,"
+"2022. The population figures for year 2020 are single-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series based on April 2010 Census, released by the Census Bureau on July 27, 2021. The population figures for year"
+"2019 are single-race estimates of the July 1 resident population, from the Vintage 2019 postcensal series based on April 2010"
+"Census, released by the Census Bureau on June 25, 2020. The population figures for year 2018 are single-race estimates of the"
+"July 1 resident population, from the Vintage 2018 postcensal series based on April 2010 Census, released by the Census Bureau on"
+"June 20, 2019. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Population Data."
+"8. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Age"
+"Group."
+"9. The U.S. - Mexico Border Regions distinguish between counties near the U.S. - Mexico border in the border states of Arizona,"
+"California, New Mexico, and Texas, and other areas. To simplify the Border region analysis, two mutually exclusive regions"
+"within the United States are available: 1) U.S. - Mexico Border Region (i.e., 44 counties within 100 kilometers (62 miles) of"
+"the U.S. - Mexico border), and 2) the U.S. Non-Border Region with the remaining counties of the selected four border states. The"
+"Border counties selection was based on the 1983 La Paz Agreement:"
+"https://www.epa.gov/sites/production/files/2015-09/documents/lapazagreement.pdf.. (i.e., counties for each state which fall"
+"within 100 kilometers of the Border). Statistics are also available by each of the USA border counties along the U.S.-Mexico"
+"area."
+"10. After the creation of the final 2023 dataset, North Carolina updated the cause of death information for over 900 death"
+"certificates to include a cause of death code indicating drug overdose (ICD-10 underlying cause-of-death codes: X40-X44,"
+"X60-X64, X85, and Y10-Y14). Jurisdictions can continue to update death certificates after the closing of the mortality file. As"
+"a result, users should consider that the actual death count for drug overdose deaths for North Carolina in 2023 is over 4,400"
+"deaths, with a crude rate of approximately 41.0 per 100,000 population, and an age-adjusted rate of approximately 42.1 per"
+"100,000 population. These deaths will not be updated on the final mortality datasets."

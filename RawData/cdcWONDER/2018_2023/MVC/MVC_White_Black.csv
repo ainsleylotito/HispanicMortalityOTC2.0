@@ -1,0 +1,951 @@
+"Notes","Five-Year Age Groups","Five-Year Age Groups Code","Year","Year Code","Sex","Sex Code","Single Race 6","Single Race 6 Code",Deaths,Population,Crude Rate
+,"15-19 years","15-19","2018","2018","Female","F","White","2106-3",15,332554,Unreliable
+,"15-19 years","15-19","2018","2018","Male","M","White","2106-3",28,353475,7.9
+,"15-19 years","15-19","2019","2019","Female","F","White","2106-3",15,327069,Unreliable
+,"15-19 years","15-19","2019","2019","Male","M","Black or African American","2054-5",10,69104,Unreliable
+,"15-19 years","15-19","2019","2019","Male","M","White","2106-3",22,347755,6.3
+,"15-19 years","15-19","2020","2020","Female","F","Black or African American","2054-5",10,62884,Unreliable
+,"15-19 years","15-19","2020","2020","Female","F","White","2106-3",19,320038,Unreliable
+,"15-19 years","15-19","2020","2020","Male","M","Black or African American","2054-5",18,66920,Unreliable
+,"15-19 years","15-19","2020","2020","Male","M","White","2106-3",45,340126,13.2
+,"15-19 years","15-19","2021","2021","Female","F","White","2106-3",23,320619,7.2
+,"15-19 years","15-19","2021","2021","Male","M","Black or African American","2054-5",16,67534,Unreliable
+,"15-19 years","15-19","2021","2021","Male","M","White","2106-3",40,341725,11.7
+,"15-19 years","15-19","2022","2022","Female","F","White","2106-3",19,312621,Unreliable
+,"15-19 years","15-19","2022","2022","Male","M","Black or African American","2054-5",13,65586,Unreliable
+,"15-19 years","15-19","2022","2022","Male","M","White","2106-3",40,334897,11.9
+,"15-19 years","15-19","2023 ","2023","Female","F","White","2106-3",14,312728,Unreliable
+,"15-19 years","15-19","2023 ","2023","Male","M","Black or African American","2054-5",14,66353,Unreliable
+,"15-19 years","15-19","2023 ","2023","Male","M","White","2106-3",34,333149,10.2
+,"20-24 years","20-24","2018","2018","Female","F","White","2106-3",33,368061,9.0
+,"20-24 years","20-24","2018","2018","Male","M","Black or African American","2054-5",36,85191,42.3
+,"20-24 years","20-24","2018","2018","Male","M","White","2106-3",65,407641,15.9
+,"20-24 years","20-24","2019","2019","Female","F","Black or African American","2054-5",13,73399,Unreliable
+,"20-24 years","20-24","2019","2019","Female","F","White","2106-3",24,356232,6.7
+,"20-24 years","20-24","2019","2019","Male","M","Black or African American","2054-5",17,81875,Unreliable
+,"20-24 years","20-24","2019","2019","Male","M","White","2106-3",73,392288,18.6
+,"20-24 years","20-24","2020","2020","Female","F","Black or African American","2054-5",15,71228,Unreliable
+,"20-24 years","20-24","2020","2020","Female","F","White","2106-3",23,344751,6.7
+,"20-24 years","20-24","2020","2020","Male","M","Black or African American","2054-5",38,79239,48.0
+,"20-24 years","20-24","2020","2020","Male","M","White","2106-3",68,379665,17.9
+,"20-24 years","20-24","2021","2021","Female","F","Black or African American","2054-5",12,68925,Unreliable
+,"20-24 years","20-24","2021","2021","Female","F","White","2106-3",22,330416,6.7
+,"20-24 years","20-24","2021","2021","Male","M","Black or African American","2054-5",35,76488,45.8
+,"20-24 years","20-24","2021","2021","Male","M","White","2106-3",73,362140,20.2
+,"20-24 years","20-24","2022","2022","Female","F","White","2106-3",26,337528,7.7
+,"20-24 years","20-24","2022","2022","Male","M","Black or African American","2054-5",22,77209,28.5
+,"20-24 years","20-24","2022","2022","Male","M","White","2106-3",78,372447,20.9
+,"20-24 years","20-24","2023 ","2023","Female","F","White","2106-3",26,319974,8.1
+,"20-24 years","20-24","2023 ","2023","Male","M","Black or African American","2054-5",24,71851,33.4
+,"20-24 years","20-24","2023 ","2023","Male","M","White","2106-3",72,351929,20.5
+,"25-29 years","25-29","2018","2018","Female","F","White","2106-3",20,474286,4.2
+,"25-29 years","25-29","2018","2018","Male","M","Black or African American","2054-5",25,104888,23.8
+,"25-29 years","25-29","2018","2018","Male","M","White","2106-3",85,518092,16.4
+,"25-29 years","25-29","2019","2019","Female","F","White","2106-3",24,456979,5.3
+,"25-29 years","25-29","2019","2019","Male","M","Black or African American","2054-5",33,105178,31.4
+,"25-29 years","25-29","2019","2019","Male","M","White","2106-3",82,500960,16.4
+,"25-29 years","25-29","2020","2020","Female","F","Black or African American","2054-5",16,89394,Unreliable
+,"25-29 years","25-29","2020","2020","Female","F","White","2106-3",24,431708,5.6
+,"25-29 years","25-29","2020","2020","Male","M","Black or African American","2054-5",44,103066,42.7
+,"25-29 years","25-29","2020","2020","Male","M","White","2106-3",82,475292,17.3
+,"25-29 years","25-29","2021","2021","Female","F","Black or African American","2054-5",13,83591,Unreliable
+,"25-29 years","25-29","2021","2021","Female","F","White","2106-3",35,396428,8.8
+,"25-29 years","25-29","2021","2021","Male","M","Black or African American","2054-5",38,95000,40.0
+,"25-29 years","25-29","2021","2021","Male","M","White","2106-3",82,429734,19.1
+,"25-29 years","25-29","2022","2022","Female","F","Black or African American","2054-5",13,79299,Unreliable
+,"25-29 years","25-29","2022","2022","Female","F","White","2106-3",19,375246,Unreliable
+,"25-29 years","25-29","2022","2022","Male","M","Black or African American","2054-5",22,90164,24.4
+,"25-29 years","25-29","2022","2022","Male","M","White","2106-3",73,409406,17.8
+,"25-29 years","25-29","2023 ","2023","Female","F","White","2106-3",18,363582,Unreliable
+,"25-29 years","25-29","2023 ","2023","Male","M","Black or African American","2054-5",24,85848,28.0
+,"25-29 years","25-29","2023 ","2023","Male","M","White","2106-3",60,388327,15.5
+,"30-34 years","30-34","2018","2018","Female","F","White","2106-3",20,472481,4.2
+,"30-34 years","30-34","2018","2018","Male","M","Black or African American","2054-5",18,88321,Unreliable
+,"30-34 years","30-34","2018","2018","Male","M","White","2106-3",73,514820,14.2
+,"30-34 years","30-34","2019","2019","Female","F","White","2106-3",21,474707,4.4
+,"30-34 years","30-34","2019","2019","Male","M","Black or African American","2054-5",20,93328,21.4
+,"30-34 years","30-34","2019","2019","Male","M","White","2106-3",60,516620,11.6
+,"30-34 years","30-34","2020","2020","Female","F","White","2106-3",27,476339,5.7
+,"30-34 years","30-34","2020","2020","Male","M","Black or African American","2054-5",25,98085,25.5
+,"30-34 years","30-34","2020","2020","Male","M","White","2106-3",103,518781,19.9
+,"30-34 years","30-34","2021","2021","Female","F","Black or African American","2054-5",11,88876,Unreliable
+,"30-34 years","30-34","2021","2021","Female","F","White","2106-3",24,464109,5.2
+,"30-34 years","30-34","2021","2021","Male","M","Black or African American","2054-5",38,100699,37.7
+,"30-34 years","30-34","2021","2021","Male","M","White","2106-3",95,502165,18.9
+,"30-34 years","30-34","2022","2022","Female","F","Black or African American","2054-5",12,89199,Unreliable
+,"30-34 years","30-34","2022","2022","Female","F","White","2106-3",27,445221,6.1
+,"30-34 years","30-34","2022","2022","Male","M","Black or African American","2054-5",28,101692,27.5
+,"30-34 years","30-34","2022","2022","Male","M","White","2106-3",104,487025,21.4
+,"30-34 years","30-34","2023 ","2023","Female","F","White","2106-3",17,433728,Unreliable
+,"30-34 years","30-34","2023 ","2023","Male","M","Black or African American","2054-5",22,101673,21.6
+,"30-34 years","30-34","2023 ","2023","Male","M","White","2106-3",64,468693,13.7
+,"35-39 years","35-39","2018","2018","Female","F","White","2106-3",21,446983,4.7
+,"35-39 years","35-39","2018","2018","Male","M","Black or African American","2054-5",18,77662,Unreliable
+,"35-39 years","35-39","2018","2018","Male","M","White","2106-3",62,485131,12.8
+,"35-39 years","35-39","2019","2019","Female","F","White","2106-3",29,449820,6.4
+,"35-39 years","35-39","2019","2019","Male","M","Black or African American","2054-5",11,79200,Unreliable
+,"35-39 years","35-39","2019","2019","Male","M","White","2106-3",64,489050,13.1
+,"35-39 years","35-39","2020","2020","Female","F","White","2106-3",25,449175,5.6
+,"35-39 years","35-39","2020","2020","Male","M","Black or African American","2054-5",28,80210,34.9
+,"35-39 years","35-39","2020","2020","Male","M","White","2106-3",69,488208,14.1
+,"35-39 years","35-39","2021","2021","Female","F","Black or African American","2054-5",10,74552,Unreliable
+,"35-39 years","35-39","2021","2021","Female","F","White","2106-3",26,445647,5.8
+,"35-39 years","35-39","2021","2021","Male","M","Black or African American","2054-5",34,83313,40.8
+,"35-39 years","35-39","2021","2021","Male","M","White","2106-3",71,491165,14.5
+,"35-39 years","35-39","2022","2022","Female","F","White","2106-3",22,432838,5.1
+,"35-39 years","35-39","2022","2022","Male","M","Black or African American","2054-5",21,83777,25.1
+,"35-39 years","35-39","2022","2022","Male","M","White","2106-3",94,481734,19.5
+,"35-39 years","35-39","2023 ","2023","Female","F","White","2106-3",16,433414,Unreliable
+,"35-39 years","35-39","2023 ","2023","Male","M","Black or African American","2054-5",19,86069,Unreliable
+,"35-39 years","35-39","2023 ","2023","Male","M","White","2106-3",60,475395,12.6
+,"40-44 years","40-44","2018","2018","Female","F","White","2106-3",14,397166,Unreliable
+,"40-44 years","40-44","2018","2018","Male","M","White","2106-3",56,426328,13.1
+,"40-44 years","40-44","2019","2019","Female","F","White","2106-3",12,398846,Unreliable
+,"40-44 years","40-44","2019","2019","Male","M","Black or African American","2054-5",15,69485,Unreliable
+,"40-44 years","40-44","2019","2019","Male","M","White","2106-3",45,429067,10.5
+,"40-44 years","40-44","2020","2020","Female","F","White","2106-3",16,403014,Unreliable
+,"40-44 years","40-44","2020","2020","Male","M","Black or African American","2054-5",24,71452,33.6
+,"40-44 years","40-44","2020","2020","Male","M","White","2106-3",64,433931,14.7
+,"40-44 years","40-44","2021","2021","Female","F","Black or African American","2054-5",10,69690,Unreliable
+,"40-44 years","40-44","2021","2021","Female","F","White","2106-3",15,409177,Unreliable
+,"40-44 years","40-44","2021","2021","Male","M","Black or African American","2054-5",13,74723,Unreliable
+,"40-44 years","40-44","2021","2021","Male","M","White","2106-3",62,448488,13.8
+,"40-44 years","40-44","2022","2022","Female","F","White","2106-3",10,406619,Unreliable
+,"40-44 years","40-44","2022","2022","Male","M","Black or African American","2054-5",18,75169,Unreliable
+,"40-44 years","40-44","2022","2022","Male","M","White","2106-3",82,450986,18.2
+,"40-44 years","40-44","2023 ","2023","Female","F","White","2106-3",15,413653,Unreliable
+,"40-44 years","40-44","2023 ","2023","Male","M","Black or African American","2054-5",17,76542,Unreliable
+,"40-44 years","40-44","2023 ","2023","Male","M","White","2106-3",68,454426,15.0
+,"45-49 years","45-49","2018","2018","Female","F","White","2106-3",18,453183,Unreliable
+,"45-49 years","45-49","2018","2018","Male","M","Black or African American","2054-5",24,73019,32.9
+,"45-49 years","45-49","2018","2018","Male","M","White","2106-3",54,476424,11.3
+,"45-49 years","45-49","2019","2019","Female","F","White","2106-3",16,429578,Unreliable
+,"45-49 years","45-49","2019","2019","Male","M","Black or African American","2054-5",11,70689,Unreliable
+,"45-49 years","45-49","2019","2019","Male","M","White","2106-3",57,454600,12.5
+,"45-49 years","45-49","2020","2020","Female","F","White","2106-3",15,404856,Unreliable
+,"45-49 years","45-49","2020","2020","Male","M","Black or African American","2054-5",21,68277,30.8
+,"45-49 years","45-49","2020","2020","Male","M","White","2106-3",48,430735,11.1
+,"45-49 years","45-49","2021","2021","Female","F","White","2106-3",13,383097,Unreliable
+,"45-49 years","45-49","2021","2021","Male","M","Black or African American","2054-5",15,67842,Unreliable
+,"45-49 years","45-49","2021","2021","Male","M","White","2106-3",53,416374,12.7
+,"45-49 years","45-49","2022","2022","Female","F","White","2106-3",18,369065,Unreliable
+,"45-49 years","45-49","2022","2022","Male","M","Black or African American","2054-5",15,67159,Unreliable
+,"45-49 years","45-49","2022","2022","Male","M","White","2106-3",74,406626,18.2
+,"45-49 years","45-49","2023 ","2023","Female","F","White","2106-3",14,370475,Unreliable
+,"45-49 years","45-49","2023 ","2023","Male","M","Black or African American","2054-5",19,67305,Unreliable
+,"45-49 years","45-49","2023 ","2023","Male","M","White","2106-3",59,402954,14.6
+,"50-54 years","50-54","2018","2018","Female","F","White","2106-3",20,501124,4.0
+,"50-54 years","50-54","2018","2018","Male","M","White","2106-3",57,515351,11.1
+,"50-54 years","50-54","2019","2019","Female","F","White","2106-3",20,479706,4.2
+,"50-54 years","50-54","2019","2019","Male","M","Black or African American","2054-5",14,74455,Unreliable
+,"50-54 years","50-54","2019","2019","Male","M","White","2106-3",74,494222,15.0
+,"50-54 years","50-54","2020","2020","Female","F","White","2106-3",16,467492,Unreliable
+,"50-54 years","50-54","2020","2020","Male","M","Black or African American","2054-5",18,73367,Unreliable
+,"50-54 years","50-54","2020","2020","Male","M","White","2106-3",66,483552,13.6
+,"50-54 years","50-54","2021","2021","Female","F","White","2106-3",25,456901,5.5
+,"50-54 years","50-54","2021","2021","Male","M","Black or African American","2054-5",20,74148,27.0
+,"50-54 years","50-54","2021","2021","Male","M","White","2106-3",88,486525,18.1
+,"50-54 years","50-54","2022","2022","Female","F","White","2106-3",18,435083,Unreliable
+,"50-54 years","50-54","2022","2022","Male","M","Black or African American","2054-5",15,72839,Unreliable
+,"50-54 years","50-54","2022","2022","Male","M","White","2106-3",77,470338,16.4
+,"50-54 years","50-54","2023 ","2023","Female","F","White","2106-3",16,419792,Unreliable
+,"50-54 years","50-54","2023 ","2023","Male","M","Black or African American","2054-5",18,70909,Unreliable
+,"50-54 years","50-54","2023 ","2023","Male","M","White","2106-3",68,449933,15.1
+,"55-59 years","55-59","2018","2018","Female","F","White","2106-3",32,583536,5.5
+,"55-59 years","55-59","2018","2018","Male","M","White","2106-3",94,588269,16.0
+,"55-59 years","55-59","2019","2019","Female","F","White","2106-3",27,567358,4.8
+,"55-59 years","55-59","2019","2019","Male","M","Black or African American","2054-5",15,78215,Unreliable
+,"55-59 years","55-59","2019","2019","Male","M","White","2106-3",87,572604,15.2
+,"55-59 years","55-59","2020","2020","Female","F","White","2106-3",21,543352,3.9
+,"55-59 years","55-59","2020","2020","Male","M","Black or African American","2054-5",16,76487,Unreliable
+,"55-59 years","55-59","2020","2020","Male","M","White","2106-3",87,548968,15.8
+,"55-59 years","55-59","2021","2021","Female","F","Black or African American","2054-5",10,78055,Unreliable
+,"55-59 years","55-59","2021","2021","Female","F","White","2106-3",27,512961,5.3
+,"55-59 years","55-59","2021","2021","Male","M","Black or African American","2054-5",18,76321,Unreliable
+,"55-59 years","55-59","2021","2021","Male","M","White","2106-3",85,531753,16.0
+,"55-59 years","55-59","2022","2022","Female","F","White","2106-3",28,478237,5.9
+,"55-59 years","55-59","2022","2022","Male","M","Black or African American","2054-5",19,73770,Unreliable
+,"55-59 years","55-59","2022","2022","Male","M","White","2106-3",85,501634,16.9
+,"55-59 years","55-59","2023 ","2023","Female","F","White","2106-3",15,457712,Unreliable
+,"55-59 years","55-59","2023 ","2023","Male","M","Black or African American","2054-5",14,72044,Unreliable
+,"55-59 years","55-59","2023 ","2023","Male","M","White","2106-3",81,477648,17.0
+,"60-64 years ","60-64","2018","2018","Female","F","White","2106-3",27,576401,4.7
+,"60-64 years ","60-64","2018","2018","Male","M","White","2106-3",72,562307,12.8
+,"60-64 years ","60-64","2019","2019","Female","F","White","2106-3",28,568109,4.9
+,"60-64 years ","60-64","2019","2019","Male","M","Black or African American","2054-5",10,66845,Unreliable
+,"60-64 years ","60-64","2019","2019","Male","M","White","2106-3",63,557447,11.3
+,"60-64 years ","60-64","2020","2020","Female","F","White","2106-3",23,560394,4.1
+,"60-64 years ","60-64","2020","2020","Male","M","Black or African American","2054-5",11,68519,Unreliable
+,"60-64 years ","60-64","2020","2020","Male","M","White","2106-3",83,552946,15.0
+,"60-64 years ","60-64","2021","2021","Female","F","White","2106-3",24,547511,4.4
+,"60-64 years ","60-64","2021","2021","Male","M","Black or African American","2054-5",21,70837,29.6
+,"60-64 years ","60-64","2021","2021","Male","M","White","2106-3",92,556699,16.5
+,"60-64 years ","60-64","2022","2022","Female","F","White","2106-3",23,528757,4.3
+,"60-64 years ","60-64","2022","2022","Male","M","Black or African American","2054-5",15,70661,Unreliable
+,"60-64 years ","60-64","2022","2022","Male","M","White","2106-3",94,540668,17.4
+,"60-64 years ","60-64","2023 ","2023","Female","F","White","2106-3",19,520481,Unreliable
+,"60-64 years ","60-64","2023 ","2023","Male","M","Black or African American","2054-5",19,70981,Unreliable
+,"60-64 years ","60-64","2023 ","2023","Male","M","White","2106-3",78,529166,14.7
+,"65-69 years","65-69","2018","2018","Female","F","White","2106-3",21,515570,4.1
+,"65-69 years","65-69","2018","2018","Male","M","White","2106-3",73,479815,15.2
+,"65-69 years","65-69","2019","2019","Female","F","White","2106-3",24,518445,4.6
+,"65-69 years","65-69","2019","2019","Male","M","White","2106-3",56,482862,11.6
+,"65-69 years","65-69","2020","2020","Female","F","White","2106-3",22,517057,4.3
+,"65-69 years","65-69","2020","2020","Male","M","White","2106-3",72,481509,15.0
+,"65-69 years","65-69","2021","2021","Female","F","White","2106-3",14,510795,Unreliable
+,"65-69 years","65-69","2021","2021","Male","M","White","2106-3",63,488635,12.9
+,"65-69 years","65-69","2022","2022","Female","F","White","2106-3",19,502753,Unreliable
+,"65-69 years","65-69","2022","2022","Male","M","White","2106-3",73,484121,15.1
+,"65-69 years","65-69","2023 ","2023","Female","F","White","2106-3",21,506150,4.1
+,"65-69 years","65-69","2023 ","2023","Male","M","White","2106-3",73,490213,14.9
+,"70-74 years","70-74","2018","2018","Female","F","White","2106-3",21,434757,4.8
+,"70-74 years","70-74","2018","2018","Male","M","White","2106-3",38,391282,9.7
+,"70-74 years","70-74","2019","2019","Female","F","White","2106-3",21,448627,4.7
+,"70-74 years","70-74","2019","2019","Male","M","White","2106-3",53,403796,13.1
+,"70-74 years","70-74","2020","2020","Female","F","White","2106-3",14,457209,Unreliable
+,"70-74 years","70-74","2020","2020","Male","M","White","2106-3",45,410344,11.0
+,"70-74 years","70-74","2021","2021","Female","F","White","2106-3",15,460629,Unreliable
+,"70-74 years","70-74","2021","2021","Male","M","White","2106-3",57,419373,13.6
+,"70-74 years","70-74","2022","2022","Female","F","White","2106-3",23,447131,5.1
+,"70-74 years","70-74","2022","2022","Male","M","White","2106-3",38,404568,9.4
+,"70-74 years","70-74","2023 ","2023","Female","F","White","2106-3",15,451060,Unreliable
+,"70-74 years","70-74","2023 ","2023","Male","M","White","2106-3",53,409137,13.0
+,"75-79 years","75-79","2018","2018","Female","F","White","2106-3",18,307201,Unreliable
+,"75-79 years","75-79","2018","2018","Male","M","White","2106-3",29,260031,11.2
+,"75-79 years","75-79","2019","2019","Female","F","White","2106-3",16,319332,Unreliable
+,"75-79 years","75-79","2019","2019","Male","M","White","2106-3",42,270398,15.5
+,"75-79 years","75-79","2020","2020","Male","M","White","2106-3",28,278575,10.1
+,"75-79 years","75-79","2021","2021","Female","F","White","2106-3",18,321057,Unreliable
+,"75-79 years","75-79","2021","2021","Male","M","White","2106-3",43,275888,15.6
+,"75-79 years","75-79","2022","2022","Female","F","White","2106-3",20,353017,5.7
+,"75-79 years","75-79","2022","2022","Male","M","White","2106-3",35,303369,11.5
+,"75-79 years","75-79","2023 ","2023","Female","F","White","2106-3",21,365375,5.7
+,"75-79 years","75-79","2023 ","2023","Male","M","White","2106-3",31,316412,9.8
+,"80-84 years","80-84","2018","2018","Female","F","White","2106-3",15,214457,Unreliable
+,"80-84 years","80-84","2018","2018","Male","M","White","2106-3",30,167250,17.9
+,"80-84 years","80-84","2019","2019","Female","F","White","2106-3",16,218491,Unreliable
+,"80-84 years","80-84","2019","2019","Male","M","White","2106-3",35,170909,20.5
+,"80-84 years","80-84","2020","2020","Female","F","White","2106-3",14,220657,Unreliable
+,"80-84 years","80-84","2020","2020","Male","M","White","2106-3",24,172786,13.9
+,"80-84 years","80-84","2021","2021","Female","F","White","2106-3",19,210838,Unreliable
+,"80-84 years","80-84","2021","2021","Male","M","White","2106-3",33,166431,19.8
+,"80-84 years","80-84","2022","2022","Female","F","White","2106-3",15,225809,Unreliable
+,"80-84 years","80-84","2022","2022","Male","M","White","2106-3",25,175635,14.2
+,"80-84 years","80-84","2023 ","2023","Female","F","White","2106-3",14,235302,Unreliable
+,"80-84 years","80-84","2023 ","2023","Male","M","White","2106-3",25,186275,13.4
+,"85-89 years","85-89","2018","2018","Female","F","White","2106-3",14,Not Applicable,Not Applicable
+,"85-89 years","85-89","2018","2018","Male","M","White","2106-3",16,Not Applicable,Not Applicable
+,"85-89 years","85-89","2019","2019","Female","F","White","2106-3",11,Not Applicable,Not Applicable
+,"85-89 years","85-89","2019","2019","Male","M","White","2106-3",12,Not Applicable,Not Applicable
+,"85-89 years","85-89","2020","2020","Female","F","White","2106-3",18,Not Applicable,Not Applicable
+,"85-89 years","85-89","2020","2020","Male","M","White","2106-3",15,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Female","F","White","2106-3",14,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Male","M","White","2106-3",24,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Female","F","White","2106-3",12,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Male","M","White","2106-3",18,Not Applicable,Not Applicable
+,"85-89 years","85-89","2023 ","2023","Male","M","White","2106-3",16,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Female","F","White","2106-3",10,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Male","M","White","2106-3",16,Not Applicable,Not Applicable
+,"90-94 years","90-94","2020","2020","Male","M","White","2106-3",10,Not Applicable,Not Applicable
+,"90-94 years","90-94","2022","2022","Male","M","White","2106-3",15,Not Applicable,Not Applicable
+,"90-94 years","90-94","2023 ","2023","Female","F","White","2106-3",10,Not Applicable,Not Applicable
+,"90-94 years","90-94","2023 ","2023","Male","M","White","2106-3",11,Not Applicable,Not Applicable
+"---"
+"Dataset: Multiple Cause of Death, 2018-2023, Single Race"
+"Query Parameters:"
+"Hispanic Origin: Not Hispanic or Latino"
+"Single Race 6: Black or African American; White"
+"States: California (06)"
+"UCD - ICD-10 Codes: V20.0 (Motorcycle rider injured in collision with pedestrian or animal, driver injured in nontraffic"
+"accident); V20.1 (Motorcycle rider injured in collision with pedestrian or animal, passenger injured in nontraffic accident);"
+"V20.2 (Motorcycle rider injured in collision with pedestrian or animal, unspecified motorcycle rider injured in nontraffic"
+"accident); V20.3 (Motorcycle rider injured in collision with pedestrian or animal, person injured while boarding or alighting);"
+"V20.4 (Motorcycle rider injured in collision with pedestrian or animal, driver injured in traffic accident); V20.5 (Motorcycle"
+"rider injured in collision with pedestrian or animal, passenger injured in traffic accident); V20.9 (Motorcycle rider injured in"
+"collision with pedestrian or animal, unspecified motorcycle rider injured in traffic accident); V21.0 (Motorcycle rider injured"
+"in collision with pedal cycle, driver injured in nontraffic accident); V21.1 (Motorcycle rider injured in collision with pedal"
+"cycle, passenger injured in nontraffic accident); V21.2 (Motorcycle rider injured in collision with pedal cycle, unspecified"
+"motorcycle rider injured in nontraffic accident); V21.3 (Motorcycle rider injured in collision with pedal cycle, person injured"
+"while boarding or alighting); V21.4 (Motorcycle rider injured in collision with pedal cycle, driver injured in traffic"
+"accident); V21.5 (Motorcycle rider injured in collision with pedal cycle, passenger injured in traffic accident); V21.9"
+"(Motorcycle rider injured in collision with pedal cycle, unspecified motorcycle rider injured in traffic accident); V22.0"
+"(Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, driver injured in nontraffic accident); V22.1"
+"(Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, passenger injured in nontraffic accident);"
+"V22.2 (Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, unspecified motorcycle rider injured in"
+"nontraffic accident); V22.3 (Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, person injured"
+"while boarding or alighting); V22.4 (Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, driver"
+"injured in traffic accident); V22.5 (Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, passenger"
+"injured in traffic accident); V22.9 (Motorcycle rider injured in collision with two- or three-wheeled motor vehicle, unspecified"
+"motorcycle rider injured in traffic accident); V23.0 (Motorcycle rider injured in collision with car, pick-up truck or van,"
+"driver injured in nontraffic accident); V23.1 (Motorcycle rider injured in collision with car, pick-up truck or van, passenger"
+"injured in nontraffic accident); V23.2 (Motorcycle rider injured in collision with car, pick-up truck or van, unspecified"
+"motorcycle rider injured in nontraffic accident); V23.3 (Motorcycle rider injured in collision with car, pick-up truck or van,"
+"person injured while boarding or alighting); V23.4 (Motorcycle rider injured in collision with car, pick-up truck or van, driver"
+"injured in traffic accident); V23.5 (Motorcycle rider injured in collision with car, pick-up truck or van, passenger injured in"
+"traffic accident); V23.9 (Motorcycle rider injured in collision with car, pick-up truck or van, unspecified motorcycle rider"
+"injured in traffic accident); V24.0 (Motorcycle rider injured in collision with heavy transport vehicle or bus, driver injured"
+"in nontraffic accident); V24.1 (Motorcycle rider injured in collision with heavy transport vehicle or bus, passenger injured in"
+"nontraffic accident); V24.2 (Motorcycle rider injured in collision with heavy transport vehicle or bus, unspecified motorcycle"
+"rider injured in nontraffic accident); V24.3 (Motorcycle rider injured in collision with heavy transport vehicle or bus, person"
+"injured while boarding or alighting); V24.4 (Motorcycle rider injured in collision with heavy transport vehicle or bus, driver"
+"injured in traffic accident); V24.5 (Motorcycle rider injured in collision with heavy transport vehicle or bus, passenger"
+"injured in traffic accident); V24.9 (Motorcycle rider injured in collision with heavy transport vehicle or bus, unspecified"
+"motorcycle rider injured in traffic accident); V25.0 (Motorcycle rider injured in collision with railway train or railway"
+"vehicle, driver injured in nontraffic accident); V25.1 (Motorcycle rider injured in collision with railway train or railway"
+"vehicle, passenger injured in nontraffic accident); V25.2 (Motorcycle rider injured in collision with railway train or railway"
+"vehicle, unspecified motorcycle rider injured in nontraffic accident); V25.3 (Motorcycle rider injured in collision with railway"
+"train or railway vehicle, person injured while boarding or alighting); V25.4 (Motorcycle rider injured in collision with railway"
+"train or railway vehicle, driver injured in traffic accident); V25.5 (Motorcycle rider injured in collision with railway train"
+"or railway vehicle, passenger injured in traffic accident); V25.9 (Motorcycle rider injured in collision with railway train or"
+"railway vehicle, unspecified motorcycle rider injured in traffic accident); V26.0 (Motorcycle rider injured in collision with"
+"other nonmotor vehicle, driver injured in nontraffic accident); V26.1 (Motorcycle rider injured in collision with other nonmotor"
+"vehicle, passenger injured in nontraffic accident); V26.2 (Motorcycle rider injured in collision with other nonmotor vehicle,"
+"unspecified motorcycle rider injured in nontraffic accident); V26.3 (Motorcycle rider injured in collision with other nonmotor"
+"vehicle, person injured while boarding or alighting); V26.4 (Motorcycle rider injured in collision with other nonmotor vehicle,"
+"driver injured in traffic accident); V26.5 (Motorcycle rider injured in collision with other nonmotor vehicle, passenger injured"
+"in traffic accident); V26.9 (Motorcycle rider injured in collision with other nonmotor vehicle, unspecified motorcycle rider"
+"injured in traffic accident); V27.0 (Motorcycle rider injured in collision with fixed or stationary object, driver injured in"
+"nontraffic accident); V27.1 (Motorcycle rider injured in collision with fixed or stationary object, passenger injured in"
+"nontraffic accident); V27.2 (Motorcycle rider injured in collision with fixed or stationary object, unspecified motorcycle rider"
+"injured in nontraffic accident); V27.3 (Motorcycle rider injured in collision with fixed or stationary object, person injured"
+"while boarding or alighting); V27.4 (Motorcycle rider injured in collision with fixed or stationary object, driver injured in"
+"traffic accident); V27.5 (Motorcycle rider injured in collision with fixed or stationary object, passenger injured in traffic"
+"accident); V27.9 (Motorcycle rider injured in collision with fixed or stationary object, unspecified motorcycle rider injured in"
+"traffic accident); V28.0 (Motorcycle rider injured in noncollision transport accident, driver injured in nontraffic accident);"
+"V28.1 (Motorcycle rider injured in noncollision transport accident, passenger injured in nontraffic accident); V28.2 (Motorcycle"
+"rider injured in noncollision transport accident, unspecified motorcycle rider injured in nontraffic accident); V28.3"
+"(Motorcycle rider injured in noncollision transport accident, person injured while boarding or alighting); V28.4 (Motorcycle"
+"rider injured in noncollision transport accident, driver injured in traffic accident); V28.5 (Motorcycle rider injured in"
+"noncollision transport accident, passenger injured in traffic accident); V28.9 (Motorcycle rider injured in noncollision"
+"transport accident, unspecified motorcycle rider injured in traffic accident); V29.0 (Driver injured in collision with other and"
+"unspecified motor vehicles in nontraffic accident); V29.1 (Passenger injured in collision with other and unspecified motor"
+"vehicles in nontraffic accident); V29.2 (Unspecified motorcycle rider injured in collision with other and unspecified motor"
+"vehicles in nontraffic accident); V29.3 (Motorcycle rider [any] injured in unspecified nontraffic accident); V29.4 (Driver"
+"injured in collision with other and unspecified motor vehicles in traffic accident); V29.5 (Passenger injured in collision with"
+"other and unspecified motor vehicles in traffic accident); V29.6 (Unspecified motorcycle rider injured in collision with other"
+"and unspecified motor vehicles in traffic accident); V29.8 (Motorcycle rider [any] injured in other specified transport"
+"accidents); V29.9 (Motorcycle rider [any] injured in unspecified traffic accident); V30.0 (Occupant of three-wheeled motor"
+"vehicle injured in collision with pedestrian or animal, driver injured in nontraffic accident); V30.1 (Occupant of three-wheeled"
+"motor vehicle injured in collision with pedestrian or animal, passenger injured in nontraffic accident); V30.2 (Occupant of"
+"three-wheeled motor vehicle injured in collision with pedestrian or animal, person on outside of vehicle injured in nontraffic"
+"accident); V30.3 (Occupant of three-wheeled motor vehicle injured in collision with pedestrian or animal, unspecified occupant"
+"of three-wheeled motor vehicle injured in nontraffic accident); V30.4 (Occupant of three-wheeled motor vehicle injured in"
+"collision with pedestrian or animal, person injured while boarding or alighting); V30.5 (Occupant of three-wheeled motor vehicle"
+"injured in collision with pedestrian or animal, driver injured in traffic accident); V30.6 (Occupant of three-wheeled motor"
+"vehicle injured in collision with pedestrian or animal, passenger injured in traffic accident); V30.7 (Occupant of three-wheeled"
+"motor vehicle injured in collision with pedestrian or animal, person on outside of vehicle injured in traffic accident); V30.9"
+"(Occupant of three-wheeled motor vehicle injured in collision with pedestrian or animal, unspecified occupant of three-wheeled"
+"motor vehicle injured in traffic accident); V31.0 (Occupant of three-wheeled motor vehicle injured in collision with pedal"
+"cycle, driver injured in nontraffic accident); V31.1 (Occupant of three-wheeled motor vehicle injured in collision with pedal"
+"cycle, passenger injured in nontraffic accident); V31.2 (Occupant of three-wheeled motor vehicle injured in collision with pedal"
+"cycle, person on outside of vehicle injured in nontraffic accident); V31.3 (Occupant of three-wheeled motor vehicle injured in"
+"collision with pedal cycle, unspecified occupant of three-wheeled motor vehicle injured in nontraffic accident); V31.4 (Occupant"
+"of three-wheeled motor vehicle injured in collision with pedal cycle, person injured while boarding or alighting); V31.5"
+"(Occupant of three-wheeled motor vehicle injured in collision with pedal cycle, driver injured in traffic accident); V31.6"
+"(Occupant of three-wheeled motor vehicle injured in collision with pedal cycle, passenger injured in traffic accident); V31.7"
+"(Occupant of three-wheeled motor vehicle injured in collision with pedal cycle, person on outside of vehicle injured in traffic"
+"accident); V31.9 (Occupant of three-wheeled motor vehicle injured in collision with pedal cycle, unspecified occupant of"
+"three-wheeled motor vehicle injured in traffic accident); V32.0 (Occupant of three-wheeled motor vehicle injured in collision"
+"with two- or three-wheeled motor vehicle, driver injured in nontraffic accident); V32.1 (Occupant of three-wheeled motor vehicle"
+"injured in collision with two- or three-wheeled motor vehicle, passenger injured in nontraffic accident); V32.2 (Occupant of"
+"three-wheeled motor vehicle injured in collision with two- or three-wheeled motor vehicle, person on outside of vehicle injured"
+"in nontraffic accident); V32.3 (Occupant of three-wheeled motor vehicle injured in collision with two- or three-wheeled motor"
+"vehicle, unspecified occupant of three-wheeled motor vehicle injured in nontraffic accident); V32.4 (Occupant of three-wheeled"
+"motor vehicle injured in collision with two- or three-wheeled motor vehicle, person injured while boarding or alighting); V32.5"
+"(Occupant of three-wheeled motor vehicle injured in collision with two- or three-wheeled motor vehicle, driver injured in"
+"traffic accident); V32.6 (Occupant of three-wheeled motor vehicle injured in collision with two- or three-wheeled motor vehicle,"
+"passenger injured in traffic accident); V32.7 (Occupant of three-wheeled motor vehicle injured in collision with two- or"
+"three-wheeled motor vehicle, person on outside of vehicle injured in traffic accident); V32.9 (Occupant of three-wheeled motor"
+"vehicle injured in collision with two- or three-wheeled motor vehicle, unspecified occupant of three-wheeled motor vehicle"
+"injured in traffic accident); V33.0 (Occupant of three-wheeled motor vehicle injured in collision with car, pick-up truck or"
+"van, driver injured in nontraffic accident); V33.1 (Occupant of three-wheeled motor vehicle injured in collision with car,"
+"pick-up truck or van, passenger injured in nontraffic accident); V33.2 (Occupant of three-wheeled motor vehicle injured in"
+"collision with car, pick-up truck or van, person on outside of vehicle injured in nontraffic accident); V33.3 (Occupant of"
+"three-wheeled motor vehicle injured in collision with car, pick-up truck or van, unspecified occupant of three-wheeled motor"
+"vehicle injured in nontraffic accident); V33.4 (Occupant of three-wheeled motor vehicle injured in collision with car, pick-up"
+"truck or van, person injured while boarding or alighting); V33.5 (Occupant of three-wheeled motor vehicle injured in collision"
+"with car, pick-up truck or van, driver injured in traffic accident); V33.6 (Occupant of three-wheeled motor vehicle injured in"
+"collision with car, pick-up truck or van, passenger injured in traffic accident); V33.7 (Occupant of three-wheeled motor vehicle"
+"injured in collision with car, pick-up truck or van, person on outside of vehicle injured in traffic accident); V33.9 (Occupant"
+"of three-wheeled motor vehicle injured in collision with car, pick-up truck or van, unspecified occupant of three-wheeled motor"
+"vehicle injured in traffic accident); V34.0 (Occupant of three-wheeled motor vehicle injured in collision with heavy transport"
+"vehicle or bus, driver injured in nontraffic accident); V34.1 (Occupant of three-wheeled motor vehicle injured in collision with"
+"heavy transport vehicle or bus, passenger injured in nontraffic accident); V34.2 (Occupant of three-wheeled motor vehicle"
+"injured in collision with heavy transport vehicle or bus, person on outside of vehicle injured in nontraffic accident); V34.3"
+"(Occupant of three-wheeled motor vehicle injured in collision with heavy transport vehicle or bus, unspecified occupant of"
+"three-wheeled motor vehicle injured in nontraffic accident); V34.4 (Occupant of three-wheeled motor vehicle injured in collision"
+"with heavy transport vehicle or bus, person injured while boarding or alighting); V34.5 (Occupant of three-wheeled motor vehicle"
+"injured in collision with heavy transport vehicle or bus, driver injured in traffic accident); V34.6 (Occupant of three-wheeled"
+"motor vehicle injured in collision with heavy transport vehicle or bus, passenger injured in traffic accident); V34.7 (Occupant"
+"of three-wheeled motor vehicle injured in collision with heavy transport vehicle or bus, person on outside of vehicle injured in"
+"traffic accident); V34.9 (Occupant of three-wheeled motor vehicle injured in collision with heavy transport vehicle or bus,"
+"unspecified occupant of three-wheeled motor vehicle injured in traffic accident); V35.0 (Occupant of three-wheeled motor vehicle"
+"injured in collision with railway train or railway vehicle, driver injured in nontraffic accident); V35.1 (Occupant of"
+"three-wheeled motor vehicle injured in collision with railway train or railway vehicle, passenger injured in nontraffic"
+"accident); V35.2 (Occupant of three-wheeled motor vehicle injured in collision with railway train or railway vehicle, person on"
+"outside of vehicle injured in nontraffic accident); V35.3 (Occupant of three-wheeled motor vehicle injured in collision with"
+"railway train or railway vehicle, unspecified occupant of three-wheeled motor vehicle injured in nontraffic accident); V35.4"
+"(Occupant of three-wheeled motor vehicle injured in collision with railway train or railway vehicle, person injured while"
+"boarding or alighting); V35.5 (Occupant of three-wheeled motor vehicle injured in collision with railway train or railway"
+"vehicle, driver injured in traffic accident); V35.6 (Occupant of three-wheeled motor vehicle injured in collision with railway"
+"train or railway vehicle, passenger injured in traffic accident); V35.7 (Occupant of three-wheeled motor vehicle injured in"
+"collision with railway train or railway vehicle, person on outside of vehicle injured in traffic accident); V35.9 (Occupant of"
+"three-wheeled motor vehicle injured in collision with railway train or railway vehicle, unspecified occupant of three-wheeled"
+"motor vehicle injured in traffic accident); V36.0 (Occupant of three-wheeled motor vehicle injured in collision with other"
+"nonmotor vehicle, driver injured in nontraffic accident); V36.1 (Occupant of three-wheeled motor vehicle injured in collision"
+"with other nonmotor vehicle, passenger injured in nontraffic accident); V36.2 (Occupant of three-wheeled motor vehicle injured"
+"in collision with other nonmotor vehicle, person on outside of vehicle injured in nontraffic accident); V36.3 (Occupant of"
+"three-wheeled motor vehicle injured in collision with other nonmotor vehicle, unspecified occupant of three-wheeled motor"
+"vehicle injured in nontraffic accident); V36.4 (Occupant of three-wheeled motor vehicle injured in collision with other nonmotor"
+"vehicle, person injured while boarding or alighting); V36.5 (Occupant of three-wheeled motor vehicle injured in collision with"
+"other nonmotor vehicle, driver injured in traffic accident); V36.6 (Occupant of three-wheeled motor vehicle injured in collision"
+"with other nonmotor vehicle, passenger injured in traffic accident); V36.7 (Occupant of three-wheeled motor vehicle injured in"
+"collision with other nonmotor vehicle, person on outside of vehicle injured in traffic accident); V36.9 (Occupant of"
+"three-wheeled motor vehicle injured in collision with other nonmotor vehicle, unspecified occupant of three-wheeled motor"
+"vehicle injured in traffic accident); V37.0 (Occupant of three-wheeled motor vehicle injured in collision with fixed or"
+"stationary object, driver injured in nontraffic accident); V37.1 (Occupant of three-wheeled motor vehicle injured in collision"
+"with fixed or stationary object, passenger injured in nontraffic accident); V37.2 (Occupant of three-wheeled motor vehicle"
+"injured in collision with fixed or stationary object, person on outside of vehicle injured in nontraffic accident); V37.3"
+"(Occupant of three-wheeled motor vehicle injured in collision with fixed or stationary object, unspecified occupant of"
+"three-wheeled motor vehicle injured in nontraffic accident); V37.4 (Occupant of three-wheeled motor vehicle injured in collision"
+"with fixed or stationary object, person injured while boarding or alighting); V37.5 (Occupant of three-wheeled motor vehicle"
+"injured in collision with fixed or stationary object, driver injured in traffic accident); V37.6 (Occupant of three-wheeled"
+"motor vehicle injured in collision with fixed or stationary object, passenger injured in traffic accident); V37.7 (Occupant of"
+"three-wheeled motor vehicle injured in collision with fixed or stationary object, person on outside of vehicle injured in"
+"traffic accident); V37.9 (Occupant of three-wheeled motor vehicle injured in collision with fixed or stationary object,"
+"unspecified occupant of three-wheeled motor vehicle injured in traffic accident); V38.0 (Occupant of three-wheeled motor vehicle"
+"injured in noncollision transport accident, driver injured in nontraffic accident); V38.1 (Occupant of three-wheeled motor"
+"vehicle injured in noncollision transport accident, passenger injured in nontraffic accident); V38.2 (Occupant of three-wheeled"
+"motor vehicle injured in noncollision transport accident, person on outside of vehicle injured in nontraffic accident); V38.3"
+"(Occupant of three-wheeled motor vehicle injured in noncollision transport accident, unspecified occupant of three-wheeled motor"
+"vehicle injured in nontraffic accident); V38.4 (Occupant of three-wheeled motor vehicle injured in noncollision transport"
+"accident, person injured while boarding or alighting); V38.5 (Occupant of three-wheeled motor vehicle injured in noncollision"
+"transport accident, driver injured in traffic accident); V38.6 (Occupant of three-wheeled motor vehicle injured in noncollision"
+"transport accident, passenger injured in traffic accident); V38.7 (Occupant of three-wheeled motor vehicle injured in"
+"noncollision transport accident, person on outside of vehicle injured in traffic accident); V38.9 (Occupant of three-wheeled"
+"motor vehicle injured in noncollision transport accident, unspecified occupant of three-wheeled motor vehicle injured in traffic"
+"accident); V39.0 (Driver injured in collision with other and unspecified motor vehicles in nontraffic accident); V39.1"
+"(Passenger injured in collision with other and unspecified motor vehicles in nontraffic accident); V39.2 (Unspecified occupant"
+"of three-wheeled motor vehicle injured in collision with other and unspecified motor vehicles in nontraffic accident); V39.3"
+"(Occupant [any] of three-wheeled motor vehicle injured in unspecified nontraffic accident); V39.4 (Driver injured in collision"
+"with other and unspecified motor vehicles in traffic accident); V39.5 (Passenger injured in collision with other and unspecified"
+"motor vehicles in traffic accident); V39.6 (Unspecified occupant of three-wheeled motor vehicle injured in collision with other"
+"and unspecified motor vehicles in traffic accident); V39.8 (Occupant [any] of three-wheeled motor vehicle injured in other"
+"specified transport accidents); V39.9 (Occupant [any] of three-wheeled motor vehicle injured in unspecified traffic accident);"
+"V40.0 (Car occupant injured in collision with pedestrian or animal, driver injured in nontraffic accident); V40.1 (Car occupant"
+"injured in collision with pedestrian or animal, passenger injured in nontraffic accident); V40.2 (Car occupant injured in"
+"collision with pedestrian or animal, person on outside of vehicle injured in nontraffic accident); V40.3 (Car occupant injured"
+"in collision with pedestrian or animal, unspecified car occupant injured in nontraffic accident); V40.4 (Car occupant injured in"
+"collision with pedestrian or animal, person injured while boarding or alighting); V40.5 (Car occupant injured in collision with"
+"pedestrian or animal, driver injured in traffic accident); V40.6 (Car occupant injured in collision with pedestrian or animal,"
+"passenger injured in traffic accident); V40.7 (Car occupant injured in collision with pedestrian or animal, person on outside of"
+"vehicle injured in traffic accident); V40.9 (Car occupant injured in collision with pedestrian or animal, unspecified car"
+"occupant injured in traffic accident); V41.0 (Car occupant injured in collision with pedal cycle, driver injured in nontraffic"
+"accident); V41.1 (Car occupant injured in collision with pedal cycle, passenger injured in nontraffic accident); V41.2 (Car"
+"occupant injured in collision with pedal cycle, person on outside of vehicle injured in nontraffic accident); V41.3 (Car"
+"occupant injured in collision with pedal cycle, unspecified car occupant injured in nontraffic accident); V41.4 (Car occupant"
+"injured in collision with pedal cycle, person injured while boarding or alighting); V41.5 (Car occupant injured in collision"
+"with pedal cycle, driver injured in traffic accident); V41.6 (Car occupant injured in collision with pedal cycle, passenger"
+"injured in traffic accident); V41.7 (Car occupant injured in collision with pedal cycle, person on outside of vehicle injured in"
+"traffic accident); V41.9 (Car occupant injured in collision with pedal cycle, unspecified car occupant injured in traffic"
+"accident); V42.0 (Car occupant injured in collision with two- or three-wheeled motor vehicle, driver injured in nontraffic"
+"accident); V42.1 (Car occupant injured in collision with two- or three-wheeled motor vehicle, passenger injured in nontraffic"
+"accident); V42.2 (Car occupant injured in collision with two- or three-wheeled motor vehicle, person on outside of vehicle"
+"injured in nontraffic accident); V42.3 (Car occupant injured in collision with two- or three-wheeled motor vehicle, unspecified"
+"car occupant injured in nontraffic accident); V42.4 (Car occupant injured in collision with two- or three-wheeled motor vehicle,"
+"person injured while boarding or alighting); V42.5 (Car occupant injured in collision with two- or three-wheeled motor vehicle,"
+"driver injured in traffic accident); V42.6 (Car occupant injured in collision with two- or three-wheeled motor vehicle,"
+"passenger injured in traffic accident); V42.7 (Car occupant injured in collision with two- or three-wheeled motor vehicle,"
+"person on outside of vehicle injured in traffic accident); V42.9 (Car occupant injured in collision with two- or three-wheeled"
+"motor vehicle, unspecified car occupant injured in traffic accident); V43.0 (Car occupant injured in collision with car, pick-up"
+"truck or van, driver injured in nontraffic accident); V43.1 (Car occupant injured in collision with car, pick-up truck or van,"
+"passenger injured in nontraffic accident); V43.2 (Car occupant injured in collision with car, pick-up truck or van, person on"
+"outside of vehicle injured in nontraffic accident); V43.3 (Car occupant injured in collision with car, pick-up truck or van,"
+"unspecified car occupant injured in nontraffic accident); V43.4 (Car occupant injured in collision with car, pick-up truck or"
+"van, person injured while boarding or alighting); V43.5 (Car occupant injured in collision with car, pick-up truck or van,"
+"driver injured in traffic accident); V43.6 (Car occupant injured in collision with car, pick-up truck or van, passenger injured"
+"in traffic accident); V43.7 (Car occupant injured in collision with car, pick-up truck or van, person on outside of vehicle"
+"injured in traffic accident); V43.9 (Car occupant injured in collision with car, pick-up truck or van, unspecified car occupant"
+"injured in traffic accident); V44.0 (Car occupant injured in collision with heavy transport vehicle or bus, driver injured in"
+"nontraffic accident); V44.1 (Car occupant injured in collision with heavy transport vehicle or bus, passenger injured in"
+"nontraffic accident); V44.2 (Car occupant injured in collision with heavy transport vehicle or bus, person on outside of vehicle"
+"injured in nontraffic accident); V44.3 (Car occupant injured in collision with heavy transport vehicle or bus, unspecified car"
+"occupant injured in nontraffic accident); V44.4 (Car occupant injured in collision with heavy transport vehicle or bus, person"
+"injured while boarding or alighting); V44.5 (Car occupant injured in collision with heavy transport vehicle or bus, driver"
+"injured in traffic accident); V44.6 (Car occupant injured in collision with heavy transport vehicle or bus, passenger injured in"
+"traffic accident); V44.7 (Car occupant injured in collision with heavy transport vehicle or bus, person on outside of vehicle"
+"injured in traffic accident); V44.9 (Car occupant injured in collision with heavy transport vehicle or bus, unspecified car"
+"occupant injured in traffic accident); V45.0 (Car occupant injured in collision with railway train or railway vehicle, driver"
+"injured in nontraffic accident); V45.1 (Car occupant injured in collision with railway train or railway vehicle, passenger"
+"injured in nontraffic accident); V45.2 (Car occupant injured in collision with railway train or railway vehicle, person on"
+"outside of vehicle injured in nontraffic accident); V45.3 (Car occupant injured in collision with railway train or railway"
+"vehicle, unspecified car occupant injured in nontraffic accident); V45.4 (Car occupant injured in collision with railway train"
+"or railway vehicle, person injured while boarding or alighting); V45.5 (Car occupant injured in collision with railway train or"
+"railway vehicle, driver injured in traffic accident); V45.6 (Car occupant injured in collision with railway train or railway"
+"vehicle, passenger injured in traffic accident); V45.7 (Car occupant injured in collision with railway train or railway vehicle,"
+"person on outside of vehicle injured in traffic accident); V45.9 (Car occupant injured in collision with railway train or"
+"railway vehicle, unspecified car occupant injured in traffic accident); V46.0 (Car occupant injured in collision with other"
+"nonmotor vehicle, driver injured in nontraffic accident); V46.1 (Car occupant injured in collision with other nonmotor vehicle,"
+"passenger injured in nontraffic accident); V46.2 (Car occupant injured in collision with other nonmotor vehicle, person on"
+"outside of vehicle injured in nontraffic accident); V46.3 (Car occupant injured in collision with other nonmotor vehicle,"
+"unspecified car occupant injured in nontraffic accident); V46.4 (Car occupant injured in collision with other nonmotor vehicle,"
+"person injured while boarding or alighting); V46.5 (Car occupant injured in collision with other nonmotor vehicle, driver"
+"injured in traffic accident); V46.6 (Car occupant injured in collision with other nonmotor vehicle, passenger injured in traffic"
+"accident); V46.7 (Car occupant injured in collision with other nonmotor vehicle, person on outside of vehicle injured in traffic"
+"accident); V46.9 (Car occupant injured in collision with other nonmotor vehicle, unspecified car occupant injured in traffic"
+"accident); V47.0 (Car occupant injured in collision with fixed or stationary object, driver injured in nontraffic accident);"
+"V47.1 (Car occupant injured in collision with fixed or stationary object, passenger injured in nontraffic accident); V47.2 (Car"
+"occupant injured in collision with fixed or stationary object, person on outside of vehicle injured in nontraffic accident);"
+"V47.3 (Car occupant injured in collision with fixed or stationary object, unspecified car occupant injured in nontraffic"
+"accident); V47.4 (Car occupant injured in collision with fixed or stationary object, person injured while boarding or"
+"alighting); V47.5 (Car occupant injured in collision with fixed or stationary object, driver injured in traffic accident); V47.6"
+"(Car occupant injured in collision with fixed or stationary object, passenger injured in traffic accident); V47.7 (Car occupant"
+"injured in collision with fixed or stationary object, person on outside of vehicle injured in traffic accident); V47.9 (Car"
+"occupant injured in collision with fixed or stationary object, unspecified car occupant injured in traffic accident); V48.0 (Car"
+"occupant injured in noncollision transport accident, driver injured in nontraffic accident); V48.1 (Car occupant injured in"
+"noncollision transport accident, passenger injured in nontraffic accident); V48.2 (Car occupant injured in noncollision"
+"transport accident, person on outside of vehicle injured in nontraffic accident); V48.3 (Car occupant injured in noncollision"
+"transport accident, unspecified car occupant injured in nontraffic accident); V48.4 (Car occupant injured in noncollision"
+"transport accident, person injured while boarding or alighting); V48.5 (Car occupant injured in noncollision transport accident,"
+"driver injured in traffic accident); V48.6 (Car occupant injured in noncollision transport accident, passenger injured in"
+"traffic accident); V48.7 (Car occupant injured in noncollision transport accident, person on outside of vehicle injured in"
+"traffic accident); V48.9 (Car occupant injured in noncollision transport accident, unspecified car occupant injured in traffic"
+"accident); V49.0 (Driver injured in collision with other and unspecified motor vehicles in nontraffic accident); V49.1"
+"(Passenger injured in collision with other and unspecified motor vehicles in nontraffic accident); V49.2 (Unspecified car"
+"occupant injured in collision with other and unspecified motor vehicles in nontraffic accident); V49.3 (Car occupant [any]"
+"injured in unspecified nontraffic accident); V49.4 (Driver injured in collision with other and unspecified motor vehicles in"
+"traffic accident); V49.5 (Passenger injured in collision with other and unspecified motor vehicles in traffic accident); V49.6"
+"(Unspecified car occupant injured in collision with other and unspecified motor vehicles in traffic accident); V49.8 (Car"
+"occupant [any] injured in other specified transport accidents); V49.9 (Car occupant [any] injured in unspecified traffic"
+"accident); V50.0 (Occupant of pick-up truck or van injured in collision with pedestrian or animal, driver injured in nontraffic"
+"accident); V50.1 (Occupant of pick-up truck or van injured in collision with pedestrian or animal, passenger injured in"
+"nontraffic accident); V50.2 (Occupant of pick-up truck or van injured in collision with pedestrian or animal, person on outside"
+"of vehicle injured in nontraffic accident); V50.3 (Occupant of pick-up truck or van injured in collision with pedestrian or"
+"animal, unspecified occupant of pick-up truck or van injured in nontraffic accident); V50.4 (Occupant of pick-up truck or van"
+"injured in collision with pedestrian or animal, person injured while boarding or alighting); V50.5 (Occupant of pick-up truck or"
+"van injured in collision with pedestrian or animal, driver injured in traffic accident); V50.6 (Occupant of pick-up truck or van"
+"injured in collision with pedestrian or animal, passenger injured in traffic accident); V50.7 (Occupant of pick-up truck or van"
+"injured in collision with pedestrian or animal, person on outside of vehicle injured in traffic accident); V50.9 (Occupant of"
+"pick-up truck or van injured in collision with pedestrian or animal, unspecified occupant of pick-up truck or van injured in"
+"traffic accident); V51.0 (Occupant of pick-up truck or van injured in collision with pedal cycle, driver injured in nontraffic"
+"accident); V51.1 (Occupant of pick-up truck or van injured in collision with pedal cycle, passenger injured in nontraffic"
+"accident); V51.2 (Occupant of pick-up truck or van injured in collision with pedal cycle, person on outside of vehicle injured"
+"in nontraffic accident); V51.3 (Occupant of pick-up truck or van injured in collision with pedal cycle, unspecified occupant of"
+"pick-up truck or van injured in nontraffic accident); V51.4 (Occupant of pick-up truck or van injured in collision with pedal"
+"cycle, person injured while boarding or alighting); V51.5 (Occupant of pick-up truck or van injured in collision with pedal"
+"cycle, driver injured in traffic accident); V51.6 (Occupant of pick-up truck or van injured in collision with pedal cycle,"
+"passenger injured in traffic accident); V51.7 (Occupant of pick-up truck or van injured in collision with pedal cycle, person on"
+"outside of vehicle injured in traffic accident); V51.9 (Occupant of pick-up truck or van injured in collision with pedal cycle,"
+"unspecified occupant of pick-up truck or van injured in traffic accident); V52.0 (Occupant of pick-up truck or van injured in"
+"collision with two- or three-wheeled motor vehicle, driver injured in nontraffic accident); V52.1 (Occupant of pick-up truck or"
+"van injured in collision with two- or three-wheeled motor vehicle, passenger injured in nontraffic accident); V52.2 (Occupant of"
+"pick-up truck or van injured in collision with two- or three-wheeled motor vehicle, person on outside of vehicle injured in"
+"nontraffic accident); V52.3 (Occupant of pick-up truck or van injured in collision with two- or three-wheeled motor vehicle,"
+"unspecified occupant of pick-up truck or van injured in nontraffic accident); V52.4 (Occupant of pick-up truck or van injured in"
+"collision with two- or three-wheeled motor vehicle, person injured while boarding or alighting); V52.5 (Occupant of pick-up"
+"truck or van injured in collision with two- or three-wheeled motor vehicle, driver injured in traffic accident); V52.6 (Occupant"
+"of pick-up truck or van injured in collision with two- or three-wheeled motor vehicle, passenger injured in traffic accident);"
+"V52.7 (Occupant of pick-up truck or van injured in collision with two- or three-wheeled motor vehicle, person on outside of"
+"vehicle injured in traffic accident); V52.9 (Occupant of pick-up truck or van injured in collision with two- or three-wheeled"
+"motor vehicle, unspecified occupant of pick-up truck or van injured in traffic accident); V53.0 (Occupant of pick-up truck or"
+"van injured in collision with car, pick-up truck or van, driver injured in nontraffic accident); V53.1 (Occupant of pick-up"
+"truck or van injured in collision with car, pick-up truck or van, passenger injured in nontraffic accident); V53.2 (Occupant of"
+"pick-up truck or van injured in collision with car, pick-up truck or van, person on outside of vehicle injured in nontraffic"
+"accident); V53.3 (Occupant of pick-up truck or van injured in collision with car, pick-up truck or van, unspecified occupant of"
+"pick-up truck or van injured in nontraffic accident); V53.4 (Occupant of pick-up truck or van injured in collision with car,"
+"pick-up truck or van, person injured while boarding or alighting); V53.5 (Occupant of pick-up truck or van injured in collision"
+"with car, pick-up truck or van, driver injured in traffic accident); V53.6 (Occupant of pick-up truck or van injured in"
+"collision with car, pick-up truck or van, passenger injured in traffic accident); V53.7 (Occupant of pick-up truck or van"
+"injured in collision with car, pick-up truck or van, person on outside of vehicle injured in traffic accident); V53.9 (Occupant"
+"of pick-up truck or van injured in collision with car, pick-up truck or van, unspecified occupant of pick-up truck or van"
+"injured in traffic accident); V54.0 (Occupant of pick-up truck or van injured in collision with heavy transport vehicle or bus,"
+"driver injured in nontraffic accident); V54.1 (Occupant of pick-up truck or van injured in collision with heavy transport"
+"vehicle or bus, passenger injured in nontraffic accident); V54.2 (Occupant of pick-up truck or van injured in collision with"
+"heavy transport vehicle or bus, person on outside of vehicle injured in nontraffic accident); V54.3 (Occupant of pick-up truck"
+"or van injured in collision with heavy transport vehicle or bus, unspecified occupant of pick-up truck or van injured in"
+"nontraffic accident); V54.4 (Occupant of pick-up truck or van injured in collision with heavy transport vehicle or bus, person"
+"injured while boarding or alighting); V54.5 (Occupant of pick-up truck or van injured in collision with heavy transport vehicle"
+"or bus, driver injured in traffic accident); V54.6 (Occupant of pick-up truck or van injured in collision with heavy transport"
+"vehicle or bus, passenger injured in traffic accident); V54.7 (Occupant of pick-up truck or van injured in collision with heavy"
+"transport vehicle or bus, person on outside of vehicle injured in traffic accident); V54.9 (Occupant of pick-up truck or van"
+"injured in collision with heavy transport vehicle or bus, unspecified occupant of pick-up truck or van injured in traffic"
+"accident); V55.0 (Occupant of pick-up truck or van injured in collision with railway train or railway vehicle, driver injured in"
+"nontraffic accident); V55.1 (Occupant of pick-up truck or van injured in collision with railway train or railway vehicle,"
+"passenger injured in nontraffic accident); V55.2 (Occupant of pick-up truck or van injured in collision with railway train or"
+"railway vehicle, person on outside of vehicle injured in nontraffic accident); V55.3 (Occupant of pick-up truck or van injured"
+"in collision with railway train or railway vehicle, unspecified occupant of pick-up truck or van injured in nontraffic"
+"accident); V55.4 (Occupant of pick-up truck or van injured in collision with railway train or railway vehicle, person injured"
+"while boarding or alighting); V55.5 (Occupant of pick-up truck or van injured in collision with railway train or railway"
+"vehicle, driver injured in traffic accident); V55.6 (Occupant of pick-up truck or van injured in collision with railway train or"
+"railway vehicle, passenger injured in traffic accident); V55.7 (Occupant of pick-up truck or van injured in collision with"
+"railway train or railway vehicle, person on outside of vehicle injured in traffic accident); V55.9 (Occupant of pick-up truck or"
+"van injured in collision with railway train or railway vehicle, unspecified occupant of pick-up truck or van injured in traffic"
+"accident); V56.0 (Occupant of pick-up truck or van injured in collision with other nonmotor vehicle, driver injured in"
+"nontraffic accident); V56.1 (Occupant of pick-up truck or van injured in collision with other nonmotor vehicle, passenger"
+"injured in nontraffic accident); V56.2 (Occupant of pick-up truck or van injured in collision with other nonmotor vehicle,"
+"person on outside of vehicle injured in nontraffic accident); V56.3 (Occupant of pick-up truck or van injured in collision with"
+"other nonmotor vehicle, unspecified occupant of pick-up truck or van injured in nontraffic accident); V56.4 (Occupant of pick-up"
+"truck or van injured in collision with other nonmotor vehicle, person injured while boarding or alighting); V56.5 (Occupant of"
+"pick-up truck or van injured in collision with other nonmotor vehicle, driver injured in traffic accident); V56.6 (Occupant of"
+"pick-up truck or van injured in collision with other nonmotor vehicle, passenger injured in traffic accident); V56.7 (Occupant"
+"of pick-up truck or van injured in collision with other nonmotor vehicle, person on outside of vehicle injured in traffic"
+"accident); V56.9 (Occupant of pick-up truck or van injured in collision with other nonmotor vehicle, unspecified occupant of"
+"pick-up truck or van injured in traffic accident); V57.0 (Occupant of pick-up truck or van injured in collision with fixed or"
+"stationary object, driver injured in nontraffic accident); V57.1 (Occupant of pick-up truck or van injured in collision with"
+"fixed or stationary object, passenger injured in nontraffic accident); V57.2 (Occupant of pick-up truck or van injured in"
+"collision with fixed or stationary object, person on outside of vehicle injured in nontraffic accident); V57.3 (Occupant of"
+"pick-up truck or van injured in collision with fixed or stationary object, unspecified occupant of pick-up truck or van injured"
+"in nontraffic accident); V57.4 (Occupant of pick-up truck or van injured in collision with fixed or stationary object, person"
+"injured while boarding or alighting); V57.5 (Occupant of pick-up truck or van injured in collision with fixed or stationary"
+"object, driver injured in traffic accident); V57.6 (Occupant of pick-up truck or van injured in collision with fixed or"
+"stationary object, passenger injured in traffic accident); V57.7 (Occupant of pick-up truck or van injured in collision with"
+"fixed or stationary object, person on outside of vehicle injured in traffic accident); V57.9 (Occupant of pick-up truck or van"
+"injured in collision with fixed or stationary object, unspecified occupant of pick-up truck or van injured in traffic accident);"
+"V58.0 (Occupant of pick-up truck or van injured in noncollision transport accident, driver injured in nontraffic accident);"
+"V58.1 (Occupant of pick-up truck or van injured in noncollision transport accident, passenger injured in nontraffic accident);"
+"V58.2 (Occupant of pick-up truck or van injured in noncollision transport accident, person on outside of vehicle injured in"
+"nontraffic accident); V58.3 (Occupant of pick-up truck or van injured in noncollision transport accident, unspecified occupant"
+"of pick-up truck or van injured in nontraffic accident); V58.4 (Occupant of pick-up truck or van injured in noncollision"
+"transport accident, person injured while boarding or alighting); V58.5 (Occupant of pick-up truck or van injured in noncollision"
+"transport accident, driver injured in traffic accident); V58.6 (Occupant of pick-up truck or van injured in noncollision"
+"transport accident, passenger injured in traffic accident); V58.7 (Occupant of pick-up truck or van injured in noncollision"
+"transport accident, person on outside of vehicle injured in traffic accident); V58.9 (Occupant of pick-up truck or van injured"
+"in noncollision transport accident, unspecified occupant of pick-up truck or van injured in traffic accident); V59.0 (Driver"
+"injured in collision with other and unspecified motor vehicles in nontraffic accident); V59.1 (Passenger injured in collision"
+"with other and unspecified motor vehicles in nontraffic accident); V59.2 (Unspecified occupant of pick-up truck or van injured"
+"in collision with other and unspecified motor vehicles in nontraffic accident); V59.3 (Occupant [any] of pick-up truck or van"
+"injured in unspecified nontraffic accident); V59.4 (Driver injured in collision with other and unspecified motor vehicles in"
+"traffic accident); V59.5 (Passenger injured in collision with other and unspecified motor vehicles in traffic accident); V59.6"
+"(Unspecified occupant of pick-up truck or van injured in collision with other and unspecified motor vehicles in traffic"
+"accident); V59.8 (Occupant [any] of pick-up truck or van injured in other specified transport accidents); V59.9 (Occupant [any]"
+"of pick-up truck or van injured in unspecified traffic accident); V60.0 (Occupant of heavy transport vehicle injured in"
+"collision with pedestrian or animal, driver injured in nontraffic accident); V60.1 (Occupant of heavy transport vehicle injured"
+"in collision with pedestrian or animal, passenger injured in nontraffic accident); V60.2 (Occupant of heavy transport vehicle"
+"injured in collision with pedestrian or animal, person on outside of vehicle injured in nontraffic accident); V60.3 (Occupant of"
+"heavy transport vehicle injured in collision with pedestrian or animal, unspecified occupant of heavy transport vehicle injured"
+"in nontraffic accident); V60.4 (Occupant of heavy transport vehicle injured in collision with pedestrian or animal, person"
+"injured while boarding or alighting); V60.5 (Occupant of heavy transport vehicle injured in collision with pedestrian or animal,"
+"driver injured in traffic accident); V60.6 (Occupant of heavy transport vehicle injured in collision with pedestrian or animal,"
+"passenger injured in traffic accident); V60.7 (Occupant of heavy transport vehicle injured in collision with pedestrian or"
+"animal, person on outside of vehicle injured in traffic accident); V60.9 (Occupant of heavy transport vehicle injured in"
+"collision with pedestrian or animal, unspecified occupant of heavy transport vehicle injured in traffic accident); V61.0"
+"(Occupant of heavy transport vehicle injured in collision with pedal cycle, driver injured in nontraffic accident); V61.1"
+"(Occupant of heavy transport vehicle injured in collision with pedal cycle, passenger injured in nontraffic accident); V61.2"
+"(Occupant of heavy transport vehicle injured in collision with pedal cycle, person on outside of vehicle injured in nontraffic"
+"accident); V61.3 (Occupant of heavy transport vehicle injured in collision with pedal cycle, unspecified occupant of heavy"
+"transport vehicle injured in nontraffic accident); V61.4 (Occupant of heavy transport vehicle injured in collision with pedal"
+"cycle, person injured while boarding or alighting); V61.5 (Occupant of heavy transport vehicle injured in collision with pedal"
+"cycle, driver injured in traffic accident); V61.6 (Occupant of heavy transport vehicle injured in collision with pedal cycle,"
+"passenger injured in traffic accident); V61.7 (Occupant of heavy transport vehicle injured in collision with pedal cycle, person"
+"on outside of vehicle injured in traffic accident); V61.9 (Occupant of heavy transport vehicle injured in collision with pedal"
+"cycle, unspecified occupant of heavy transport vehicle injured in traffic accident); V62.0 (Occupant of heavy transport vehicle"
+"injured in collision with two- or three-wheeled motor vehicle, driver injured in nontraffic accident); V62.1 (Occupant of heavy"
+"transport vehicle injured in collision with two- or three-wheeled motor vehicle, passenger injured in nontraffic accident);"
+"V62.2 (Occupant of heavy transport vehicle injured in collision with two- or three-wheeled motor vehicle, person on outside of"
+"vehicle injured in nontraffic accident); V62.3 (Occupant of heavy transport vehicle injured in collision with two- or"
+"three-wheeled motor vehicle, unspecified occupant of heavy transport vehicle injured in nontraffic accident); V62.4 (Occupant of"
+"heavy transport vehicle injured in collision with two- or three-wheeled motor vehicle, person injured while boarding or"
+"alighting); V62.5 (Occupant of heavy transport vehicle injured in collision with two- or three-wheeled motor vehicle, driver"
+"injured in traffic accident); V62.6 (Occupant of heavy transport vehicle injured in collision with two- or three-wheeled motor"
+"vehicle, passenger injured in traffic accident); V62.7 (Occupant of heavy transport vehicle injured in collision with two- or"
+"three-wheeled motor vehicle, person on outside of vehicle injured in traffic accident); V62.9 (Occupant of heavy transport"
+"vehicle injured in collision with two- or three-wheeled motor vehicle, unspecified occupant of heavy transport vehicle injured"
+"in traffic accident); V63.0 (Occupant of heavy transport vehicle injured in collision with car, pick-up truck or van, driver"
+"injured in nontraffic accident); V63.1 (Occupant of heavy transport vehicle injured in collision with car, pick-up truck or van,"
+"passenger injured in nontraffic accident); V63.2 (Occupant of heavy transport vehicle injured in collision with car, pick-up"
+"truck or van, person on outside of vehicle injured in nontraffic accident); V63.3 (Occupant of heavy transport vehicle injured"
+"in collision with car, pick-up truck or van, unspecified occupant of heavy transport vehicle injured in nontraffic accident);"
+"V63.4 (Occupant of heavy transport vehicle injured in collision with car, pick-up truck or van, person injured while boarding or"
+"alighting); V63.5 (Occupant of heavy transport vehicle injured in collision with car, pick-up truck or van, driver injured in"
+"traffic accident); V63.6 (Occupant of heavy transport vehicle injured in collision with car, pick-up truck or van, passenger"
+"injured in traffic accident); V63.7 (Occupant of heavy transport vehicle injured in collision with car, pick-up truck or van,"
+"person on outside of vehicle injured in traffic accident); V63.9 (Occupant of heavy transport vehicle injured in collision with"
+"car, pick-up truck or van, unspecified occupant of heavy transport vehicle injured in traffic accident); V64.0 (Occupant of"
+"heavy transport vehicle injured in collision with heavy transport vehicle or bus, driver injured in nontraffic accident); V64.1"
+"(Occupant of heavy transport vehicle injured in collision with heavy transport vehicle or bus, passenger injured in nontraffic"
+"accident); V64.2 (Occupant of heavy transport vehicle injured in collision with heavy transport vehicle or bus, person on"
+"outside of vehicle injured in nontraffic accident); V64.3 (Occupant of heavy transport vehicle injured in collision with heavy"
+"transport vehicle or bus, unspecified occupant of heavy transport vehicle injured in nontraffic accident); V64.4 (Occupant of"
+"heavy transport vehicle injured in collision with heavy transport vehicle or bus, person injured while boarding or alighting);"
+"V64.5 (Occupant of heavy transport vehicle injured in collision with heavy transport vehicle or bus, driver injured in traffic"
+"accident); V64.6 (Occupant of heavy transport vehicle injured in collision with heavy transport vehicle or bus, passenger"
+"injured in traffic accident); V64.7 (Occupant of heavy transport vehicle injured in collision with heavy transport vehicle or"
+"bus, person on outside of vehicle injured in traffic accident); V64.9 (Occupant of heavy transport vehicle injured in collision"
+"with heavy transport vehicle or bus, unspecified occupant of heavy transport vehicle injured in traffic accident); V65.0"
+"(Occupant of heavy transport vehicle injured in collision with railway train or railway vehicle, driver injured in nontraffic"
+"accident); V65.1 (Occupant of heavy transport vehicle injured in collision with railway train or railway vehicle, passenger"
+"injured in nontraffic accident); V65.2 (Occupant of heavy transport vehicle injured in collision with railway train or railway"
+"vehicle, person on outside of vehicle injured in nontraffic accident); V65.3 (Occupant of heavy transport vehicle injured in"
+"collision with railway train or railway vehicle, unspecified occupant of heavy transport vehicle injured in nontraffic"
+"accident); V65.4 (Occupant of heavy transport vehicle injured in collision with railway train or railway vehicle, person injured"
+"while boarding or alighting); V65.5 (Occupant of heavy transport vehicle injured in collision with railway train or railway"
+"vehicle, driver injured in traffic accident); V65.6 (Occupant of heavy transport vehicle injured in collision with railway train"
+"or railway vehicle, passenger injured in traffic accident); V65.7 (Occupant of heavy transport vehicle injured in collision with"
+"railway train or railway vehicle, person on outside of vehicle injured in traffic accident); V65.9 (Occupant of heavy transport"
+"vehicle injured in collision with railway train or railway vehicle, unspecified occupant of heavy transport vehicle injured in"
+"traffic accident); V66.0 (Occupant of heavy transport vehicle injured in collision with other nonmotor vehicle, driver injured"
+"in nontraffic accident); V66.1 (Occupant of heavy transport vehicle injured in collision with other nonmotor vehicle, passenger"
+"injured in nontraffic accident); V66.2 (Occupant of heavy transport vehicle injured in collision with other nonmotor vehicle,"
+"person on outside of vehicle injured in nontraffic accident); V66.3 (Occupant of heavy transport vehicle injured in collision"
+"with other nonmotor vehicle, unspecified occupant of heavy transport vehicle injured in nontraffic accident); V66.4 (Occupant of"
+"heavy transport vehicle injured in collision with other nonmotor vehicle, person injured while boarding or alighting); V66.5"
+"(Occupant of heavy transport vehicle injured in collision with other nonmotor vehicle, driver injured in traffic accident);"
+"V66.6 (Occupant of heavy transport vehicle injured in collision with other nonmotor vehicle, passenger injured in traffic"
+"accident); V66.7 (Occupant of heavy transport vehicle injured in collision with other nonmotor vehicle, person on outside of"
+"vehicle injured in traffic accident); V66.9 (Occupant of heavy transport vehicle injured in collision with other nonmotor"
+"vehicle, unspecified occupant of heavy transport vehicle injured in traffic accident); V67.0 (Occupant of heavy transport"
+"vehicle injured in collision with fixed or stationary object, driver injured in nontraffic accident); V67.1 (Occupant of heavy"
+"transport vehicle injured in collision with fixed or stationary object, passenger injured in nontraffic accident); V67.2"
+"(Occupant of heavy transport vehicle injured in collision with fixed or stationary object, person on outside of vehicle injured"
+"in nontraffic accident); V67.3 (Occupant of heavy transport vehicle injured in collision with fixed or stationary object,"
+"unspecified occupant of heavy transport vehicle injured in nontraffic accident); V67.4 (Occupant of heavy transport vehicle"
+"injured in collision with fixed or stationary object, person injured while boarding or alighting); V67.5 (Occupant of heavy"
+"transport vehicle injured in collision with fixed or stationary object, driver injured in traffic accident); V67.6 (Occupant of"
+"heavy transport vehicle injured in collision with fixed or stationary object, passenger injured in traffic accident); V67.7"
+"(Occupant of heavy transport vehicle injured in collision with fixed or stationary object, person on outside of vehicle injured"
+"in traffic accident); V67.9 (Occupant of heavy transport vehicle injured in collision with fixed or stationary object,"
+"unspecified occupant of heavy transport vehicle injured in traffic accident); V68.0 (Occupant of heavy transport vehicle injured"
+"in noncollision transport accident, driver injured in nontraffic accident); V68.1 (Occupant of heavy transport vehicle injured"
+"in noncollision transport accident, passenger injured in nontraffic accident); V68.2 (Occupant of heavy transport vehicle"
+"injured in noncollision transport accident, person on outside of vehicle injured in nontraffic accident); V68.3 (Occupant of"
+"heavy transport vehicle injured in noncollision transport accident, unspecified occupant of heavy transport vehicle injured in"
+"nontraffic accident); V68.4 (Occupant of heavy transport vehicle injured in noncollision transport accident, person injured"
+"while boarding or alighting); V68.5 (Occupant of heavy transport vehicle injured in noncollision transport accident, driver"
+"injured in traffic accident); V68.6 (Occupant of heavy transport vehicle injured in noncollision transport accident, passenger"
+"injured in traffic accident); V68.7 (Occupant of heavy transport vehicle injured in noncollision transport accident, person on"
+"outside of vehicle injured in traffic accident); V68.9 (Occupant of heavy transport vehicle injured in noncollision transport"
+"accident, unspecified occupant of heavy transport vehicle injured in traffic accident); V69.0 (Driver injured in collision with"
+"other and unspecified motor vehicles in nontraffic accident); V69.1 (Passenger injured in collision with other and unspecified"
+"motor vehicles in nontraffic accident); V69.2 (Unspecified occupant of heavy transport vehicle injured in collision with other"
+"and unspecified motor vehicles in nontraffic accident); V69.3 (Occupant [any] of heavy transport vehicle injured in unspecified"
+"nontraffic accident); V69.4 (Driver injured in collision with other and unspecified motor vehicles in traffic accident); V69.5"
+"(Passenger injured in collision with other and unspecified motor vehicles in traffic accident); V69.6 (Unspecified occupant of"
+"heavy transport vehicle injured in collision with other and unspecified motor vehicles in traffic accident); V69.8 (Occupant"
+"[any] of heavy transport vehicle injured in other specified transport accidents); V69.9 (Occupant [any] of heavy transport"
+"vehicle injured in unspecified traffic accident); V70.0 (Bus occupant injured in collision with pedestrian or animal, driver"
+"injured in nontraffic accident); V70.1 (Bus occupant injured in collision with pedestrian or animal, passenger injured in"
+"nontraffic accident); V70.2 (Bus occupant injured in collision with pedestrian or animal, person on outside of vehicle injured"
+"in nontraffic accident); V70.3 (Bus occupant injured in collision with pedestrian or animal, unspecified bus occupant injured in"
+"nontraffic accident); V70.4 (Bus occupant injured in collision with pedestrian or animal, person injured while boarding or"
+"alighting); V70.5 (Bus occupant injured in collision with pedestrian or animal, driver injured in traffic accident); V70.6 (Bus"
+"occupant injured in collision with pedestrian or animal, passenger injured in traffic accident); V70.7 (Bus occupant injured in"
+"collision with pedestrian or animal, person on outside of vehicle injured in traffic accident); V70.9 (Bus occupant injured in"
+"collision with pedestrian or animal, unspecified bus occupant injured in traffic accident); V71.0 (Bus occupant injured in"
+"collision with pedal cycle, driver injured in nontraffic accident); V71.1 (Bus occupant injured in collision with pedal cycle,"
+"passenger injured in nontraffic accident); V71.2 (Bus occupant injured in collision with pedal cycle, person on outside of"
+"vehicle injured in nontraffic accident); V71.3 (Bus occupant injured in collision with pedal cycle, unspecified bus occupant"
+"injured in nontraffic accident); V71.4 (Bus occupant injured in collision with pedal cycle, person injured while boarding or"
+"alighting); V71.5 (Bus occupant injured in collision with pedal cycle, driver injured in traffic accident); V71.6 (Bus occupant"
+"injured in collision with pedal cycle, passenger injured in traffic accident); V71.7 (Bus occupant injured in collision with"
+"pedal cycle, person on outside of vehicle injured in traffic accident); V71.9 (Bus occupant injured in collision with pedal"
+"cycle, unspecified bus occupant injured in traffic accident); V72.0 (Bus occupant injured in collision with two- or"
+"three-wheeled motor vehicle, driver injured in nontraffic accident); V72.1 (Bus occupant injured in collision with two- or"
+"three-wheeled motor vehicle, passenger injured in nontraffic accident); V72.2 (Bus occupant injured in collision with two- or"
+"three-wheeled motor vehicle, person on outside of vehicle injured in nontraffic accident); V72.3 (Bus occupant injured in"
+"collision with two- or three-wheeled motor vehicle, unspecified bus occupant injured in nontraffic accident); V72.4 (Bus"
+"occupant injured in collision with two- or three-wheeled motor vehicle, person injured while boarding or alighting); V72.5 (Bus"
+"occupant injured in collision with two- or three-wheeled motor vehicle, driver injured in traffic accident); V72.6 (Bus occupant"
+"injured in collision with two- or three-wheeled motor vehicle, passenger injured in traffic accident); V72.7 (Bus occupant"
+"injured in collision with two- or three-wheeled motor vehicle, person on outside of vehicle injured in traffic accident); V72.9"
+"(Bus occupant injured in collision with two- or three-wheeled motor vehicle, unspecified bus occupant injured in traffic"
+"accident); V73.0 (Bus occupant injured in collision with car, pick-up truck or van, driver injured in nontraffic accident);"
+"V73.1 (Bus occupant injured in collision with car, pick-up truck or van, passenger injured in nontraffic accident); V73.2 (Bus"
+"occupant injured in collision with car, pick-up truck or van, person on outside of vehicle injured in nontraffic accident);"
+"V73.3 (Bus occupant injured in collision with car, pick-up truck or van, unspecified bus occupant injured in nontraffic"
+"accident); V73.4 (Bus occupant injured in collision with car, pick-up truck or van, person injured while boarding or alighting);"
+"V73.5 (Bus occupant injured in collision with car, pick-up truck or van, driver injured in traffic accident); V73.6 (Bus"
+"occupant injured in collision with car, pick-up truck or van, passenger injured in traffic accident); V73.7 (Bus occupant"
+"injured in collision with car, pick-up truck or van, person on outside of vehicle injured in traffic accident); V73.9 (Bus"
+"occupant injured in collision with car, pick-up truck or van, unspecified bus occupant injured in traffic accident); V74.0 (Bus"
+"occupant injured in collision with heavy transport vehicle or bus, driver injured in nontraffic accident); V74.1 (Bus occupant"
+"injured in collision with heavy transport vehicle or bus, passenger injured in nontraffic accident); V74.2 (Bus occupant injured"
+"in collision with heavy transport vehicle or bus, person on outside of vehicle injured in nontraffic accident); V74.3 (Bus"
+"occupant injured in collision with heavy transport vehicle or bus, unspecified bus occupant injured in nontraffic accident);"
+"V74.4 (Bus occupant injured in collision with heavy transport vehicle or bus, person injured while boarding or alighting); V74.5"
+"(Bus occupant injured in collision with heavy transport vehicle or bus, driver injured in traffic accident); V74.6 (Bus occupant"
+"injured in collision with heavy transport vehicle or bus, passenger injured in traffic accident); V74.7 (Bus occupant injured in"
+"collision with heavy transport vehicle or bus, person on outside of vehicle injured in traffic accident); V74.9 (Bus occupant"
+"injured in collision with heavy transport vehicle or bus, unspecified bus occupant injured in traffic accident); V75.0 (Bus"
+"occupant injured in collision with railway train or railway vehicle, driver injured in nontraffic accident); V75.1 (Bus occupant"
+"injured in collision with railway train or railway vehicle, passenger injured in nontraffic accident); V75.2 (Bus occupant"
+"injured in collision with railway train or railway vehicle, person on outside of vehicle injured in nontraffic accident); V75.3"
+"(Bus occupant injured in collision with railway train or railway vehicle, unspecified bus occupant injured in nontraffic"
+"accident); V75.4 (Bus occupant injured in collision with railway train or railway vehicle, person injured while boarding or"
+"alighting); V75.5 (Bus occupant injured in collision with railway train or railway vehicle, driver injured in traffic accident);"
+"V75.6 (Bus occupant injured in collision with railway train or railway vehicle, passenger injured in traffic accident); V75.7"
+"(Bus occupant injured in collision with railway train or railway vehicle, person on outside of vehicle injured in traffic"
+"accident); V75.9 (Bus occupant injured in collision with railway train or railway vehicle, unspecified bus occupant injured in"
+"traffic accident); V76.0 (Bus occupant injured in collision with other nonmotor vehicle, driver injured in nontraffic accident);"
+"V76.1 (Bus occupant injured in collision with other nonmotor vehicle, passenger injured in nontraffic accident); V76.2 (Bus"
+"occupant injured in collision with other nonmotor vehicle, person on outside of vehicle injured in nontraffic accident); V76.3"
+"(Bus occupant injured in collision with other nonmotor vehicle, unspecified bus occupant injured in nontraffic accident); V76.4"
+"(Bus occupant injured in collision with other nonmotor vehicle, person injured while boarding or alighting); V76.5 (Bus occupant"
+"injured in collision with other nonmotor vehicle, driver injured in traffic accident); V76.6 (Bus occupant injured in collision"
+"with other nonmotor vehicle, passenger injured in traffic accident); V76.7 (Bus occupant injured in collision with other"
+"nonmotor vehicle, person on outside of vehicle injured in traffic accident); V76.9 (Bus occupant injured in collision with other"
+"nonmotor vehicle, unspecified bus occupant injured in traffic accident); V77.0 (Bus occupant injured in collision with fixed or"
+"stationary object, driver injured in nontraffic accident); V77.1 (Bus occupant injured in collision with fixed or stationary"
+"object, passenger injured in nontraffic accident); V77.2 (Bus occupant injured in collision with fixed or stationary object,"
+"person on outside of vehicle injured in nontraffic accident); V77.3 (Bus occupant injured in collision with fixed or stationary"
+"object, unspecified bus occupant injured in nontraffic accident); V77.4 (Bus occupant injured in collision with fixed or"
+"stationary object, person injured while boarding or alighting); V77.5 (Bus occupant injured in collision with fixed or"
+"stationary object, driver injured in traffic accident); V77.6 (Bus occupant injured in collision with fixed or stationary"
+"object, passenger injured in traffic accident); V77.7 (Bus occupant injured in collision with fixed or stationary object, person"
+"on outside of vehicle injured in traffic accident); V77.9 (Bus occupant injured in collision with fixed or stationary object,"
+"unspecified bus occupant injured in traffic accident); V78.0 (Bus occupant injured in noncollision transport accident, driver"
+"injured in nontraffic accident); V78.1 (Bus occupant injured in noncollision transport accident, passenger injured in nontraffic"
+"accident); V78.2 (Bus occupant injured in noncollision transport accident, person on outside of vehicle injured in nontraffic"
+"accident); V78.3 (Bus occupant injured in noncollision transport accident, unspecified bus occupant injured in nontraffic"
+"accident); V78.4 (Bus occupant injured in noncollision transport accident, person injured while boarding or alighting); V78.5"
+"(Bus occupant injured in noncollision transport accident, driver injured in traffic accident); V78.6 (Bus occupant injured in"
+"noncollision transport accident, passenger injured in traffic accident); V78.7 (Bus occupant injured in noncollision transport"
+"accident, person on outside of vehicle injured in traffic accident); V78.9 (Bus occupant injured in noncollision transport"
+"accident, unspecified bus occupant injured in traffic accident); V79.0 (Driver injured in collision with other and unspecified"
+"motor vehicles in nontraffic accident); V79.1 (Passenger injured in collision with other and unspecified motor vehicles in"
+"nontraffic accident); V79.2 (Unspecified bus occupant injured in collision with other and unspecified motor vehicles in"
+"nontraffic accident); V79.3 (Bus occupant [any] injured in unspecified nontraffic accident); V79.4 (Driver injured in collision"
+"with other and unspecified motor vehicles in traffic accident); V79.5 (Passenger injured in collision with other and unspecified"
+"motor vehicles in traffic accident); V79.6 (Unspecified bus occupant injured in collision with other and unspecified motor"
+"vehicles in traffic accident); V79.8 (Bus occupant [any] injured in other specified transport accidents); V79.9 (Bus occupant"
+"[any] injured in unspecified traffic accident); V80.0 (Rider or occupant injured by fall from or being thrown from animal or"
+"animal-drawn vehicle in noncollision accident); V80.1 (Rider or occupant injured in collision with pedestrian or animal); V80.2"
+"(Rider or occupant injured in collision with pedal cycle); V80.3 (Rider or occupant injured in collision with two- or"
+"three-wheeled motor vehicle); V80.4 (Rider or occupant injured in collision with car, pick-up truck, van, heavy transport"
+"vehicle or bus); V80.5 (Rider or occupant injured in collision with other specified motor vehicle); V80.6 (Rider or occupant"
+"injured in collision with railway train or railway vehicle); V80.7 (Rider or occupant injured in collision with other nonmotor"
+"vehicle); V80.8 (Rider or occupant injured in collision with fixed or stationary object); V80.9 (Rider or occupant injured in"
+"other and unspecified transport accidents); V81.0 (Occupant of railway train or railway vehicle injured in collision with motor"
+"vehicle in nontraffic accident); V81.1 (Occupant of railway train or railway vehicle injured in collision with motor vehicle in"
+"traffic accident); V81.2 (Occupant of railway train or railway vehicle injured in collision with or hit by rolling stock); V81.3"
+"(Occupant of railway train or railway vehicle injured in collision with other object); V81.4 (Person injured while boarding or"
+"alighting from railway train or railway vehicle); V81.5 (Occupant of railway train or railway vehicle injured by fall in railway"
+"train or railway vehicle); V81.6 (Occupant of railway train or railway vehicle injured by fall from railway train or railway"
+"vehicle); V81.7 (Occupant of railway train or railway vehicle injured in derailment without antecedent collision); V81.8"
+"(Occupant of railway train or railway vehicle injured in other specified railway accidents); V81.9 (Occupant of railway train or"
+"railway vehicle injured in unspecified railway accident); V82.0 (Occupant of streetcar injured in collision with motor vehicle"
+"in nontraffic accident); V82.1 (Occupant of streetcar injured in collision with motor vehicle in traffic accident); V82.2"
+"(Occupant of streetcar injured in collision with or hit by rolling stock); V82.3 (Occupant of streetcar injured in collision"
+"with other object); V82.4 (Person injured while boarding or alighting from streetcar); V82.5 (Occupant of streetcar injured by"
+"fall in streetcar); V82.6 (Occupant of streetcar injured by fall from streetcar); V82.7 (Occupant of streetcar injured in"
+"derailment without antecedent collision); V82.8 (Occupant of streetcar injured in other specified transport accidents); V82.9"
+"(Occupant of streetcar injured in unspecified traffic accident); V83.0 (Driver of special industrial vehicle injured in traffic"
+"accident); V83.1 (Passenger of special industrial vehicle injured in traffic accident); V83.2 (Person on outside of special"
+"industrial vehicle injured in traffic accident); V83.3 (Unspecified occupant of special industrial vehicle injured in traffic"
+"accident); V83.4 (Person injured while boarding or alighting from special industrial vehicle); V83.5 (Driver of special"
+"industrial vehicle injured in nontraffic accident); V83.6 (Passenger of special industrial vehicle injured in nontraffic"
+"accident); V83.7 (Person on outside of special industrial vehicle injured in nontraffic accident); V83.9 (Unspecified occupant"
+"of special industrial vehicle injured in nontraffic accident); V84.0 (Driver of special agricultural vehicle injured in traffic"
+"accident); V84.1 (Passenger of special agricultural vehicle injured in traffic accident); V84.2 (Person on outside of special"
+"agricultural vehicle injured in traffic accident); V84.3 (Unspecified occupant of special agricultural vehicle injured in"
+"traffic accident); V84.4 (Person injured while boarding or alighting from special agricultural vehicle); V84.5 (Driver of"
+"special agricultural vehicle injured in nontraffic accident); V84.6 (Passenger of special agricultural vehicle injured in"
+"nontraffic accident); V84.7 (Person on outside of special agricultural vehicle injured in nontraffic accident); V84.9"
+"(Unspecified occupant of special agricultural vehicle injured in nontraffic accident); V85.0 (Driver of special construction"
+"vehicle injured in traffic accident); V85.1 (Passenger of special construction vehicle injured in traffic accident); V85.2"
+"(Person on outside of special construction vehicle injured in traffic accident); V85.3 (Unspecified occupant of special"
+"construction vehicle injured in traffic accident); V85.4 (Person injured while boarding or alighting from special construction"
+"vehicle); V85.5 (Driver of special construction vehicle injured in nontraffic accident); V85.6 (Passenger of special"
+"construction vehicle injured in nontraffic accident); V85.7 (Person on outside of special construction vehicle injured in"
+"nontraffic accident); V85.9 (Unspecified occupant of special construction vehicle injured in nontraffic accident); V86.0 (Driver"
+"of all-terrain or other off-road motor vehicle injured in traffic accident); V86.1 (Passenger of all-terrain or other off-road"
+"motor vehicle injured in traffic accident); V86.2 (Person on outside of all-terrain or other off-road motor vehicle injured in"
+"traffic accident); V86.3 (Unspecified occupant of all-terrain or other off-road motor vehicle injured in traffic accident);"
+"V86.4 (Person injured while boarding or alighting from all-terrain or other off-road motor vehicle); V86.5 (Driver of"
+"all-terrain or other off-road motor vehicle injured in nontraffic accident); V86.6 (Passenger of all-terrain or other off-road"
+"motor vehicle injured in nontraffic accident); V86.7 (Person on outside of all-terrain or other off-road motor vehicle injured"
+"in nontraffic accident); V86.9 (Unspecified occupant of all-terrain or other off-road motor vehicle injured in nontraffic"
+"accident); V87.0 (Person injured in collision between car and two- or three-wheeled motor vehicle (traffic)); V87.1 (Person"
+"injured in collision between other motor vehicle and two- or three-wheeled motor vehicle (traffic)); V87.2 (Person injured in"
+"collision between car and pick-up truck or van (traffic)); V87.3 (Person injured in collision between car and bus (traffic));"
+"V87.4 (Person injured in collision between car and heavy transport vehicle (traffic)); V87.5 (Person injured in collision"
+"between heavy transport vehicle and bus (traffic)); V87.6 (Person injured in collision between railway train or railway vehicle"
+"and car (traffic)); V87.7 (Person injured in collision between other specified motor vehicles (traffic)); V87.8 (Person injured"
+"in other specified noncollision transport accidents involving motor vehicle (traffic)); V87.9 (Person injured in other specified"
+"(collision)(noncollision) transport accidents involving nonmotor vehicle (traffic)); V88.0 (Person injured in collision between"
+"car and two- or three-wheeled motor vehicle, nontraffic); V88.1 (Person injured in collision between other motor vehicle and"
+"two- or three-wheeled motor vehicle, nontraffic); V88.2 (Person injured in collision between car and pick-up truck or van,"
+"nontraffic); V88.3 (Person injured in collision between car and bus, nontraffic); V88.4 (Person injured in collision between car"
+"and heavy transport vehicle, nontraffic); V88.5 (Person injured in collision between heavy transport vehicle and bus,"
+"nontraffic); V88.6 (Person injured in collision between railway train or railway vehicle and car, nontraffic); V88.7 (Person"
+"injured in collision between other specified motor vehicles, nontraffic); V88.8 (Person injured in other specified noncollision"
+"transport accidents involving motor vehicle, nontraffic); V88.9 (Person injured in other specified (collision)(noncollision)"
+"transport accidents involving nonmotor vehicle, nontraffic); V89.0 (Person injured in unspecified motor-vehicle accident,"
+"nontraffic); V89.1 (Person injured in unspecified nonmotor-vehicle accident, nontraffic); V89.2 (Person injured in unspecified"
+"motor-vehicle accident, traffic); V89.3 (Person injured in unspecified nonmotor-vehicle accident, traffic); V89.9 (Person"
+"injured in unspecified vehicle accident)"
+"Group By: Five-Year Age Groups; Year; Sex; Single Race 6"
+"Show Totals: Disabled"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd-expanded.html for more information."
+"---"
+"Query Date: Jan 28, 2026 8:02:50 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 2018-2023 on CDC WONDER Online Database, released in 2024. Data are from the Multiple Cause of Death Files,"
+"2018-2023, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10-expanded.html on Jan 28, 2026 8:02:50 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"2. Rows with zero Deaths are hidden. Use Quick Options above to show zero rows."
+"3. Rows with suppressed Deaths are hidden. Use Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Ages 85-100."
+"2. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Assurance of Confidentiality."
+"3. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Unreliable."
+"4. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"5. Deaths of persons with Hispanic origin ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among"
+"Hispanic Origin groups, so are not included in the Hispanic Origin specific counts and rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"6. Information included on the death certificate about the race and Hispanic ethnicity of the decedent is reported by the"
+"funeral director as provided by an informant, often the surviving next of kin, or, in the absence of an informant, on the basis"
+"of observation. Race and ethnicity information from the census is by self-report. To the extent that race and Hispanic origin"
+"are inconsistent between these two data sources, death rates will be biased. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Racial Differences."
+"7. The population figures for years 2023 are single-race estimates of the July 1 resident population, from the Vintage 2023"
+"postcensal series released by the Census Bureau on June 27, 2024. The 2023 series is based on the Modified Blended Base produced"
+"by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The Modified Blended Base consists of the blend"
+"of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic Analysis Estimates, and 2020 Census data"
+"from the internal Census Edited File (CEF). The population figures for years 2022 are single-race estimates of the July 1"
+"resident population, from the Vintage 2022 postcensal series released by the Census Bureau on June 22, 2023. The 2022 series is"
+"based on the Modified Blended Base produced by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The"
+"Modified Blended Base consists of the blend of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic"
+"Analysis Estimates, and 2020 Census data from the internal Census Edited File (CEF). The population figures for year 2021 are"
+"single-race estimates of the July 1 resident population, based on the Blended Base produced by the US Census Bureau in lieu of"
+"the April 1, 2020 decennial population count, from the Vintage 2021 postcensal series released by the Census Bureau on June 30,"
+"2022. The population figures for year 2020 are single-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series based on April 2010 Census, released by the Census Bureau on July 27, 2021. The population figures for year"
+"2019 are single-race estimates of the July 1 resident population, from the Vintage 2019 postcensal series based on April 2010"
+"Census, released by the Census Bureau on June 25, 2020. The population figures for year 2018 are single-race estimates of the"
+"July 1 resident population, from the Vintage 2018 postcensal series based on April 2010 Census, released by the Census Bureau on"
+"June 20, 2019. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Population Data."
+"8. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Age"
+"Group."
+"9. The U.S. - Mexico Border Regions distinguish between counties near the U.S. - Mexico border in the border states of Arizona,"
+"California, New Mexico, and Texas, and other areas. To simplify the Border region analysis, two mutually exclusive regions"
+"within the United States are available: 1) U.S. - Mexico Border Region (i.e., 44 counties within 100 kilometers (62 miles) of"
+"the U.S. - Mexico border), and 2) the U.S. Non-Border Region with the remaining counties of the selected four border states. The"
+"Border counties selection was based on the 1983 La Paz Agreement:"
+"https://www.epa.gov/sites/production/files/2015-09/documents/lapazagreement.pdf.. (i.e., counties for each state which fall"
+"within 100 kilometers of the Border). Statistics are also available by each of the USA border counties along the U.S.-Mexico"
+"area."
+"10. After the creation of the final 2023 dataset, North Carolina updated the cause of death information for over 900 death"
+"certificates to include a cause of death code indicating drug overdose (ICD-10 underlying cause-of-death codes: X40-X44,"
+"X60-X64, X85, and Y10-Y14). Jurisdictions can continue to update death certificates after the closing of the mortality file. As"
+"a result, users should consider that the actual death count for drug overdose deaths for North Carolina in 2023 is over 4,400"
+"deaths, with a crude rate of approximately 41.0 per 100,000 population, and an age-adjusted rate of approximately 42.1 per"
+"100,000 population. These deaths will not be updated on the final mortality datasets."
+"11. Changes to cause of death classification affect reporting trends. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#ICD-10 Changes."

@@ -1,0 +1,583 @@
+"Notes","Five-Year Age Groups","Five-Year Age Groups Code","Year","Year Code","Sex","Sex Code","Race","Race Code",Deaths,Population,Crude Rate
+,"1-4 years","1-4","2003","2003","Male","M","Black or African American","2054-5",11,68378,Unreliable
+,"10-14 years","10-14","2002","2002","Male","M","Black or African American","2054-5",10,113069,Unreliable
+,"10-14 years","10-14","2004","2004","Male","M","Black or African American","2054-5",10,111960,Unreliable
+,"10-14 years","10-14","2005","2005","Male","M","Black or African American","2054-5",10,108407,Unreliable
+,"15-19 years","15-19","1999","1999","Female","F","White","2106-3",12,460217,Unreliable
+,"15-19 years","15-19","1999","1999","Male","M","Black or African American","2054-5",63,93402,67.5
+,"15-19 years","15-19","1999","1999","Male","M","White","2106-3",22,489162,4.5
+,"15-19 years","15-19","2000","2000","Female","F","Black or African American","2054-5",10,88502,Unreliable
+,"15-19 years","15-19","2000","2000","Male","M","Black or African American","2054-5",86,94001,91.5
+,"15-19 years","15-19","2000","2000","Male","M","White","2106-3",25,494783,5.1
+,"15-19 years","15-19","2001","2001","Female","F","Black or African American","2054-5",10,90042,Unreliable
+,"15-19 years","15-19","2001","2001","Male","M","Black or African American","2054-5",78,96367,80.9
+,"15-19 years","15-19","2001","2001","Male","M","White","2106-3",20,497684,4.0
+,"15-19 years","15-19","2002","2002","Female","F","White","2106-3",12,467002,Unreliable
+,"15-19 years","15-19","2002","2002","Male","M","Black or African American","2054-5",77,98099,78.5
+,"15-19 years","15-19","2002","2002","Male","M","White","2106-3",25,500237,5.0
+,"15-19 years","15-19","2003","2003","Male","M","Black or African American","2054-5",100,100149,99.9
+,"15-19 years","15-19","2003","2003","Male","M","White","2106-3",30,500961,6.0
+,"15-19 years","15-19","2004","2004","Female","F","White","2106-3",10,473425,Unreliable
+,"15-19 years","15-19","2004","2004","Male","M","Black or African American","2054-5",124,103174,120.2
+,"15-19 years","15-19","2004","2004","Male","M","White","2106-3",33,504795,6.5
+,"15-19 years","15-19","2005","2005","Female","F","Black or African American","2054-5",12,101064,Unreliable
+,"15-19 years","15-19","2005","2005","Male","M","Black or African American","2054-5",107,106619,100.4
+,"15-19 years","15-19","2005","2005","Male","M","White","2106-3",20,508232,3.9
+,"15-19 years","15-19","2006","2006","Female","F","Black or African American","2054-5",12,102755,Unreliable
+,"15-19 years","15-19","2006","2006","Female","F","White","2106-3",12,474367,Unreliable
+,"15-19 years","15-19","2006","2006","Male","M","Black or African American","2054-5",125,108841,114.8
+,"15-19 years","15-19","2006","2006","Male","M","White","2106-3",20,507695,3.9
+,"15-19 years","15-19","2007","2007","Female","F","Black or African American","2054-5",11,103723,Unreliable
+,"15-19 years","15-19","2007","2007","Male","M","Black or African American","2054-5",113,109683,103.0
+,"15-19 years","15-19","2007","2007","Male","M","White","2106-3",15,503109,Unreliable
+,"15-19 years","15-19","2008","2008","Female","F","Black or African American","2054-5",19,103605,Unreliable
+,"15-19 years","15-19","2008","2008","Male","M","Black or African American","2054-5",77,109493,70.3
+,"15-19 years","15-19","2008","2008","Male","M","White","2106-3",23,493734,4.7
+,"15-19 years","15-19","2009","2009","Female","F","Black or African American","2054-5",12,102253,Unreliable
+,"15-19 years","15-19","2009","2009","Male","M","Black or African American","2054-5",87,108147,80.4
+,"15-19 years","15-19","2009","2009","Male","M","White","2106-3",19,481070,Unreliable
+,"15-19 years","15-19","2010","2010","Female","F","Black or African American","2054-5",10,100376,Unreliable
+,"15-19 years","15-19","2010","2010","Male","M","Black or African American","2054-5",85,106021,80.2
+,"15-19 years","15-19","2010","2010","Male","M","White","2106-3",16,466650,Unreliable
+,"15-19 years","15-19","2011","2011","Male","M","Black or African American","2054-5",72,101802,70.7
+,"15-19 years","15-19","2011","2011","Male","M","White","2106-3",10,444469,Unreliable
+,"15-19 years","15-19","2012","2012","Male","M","Black or African American","2054-5",61,98285,62.1
+,"15-19 years","15-19","2012","2012","Male","M","White","2106-3",14,433209,Unreliable
+,"15-19 years","15-19","2013","2013","Male","M","Black or African American","2054-5",60,94980,63.2
+,"15-19 years","15-19","2013","2013","Male","M","White","2106-3",17,420409,Unreliable
+,"15-19 years","15-19","2014","2014","Male","M","Black or African American","2054-5",42,92466,45.4
+,"15-19 years","15-19","2015","2015","Male","M","Black or African American","2054-5",47,90107,52.2
+,"15-19 years","15-19","2015","2015","Male","M","White","2106-3",17,402461,Unreliable
+,"15-19 years","15-19","2016","2016","Male","M","Black or African American","2054-5",55,87565,62.8
+,"15-19 years","15-19","2017","2017","Male","M","Black or African American","2054-5",44,85555,51.4
+,"15-19 years","15-19","2017","2017","Male","M","White","2106-3",14,385714,Unreliable
+,"20-24 years","20-24","1999","1999","Female","F","Black or African American","2054-5",12,76684,Unreliable
+,"20-24 years","20-24","1999","1999","Female","F","White","2106-3",11,414223,Unreliable
+,"20-24 years","20-24","1999","1999","Male","M","Black or African American","2054-5",106,79726,133.0
+,"20-24 years","20-24","1999","1999","Male","M","White","2106-3",41,445516,9.2
+,"20-24 years","20-24","2000","2000","Female","F","Black or African American","2054-5",10,79386,Unreliable
+,"20-24 years","20-24","2000","2000","Male","M","Black or African American","2054-5",119,81576,145.9
+,"20-24 years","20-24","2000","2000","Male","M","White","2106-3",34,455393,7.5
+,"20-24 years","20-24","2001","2001","Female","F","Black or African American","2054-5",10,82128,Unreliable
+,"20-24 years","20-24","2001","2001","Female","F","White","2106-3",20,454736,4.4
+,"20-24 years","20-24","2001","2001","Male","M","Black or African American","2054-5",137,85657,159.9
+,"20-24 years","20-24","2001","2001","Male","M","White","2106-3",43,481743,8.9
+,"20-24 years","20-24","2002","2002","Female","F","Black or African American","2054-5",15,83552,Unreliable
+,"20-24 years","20-24","2002","2002","Female","F","White","2106-3",12,465698,Unreliable
+,"20-24 years","20-24","2002","2002","Male","M","Black or African American","2054-5",164,87604,187.2
+,"20-24 years","20-24","2002","2002","Male","M","White","2106-3",44,491070,9.0
+,"20-24 years","20-24","2003","2003","Female","F","Black or African American","2054-5",16,84392,Unreliable
+,"20-24 years","20-24","2003","2003","Male","M","Black or African American","2054-5",143,87741,163.0
+,"20-24 years","20-24","2003","2003","Male","M","White","2106-3",47,489737,9.6
+,"20-24 years","20-24","2004","2004","Female","F","Black or African American","2054-5",13,84445,Unreliable
+,"20-24 years","20-24","2004","2004","Female","F","White","2106-3",11,475637,Unreliable
+,"20-24 years","20-24","2004","2004","Male","M","Black or African American","2054-5",139,89363,155.5
+,"20-24 years","20-24","2004","2004","Male","M","White","2106-3",43,497681,8.6
+,"20-24 years","20-24","2005","2005","Female","F","Black or African American","2054-5",11,84039,Unreliable
+,"20-24 years","20-24","2005","2005","Female","F","White","2106-3",11,471736,Unreliable
+,"20-24 years","20-24","2005","2005","Male","M","Black or African American","2054-5",152,90931,167.2
+,"20-24 years","20-24","2005","2005","Male","M","White","2106-3",43,503706,8.5
+,"20-24 years","20-24","2006","2006","Female","F","Black or African American","2054-5",12,84898,Unreliable
+,"20-24 years","20-24","2006","2006","Female","F","White","2106-3",15,465815,Unreliable
+,"20-24 years","20-24","2006","2006","Male","M","Black or African American","2054-5",139,91804,151.4
+,"20-24 years","20-24","2006","2006","Male","M","White","2106-3",39,501186,7.8
+,"20-24 years","20-24","2007","2007","Female","F","Black or African American","2054-5",11,85698,Unreliable
+,"20-24 years","20-24","2007","2007","Male","M","Black or African American","2054-5",123,92871,132.4
+,"20-24 years","20-24","2007","2007","Male","M","White","2106-3",37,505074,7.3
+,"20-24 years","20-24","2008","2008","Male","M","Black or African American","2054-5",120,94003,127.7
+,"20-24 years","20-24","2008","2008","Male","M","White","2106-3",28,503998,5.6
+,"20-24 years","20-24","2009","2009","Female","F","Black or African American","2054-5",11,90292,Unreliable
+,"20-24 years","20-24","2009","2009","Male","M","Black or African American","2054-5",113,95816,117.9
+,"20-24 years","20-24","2009","2009","Male","M","White","2106-3",35,504641,6.9
+,"20-24 years","20-24","2010","2010","Female","F","White","2106-3",10,464787,Unreliable
+,"20-24 years","20-24","2010","2010","Male","M","Black or African American","2054-5",115,97568,117.9
+,"20-24 years","20-24","2010","2010","Male","M","White","2106-3",21,504159,4.2
+,"20-24 years","20-24","2011","2011","Male","M","Black or African American","2054-5",109,104082,104.7
+,"20-24 years","20-24","2011","2011","Male","M","White","2106-3",22,513984,4.3
+,"20-24 years","20-24","2012","2012","Female","F","Black or African American","2054-5",12,100851,Unreliable
+,"20-24 years","20-24","2012","2012","Male","M","Black or African American","2054-5",105,107850,97.4
+,"20-24 years","20-24","2012","2012","Male","M","White","2106-3",23,515994,4.5
+,"20-24 years","20-24","2013","2013","Female","F","Black or African American","2054-5",12,101267,Unreliable
+,"20-24 years","20-24","2013","2013","Male","M","Black or African American","2054-5",133,108940,122.1
+,"20-24 years","20-24","2013","2013","Male","M","White","2106-3",34,508760,6.7
+,"20-24 years","20-24","2014","2014","Male","M","Black or African American","2054-5",105,110396,95.1
+,"20-24 years","20-24","2014","2014","Male","M","White","2106-3",25,498771,5.0
+,"20-24 years","20-24","2015","2015","Male","M","Black or African American","2054-5",102,109089,93.5
+,"20-24 years","20-24","2015","2015","Male","M","White","2106-3",34,483006,7.0
+,"20-24 years","20-24","2016","2016","Female","F","White","2106-3",12,416039,Unreliable
+,"20-24 years","20-24","2016","2016","Male","M","Black or African American","2054-5",98,104443,93.8
+,"20-24 years","20-24","2016","2016","Male","M","White","2106-3",27,463658,5.8
+,"20-24 years","20-24","2017","2017","Female","F","White","2106-3",11,402717,Unreliable
+,"20-24 years","20-24","2017","2017","Male","M","Black or African American","2054-5",82,101209,81.0
+,"20-24 years","20-24","2017","2017","Male","M","White","2106-3",20,445513,4.5
+,"25-29 years","25-29","1999","1999","Female","F","White","2106-3",10,495743,Unreliable
+,"25-29 years","25-29","1999","1999","Male","M","Black or African American","2054-5",68,81895,83.0
+,"25-29 years","25-29","1999","1999","Male","M","White","2106-3",29,517676,5.6
+,"25-29 years","25-29","2000","2000","Female","F","Black or African American","2054-5",12,81564,Unreliable
+,"25-29 years","25-29","2000","2000","Female","F","White","2106-3",14,479018,Unreliable
+,"25-29 years","25-29","2000","2000","Male","M","Black or African American","2054-5",89,80698,110.3
+,"25-29 years","25-29","2000","2000","Male","M","White","2106-3",30,501861,6.0
+,"25-29 years","25-29","2001","2001","Female","F","Black or African American","2054-5",15,77980,Unreliable
+,"25-29 years","25-29","2001","2001","Male","M","Black or African American","2054-5",102,77095,132.3
+,"25-29 years","25-29","2001","2001","Male","M","White","2106-3",43,478598,9.0
+,"25-29 years","25-29","2002","2002","Female","F","White","2106-3",16,443804,Unreliable
+,"25-29 years","25-29","2002","2002","Male","M","Black or African American","2054-5",114,75667,150.7
+,"25-29 years","25-29","2002","2002","Male","M","White","2106-3",41,468589,8.7
+,"25-29 years","25-29","2003","2003","Female","F","White","2106-3",11,443886,Unreliable
+,"25-29 years","25-29","2003","2003","Male","M","Black or African American","2054-5",112,75125,149.1
+,"25-29 years","25-29","2003","2003","Male","M","White","2106-3",36,465259,7.7
+,"25-29 years","25-29","2004","2004","Male","M","Black or African American","2054-5",120,76455,157.0
+,"25-29 years","25-29","2004","2004","Male","M","White","2106-3",35,471896,7.4
+,"25-29 years","25-29","2005","2005","Female","F","Black or African American","2054-5",17,80361,Unreliable
+,"25-29 years","25-29","2005","2005","Female","F","White","2106-3",10,460650,Unreliable
+,"25-29 years","25-29","2005","2005","Male","M","Black or African American","2054-5",111,77880,142.5
+,"25-29 years","25-29","2005","2005","Male","M","White","2106-3",27,478282,5.6
+,"25-29 years","25-29","2006","2006","Female","F","Black or African American","2054-5",14,81449,Unreliable
+,"25-29 years","25-29","2006","2006","Male","M","Black or African American","2054-5",110,79913,137.6
+,"25-29 years","25-29","2006","2006","Male","M","White","2106-3",41,490367,8.4
+,"25-29 years","25-29","2007","2007","Male","M","Black or African American","2054-5",83,81256,102.1
+,"25-29 years","25-29","2007","2007","Male","M","White","2106-3",40,496400,8.1
+,"25-29 years","25-29","2008","2008","Male","M","Black or African American","2054-5",92,82802,111.1
+,"25-29 years","25-29","2008","2008","Male","M","White","2106-3",27,506778,5.3
+,"25-29 years","25-29","2009","2009","Female","F","White","2106-3",17,483863,Unreliable
+,"25-29 years","25-29","2009","2009","Male","M","Black or African American","2054-5",70,83768,83.6
+,"25-29 years","25-29","2009","2009","Male","M","White","2106-3",22,512689,4.3
+,"25-29 years","25-29","2010","2010","Male","M","Black or African American","2054-5",73,84402,86.5
+,"25-29 years","25-29","2010","2010","Male","M","White","2106-3",30,513800,5.8
+,"25-29 years","25-29","2011","2011","Female","F","Black or African American","2054-5",12,83519,Unreliable
+,"25-29 years","25-29","2011","2011","Male","M","Black or African American","2054-5",76,86822,87.5
+,"25-29 years","25-29","2011","2011","Male","M","White","2106-3",35,517232,6.8
+,"25-29 years","25-29","2012","2012","Male","M","Black or African American","2054-5",87,88714,98.1
+,"25-29 years","25-29","2012","2012","Male","M","White","2106-3",31,519735,6.0
+,"25-29 years","25-29","2013","2013","Male","M","Black or African American","2054-5",59,92342,63.9
+,"25-29 years","25-29","2013","2013","Male","M","White","2106-3",32,526325,6.1
+,"25-29 years","25-29","2014","2014","Female","F","Black or African American","2054-5",11,92868,Unreliable
+,"25-29 years","25-29","2014","2014","Male","M","Black or African American","2054-5",94,98496,95.4
+,"25-29 years","25-29","2014","2014","Male","M","White","2106-3",38,538045,7.1
+,"25-29 years","25-29","2015","2015","Female","F","White","2106-3",11,508562,Unreliable
+,"25-29 years","25-29","2015","2015","Male","M","Black or African American","2054-5",92,104800,87.8
+,"25-29 years","25-29","2015","2015","Male","M","White","2106-3",32,550272,5.8
+,"25-29 years","25-29","2016","2016","Female","F","Black or African American","2054-5",13,100666,Unreliable
+,"25-29 years","25-29","2016","2016","Male","M","Black or African American","2054-5",93,108461,85.7
+,"25-29 years","25-29","2016","2016","Male","M","White","2106-3",32,554048,5.8
+,"25-29 years","25-29","2017","2017","Male","M","Black or African American","2054-5",67,112917,59.3
+,"25-29 years","25-29","2017","2017","Male","M","White","2106-3",22,550941,4.0
+,"30-34 years","30-34","1999","1999","Female","F","White","2106-3",13,580844,Unreliable
+,"30-34 years","30-34","1999","1999","Male","M","Black or African American","2054-5",49,94080,52.1
+,"30-34 years","30-34","1999","1999","Male","M","White","2106-3",29,606405,4.8
+,"30-34 years","30-34","2000","2000","Female","F","White","2106-3",15,563325,Unreliable
+,"30-34 years","30-34","2000","2000","Male","M","Black or African American","2054-5",67,91219,73.4
+,"30-34 years","30-34","2000","2000","Male","M","White","2106-3",37,590356,6.3
+,"30-34 years","30-34","2001","2001","Female","F","White","2106-3",15,557522,Unreliable
+,"30-34 years","30-34","2001","2001","Male","M","Black or African American","2054-5",79,89825,87.9
+,"30-34 years","30-34","2001","2001","Male","M","White","2106-3",43,586075,7.3
+,"30-34 years","30-34","2002","2002","Female","F","Black or African American","2054-5",11,88399,Unreliable
+,"30-34 years","30-34","2002","2002","Female","F","White","2106-3",12,541343,Unreliable
+,"30-34 years","30-34","2002","2002","Male","M","Black or African American","2054-5",92,88080,104.5
+,"30-34 years","30-34","2002","2002","Male","M","White","2106-3",35,570768,6.1
+,"30-34 years","30-34","2003","2003","Female","F","Black or African American","2054-5",10,85947,Unreliable
+,"30-34 years","30-34","2003","2003","Female","F","White","2106-3",13,521197,Unreliable
+,"30-34 years","30-34","2003","2003","Male","M","Black or African American","2054-5",80,85323,93.8
+,"30-34 years","30-34","2003","2003","Male","M","White","2106-3",36,548331,6.6
+,"30-34 years","30-34","2004","2004","Female","F","Black or African American","2054-5",10,83054,Unreliable
+,"30-34 years","30-34","2004","2004","Female","F","White","2106-3",10,493900,Unreliable
+,"30-34 years","30-34","2004","2004","Male","M","Black or African American","2054-5",91,82483,110.3
+,"30-34 years","30-34","2004","2004","Male","M","White","2106-3",27,522670,5.2
+,"30-34 years","30-34","2005","2005","Female","F","Black or African American","2054-5",10,78324,Unreliable
+,"30-34 years","30-34","2005","2005","Male","M","Black or African American","2054-5",78,78238,99.7
+,"30-34 years","30-34","2005","2005","Male","M","White","2106-3",21,490228,4.3
+,"30-34 years","30-34","2006","2006","Female","F","Black or African American","2054-5",10,74912,Unreliable
+,"30-34 years","30-34","2006","2006","Male","M","Black or African American","2054-5",74,75252,98.3
+,"30-34 years","30-34","2006","2006","Male","M","White","2106-3",23,464104,5.0
+,"30-34 years","30-34","2007","2007","Female","F","Black or African American","2054-5",10,73778,Unreliable
+,"30-34 years","30-34","2007","2007","Male","M","Black or African American","2054-5",75,74149,101.1
+,"30-34 years","30-34","2007","2007","Male","M","White","2106-3",37,452712,8.2
+,"30-34 years","30-34","2008","2008","Male","M","Black or African American","2054-5",62,74513,83.2
+,"30-34 years","30-34","2008","2008","Male","M","White","2106-3",19,452424,Unreliable
+,"30-34 years","30-34","2009","2009","Male","M","Black or African American","2054-5",63,75986,82.9
+,"30-34 years","30-34","2009","2009","Male","M","White","2106-3",27,460693,5.9
+,"30-34 years","30-34","2010","2010","Male","M","Black or African American","2054-5",54,77616,69.6
+,"30-34 years","30-34","2010","2010","Male","M","White","2106-3",25,467414,5.3
+,"30-34 years","30-34","2011","2011","Female","F","White","2106-3",12,451385,Unreliable
+,"30-34 years","30-34","2011","2011","Male","M","Black or African American","2054-5",53,80027,66.2
+,"30-34 years","30-34","2011","2011","Male","M","White","2106-3",23,482801,4.8
+,"30-34 years","30-34","2012","2012","Male","M","Black or African American","2054-5",72,81830,88.0
+,"30-34 years","30-34","2012","2012","Male","M","White","2106-3",26,495771,5.2
+,"30-34 years","30-34","2013","2013","Male","M","Black or African American","2054-5",60,83336,72.0
+,"30-34 years","30-34","2013","2013","Male","M","White","2106-3",35,509163,6.9
+,"30-34 years","30-34","2014","2014","Male","M","Black or African American","2054-5",56,85358,65.6
+,"30-34 years","30-34","2014","2014","Male","M","White","2106-3",21,517299,4.1
+,"30-34 years","30-34","2015","2015","Female","F","White","2106-3",13,485234,Unreliable
+,"30-34 years","30-34","2015","2015","Male","M","Black or African American","2054-5",56,87039,64.3
+,"30-34 years","30-34","2015","2015","Male","M","White","2106-3",36,522082,6.9
+,"30-34 years","30-34","2016","2016","Male","M","Black or African American","2054-5",75,88126,85.1
+,"30-34 years","30-34","2016","2016","Male","M","White","2106-3",36,525747,6.8
+,"30-34 years","30-34","2017","2017","Female","F","White","2106-3",11,489530,Unreliable
+,"30-34 years","30-34","2017","2017","Male","M","Black or African American","2054-5",53,91411,58.0
+,"30-34 years","30-34","2017","2017","Male","M","White","2106-3",33,530742,6.2
+,"35-39 years","35-39","1999","1999","Female","F","White","2106-3",24,692340,3.5
+,"35-39 years","35-39","1999","1999","Male","M","Black or African American","2054-5",46,101878,45.2
+,"35-39 years","35-39","1999","1999","Male","M","White","2106-3",42,721168,5.8
+,"35-39 years","35-39","2000","2000","Female","F","White","2106-3",13,673816,Unreliable
+,"35-39 years","35-39","2000","2000","Male","M","Black or African American","2054-5",44,100788,43.7
+,"35-39 years","35-39","2000","2000","Male","M","White","2106-3",28,700696,4.0
+,"35-39 years","35-39","2001","2001","Female","F","Black or African American","2054-5",12,99414,Unreliable
+,"35-39 years","35-39","2001","2001","Female","F","White","2106-3",11,639166,Unreliable
+,"35-39 years","35-39","2001","2001","Male","M","Black or African American","2054-5",42,98133,42.8
+,"35-39 years","35-39","2001","2001","Male","M","White","2106-3",38,668054,5.7
+,"35-39 years","35-39","2002","2002","Female","F","Black or African American","2054-5",13,96218,Unreliable
+,"35-39 years","35-39","2002","2002","Female","F","White","2106-3",10,608907,Unreliable
+,"35-39 years","35-39","2002","2002","Male","M","Black or African American","2054-5",66,94772,69.6
+,"35-39 years","35-39","2002","2002","Male","M","White","2106-3",43,636915,6.8
+,"35-39 years","35-39","2003","2003","Female","F","Black or African American","2054-5",10,93002,Unreliable
+,"35-39 years","35-39","2003","2003","Female","F","White","2106-3",16,581368,Unreliable
+,"35-39 years","35-39","2003","2003","Male","M","Black or African American","2054-5",72,91686,78.5
+,"35-39 years","35-39","2003","2003","Male","M","White","2106-3",40,607925,6.6
+,"35-39 years","35-39","2004","2004","Female","F","Black or African American","2054-5",10,89832,Unreliable
+,"35-39 years","35-39","2004","2004","Female","F","White","2106-3",10,557000,Unreliable
+,"35-39 years","35-39","2004","2004","Male","M","Black or African American","2054-5",52,88565,58.7
+,"35-39 years","35-39","2004","2004","Male","M","White","2106-3",29,583340,5.0
+,"35-39 years","35-39","2005","2005","Male","M","Black or African American","2054-5",70,86884,80.6
+,"35-39 years","35-39","2005","2005","Male","M","White","2106-3",39,568489,6.9
+,"35-39 years","35-39","2006","2006","Female","F","Black or African American","2054-5",11,86782,Unreliable
+,"35-39 years","35-39","2006","2006","Male","M","Black or African American","2054-5",57,85452,66.7
+,"35-39 years","35-39","2006","2006","Male","M","White","2106-3",30,557541,5.4
+,"35-39 years","35-39","2007","2007","Female","F","Black or African American","2054-5",10,84288,Unreliable
+,"35-39 years","35-39","2007","2007","Female","F","White","2106-3",10,512533,Unreliable
+,"35-39 years","35-39","2007","2007","Male","M","Black or African American","2054-5",54,83467,64.7
+,"35-39 years","35-39","2007","2007","Male","M","White","2106-3",29,539150,5.4
+,"35-39 years","35-39","2008","2008","Male","M","Black or African American","2054-5",41,81224,50.5
+,"35-39 years","35-39","2008","2008","Male","M","White","2106-3",27,517603,5.2
+,"35-39 years","35-39","2009","2009","Male","M","Black or African American","2054-5",33,78762,41.9
+,"35-39 years","35-39","2009","2009","Male","M","White","2106-3",21,494733,4.2
+,"35-39 years","35-39","2010","2010","Male","M","Black or African American","2054-5",41,75803,54.1
+,"35-39 years","35-39","2010","2010","Male","M","White","2106-3",26,474176,5.5
+,"35-39 years","35-39","2011","2011","Female","F","White","2106-3",11,421979,Unreliable
+,"35-39 years","35-39","2011","2011","Male","M","Black or African American","2054-5",24,72830,33.0
+,"35-39 years","35-39","2011","2011","Male","M","White","2106-3",27,448874,6.0
+,"35-39 years","35-39","2012","2012","Female","F","White","2106-3",14,417512,Unreliable
+,"35-39 years","35-39","2012","2012","Male","M","Black or African American","2054-5",45,72436,62.1
+,"35-39 years","35-39","2012","2012","Male","M","White","2106-3",27,445539,6.1
+,"35-39 years","35-39","2013","2013","Male","M","Black or African American","2054-5",41,73086,56.1
+,"35-39 years","35-39","2013","2013","Male","M","White","2106-3",22,449590,4.9
+,"35-39 years","35-39","2014","2014","Female","F","White","2106-3",11,427817,Unreliable
+,"35-39 years","35-39","2014","2014","Male","M","Black or African American","2054-5",52,75213,69.1
+,"35-39 years","35-39","2014","2014","Male","M","White","2106-3",30,455992,6.6
+,"35-39 years","35-39","2015","2015","Male","M","Black or African American","2054-5",55,77956,70.6
+,"35-39 years","35-39","2015","2015","Male","M","White","2106-3",24,468134,5.1
+,"35-39 years","35-39","2016","2016","Male","M","Black or African American","2054-5",54,79057,68.3
+,"35-39 years","35-39","2016","2016","Male","M","White","2106-3",32,479749,6.7
+,"35-39 years","35-39","2017","2017","Female","F","White","2106-3",20,454753,4.4
+,"35-39 years","35-39","2017","2017","Male","M","Black or African American","2054-5",50,81583,61.3
+,"35-39 years","35-39","2017","2017","Male","M","White","2106-3",28,490770,5.7
+,"40-44 years","40-44","1999","1999","Female","F","White","2106-3",18,697834,Unreliable
+,"40-44 years","40-44","1999","1999","Male","M","Black or African American","2054-5",35,91743,38.2
+,"40-44 years","40-44","1999","1999","Male","M","White","2106-3",38,721199,5.3
+,"40-44 years","40-44","2000","2000","Female","F","White","2106-3",15,699052,Unreliable
+,"40-44 years","40-44","2000","2000","Male","M","Black or African American","2054-5",40,93956,42.6
+,"40-44 years","40-44","2000","2000","Male","M","White","2106-3",29,723976,4.0
+,"40-44 years","40-44","2001","2001","Female","F","White","2106-3",23,699068,3.3
+,"40-44 years","40-44","2001","2001","Male","M","Black or African American","2054-5",42,95950,43.8
+,"40-44 years","40-44","2001","2001","Male","M","White","2106-3",30,724930,4.1
+,"40-44 years","40-44","2002","2002","Female","F","Black or African American","2054-5",10,98703,Unreliable
+,"40-44 years","40-44","2002","2002","Female","F","White","2106-3",17,689963,Unreliable
+,"40-44 years","40-44","2002","2002","Male","M","Black or African American","2054-5",47,96906,48.5
+,"40-44 years","40-44","2002","2002","Male","M","White","2106-3",54,716178,7.5
+,"40-44 years","40-44","2003","2003","Female","F","White","2106-3",16,678989,Unreliable
+,"40-44 years","40-44","2003","2003","Male","M","Black or African American","2054-5",43,97104,44.3
+,"40-44 years","40-44","2003","2003","Male","M","White","2106-3",38,703555,5.4
+,"40-44 years","40-44","2004","2004","Female","F","White","2106-3",14,666662,Unreliable
+,"40-44 years","40-44","2004","2004","Male","M","Black or African American","2054-5",46,96986,47.4
+,"40-44 years","40-44","2004","2004","Male","M","White","2106-3",34,690205,4.9
+,"40-44 years","40-44","2005","2005","Female","F","White","2106-3",14,642144,Unreliable
+,"40-44 years","40-44","2005","2005","Male","M","Black or African American","2054-5",48,95523,50.2
+,"40-44 years","40-44","2005","2005","Male","M","White","2106-3",30,663099,4.5
+,"40-44 years","40-44","2006","2006","Female","F","Black or African American","2054-5",15,94347,Unreliable
+,"40-44 years","40-44","2006","2006","Female","F","White","2106-3",12,607154,Unreliable
+,"40-44 years","40-44","2006","2006","Male","M","Black or African American","2054-5",42,93250,45.0
+,"40-44 years","40-44","2006","2006","Male","M","White","2106-3",31,628720,4.9
+,"40-44 years","40-44","2007","2007","Female","F","White","2106-3",14,574302,Unreliable
+,"40-44 years","40-44","2007","2007","Male","M","Black or African American","2054-5",38,90026,42.2
+,"40-44 years","40-44","2007","2007","Male","M","White","2106-3",25,595072,4.2
+,"40-44 years","40-44","2008","2008","Female","F","White","2106-3",11,545680,Unreliable
+,"40-44 years","40-44","2008","2008","Male","M","Black or African American","2054-5",37,87395,42.3
+,"40-44 years","40-44","2008","2008","Male","M","White","2106-3",28,567220,4.9
+,"40-44 years","40-44","2009","2009","Female","F","White","2106-3",13,522794,Unreliable
+,"40-44 years","40-44","2009","2009","Male","M","Black or African American","2054-5",20,84583,23.6
+,"40-44 years","40-44","2009","2009","Male","M","White","2106-3",31,543732,5.7
+,"40-44 years","40-44","2010","2010","Male","M","Black or African American","2054-5",28,83788,33.4
+,"40-44 years","40-44","2010","2010","Male","M","White","2106-3",31,535383,5.8
+,"40-44 years","40-44","2011","2011","Male","M","Black or African American","2054-5",36,82893,43.4
+,"40-44 years","40-44","2011","2011","Male","M","White","2106-3",29,530415,5.5
+,"40-44 years","40-44","2012","2012","Male","M","Black or African American","2054-5",30,81520,36.8
+,"40-44 years","40-44","2012","2012","Male","M","White","2106-3",30,519775,5.8
+,"40-44 years","40-44","2013","2013","Male","M","Black or African American","2054-5",40,78510,50.9
+,"40-44 years","40-44","2013","2013","Male","M","White","2106-3",18,503344,Unreliable
+,"40-44 years","40-44","2014","2014","Female","F","White","2106-3",12,458242,Unreliable
+,"40-44 years","40-44","2014","2014","Male","M","Black or African American","2054-5",34,77014,44.1
+,"40-44 years","40-44","2014","2014","Male","M","White","2106-3",23,483880,4.8
+,"40-44 years","40-44","2015","2015","Male","M","Black or African American","2054-5",30,74219,40.4
+,"40-44 years","40-44","2015","2015","Male","M","White","2106-3",28,462289,6.1
+,"40-44 years","40-44","2016","2016","Male","M","Black or African American","2054-5",34,71888,47.3
+,"40-44 years","40-44","2016","2016","Male","M","White","2106-3",31,442639,7.0
+,"40-44 years","40-44","2017","2017","Male","M","Black or African American","2054-5",37,72007,51.4
+,"40-44 years","40-44","2017","2017","Male","M","White","2106-3",24,437920,5.5
+,"45-49 years","45-49","1999","1999","Female","F","White","2106-3",14,651506,Unreliable
+,"45-49 years","45-49","1999","1999","Male","M","Black or African American","2054-5",26,72334,35.9
+,"45-49 years","45-49","1999","1999","Male","M","White","2106-3",36,655996,5.5
+,"45-49 years","45-49","2000","2000","Male","M","Black or African American","2054-5",26,74716,34.8
+,"45-49 years","45-49","2000","2000","Male","M","White","2106-3",28,665957,4.2
+,"45-49 years","45-49","2001","2001","Female","F","White","2106-3",15,669133,Unreliable
+,"45-49 years","45-49","2001","2001","Male","M","Black or African American","2054-5",21,77693,27.0
+,"45-49 years","45-49","2001","2001","Male","M","White","2106-3",28,676097,4.1
+,"45-49 years","45-49","2002","2002","Female","F","White","2106-3",20,676915,3.0
+,"45-49 years","45-49","2002","2002","Male","M","Black or African American","2054-5",35,80784,43.3
+,"45-49 years","45-49","2002","2002","Male","M","White","2106-3",26,686579,3.8
+,"45-49 years","45-49","2003","2003","Female","F","White","2106-3",12,679886,Unreliable
+,"45-49 years","45-49","2003","2003","Male","M","Black or African American","2054-5",30,84057,35.7
+,"45-49 years","45-49","2003","2003","Male","M","White","2106-3",30,693413,4.3
+,"45-49 years","45-49","2004","2004","Female","F","White","2106-3",17,674846,Unreliable
+,"45-49 years","45-49","2004","2004","Male","M","Black or African American","2054-5",33,86200,38.3
+,"45-49 years","45-49","2004","2004","Male","M","White","2106-3",32,691474,4.6
+,"45-49 years","45-49","2005","2005","Female","F","White","2106-3",15,670864,Unreliable
+,"45-49 years","45-49","2005","2005","Male","M","Black or African American","2054-5",38,88734,42.8
+,"45-49 years","45-49","2005","2005","Male","M","White","2106-3",40,691141,5.8
+,"45-49 years","45-49","2006","2006","Female","F","Black or African American","2054-5",10,93089,Unreliable
+,"45-49 years","45-49","2006","2006","Female","F","White","2106-3",13,665862,Unreliable
+,"45-49 years","45-49","2006","2006","Male","M","Black or African American","2054-5",37,90499,40.9
+,"45-49 years","45-49","2006","2006","Male","M","White","2106-3",35,686778,5.1
+,"45-49 years","45-49","2007","2007","Female","F","White","2106-3",17,653477,Unreliable
+,"45-49 years","45-49","2007","2007","Male","M","Black or African American","2054-5",39,91602,42.6
+,"45-49 years","45-49","2007","2007","Male","M","White","2106-3",38,674715,5.6
+,"45-49 years","45-49","2008","2008","Female","F","White","2106-3",13,640985,Unreliable
+,"45-49 years","45-49","2008","2008","Male","M","Black or African American","2054-5",27,91854,29.4
+,"45-49 years","45-49","2008","2008","Male","M","White","2106-3",32,660725,4.8
+,"45-49 years","45-49","2009","2009","Female","F","White","2106-3",15,629901,Unreliable
+,"45-49 years","45-49","2009","2009","Male","M","Black or African American","2054-5",28,92143,30.4
+,"45-49 years","45-49","2009","2009","Male","M","White","2106-3",44,648619,6.8
+,"45-49 years","45-49","2010","2010","Female","F","White","2106-3",13,614446,Unreliable
+,"45-49 years","45-49","2010","2010","Male","M","Black or African American","2054-5",23,91431,25.2
+,"45-49 years","45-49","2010","2010","Male","M","White","2106-3",23,631405,3.6
+,"45-49 years","45-49","2011","2011","Female","F","White","2106-3",14,580542,Unreliable
+,"45-49 years","45-49","2011","2011","Male","M","Black or African American","2054-5",26,88905,29.2
+,"45-49 years","45-49","2011","2011","Male","M","White","2106-3",26,597500,4.4
+,"45-49 years","45-49","2012","2012","Female","F","White","2106-3",15,555402,Unreliable
+,"45-49 years","45-49","2012","2012","Male","M","Black or African American","2054-5",28,86496,32.4
+,"45-49 years","45-49","2012","2012","Male","M","White","2106-3",30,572760,5.2
+,"45-49 years","45-49","2013","2013","Male","M","Black or African American","2054-5",15,83742,Unreliable
+,"45-49 years","45-49","2013","2013","Male","M","White","2106-3",29,548494,5.3
+,"45-49 years","45-49","2014","2014","Male","M","Black or African American","2054-5",25,82019,30.5
+,"45-49 years","45-49","2014","2014","Male","M","White","2106-3",37,530567,7.0
+,"45-49 years","45-49","2015","2015","Male","M","Black or African American","2054-5",39,81293,48.0
+,"45-49 years","45-49","2015","2015","Male","M","White","2106-3",37,522968,7.1
+,"45-49 years","45-49","2016","2016","Female","F","White","2106-3",12,499907,Unreliable
+,"45-49 years","45-49","2016","2016","Male","M","Black or African American","2054-5",37,80074,46.2
+,"45-49 years","45-49","2016","2016","Male","M","White","2106-3",24,518262,4.6
+,"45-49 years","45-49","2017","2017","Female","F","White","2106-3",10,485172,Unreliable
+,"45-49 years","45-49","2017","2017","Male","M","Black or African American","2054-5",34,78894,43.1
+,"45-49 years","45-49","2017","2017","Male","M","White","2106-3",39,505471,7.7
+,"50-54 years","50-54","1999","1999","Male","M","Black or African American","2054-5",10,55605,Unreliable
+,"50-54 years","50-54","1999","1999","Male","M","White","2106-3",23,592783,3.9
+,"50-54 years","50-54","2000","2000","Female","F","White","2106-3",13,613093,Unreliable
+,"50-54 years","50-54","2000","2000","Male","M","Black or African American","2054-5",14,58819,Unreliable
+,"50-54 years","50-54","2000","2000","Male","M","White","2106-3",27,610848,4.4
+,"50-54 years","50-54","2001","2001","Female","F","White","2106-3",10,639455,Unreliable
+,"50-54 years","50-54","2001","2001","Male","M","Black or African American","2054-5",11,63814,Unreliable
+,"50-54 years","50-54","2001","2001","Male","M","White","2106-3",21,636779,3.3
+,"50-54 years","50-54","2002","2002","Male","M","Black or African American","2054-5",18,65730,Unreliable
+,"50-54 years","50-54","2002","2002","Male","M","White","2106-3",26,623243,4.2
+,"50-54 years","50-54","2003","2003","Female","F","White","2106-3",11,629771,Unreliable
+,"50-54 years","50-54","2003","2003","Male","M","Black or African American","2054-5",15,67511,Unreliable
+,"50-54 years","50-54","2003","2003","Male","M","White","2106-3",30,626545,4.8
+,"50-54 years","50-54","2004","2004","Male","M","Black or African American","2054-5",22,69852,31.5
+,"50-54 years","50-54","2004","2004","Male","M","White","2106-3",33,632661,5.2
+,"50-54 years","50-54","2005","2005","Female","F","White","2106-3",13,636961,Unreliable
+,"50-54 years","50-54","2005","2005","Male","M","Black or African American","2054-5",23,72114,31.9
+,"50-54 years","50-54","2005","2005","Male","M","White","2106-3",26,636838,4.1
+,"50-54 years","50-54","2006","2006","Female","F","White","2106-3",16,638702,Unreliable
+,"50-54 years","50-54","2006","2006","Male","M","Black or African American","2054-5",23,74695,30.8
+,"50-54 years","50-54","2006","2006","Male","M","White","2106-3",30,641397,4.7
+,"50-54 years","50-54","2007","2007","Male","M","Black or African American","2054-5",18,77931,Unreliable
+,"50-54 years","50-54","2007","2007","Male","M","White","2106-3",25,649439,3.8
+,"50-54 years","50-54","2008","2008","Male","M","Black or African American","2054-5",19,81346,Unreliable
+,"50-54 years","50-54","2008","2008","Male","M","White","2106-3",23,655301,3.5
+,"50-54 years","50-54","2009","2009","Male","M","Black or African American","2054-5",24,83936,28.6
+,"50-54 years","50-54","2009","2009","Male","M","White","2106-3",15,654995,Unreliable
+,"50-54 years","50-54","2010","2010","Male","M","Black or African American","2054-5",16,86476,Unreliable
+,"50-54 years","50-54","2010","2010","Male","M","White","2106-3",28,658112,4.3
+,"50-54 years","50-54","2011","2011","Male","M","Black or African American","2054-5",23,87973,26.1
+,"50-54 years","50-54","2011","2011","Male","M","White","2106-3",44,656793,6.7
+,"50-54 years","50-54","2012","2012","Female","F","White","2106-3",16,636489,Unreliable
+,"50-54 years","50-54","2012","2012","Male","M","Black or African American","2054-5",32,88588,36.1
+,"50-54 years","50-54","2012","2012","Male","M","White","2106-3",34,648786,5.2
+,"50-54 years","50-54","2013","2013","Female","F","White","2106-3",10,625906,Unreliable
+,"50-54 years","50-54","2013","2013","Male","M","Black or African American","2054-5",20,88052,22.7
+,"50-54 years","50-54","2013","2013","Male","M","White","2106-3",34,637565,5.3
+,"50-54 years","50-54","2014","2014","Male","M","Black or African American","2054-5",22,87900,25.0
+,"50-54 years","50-54","2014","2014","Male","M","White","2106-3",20,625617,3.2
+,"50-54 years","50-54","2015","2015","Female","F","White","2106-3",10,594298,Unreliable
+,"50-54 years","50-54","2015","2015","Male","M","Black or African American","2054-5",29,86698,33.4
+,"50-54 years","50-54","2015","2015","Male","M","White","2106-3",28,604522,4.6
+,"50-54 years","50-54","2016","2016","Female","F","White","2106-3",10,564591,Unreliable
+,"50-54 years","50-54","2016","2016","Male","M","Black or African American","2054-5",27,84141,32.1
+,"50-54 years","50-54","2016","2016","Male","M","White","2106-3",32,575926,5.6
+,"50-54 years","50-54","2017","2017","Female","F","White","2106-3",14,538832,Unreliable
+,"50-54 years","50-54","2017","2017","Male","M","Black or African American","2054-5",29,81894,35.4
+,"50-54 years","50-54","2017","2017","Male","M","White","2106-3",29,551175,5.3
+,"55-59 years","55-59","1999","1999","Male","M","White","2106-3",12,443186,Unreliable
+,"55-59 years","55-59","2000","2000","Male","M","Black or African American","2054-5",10,42344,Unreliable
+,"55-59 years","55-59","2000","2000","Male","M","White","2106-3",15,457968,Unreliable
+,"55-59 years","55-59","2001","2001","Male","M","White","2106-3",14,475637,Unreliable
+,"55-59 years","55-59","2002","2002","Male","M","White","2106-3",24,520155,4.6
+,"55-59 years","55-59","2003","2003","Male","M","White","2106-3",18,538930,Unreliable
+,"55-59 years","55-59","2004","2004","Male","M","Black or African American","2054-5",13,52424,Unreliable
+,"55-59 years","55-59","2004","2004","Male","M","White","2106-3",18,557852,Unreliable
+,"55-59 years","55-59","2005","2005","Female","F","White","2106-3",10,586517,Unreliable
+,"55-59 years","55-59","2005","2005","Male","M","Black or African American","2054-5",12,56300,Unreliable
+,"55-59 years","55-59","2005","2005","Male","M","White","2106-3",14,577409,Unreliable
+,"55-59 years","55-59","2006","2006","Female","F","White","2106-3",13,603235,Unreliable
+,"55-59 years","55-59","2006","2006","Male","M","Black or African American","2054-5",17,59904,Unreliable
+,"55-59 years","55-59","2006","2006","Male","M","White","2106-3",20,593635,3.4
+,"55-59 years","55-59","2007","2007","Male","M","White","2106-3",22,578187,3.8
+,"55-59 years","55-59","2008","2008","Female","F","White","2106-3",10,593024,Unreliable
+,"55-59 years","55-59","2008","2008","Male","M","Black or African American","2054-5",22,62984,34.9
+,"55-59 years","55-59","2008","2008","Male","M","White","2106-3",18,583062,Unreliable
+,"55-59 years","55-59","2009","2009","Male","M","Black or African American","2054-5",13,65456,Unreliable
+,"55-59 years","55-59","2009","2009","Male","M","White","2106-3",25,592266,4.2
+,"55-59 years","55-59","2010","2010","Male","M","White","2106-3",15,598796,Unreliable
+,"55-59 years","55-59","2011","2011","Male","M","Black or African American","2054-5",12,70313,Unreliable
+,"55-59 years","55-59","2011","2011","Male","M","White","2106-3",14,607751,Unreliable
+,"55-59 years","55-59","2012","2012","Male","M","Black or African American","2054-5",10,73211,Unreliable
+,"55-59 years","55-59","2012","2012","Male","M","White","2106-3",16,618558,Unreliable
+,"55-59 years","55-59","2013","2013","Female","F","White","2106-3",12,626346,Unreliable
+,"55-59 years","55-59","2013","2013","Male","M","Black or African American","2054-5",18,75838,Unreliable
+,"55-59 years","55-59","2013","2013","Male","M","White","2106-3",19,623741,Unreliable
+,"55-59 years","55-59","2014","2014","Male","M","Black or African American","2054-5",13,77969,Unreliable
+,"55-59 years","55-59","2014","2014","Male","M","White","2106-3",33,624304,5.3
+,"55-59 years","55-59","2015","2015","Female","F","White","2106-3",15,622312,Unreliable
+,"55-59 years","55-59","2015","2015","Male","M","Black or African American","2054-5",17,80039,Unreliable
+,"55-59 years","55-59","2015","2015","Male","M","White","2106-3",26,624700,4.2
+,"55-59 years","55-59","2016","2016","Male","M","Black or African American","2054-5",18,81300,Unreliable
+,"55-59 years","55-59","2016","2016","Male","M","White","2106-3",29,622476,4.7
+,"55-59 years","55-59","2017","2017","Female","F","White","2106-3",15,608847,Unreliable
+,"55-59 years","55-59","2017","2017","Male","M","Black or African American","2054-5",20,81825,24.4
+,"55-59 years","55-59","2017","2017","Male","M","White","2106-3",30,612682,4.9
+,"60-64 years ","60-64","1999","1999","Male","M","White","2106-3",12,344592,Unreliable
+,"60-64 years ","60-64","2001","2001","Male","M","White","2106-3",12,359148,Unreliable
+,"60-64 years ","60-64","2002","2002","Male","M","White","2106-3",12,372142,Unreliable
+,"60-64 years ","60-64","2003","2003","Male","M","White","2106-3",10,393214,Unreliable
+,"60-64 years ","60-64","2004","2004","Male","M","Black or African American","2054-5",11,38400,Unreliable
+,"60-64 years ","60-64","2004","2004","Male","M","White","2106-3",12,407648,Unreliable
+,"60-64 years ","60-64","2005","2005","Male","M","White","2106-3",18,420218,Unreliable
+,"60-64 years ","60-64","2006","2006","Male","M","White","2106-3",19,431393,Unreliable
+,"60-64 years ","60-64","2007","2007","Male","M","Black or African American","2054-5",10,41664,Unreliable
+,"60-64 years ","60-64","2007","2007","Male","M","White","2106-3",11,472301,Unreliable
+,"60-64 years ","60-64","2008","2008","Female","F","White","2106-3",10,507036,Unreliable
+,"60-64 years ","60-64","2008","2008","Male","M","White","2106-3",22,489372,4.5
+,"60-64 years ","60-64","2009","2009","Female","F","White","2106-3",10,530225,Unreliable
+,"60-64 years ","60-64","2009","2009","Male","M","White","2106-3",16,511175,Unreliable
+,"60-64 years ","60-64","2010","2010","Male","M","White","2106-3",11,529164,Unreliable
+,"60-64 years ","60-64","2011","2011","Male","M","White","2106-3",18,550846,Unreliable
+,"60-64 years ","60-64","2012","2012","Male","M","White","2106-3",22,540582,4.1
+,"60-64 years ","60-64","2013","2013","Female","F","White","2106-3",10,565840,Unreliable
+,"60-64 years ","60-64","2013","2013","Male","M","White","2106-3",14,543430,Unreliable
+,"60-64 years ","60-64","2014","2014","Male","M","White","2106-3",24,550461,4.4
+,"60-64 years ","60-64","2015","2015","Male","M","Black or African American","2054-5",11,60476,Unreliable
+,"60-64 years ","60-64","2015","2015","Male","M","White","2106-3",14,558030,Unreliable
+,"60-64 years ","60-64","2016","2016","Male","M","Black or African American","2054-5",10,62591,Unreliable
+,"60-64 years ","60-64","2016","2016","Male","M","White","2106-3",23,563107,4.1
+,"60-64 years ","60-64","2017","2017","Male","M","Black or African American","2054-5",15,65320,Unreliable
+,"60-64 years ","60-64","2017","2017","Male","M","White","2106-3",19,570222,Unreliable
+,"65-69 years","65-69","1999","1999","Female","F","White","2106-3",10,336268,Unreliable
+,"65-69 years","65-69","1999","1999","Male","M","White","2106-3",17,306327,Unreliable
+,"65-69 years","65-69","2001","2001","Male","M","White","2106-3",10,298846,Unreliable
+,"65-69 years","65-69","2002","2002","Male","M","White","2106-3",11,298690,Unreliable
+,"65-69 years","65-69","2008","2008","Male","M","White","2106-3",10,349348,Unreliable
+,"65-69 years","65-69","2009","2009","Male","M","White","2106-3",13,365588,Unreliable
+,"65-69 years","65-69","2012","2012","Male","M","White","2106-3",17,432793,Unreliable
+,"65-69 years","65-69","2013","2013","Male","M","White","2106-3",17,452137,Unreliable
+,"65-69 years","65-69","2015","2015","Male","M","White","2106-3",16,484895,Unreliable
+,"65-69 years","65-69","2016","2016","Male","M","White","2106-3",17,498646,Unreliable
+,"65-69 years","65-69","2017","2017","Male","M","White","2106-3",11,485737,Unreliable
+,"70-74 years","70-74","2011","2011","Male","M","White","2106-3",10,280128,Unreliable
+"---"
+"Dataset: Multiple Cause of Death, 1999-2020"
+"Query Parameters:"
+"Hispanic Origin: Not Hispanic or Latino"
+"MCD - ICD-10 Codes: X85-Y09 (Assault)"
+"Race: Black or African American; White"
+"States: California (06)"
+"Year/Month: 1999; 2000; 2001; 2002; 2003; 2004; 2005; 2006; 2007; 2008; 2009; 2010; 2011; 2012; 2013; 2014; 2015; 2016; 2017"
+"Group By: Five-Year Age Groups; Year; Sex; Race"
+"Show Totals: Disabled"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd.html for more information."
+"---"
+"Query Date: Jan 28, 2026 7:19:28 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 1999-2020 on CDC WONDER Online Database, released in 2021. Data are from the Multiple Cause of Death Files,"
+"1999-2020, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10.html on Jan 28, 2026 7:19:28 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"2. Rows with zero Deaths are hidden. Use Quick Options above to show zero rows."
+"3. Rows with suppressed Deaths are hidden. Use Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd.html#Ages 85-100."
+"2. As of April 3, 2017, the underlying cause of death has been revised for 125 deaths in 2014. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#2014-Revision."
+"3. Circumstances in California resulted in unusually high death counts for the ICD-10 cause of death code R99, ""Other"
+"ill-defined and unspecified causes of mortality"" for deaths occurring in years 2000 and 2001. Caution should be used in"
+"interpreting these data. More information: http://wonder.cdc.gov/wonder/help/mcd.html#California-Reporting-Anomalies."
+"4. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Assurance of Confidentiality."
+"5. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Unreliable."
+"6. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Not Stated."
+"7. Deaths of persons with Hispanic origin ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among"
+"Hispanic Origin groups, so are not included in the Hispanic Origin specific counts and rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Not Stated."
+"8. Information included on the death certificate about the race and Hispanic ethnicity of the decedent is reported by the"
+"funeral director as provided by an informant, often the surviving next of kin, or, in the absence of an informant, on the basis"
+"of observation. Race and ethnicity information from the census is by self-report. To the extent that race and Hispanic origin"
+"are inconsistent between these two data sources, death rates will be biased. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Racial Differences."
+"9. The population figures for year 2020 are bridged-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series released by NCHS on September 22, 2021. The population figures for year 2019 are bridged-race estimates of the"
+"July 1 resident population, from the Vintage 2019 postcensal series released by NCHS on July 9, 2020. The population figures for"
+"year 2018 are bridged-race estimates of the July 1 resident population, from the Vintage 2018 postcensal series released by NCHS"
+"on June 25, 2019. The population figures for year 2017 are bridged-race estimates of the July 1 resident population, from the"
+"Vintage 2017 postcensal series released by NCHS on June 27, 2018. The population figures for year 2016 are bridged-race"
+"estimates of the July 1 resident population, from the Vintage 2016 postcensal series released by NCHS on June 26, 2017. The"
+"population figures for year 2015 are bridged-race estimates of the July 1 resident population, from the Vintage 2015 postcensal"
+"series released by NCHS on June 28, 2016. The population figures for year 2014 are bridged-race estimates of the July 1 resident"
+"population, from the Vintage 2014 postcensal series released by NCHS on June 30, 2015. The population figures for year 2013 are"
+"bridged-race estimates of the July 1 resident population, from the Vintage 2013 postcensal series released by NCHS on June 26,"
+"2014. The population figures for year 2012 are bridged-race estimates of the July 1 resident population, from the Vintage 2012"
+"postcensal series released by NCHS on June 13, 2013. Population figures for 2011 are bridged-race estimates of the July 1"
+"resident population, from the county-level postcensal Vintage 2011 series released by NCHS on July 18, 2012. Population figures"
+"for 2010 are April 1 Census counts. The population figures for years 2001 - 2009, are bridged-race estimates of the July 1"
+"resident population, from the revised intercensal county-level 2000 - 2009 series released by NCHS on October 26, 2012."
+"Population figures for 2000 are April 1 Census counts. Population figures for 1999 are from the 1990-1999 intercensal series of"
+"July 1 estimates. Population figures for Infant Age Groups are the number of live births. <br/><b>Note:</b> Rates and population"
+"figures for years 2001 - 2009 differ slightly from previously published reports, due to use of the population estimates which"
+"were available at the time of release."
+"10. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd.html#Age Group."
+"11. On March 11, 2021, the 2019 mortality data on CDC WONDER was updated with the 2019 mortality data updated by NCHS on March"
+"4, 2021 to include corrected information for residents of Texas affecting 5 records previously coded to cause code *U01.4,"
+"Terrorism involving firearms (homicide). The underlying and multiple cause of death codes for 5 records were corrected in the"
+"2019 data. Underlying and multiple cause of death codes for those 5 records were recoded to Assault (homicide) by other and"
+"unspecified firearm discharge, ICD-10 code X95. The corrected final death records replaces the data released on December 22,"
+"2020."

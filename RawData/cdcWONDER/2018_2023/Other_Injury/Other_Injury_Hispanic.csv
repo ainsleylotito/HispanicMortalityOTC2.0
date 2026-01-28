@@ -1,0 +1,303 @@
+"Notes","Five-Year Age Groups","Five-Year Age Groups Code","Year","Year Code","Sex","Sex Code",Deaths,Population,Crude Rate
+,"< 1 year","1","2018","2018","Male","M",12,127229,Unreliable
+,"< 1 year","1","2019","2019","Female","F",11,115122,Unreliable
+,"< 1 year","1","2019","2019","Male","M",12,120182,Unreliable
+,"< 1 year","1","2020","2020","Female","F",11,109347,Unreliable
+,"< 1 year","1","2021","2021","Male","M",10,107383,Unreliable
+,"< 1 year","1","2022","2022","Female","F",11,105775,Unreliable
+,"< 1 year","1","2022","2022","Male","M",10,108941,Unreliable
+,"< 1 year","1","2023 ","2023","Male","M",11,108046,Unreliable
+,"1-4 years","1-4","2018","2018","Male","M",19,515224,Unreliable
+,"1-4 years","1-4","2019","2019","Male","M",22,500574,4.4
+,"1-4 years","1-4","2020","2020","Female","F",12,458674,Unreliable
+,"1-4 years","1-4","2020","2020","Male","M",23,474152,4.9
+,"1-4 years","1-4","2021","2021","Female","F",14,442775,Unreliable
+,"1-4 years","1-4","2021","2021","Male","M",18,458688,Unreliable
+,"1-4 years","1-4","2022","2022","Female","F",10,423586,Unreliable
+,"1-4 years","1-4","2022","2022","Male","M",17,437876,Unreliable
+,"1-4 years","1-4","2023 ","2023","Male","M",22,435914,5.0
+,"10-14 years","10-14","2020","2020","Male","M",12,680113,Unreliable
+,"15-19 years","15-19","2018","2018","Female","F",12,632857,Unreliable
+,"15-19 years","15-19","2018","2018","Male","M",34,654000,5.2
+,"15-19 years","15-19","2019","2019","Female","F",14,633329,Unreliable
+,"15-19 years","15-19","2019","2019","Male","M",56,652942,8.6
+,"15-19 years","15-19","2020","2020","Female","F",35,632768,5.5
+,"15-19 years","15-19","2020","2020","Male","M",126,652535,19.3
+,"15-19 years","15-19","2021","2021","Female","F",34,653636,5.2
+,"15-19 years","15-19","2021","2021","Male","M",103,677551,15.2
+,"15-19 years","15-19","2022","2022","Female","F",35,654294,5.3
+,"15-19 years","15-19","2022","2022","Male","M",77,681724,11.3
+,"15-19 years","15-19","2023 ","2023","Female","F",37,669078,5.5
+,"15-19 years","15-19","2023 ","2023","Male","M",68,697539,9.7
+,"20-24 years","20-24","2018","2018","Female","F",21,640699,3.3
+,"20-24 years","20-24","2018","2018","Male","M",89,662759,13.4
+,"20-24 years","20-24","2019","2019","Female","F",30,632239,4.7
+,"20-24 years","20-24","2019","2019","Male","M",164,650853,25.2
+,"20-24 years","20-24","2020","2020","Female","F",53,627055,8.5
+,"20-24 years","20-24","2020","2020","Male","M",328,646731,50.7
+,"20-24 years","20-24","2021","2021","Female","F",65,622909,10.4
+,"20-24 years","20-24","2021","2021","Male","M",299,640615,46.7
+,"20-24 years","20-24","2022","2022","Female","F",71,652909,10.9
+,"20-24 years","20-24","2022","2022","Male","M",237,675311,35.1
+,"20-24 years","20-24","2023 ","2023","Female","F",60,621251,9.7
+,"20-24 years","20-24","2023 ","2023","Male","M",209,639605,32.7
+,"25-29 years","25-29","2018","2018","Female","F",28,644367,4.3
+,"25-29 years","25-29","2018","2018","Male","M",149,692367,21.5
+,"25-29 years","25-29","2019","2019","Female","F",37,652649,5.7
+,"25-29 years","25-29","2019","2019","Male","M",185,696035,26.6
+,"25-29 years","25-29","2020","2020","Female","F",57,651742,8.7
+,"25-29 years","25-29","2020","2020","Male","M",337,688076,49.0
+,"25-29 years","25-29","2021","2021","Female","F",72,637189,11.3
+,"25-29 years","25-29","2021","2021","Male","M",411,658177,62.4
+,"25-29 years","25-29","2022","2022","Female","F",75,622816,12.0
+,"25-29 years","25-29","2022","2022","Male","M",427,649228,65.8
+,"25-29 years","25-29","2023 ","2023","Female","F",84,619764,13.6
+,"25-29 years","25-29","2023 ","2023","Male","M",400,633105,63.2
+,"30-34 years","30-34","2018","2018","Female","F",38,563058,6.7
+,"30-34 years","30-34","2018","2018","Male","M",168,618191,27.2
+,"30-34 years","30-34","2019","2019","Female","F",39,567809,6.9
+,"30-34 years","30-34","2019","2019","Male","M",187,623267,30.0
+,"30-34 years","30-34","2020","2020","Female","F",58,579882,10.0
+,"30-34 years","30-34","2020","2020","Male","M",293,633634,46.2
+,"30-34 years","30-34","2021","2021","Female","F",70,593866,11.8
+,"30-34 years","30-34","2021","2021","Male","M",427,639889,66.7
+,"30-34 years","30-34","2022","2022","Female","F",81,599257,13.5
+,"30-34 years","30-34","2022","2022","Male","M",478,645193,74.1
+,"30-34 years","30-34","2023 ","2023","Female","F",91,613976,14.8
+,"30-34 years","30-34","2023 ","2023","Male","M",528,647103,81.6
+,"35-39 years","35-39","2018","2018","Female","F",35,547520,6.4
+,"35-39 years","35-39","2018","2018","Male","M",152,581641,26.1
+,"35-39 years","35-39","2019","2019","Female","F",41,547537,7.5
+,"35-39 years","35-39","2019","2019","Male","M",185,584613,31.6
+,"35-39 years","35-39","2020","2020","Female","F",54,543192,9.9
+,"35-39 years","35-39","2020","2020","Male","M",290,581493,49.9
+,"35-39 years","35-39","2021","2021","Female","F",67,546700,12.3
+,"35-39 years","35-39","2021","2021","Male","M",399,597970,66.7
+,"35-39 years","35-39","2022","2022","Female","F",73,537025,13.6
+,"35-39 years","35-39","2022","2022","Male","M",450,592395,76.0
+,"35-39 years","35-39","2023 ","2023","Female","F",82,542452,15.1
+,"35-39 years","35-39","2023 ","2023","Male","M",467,590376,79.1
+,"40-44 years","40-44","2018","2018","Female","F",38,516079,7.4
+,"40-44 years","40-44","2018","2018","Male","M",137,525165,26.1
+,"40-44 years","40-44","2019","2019","Female","F",41,511598,8.0
+,"40-44 years","40-44","2019","2019","Male","M",191,524300,36.4
+,"40-44 years","40-44","2020","2020","Female","F",42,511822,8.2
+,"40-44 years","40-44","2020","2020","Male","M",251,530990,47.3
+,"40-44 years","40-44","2021","2021","Female","F",67,520609,12.9
+,"40-44 years","40-44","2021","2021","Male","M",334,551409,60.6
+,"40-44 years","40-44","2022","2022","Female","F",78,518027,15.1
+,"40-44 years","40-44","2022","2022","Male","M",408,555938,73.4
+,"40-44 years","40-44","2023 ","2023","Female","F",76,525188,14.5
+,"40-44 years","40-44","2023 ","2023","Male","M",433,558627,77.5
+,"45-49 years","45-49","2018","2018","Female","F",35,494329,7.1
+,"45-49 years","45-49","2018","2018","Male","M",161,498377,32.3
+,"45-49 years","45-49","2019","2019","Female","F",39,493191,7.9
+,"45-49 years","45-49","2019","2019","Male","M",184,494664,37.2
+,"45-49 years","45-49","2020","2020","Female","F",70,491041,14.3
+,"45-49 years","45-49","2020","2020","Male","M",236,489706,48.2
+,"45-49 years","45-49","2021","2021","Female","F",71,493009,14.4
+,"45-49 years","45-49","2021","2021","Male","M",283,502200,56.4
+,"45-49 years","45-49","2022","2022","Female","F",55,487419,11.3
+,"45-49 years","45-49","2022","2022","Male","M",350,503199,69.6
+,"45-49 years","45-49","2023 ","2023","Female","F",80,490316,16.3
+,"45-49 years","45-49","2023 ","2023","Male","M",356,501588,71.0
+,"50-54 years","50-54","2018","2018","Female","F",40,435943,9.2
+,"50-54 years","50-54","2018","2018","Male","M",161,445752,36.1
+,"50-54 years","50-54","2019","2019","Female","F",37,438347,8.4
+,"50-54 years","50-54","2019","2019","Male","M",186,449680,41.4
+,"50-54 years","50-54","2020","2020","Female","F",58,444391,13.1
+,"50-54 years","50-54","2020","2020","Male","M",242,455565,53.1
+,"50-54 years","50-54","2021","2021","Female","F",74,456603,16.2
+,"50-54 years","50-54","2021","2021","Male","M",270,476484,56.7
+,"50-54 years","50-54","2022","2022","Female","F",69,457531,15.1
+,"50-54 years","50-54","2022","2022","Male","M",283,478487,59.1
+,"50-54 years","50-54","2023 ","2023","Female","F",65,465500,14.0
+,"50-54 years","50-54","2023 ","2023","Male","M",312,474146,65.8
+,"55-59 years","55-59","2018","2018","Female","F",36,376352,9.6
+,"55-59 years","55-59","2018","2018","Male","M",141,366539,38.5
+,"55-59 years","55-59","2019","2019","Female","F",42,384705,10.9
+,"55-59 years","55-59","2019","2019","Male","M",187,376619,49.7
+,"55-59 years","55-59","2020","2020","Female","F",43,389668,11.0
+,"55-59 years","55-59","2020","2020","Male","M",259,383763,67.5
+,"55-59 years","55-59","2021","2021","Female","F",70,400028,17.5
+,"55-59 years","55-59","2021","2021","Male","M",272,407263,66.8
+,"55-59 years","55-59","2022","2022","Female","F",63,400216,15.7
+,"55-59 years","55-59","2022","2022","Male","M",275,412277,66.7
+,"55-59 years","55-59","2023 ","2023","Female","F",72,409678,17.6
+,"55-59 years","55-59","2023 ","2023","Male","M",309,420858,73.4
+,"60-64 years ","60-64","2018","2018","Female","F",22,303263,7.3
+,"60-64 years ","60-64","2018","2018","Male","M",96,278571,34.5
+,"60-64 years ","60-64","2019","2019","Female","F",38,311823,12.2
+,"60-64 years ","60-64","2019","2019","Male","M",120,289491,41.5
+,"60-64 years ","60-64","2020","2020","Female","F",57,321694,17.7
+,"60-64 years ","60-64","2020","2020","Male","M",153,301700,50.7
+,"60-64 years ","60-64","2021","2021","Female","F",42,331167,12.7
+,"60-64 years ","60-64","2021","2021","Male","M",198,321068,61.7
+,"60-64 years ","60-64","2022","2022","Female","F",65,336524,19.3
+,"60-64 years ","60-64","2022","2022","Male","M",203,328304,61.8
+,"60-64 years ","60-64","2023 ","2023","Female","F",63,349225,18.0
+,"60-64 years ","60-64","2023 ","2023","Male","M",232,339723,68.3
+,"65-69 years","65-69","2018","2018","Female","F",31,222146,14.0
+,"65-69 years","65-69","2018","2018","Male","M",78,192036,40.6
+,"65-69 years","65-69","2019","2019","Female","F",31,231982,13.4
+,"65-69 years","65-69","2019","2019","Male","M",64,201439,31.8
+,"65-69 years","65-69","2020","2020","Female","F",33,242441,13.6
+,"65-69 years","65-69","2020","2020","Male","M",106,212589,49.9
+,"65-69 years","65-69","2021","2021","Female","F",34,253698,13.4
+,"65-69 years","65-69","2021","2021","Male","M",119,229428,51.9
+,"65-69 years","65-69","2022","2022","Female","F",31,261680,11.8
+,"65-69 years","65-69","2022","2022","Male","M",129,237510,54.3
+,"65-69 years","65-69","2023 ","2023","Female","F",52,274813,18.9
+,"65-69 years","65-69","2023 ","2023","Male","M",129,250182,51.6
+,"70-74 years","70-74","2018","2018","Female","F",18,157947,Unreliable
+,"70-74 years","70-74","2018","2018","Male","M",52,127658,40.7
+,"70-74 years","70-74","2019","2019","Female","F",24,166285,14.4
+,"70-74 years","70-74","2019","2019","Male","M",62,135824,45.6
+,"70-74 years","70-74","2020","2020","Female","F",20,174823,11.4
+,"70-74 years","70-74","2020","2020","Male","M",64,143956,44.5
+,"70-74 years","70-74","2021","2021","Female","F",31,182711,17.0
+,"70-74 years","70-74","2021","2021","Male","M",71,154013,46.1
+,"70-74 years","70-74","2022","2022","Female","F",30,188066,16.0
+,"70-74 years","70-74","2022","2022","Male","M",60,157772,38.0
+,"70-74 years","70-74","2023 ","2023","Female","F",39,198644,19.6
+,"70-74 years","70-74","2023 ","2023","Male","M",70,166984,41.9
+,"75-79 years","75-79","2018","2018","Female","F",25,109358,22.9
+,"75-79 years","75-79","2018","2018","Male","M",36,79604,45.2
+,"75-79 years","75-79","2019","2019","Female","F",33,114745,28.8
+,"75-79 years","75-79","2019","2019","Male","M",55,83427,65.9
+,"75-79 years","75-79","2020","2020","Female","F",29,119161,24.3
+,"75-79 years","75-79","2020","2020","Male","M",40,87357,45.8
+,"75-79 years","75-79","2021","2021","Female","F",35,120023,29.2
+,"75-79 years","75-79","2021","2021","Male","M",50,90273,55.4
+,"75-79 years","75-79","2022","2022","Female","F",30,128108,23.4
+,"75-79 years","75-79","2022","2022","Male","M",46,97582,47.1
+,"75-79 years","75-79","2023 ","2023","Female","F",38,135627,28.0
+,"75-79 years","75-79","2023 ","2023","Male","M",42,105001,40.0
+,"80-84 years","80-84","2018","2018","Female","F",39,75767,51.5
+,"80-84 years","80-84","2018","2018","Male","M",38,51316,74.1
+,"80-84 years","80-84","2019","2019","Female","F",42,79640,52.7
+,"80-84 years","80-84","2019","2019","Male","M",48,54245,88.5
+,"80-84 years","80-84","2020","2020","Female","F",40,81803,48.9
+,"80-84 years","80-84","2020","2020","Male","M",45,56021,80.3
+,"80-84 years","80-84","2021","2021","Female","F",40,80275,49.8
+,"80-84 years","80-84","2021","2021","Male","M",52,55505,93.7
+,"80-84 years","80-84","2022","2022","Female","F",58,84387,68.7
+,"80-84 years","80-84","2022","2022","Male","M",54,57219,94.4
+,"80-84 years","80-84","2023 ","2023","Female","F",50,86728,57.7
+,"80-84 years","80-84","2023 ","2023","Male","M",49,59281,82.7
+,"85-89 years","85-89","2018","2018","Female","F",31,Not Applicable,Not Applicable
+,"85-89 years","85-89","2018","2018","Male","M",36,Not Applicable,Not Applicable
+,"85-89 years","85-89","2019","2019","Female","F",39,Not Applicable,Not Applicable
+,"85-89 years","85-89","2019","2019","Male","M",46,Not Applicable,Not Applicable
+,"85-89 years","85-89","2020","2020","Female","F",36,Not Applicable,Not Applicable
+,"85-89 years","85-89","2020","2020","Male","M",51,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Female","F",54,Not Applicable,Not Applicable
+,"85-89 years","85-89","2021","2021","Male","M",48,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Female","F",46,Not Applicable,Not Applicable
+,"85-89 years","85-89","2022","2022","Male","M",50,Not Applicable,Not Applicable
+,"85-89 years","85-89","2023 ","2023","Female","F",45,Not Applicable,Not Applicable
+,"85-89 years","85-89","2023 ","2023","Male","M",50,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Female","F",35,Not Applicable,Not Applicable
+,"90-94 years","90-94","2018","2018","Male","M",31,Not Applicable,Not Applicable
+,"90-94 years","90-94","2019","2019","Female","F",38,Not Applicable,Not Applicable
+,"90-94 years","90-94","2019","2019","Male","M",29,Not Applicable,Not Applicable
+,"90-94 years","90-94","2020","2020","Female","F",31,Not Applicable,Not Applicable
+,"90-94 years","90-94","2020","2020","Male","M",33,Not Applicable,Not Applicable
+,"90-94 years","90-94","2021","2021","Female","F",43,Not Applicable,Not Applicable
+,"90-94 years","90-94","2021","2021","Male","M",24,Not Applicable,Not Applicable
+,"90-94 years","90-94","2022","2022","Female","F",41,Not Applicable,Not Applicable
+,"90-94 years","90-94","2022","2022","Male","M",35,Not Applicable,Not Applicable
+,"90-94 years","90-94","2023 ","2023","Female","F",47,Not Applicable,Not Applicable
+,"90-94 years","90-94","2023 ","2023","Male","M",31,Not Applicable,Not Applicable
+,"95-99 years","95-99","2018","2018","Female","F",26,Not Applicable,Not Applicable
+,"95-99 years","95-99","2018","2018","Male","M",13,Not Applicable,Not Applicable
+,"95-99 years","95-99","2019","2019","Female","F",21,Not Applicable,Not Applicable
+,"95-99 years","95-99","2019","2019","Male","M",11,Not Applicable,Not Applicable
+,"95-99 years","95-99","2020","2020","Female","F",18,Not Applicable,Not Applicable
+,"95-99 years","95-99","2020","2020","Male","M",12,Not Applicable,Not Applicable
+,"95-99 years","95-99","2021","2021","Female","F",11,Not Applicable,Not Applicable
+,"95-99 years","95-99","2021","2021","Male","M",12,Not Applicable,Not Applicable
+,"95-99 years","95-99","2022","2022","Female","F",19,Not Applicable,Not Applicable
+,"95-99 years","95-99","2022","2022","Male","M",11,Not Applicable,Not Applicable
+,"95-99 years","95-99","2023 ","2023","Female","F",21,Not Applicable,Not Applicable
+,"95-99 years","95-99","2023 ","2023","Male","M",11,Not Applicable,Not Applicable
+"---"
+"Dataset: Multiple Cause of Death, 2018-2023, Single Race"
+"Query Parameters:"
+"Hispanic Origin: Hispanic or Latino"
+"States: California (06)"
+"UCD - ICD-10 Codes: W00-X59 (Other external causes of accidental injury)"
+"Group By: Five-Year Age Groups; Year; Sex"
+"Show Totals: Disabled"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd-expanded.html for more information."
+"---"
+"Query Date: Jan 28, 2026 8:13:06 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 2018-2023 on CDC WONDER Online Database, released in 2024. Data are from the Multiple Cause of Death Files,"
+"2018-2023, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10-expanded.html on Jan 28, 2026 8:13:06 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"2. Rows with zero Deaths are hidden. Use Quick Options above to show zero rows."
+"3. Rows with suppressed Deaths are hidden. Use Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Ages 85-100."
+"2. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Assurance of Confidentiality."
+"3. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Unreliable."
+"4. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"5. Deaths of persons with Hispanic origin ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among"
+"Hispanic Origin groups, so are not included in the Hispanic Origin specific counts and rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Not Stated."
+"6. Information included on the death certificate about the race and Hispanic ethnicity of the decedent is reported by the"
+"funeral director as provided by an informant, often the surviving next of kin, or, in the absence of an informant, on the basis"
+"of observation. Race and ethnicity information from the census is by self-report. To the extent that race and Hispanic origin"
+"are inconsistent between these two data sources, death rates will be biased. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Racial Differences."
+"7. The population figures for years 2023 are single-race estimates of the July 1 resident population, from the Vintage 2023"
+"postcensal series released by the Census Bureau on June 27, 2024. The 2023 series is based on the Modified Blended Base produced"
+"by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The Modified Blended Base consists of the blend"
+"of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic Analysis Estimates, and 2020 Census data"
+"from the internal Census Edited File (CEF). The population figures for years 2022 are single-race estimates of the July 1"
+"resident population, from the Vintage 2022 postcensal series released by the Census Bureau on June 22, 2023. The 2022 series is"
+"based on the Modified Blended Base produced by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The"
+"Modified Blended Base consists of the blend of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic"
+"Analysis Estimates, and 2020 Census data from the internal Census Edited File (CEF). The population figures for year 2021 are"
+"single-race estimates of the July 1 resident population, based on the Blended Base produced by the US Census Bureau in lieu of"
+"the April 1, 2020 decennial population count, from the Vintage 2021 postcensal series released by the Census Bureau on June 30,"
+"2022. The population figures for year 2020 are single-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series based on April 2010 Census, released by the Census Bureau on July 27, 2021. The population figures for year"
+"2019 are single-race estimates of the July 1 resident population, from the Vintage 2019 postcensal series based on April 2010"
+"Census, released by the Census Bureau on June 25, 2020. The population figures for year 2018 are single-race estimates of the"
+"July 1 resident population, from the Vintage 2018 postcensal series based on April 2010 Census, released by the Census Bureau on"
+"June 20, 2019. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Population Data."
+"8. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd-expanded.html#Age"
+"Group."
+"9. The U.S. - Mexico Border Regions distinguish between counties near the U.S. - Mexico border in the border states of Arizona,"
+"California, New Mexico, and Texas, and other areas. To simplify the Border region analysis, two mutually exclusive regions"
+"within the United States are available: 1) U.S. - Mexico Border Region (i.e., 44 counties within 100 kilometers (62 miles) of"
+"the U.S. - Mexico border), and 2) the U.S. Non-Border Region with the remaining counties of the selected four border states. The"
+"Border counties selection was based on the 1983 La Paz Agreement:"
+"https://www.epa.gov/sites/production/files/2015-09/documents/lapazagreement.pdf.. (i.e., counties for each state which fall"
+"within 100 kilometers of the Border). Statistics are also available by each of the USA border counties along the U.S.-Mexico"
+"area."
+"10. After the creation of the final 2023 dataset, North Carolina updated the cause of death information for over 900 death"
+"certificates to include a cause of death code indicating drug overdose (ICD-10 underlying cause-of-death codes: X40-X44,"
+"X60-X64, X85, and Y10-Y14). Jurisdictions can continue to update death certificates after the closing of the mortality file. As"
+"a result, users should consider that the actual death count for drug overdose deaths for North Carolina in 2023 is over 4,400"
+"deaths, with a crude rate of approximately 41.0 per 100,000 population, and an age-adjusted rate of approximately 42.1 per"
+"100,000 population. These deaths will not be updated on the final mortality datasets."
