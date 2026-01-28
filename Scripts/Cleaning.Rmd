@@ -353,7 +353,10 @@ count(all_cleaned, cod)
 
 count(all_cleaned, cod, race_eth)
 
-range(all_cleaned$year, na.rm = TRUE)
+range(all_cleaned$year, na.rm = TRUE) 
+
+#saving my data 
+write_csv(all_cleaned, "../CleanData/cdc_mortality.csv")
 
 ```
 # Population Data 
