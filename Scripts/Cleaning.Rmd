@@ -118,7 +118,8 @@ white_black_clean <- function(df, cod_character) {
   df %>% 
     rename(age_group = Five.Year.Age.Groups) %>% 
     mutate(cod = cod_character) %>% 
-    rename_with(tolower)
+    rename_with(tolower) %>% 
+    filter(!is.na(year))
 }
 
 
@@ -136,7 +137,8 @@ hispanic_clean <- function(df, cod_character) {
       cod = cod_character,
       race_eth = "Hispanic"
     ) %>% 
-    rename_with(tolower)
+    rename_with(tolower) %>% 
+    filter(!is.na(year))
 }
 
 
@@ -148,30 +150,151 @@ all_cause_hispanic_18_23    <- read.csv("../RawData/cdcWONDER/2018_2023/All_Caus
 
 
 #cleaning all cause 
-all_cause_white_black_99_17 <- white_black_clean(all_cause_white_black_99_17, "all_cause")
-all_cause_hispanic_99_17 <- hispanic_clean(all_cause_hispanic_99_17, "all_cause") 
-all_cause_white_black_18_23 <- white_black_clean(all_cause_white_black_18_23, "all_cause")
-all_cause_hispanic_18_23 <- hispanic_clean(all_cause_hispanic_18_23, "all_cause")  
+all_cause_white_black_99_17_clean <- white_black_clean(all_cause_white_black_99_17, "all_cause")
+all_cause_hispanic_99_17_clean <- hispanic_clean(all_cause_hispanic_99_17, "all_cause") 
+all_cause_white_black_18_23_clean <- white_black_clean(all_cause_white_black_18_23, "all_cause")
+all_cause_hispanic_18_23_clean <- hispanic_clean(all_cause_hispanic_18_23, "all_cause")  
+
 
 #homicide datasets 
+hom__white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/homicide/Homicide_White_Black.csv")
+hom_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/homicide/Homicide_Hispanic.csv")
+hom_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Homicide/Homicide_White_Black.csv")
+hom_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Homicide/Homicide_Hispanic.csv")
 
 #homicide cleaning 
+hom_white_black_99_17_clean <- white_black_clean(
+  hom__white_black_99_17,
+  cod_character = "homicide"
+)
+
+hom_white_black_18_23_clean <- white_black_clean(
+  hom_white_black_18_23,
+  cod_character = "homicide"
+)
+
+hom_hispanic_99_17_clean <- hispanic_clean(
+  hom_hispanic_99_17,
+  cod_character = "homicide"
+)
+
+hom_hispanic_18_23_clean <- hispanic_clean(
+  hom_hispanic_18_23,
+  cod_character = "homicide"
+)
+
 
 #mvc datasets 
+mvc_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/mvc/MVC_Hispanic.csv")
+mvc_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/mvc/MVC_White_Black.csv")
+mvc_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/MVC/MVC_White_Black.csv")
+mvc_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/MVC/MVC_Hispanic.csv")
 
 #mvc cleaning 
+mvc_white_black_99_17_clean <- white_black_clean(
+  mvc_white_black_99_17,
+  cod_character = "mvc"
+)
+
+mvc_white_black_18_23_clean <- white_black_clean(
+  mvc_white_black_18_23,
+  cod_character = "mvc"
+)
+
+mvc_hispanic_99_17_clean <- hispanic_clean(
+  mvc_hispanic_99_17,
+  cod_character = "mvc"
+)
+
+mvc_hispanic_18_23_clean <- hispanic_clean(
+  mvc_hispanic_18_23,
+  cod_character = "mvc"
+)
+
 
 #other_disease datasets 
+disease_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_disease/Disease_Hispanic.csv")
+disease_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_disease/Disease_White_Black.csv")
+disease_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Disease/Other_Disease_White_Black.csv")
+disease_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Disease/Other_Disease_Hispanic.csv")
 
 #other_disease cleaning 
+disease_white_black_99_17_clean <- white_black_clean(
+  disease_white_black_99_17,
+  cod_character = "other_disease"
+)
+
+disease_white_black_18_23_clean <- white_black_clean(
+  disease_white_black_18_23,
+  cod_character = "other_disease"
+)
+
+disease_hispanic_99_17_clean <- hispanic_clean(
+  disease_hispanic_99_17,
+  cod_character = "other_disease"
+)
+
+disease_hispanic_18_23_clean <- hispanic_clean(
+  disease_hispanic_18_23,
+  cod_character = "other_disease"
+)
+
 
 #other_injuries datasets 
+inj_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_injuries/Injuries_Hispanic.csv")
+inj_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_injuries/Injuries_White_Black.csv")
+inj_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Injury/Other_Injury_White_Black.csv")
+inj_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Injury/Other_Injury_Hispanic.csv")
 
 #other_injuries cleaning 
+inj_white_black_99_17_clean <- white_black_clean(
+  inj_white_black_99_17,
+  cod_character = "other_injury"
+)
+
+inj_white_black_18_23_clean <- white_black_clean(
+  inj_white_black_18_23,
+  cod_character = "other_injury"
+)
+
+inj_hispanic_99_17_clean <- hispanic_clean(
+  inj_hispanic_99_17,
+  cod_character = "other_injury"
+)
+
+inj_hispanic_18_23_clean <- hispanic_clean(
+  inj_hispanic_18_23,
+  cod_character = "other_injury"
+)
+
 
 #suicide datasets 
+sui_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/suicide/Suicide_Hispanic.csv")
+sui_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/suicide/Suicide_White_Black.csv")
+sui_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Suicide/Suicide_White_Black.csv")
+sui_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Suicide/Suicide_Hispanic.csv")
 
 #suicide cleaning
+sui_white_black_99_17_clean <- white_black_clean(
+  sui_white_black_99_17,
+  cod_character = "suicide"
+)
+
+sui_white_black_18_23_clean <- white_black_clean(
+  sui_white_black_18_23,
+  cod_character = "suicide"
+)
+
+sui_hispanic_99_17_clean <- hispanic_clean(
+  sui_hispanic_99_17,
+  cod_character = "suicide"
+)
+
+sui_hispanic_18_23_clean <- hispanic_clean(
+  sui_hispanic_18_23,
+  cod_character = "suicide"
+)
+
 ```
 
 # Population Data 
