@@ -218,3 +218,9 @@ ggplot(
   theme_minimal()
 
 ```
+
+# CDC Mortality Data 
+```{r cdc_explore}
+cdc_mort <- read.csv("../CleanData/cdc_mortality.csv")
+glimpse(cdc_mort)
+```
