@@ -356,7 +356,15 @@ count(all_cleaned, cod, race_eth)
 range(all_cleaned$year, na.rm = TRUE)  
 
 all_cleaned <- all_cleaned %>%
-  select(-"single.race.6", -"single.race.6.code")
+  select(-"single.race.6", -"single.race.6.code") %>% #getting rid of extraneous vars 
+  mutate(sex = str_to_lower(sex),
+         race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth))
+  
+  
 
 #saving my data 
 write_csv(all_cleaned, "../CleanData/cdc_mortality.csv")
