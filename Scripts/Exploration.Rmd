@@ -2,7 +2,18 @@
 title: "Exploration"
 output: html_document
 ---
+```{r setup}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(ggthemes)
 
+# Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+```
 #Exploring population data 
 We are going to explore the distribution of our population data by individual ages and age categories, respectively. 
 
@@ -220,7 +231,352 @@ ggplot(
 ```
 
 # CDC Mortality Data 
-```{r cdc_explore}
-cdc_mort <- read.csv("../CleanData/cdc_mortality.csv")
-glimpse(cdc_mort)
+```{r cdc_merge}
+cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
+head(cdc_mort)
+
+#adding pop data 
+dof_data<- read_csv("../CleanData/dof_data_grouped.csv")
+head(dof_data)
+
+#merging
+cdc_with_pop <- left_join(cdc_mort,dof_data,
+                                by = c("year", "sex", "race_eth", "age_group"))
+
+head(cdc_with_pop)
+```
+
+We are missing the population for 1999 from dof, but we had the crude rate from the CDC data. We are going to calculate our death rate and compare with the "crude rate" supplied by the CDC wonder query.  
+
+```{r cdc_rate} 
+cdc_with_pop <- cdc_with_pop %>% 
+  mutate( #mortality rate
+          rate = deaths/population,
+         rate_per_100k = rate*100000,
+         
+         # log-normal Poisson CI
+    rate_lcl = rate * exp(-1.96 / sqrt(deaths)),
+    rate_ucl = rate * exp( 1.96 / sqrt(deaths)),
+
+    rate_lcl_100k = rate_lcl * 100000,
+    rate_ucl_100k = rate_ucl * 100000)
+head(cdc_with_pop)
+```
+The rate per 100k does not match the crude rate given by the CDC. I want to compare the rates calculated by Dr. Vaca and see how they match up. 
+
+I think the easiest thing to match up is the table of annual mortality rates per 100,000 by cause of death and race/ethnic group among California males age 15-24 years, 1999-2006. 
+
+To replicate the table, we need to:  
+1. subset to males 15-24
+2. collapse years 1999-2006 
+3. use population data from 2000 to calculate overall rates
+
+```{r table_1_replication} 
+table1_2000_pop <- dof_data %>% 
+  filter(
+    year == 2000, 
+    age_group %in% c("15-19", "20-24"),
+    sex == "male"
+  ) %>% 
+  group_by(race_eth) %>%        # include sex
+  summarise(
+    pop_std_2000 = sum(population, na.rm = TRUE),  # sum 15-19 + 20-24
+    .groups = "drop"
+  )
+table1_2000_pop
+
+
+#selecting just the deaths for each age group from CDC data 
+table1_data <- cdc_mort %>% 
+  filter(
+    year %in% 2000:2006, 
+    age_group %in% c("15-19", "20-24"),
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, cod) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+table1_data
+
+#merging population data 
+table1_data <- left_join(table1_data,
+                         table1_2000_pop,
+                         by = "race_eth")
+
+table1_data
+
+
+
+table1_data <- table1_data %>%
+  mutate(
+    rate_per_100k = death_count / pop_std_2000 * 100000,
+    rate_lcl = (qchisq(0.025, 2 * death_count) / 2) / pop_std_2000 * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (death_count + 1)) / 2) / pop_std_2000 * 100000
+  )
+
+
+table1_data %>% 
+  group_by(cod) %>% 
+  select(cod, race_eth,rate_per_100k)
+
+table1_final <- table1_data %>%
+  select(cod, race_eth, rate_per_100k) %>%
+  pivot_wider(
+    names_from = race_eth,
+    values_from = rate_per_100k
+  )
+
+table1_final
+
+#poisson-based CI: 
+#summary_tbl <- summary_tbl %>%
+ # mutate(
+ #   rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population / years,
+   # rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population / years,
+   # rate_lcl_100k = rate_lcl * 100000,
+  #  rate_ucl_100k = rate_ucl * 100000
+  #)
+
+
+```
+None of the numbers match. Gr. Let's return to this later. In the meanwhile, I'd like to replicate figure 5 instead, as I think it may be easier to produce? 
+
+Note: we have to get rid of 1999, we have no population data for that year.
+
+```{r figure_5, fig.width=9, fig.height= 4}
+fig5_data <- cdc_with_pop %>%
+  filter(
+    sex == "male",
+    age_group %in% c("15-19", "20-24"),
+    cod == "homicide",
+    year >= 2000,
+    year <= 2006
+  )
+
+fig5_yearly <- fig5_data %>%
+  group_by(year, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig5_yearly <- fig5_yearly %>%
+  mutate(
+    rate = deaths / population,
+    rate_per_100k = rate * 100000
+  )
+
+fig5_yearly <- fig5_yearly %>%
+  mutate(
+    rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population * 100000
+  )
+
+fig5_yearly %>% arrange(desc(rate_per_100k))
+
+
+
+ggplot(fig5_yearly,
+       aes(x = year, y = rate_per_100k, color = race_eth)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rate_lcl, ymax = rate_ucl),
+    width = 0.2
+  ) +
+  scale_x_continuous(breaks = 2000:2006) +
+  scale_y_continuous(
+    name = "Mortality rate per 100,000"
+  ) +
+  scale_color_manual(
+    values = c(
+      "hispanic" = "#E69F00",
+      "black" = "#000000",
+      "white" = "#56B4E9"
+    ),
+    labels = c(
+      "hispanic" = "Latino",
+      "black" = "Non-Latino Black",
+      "white" = "Non-Latino White"
+    )
+  ) +
+  labs(
+    title= "Homicide Mortality Rate, Males 15-24 y/o, 2000-2006",
+    x = "Year",
+    color = "Race/Ethnicity"
+  ) +
+ theme_minimal()
+
+```
+
+That's still not great, but let's see about replicating figure 7?? 
+
+```{r figure_7, fig.width=9, fig.height= 4}
+fig7_data <- cdc_with_pop %>%
+  filter(
+    sex == "male",
+    age_group %in% c("15-19", "20-24"),
+    cod == "mvc",
+    year >= 2000,
+    year <= 2006
+  )
+
+fig7_yearly <- fig7_data %>%
+  group_by(year, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig7_yearly <- fig7_yearly %>%
+  mutate(
+    rate = deaths / population,
+    rate_per_100k = rate * 100000
+  )
+
+fig7_yearly <- fig7_yearly %>%
+  mutate(
+    rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population * 100000
+  )
+
+fig7_yearly %>% arrange(desc(rate_per_100k))
+
+
+
+
+pd <- position_dodge(width = 0.3)
+
+ggplot(fig7_yearly, aes(x = year, y = rate_per_100k, color = race_eth, linetype = race_eth)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2, position = pd) +
+  geom_errorbar(aes(ymin = rate_lcl, ymax = rate_ucl), width = 0.2, position = pd) +
+  scale_x_continuous(breaks = 2000:2006) +
+  scale_y_continuous(name = "Mortality rate per 100,000") +
+  
+  # Custom colors
+  scale_color_manual(
+    values = c(
+      "hispanic" = "black",       # Latino = solid black
+      "black" = "#000000",        # Non-Latino Black = dotted
+      "white" = "black"         # Non-Latino White = dashed blue
+    ),
+    labels = c(
+      "hispanic" = "Latino",
+      "black" = "Non-Latino Black",
+      "white" = "Non-Latino White"
+    )
+  ) +
+  
+  # Custom linetypes
+  scale_linetype_manual(
+    values = c(
+      "hispanic" = "solid",       # solid line
+      "black" = "dotted",         # dotted (smaller dashes)
+      "white" = "dashed"          # dashed
+    )
+  ) +
+  
+  labs(
+    title = "Motor vehicle crash mortality rates males 15-24",
+    x = "Year",
+    color = "Race/Ethnicity",
+    linetype = "Race/Ethnicity"
+  ) +
+  theme_minimal()
+
+```
+We are going to do the same thing, this time extending the data to go from years 2000-23: 
+
+
+We are going to do the same thing, except this time we will 
+
+```{r figure_7_extended, fig.width=11, fig.height= 6}
+fig7x_data <- cdc_with_pop %>%
+  filter(
+    sex == "male",
+    age_group %in% c("15-19", "20-24"),
+    cod == "mvc",
+    year >= 2006, 
+    year < 2021
+  )
+
+fig7x_yearly <- fig7x_data %>%
+  group_by(year, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig7x_yearly <- fig7x_yearly %>%
+  mutate(
+    rate = deaths / population,
+    rate_per_100k = rate * 100000
+  )
+
+fig7x_yearly <- fig7x_yearly %>%
+  mutate(
+    rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population * 100000
+  )
+
+fig7x_yearly %>% arrange(desc(rate_per_100k))
+
+
+
+
+pd <- position_dodge(width = 0.3)
+
+ggplot(fig7x_yearly, aes(x = year, y = rate_per_100k, color = race_eth, linetype = race_eth)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2, position = pd) +
+  geom_errorbar(aes(ymin = rate_lcl, ymax = rate_ucl), width = 0.2, position = pd) +
+  scale_x_continuous(breaks = 2006:2023) +
+  scale_y_continuous(name = "Mortality rate per 100,000",
+                     limits = c(0, 60) ) +
+  
+  # Custom colors
+  scale_color_manual(
+    values = c(
+      "hispanic" = "black",       # Latino = solid black
+      "black" = "#000000",        # Non-Latino Black = dotted
+      "white" = "black"         # Non-Latino White = dashed blue
+    ),
+    labels = c(
+      "hispanic" = "Latino",
+      "black" = "Non-Latino Black",
+      "white" = "Non-Latino White"
+    )
+  ) +
+  
+  # Custom linetypes
+  scale_linetype_manual(
+    values = c(
+      "hispanic" = "solid",       # solid line
+      "black" = "dotted",         # dotted (smaller dashes)
+      "white" = "dashed"          # dashed
+    )
+  ) +
+  
+  labs(
+    title = "Motor vehicle crash mortality rates males 15-24",
+    x = "Year",
+    color = "Race/Ethnicity",
+    linetype = "Race/Ethnicity"
+  ) +
+  theme_minimal()
+
+fig7x_table <- fig7x_yearly %>%
+  select(year, race_eth, rate_per_100k) %>%
+  pivot_wider(
+    names_from = race_eth,       # new columns from race_eth
+    values_from = rate_per_100k  # values to fill in
+  )
+
+fig7x_table
 ```
