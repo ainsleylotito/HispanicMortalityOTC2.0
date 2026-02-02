@@ -8,6 +8,7 @@ library(tidyverse)
 library(ggplot2) 
 library(readxl) 
 library(lubridate)
+library(janitor)
 
 # Global options
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -398,7 +399,73 @@ write_csv(all_cleaned, "../CleanData/cdc_mortality.csv")
 ```
 # Population Data 
 
-Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 3 separate datasets we will need to clean and merge (2001-2010, 2011-2020, 2021-2025). 
+Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 4 separate datasets we will need to clean and merge (1990-1999,2001-2010, 2011-2020, 2021-2025). 
+
+### 1990-1999 
+For this dataset, we only need the year 1999 to supply population data for our entire study period. The data is not tidy, so we will need to write specific race_eth designations. 
+
+```{r dof_99}
+raw<- read_excel("../RawData/dof/Intercensal_1990_1999/California.xlsx", col_names = FALSE)
+# Extract header rows
+header1 <- raw[1, ]
+header2 <- raw[2, ]
+
+# Combine headers
+colnames(raw) <- c(
+  "area", "year", "sex", "age",
+  paste(header1[5:ncol(raw)], header2[5:ncol(raw)], sep = "_")
+)
+
+# Drop header rows
+dat <- raw %>% slice(-(1:2)) %>% clean_names()
+
+head(dat)
+
+#keeping Hispanic total
+dat <- dat %>%
+  mutate(
+    across(
+      starts_with(c("non_hispanic", "hispanic")),
+      ~ as.numeric(.)
+    )
+  )
+
+dof_99_tidy <- dat %>%
+  filter(year == "1999") %>% 
+  mutate(
+    hispanic_total =
+      hispanic_white +
+      hispanic_black +
+      hispanic_asian_pacific +
+      hispanic_indian
+  ) %>%
+  select(
+    area, year, sex, age,
+    non_hispanic_white,
+    non_hispanic_black,
+    hispanic_total
+  ) %>%
+  pivot_longer(
+    cols = c(
+      non_hispanic_white,
+      non_hispanic_black,
+      hispanic_total
+    ),
+    names_to = "race_eth",
+    values_to = "population"
+  ) %>%
+  mutate(
+    race_eth = case_when(
+      race_eth == "non_hispanic_white" ~ "white",
+      race_eth == "non_hispanic_black" ~ "black",
+      race_eth == "hispanic_total"     ~ "hispanic"
+    )
+  )
+
+head(dof_99_tidy)
+
+```
+
 
 ### 2000-2010  
 
