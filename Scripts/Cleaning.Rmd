@@ -440,7 +440,7 @@ dof_99_tidy <- dat %>%
       hispanic_indian
   ) %>%
   select(
-    area, year, sex, age,
+    -area, year, sex, age,
     non_hispanic_white,
     non_hispanic_black,
     hispanic_total
@@ -459,10 +459,14 @@ dof_99_tidy <- dat %>%
       race_eth == "non_hispanic_white" ~ "white",
       race_eth == "non_hispanic_black" ~ "black",
       race_eth == "hispanic_total"     ~ "hispanic"
-    )
+    ),
+    year = as.numeric(year),
+    age = as.numeric(age), 
+    sex = str_to_lower(sex)
   )
 
 head(dof_99_tidy)
+
 
 ```
 
@@ -542,10 +546,12 @@ Now that our datasets have consistent tidy structure and naming conventions, we 
 #Checking counts prior to merge
 nrow(dof1_tidy) #6666
 nrow(dof2_tidy) #6666
+nrow(dof_99_tidy) #606
 
 dof_data <- full_join(dof1_tidy, dof2_tidy)
+dof_data <- full_join(dof_99_tidy, dof_data)
 head(dof_data) 
-nrow(dof_data) #13332, correct number of observations
+nrow(dof_data) #13938, correct number of observations
 ```
 
 We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.   
