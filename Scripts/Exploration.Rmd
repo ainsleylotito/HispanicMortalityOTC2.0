@@ -343,7 +343,7 @@ table1_final
 ```
 None of the numbers match. Gr. Let's return to this later. In the meanwhile, I'd like to replicate figure 5 instead, as I think it may be easier to produce? 
 
-Note: we have to get rid of 1999, we have no population data for that year.
+
 
 ```{r figure_5, fig.width=9, fig.height= 4}
 fig5_data <- cdc_with_pop %>%
@@ -351,7 +351,6 @@ fig5_data <- cdc_with_pop %>%
     sex == "male",
     age_group %in% c("15-19", "20-24"),
     cod == "homicide",
-    year >= 2000,
     year <= 2006
   )
 
@@ -387,7 +386,7 @@ ggplot(fig5_yearly,
     aes(ymin = rate_lcl, ymax = rate_ucl),
     width = 0.2
   ) +
-  scale_x_continuous(breaks = 2000:2006) +
+  scale_x_continuous(breaks = 1999:2006) +
   scale_y_continuous(
     name = "Mortality rate per 100,000"
   ) +
@@ -455,7 +454,7 @@ ggplot(fig7_yearly, aes(x = year, y = rate_per_100k, color = race_eth, linetype 
   geom_line(linewidth = 1) +
   geom_point(size = 2, position = pd) +
   geom_errorbar(aes(ymin = rate_lcl, ymax = rate_ucl), width = 0.2, position = pd) +
-  scale_x_continuous(breaks = 2000:2006) +
+  scale_x_continuous(breaks = 1999:2006) +
   scale_y_continuous(name = "Mortality rate per 100,000") +
   
   # Custom colors
