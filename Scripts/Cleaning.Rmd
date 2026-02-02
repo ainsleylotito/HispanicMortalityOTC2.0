@@ -599,6 +599,7 @@ I am also going to create a dataset that is just the population by gender and ra
 dof_no_age <- dof_data %>% 
   group_by(year, race_eth, sex) %>% 
   summarize(population = sum(population))
+head(dof_no_age)
   
 ```
 #Saving population datasets 

@@ -261,6 +261,8 @@ cdc_with_pop <- cdc_with_pop %>%
     rate_lcl_100k = rate_lcl * 100000,
     rate_ucl_100k = rate_ucl * 100000)
 head(cdc_with_pop)
+cdc_with_pop %>% 
+  slice(6:20)
 ```
 The rate per 100k does not match the crude rate given by the CDC. I want to compare the rates calculated by Dr. Vaca and see how they match up. 
 
@@ -419,7 +421,6 @@ fig7_data <- cdc_with_pop %>%
     sex == "male",
     age_group %in% c("15-19", "20-24"),
     cod == "mvc",
-    year >= 2000,
     year <= 2006
   )
 
