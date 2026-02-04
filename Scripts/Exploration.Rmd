@@ -2,7 +2,7 @@
 title: "Exploration"
 output: html_document
 ---
-```{r setup}
+```{r setup, include = FALSE}
 # Load packages
 library(tidyverse)
 library(ggplot2) 
@@ -17,13 +17,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 #Exploring population data 
 We are going to explore the distribution of our population data by individual ages and age categories, respectively. 
 
-```{r explore_population}
+```{r explore_population, include = FALSE}
 dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
 dof_data <- read.csv("../CleanData/dof_data.csv")
 ```
 
 Let's examine the trends for the whole study period (data for 2000-2009):
-```{r explore_age_groups} 
+```{r explore_age_groups, echo = FALSE} 
 agg_data <- dof_data_grouped %>%
   group_by(race_eth, age_group) %>%
   summarise(total_population = sum(population, na.rm = TRUE)) %>%
@@ -46,7 +46,7 @@ ggplot(agg_data, aes(x = age_group, y = pop_per_100k, color = race_eth, group = 
 ``` 
 
 Now let's look through the decades: 
-```{r}
+```{r, echo = FALSE}
 agg_period <- dof_data_grouped %>%
   mutate(period = case_when(
     year >= 2000 & year <= 2009 ~ "2000-2009",
@@ -73,20 +73,26 @@ ggplot(agg_period, aes(x = age_group, y = pop_per_100k, color = race_eth, group 
 
 ```
 #sex differences 
-```{r}
-ggplot(dof_data_grouped, aes(x = year, y = population, color = sex)) +
-  geom_line() +
-  facet_wrap(~age_group) +
-  labs(title = "Population by Sex Over Time")
+```{r, echo = FALSE}
+population_table_wide <- dof_data_grouped %>%
+  tidyr::pivot_wider(
+    names_from = sex,
+    values_from = population
+  ) %>%
+  arrange(age_group, year)
+
+population_table_wide %>%
+  kable(
+    caption = "Population by Sex, Age Group, and Year"
+  )
 
 ```
 
 
 #All-cause mortality
 To start, let's just look at all-cause mortality for males by racial/ethnic group. We are going to create a new dataframe for just this information: 
-```{r all_cause_mort}
+```{r all_cause_mort, echo = FALSE}
 all_cause_mort <- read.csv("../CleanData/all_cause_mort.csv")
-unique(all_cause_mort$Strata_Name)
 
 race_eth_all_cause <- all_cause_mort %>% 
   filter(Strata_Name %in% c("Female * Black", 
@@ -109,7 +115,7 @@ head(race_eth_all_cause)
 ```
 Now that all of the naming conventions are the same as the population data, we can bring in the pop dataset and merge it with our race_eth_all_cause dataframe and calculate the death rate. We also need to apply the log-normal (Posson) CI for the rates.
 
-```{r all_cause_with_pop}
+```{r all_cause_with_pop, echo = FALSE}
 dof_no_age <- read_csv("../CleanData/dof_no_age.csv")
 
 all_cause_with_pop <- left_join(race_eth_all_cause,dof_no_age,
@@ -134,7 +140,7 @@ head(all_cause_with_pop)
 
 Let's summarize these trends: 
 
-```{r all_c_no_age_trends}
+```{r all_c_no_age_trends, include = FALSE}
 all_cause_table <- all_cause_with_pop %>%
   mutate(
     rate_ci = sprintf(
@@ -150,15 +156,23 @@ female_table <- all_cause_table %>%
   filter(sex == "female") %>%
   select(year, race_eth, rate_ci)
 
-female_table
+female_table %>%
+  kable(
+    caption = "ALl-Case Female Death Rate"
+  )
 
 #males 
 male_table <- all_cause_table %>%
   filter(sex == "male") %>%
   select(year, race_eth, rate_ci)
 
-male_table
+male_table%>%
+  kable(
+    caption = "ALl-Case Male Death Rate"
+  )
+``` 
 
+```{r echo = FALSE}
 #sex stratified table
 sex_stratified_table <- all_cause_table %>%
   select(year, sex, race_eth, rate_ci) %>%
@@ -167,13 +181,16 @@ sex_stratified_table <- all_cause_table %>%
     values_from = rate_ci
   )
 
-sex_stratified_table
+sex_stratified_table%>%
+  kable(
+    caption = "ALl-Case Death Rate Stratified by Sex"
+  )
 ```
 
 *Mortality rates are expressed per 100,000 persons. 95% confidence intervals were calculated using the log-normal approximation to the Poisson distribution.*
 
 Now, we are going to plot. We are going to use White as the referent category. 
-```{r plot_no_age_rr}
+```{r plot_no_age_rr, echo = FALSE}
 rr_data <- all_cause_with_pop %>%
   group_by(year, sex) %>%
   mutate(
@@ -231,7 +248,7 @@ ggplot(
 ```
 
 # CDC Mortality Data 
-```{r cdc_merge}
+```{r cdc_merge, include = FALSE}
 cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
 head(cdc_mort)
 
@@ -273,7 +290,7 @@ To replicate the table, we need to:
 2. collapse years 1999-2006 
 3. use population data from 2000 to calculate overall rates
 
-```{r table_1_replication} 
+```{r table_1_replication, echo = FALSE} 
 table1_2000_pop <- dof_data %>% 
   filter(
     year == 2000, 
@@ -347,7 +364,7 @@ None of the numbers match. Gr. Let's return to this later. In the meanwhile, I'd
 
 
 
-```{r figure_5, fig.width=9, fig.height= 4}
+```{r figure_5, echo = FALSE, fig.width=9, fig.height= 4}
 fig5_data <- cdc_with_pop %>%
   filter(
     sex == "male",
@@ -415,7 +432,7 @@ ggplot(fig5_yearly,
 
 That's still not great, but let's see about replicating figure 7?? 
 
-```{r figure_7, fig.width=9, fig.height= 4}
+```{r figure_7, echo = FALSE, fig.width=9, fig.height= 4}
 fig7_data <- cdc_with_pop %>%
   filter(
     sex == "male",
@@ -490,12 +507,12 @@ ggplot(fig7_yearly, aes(x = year, y = rate_per_100k, color = race_eth, linetype 
   theme_minimal()
 
 ```
-We are going to do the same thing, this time extending the data to go from years 2000-23: 
 
 
-We are going to do the same thing, except this time we will 
 
-```{r figure_7_extended, fig.width=11, fig.height= 6}
+We are going to do the same thing, except this time we will extend the data to go through years 2006-2021:
+
+```{r figure_7_extended, echo = FALSE, fig.width=11, fig.height= 6}
 fig7x_data <- cdc_with_pop %>%
   filter(
     sex == "male",
