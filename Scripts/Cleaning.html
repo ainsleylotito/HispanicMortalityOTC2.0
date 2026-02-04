@@ -353,7 +353,8 @@ display: none;
 </div>
 
 
-<pre class="r"><code>library(tidyverse)</code></pre>
+<pre class="r"><code># Load packages
+library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.1     ✔ stringr   1.6.0
@@ -364,11 +365,23 @@ display: none;
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(janitor)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code># Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)</code></pre>
 <div id="mortality-data" class="section level1">
 <h1>Mortality Data</h1>
 <div id="section" class="section level2">
 <h2>1999-2013</h2>
-<pre class="r"><code>mortality99_13 &lt;- read.csv(&quot;../RawData/2021-05-14_deaths_final_1999_2013_county_year_sup.csv&quot;)</code></pre>
+<pre class="r"><code>mortality99_13 &lt;- read.csv(&quot;../RawData/cdph/2021-05-14_deaths_final_1999_2013_state_year_sup.csv&quot;)</code></pre>
 <p>First, we need to restrict the dataset to only observations with CA
 residents. We will do so by restricting the data to only cases where the
 <code>Geography_Type</code> column is “Residence”, as per the data
@@ -382,28 +395,833 @@ residents.</strong></p>
 <pre class="r"><code>table(mortality99_13$Geography_Type) </code></pre>
 <pre><code>## 
 ## Occurrence  Residence 
-##     146160     146160</code></pre>
+##       2744       2744</code></pre>
 <pre class="r"><code>mortality99_13 &lt;- mortality99_13 %&gt;% 
   filter(Geography_Type == &quot;Residence&quot;)</code></pre>
 <p>There were the same count of occurrence and residence deaths. This
-makes sense, as there should be a row for each county, year, and
-residence type. After restricting the data, we have 146,160
-observations.</p>
-<p>Next, we are going to recode the ICD codes into the same groups used
-in <a href="https://pubmed.ncbi.nlm.nih.gov/21134905/">Vaca et
-al. (2011)</a>.</p>
+makes sense, as there should be a row for each residence type and
+strata. After restricting the data, we have 2744 observations.</p>
+<pre class="r"><code>glimpse(mortality99_13)</code></pre>
+<pre><code>## Rows: 2,744
+## Columns: 9
+## $ Year            &lt;int&gt; 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999, …
+## $ Geography_Type  &lt;chr&gt; &quot;Residence&quot;, &quot;Residence&quot;, &quot;Residence&quot;, &quot;Residence&quot;, &quot;R…
+## $ Strata          &lt;chr&gt; &quot;Total Population&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;,…
+## $ Strata_Name     &lt;chr&gt; &quot;Total Population&quot;, &quot;Under 1 year&quot;, &quot;1-4 years&quot;, &quot;5-14…
+## $ Cause           &lt;chr&gt; &quot;ALL&quot;, &quot;ALL&quot;, &quot;ALL&quot;, &quot;ALL&quot;, &quot;ALL&quot;, &quot;ALL&quot;, &quot;ALL&quot;, &quot;ALL&quot;…
+## $ Cause_Desc      &lt;chr&gt; &quot;All causes (total)&quot;, &quot;All causes (total)&quot;, &quot;All cause…
+## $ Count           &lt;int&gt; 227965, 2787, 595, 793, 3018, 4296, 9109, 15907, 22454…
+## $ Annotation_Code &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ Annotation_Desc &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;…</code></pre>
+<p>We will retain this data to calculate an all-cause mortality count,
+but we also need to create another dataframe that only includes the
+Cause of Death included in the analysis.</p>
+<p>Next, we are going to apply the exclusion criteria and recode the ICD
+codes into the same groups used in <a href="https://pubmed.ncbi.nlm.nih.gov/21134905/">Vaca et
+al. (2011)</a>:</p>
+<p><em>“The ICD-10 underlying cause of death codes were grouped as
+follows: disease (001-294), motor vehicle (296-306), suicide (331-337),
+homicide (338-346), and all other injury (295, 307-330, 347-358). We
+restricted the data to three racial and ethnic groups: Latinos (defined
+as having Hispanic ethnicity and any race), non-Latino whites, and
+non-Latino blacks. We used race and ethnicity data recorded on the death
+certificate.”</em></p>
+<pre class="r"><code>#mortality99_13_icd</code></pre>
 </div>
 <div id="section-1" class="section level2">
 <h2>2014-2023</h2>
-<pre class="r"><code>mortality14_23 &lt;- read.csv(&quot;../RawData/20241220_deaths_final_2014_2023_county_year_sup.csv&quot;)
-table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents</code></pre>
+<pre class="r"><code>mortality14_23 &lt;- read.csv(&quot;../RawData/cdph/20250116_deaths_final_2014_2023_state_year_sup.csv&quot;)
+table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents </code></pre>
 <pre><code>## 
 ## Occurrence  Residence 
-##     105560     105560</code></pre>
+##       2081       2081</code></pre>
+<pre class="r"><code>mortality14_23 &lt;- mortality14_23 %&gt;% 
+  filter(Geography_Type == &quot;Residence&quot;,
+         Strata != &quot;Place Type&quot;)</code></pre>
+<div id="all-cause-mortality" class="section level3">
+<h3>All-cause mortality</h3>
+<p>We are going to merge the mortality datasets so we may calculate
+all-cause mortality rates. We will start by looking at how many unique
+combinations of Gender, Age, and Race_Eth exist for the All-cause
+mortality data within each set.</p>
+<pre class="r"><code>mortality99_13 %&gt;%
+  filter(Cause == &quot;ALL&quot;) %&gt;%
+  count(Year, Strata, name = &quot;n_rows&quot;) </code></pre>
+<pre><code>##    Year                  Strata n_rows
+## 1  1999                     Age     11
+## 2  1999                  Gender      2
+## 3  1999        Total Population      1
+## 4  2000                     Age     11
+## 5  2000                  Gender      2
+## 6  2000 Gender * Race-Ethnicity     16
+## 7  2000          Race-Ethnicity      8
+## 8  2000        Total Population      1
+## 9  2001                     Age     11
+## 10 2001                  Gender      2
+## 11 2001 Gender * Race-Ethnicity     16
+## 12 2001          Race-Ethnicity      8
+## 13 2001        Total Population      1
+## 14 2002                     Age     11
+## 15 2002                  Gender      2
+## 16 2002 Gender * Race-Ethnicity     16
+## 17 2002          Race-Ethnicity      8
+## 18 2002        Total Population      1
+## 19 2003                     Age     11
+## 20 2003                  Gender      2
+## 21 2003 Gender * Race-Ethnicity     16
+## 22 2003          Race-Ethnicity      8
+## 23 2003        Total Population      1
+## 24 2004                     Age     11
+## 25 2004                  Gender      2
+## 26 2004 Gender * Race-Ethnicity     16
+## 27 2004          Race-Ethnicity      8
+## 28 2004        Total Population      1
+## 29 2005                     Age     11
+## 30 2005                  Gender      2
+## 31 2005 Gender * Race-Ethnicity     16
+## 32 2005          Race-Ethnicity      8
+## 33 2005        Total Population      1
+## 34 2006                     Age     11
+## 35 2006                  Gender      2
+## 36 2006 Gender * Race-Ethnicity     16
+## 37 2006          Race-Ethnicity      8
+## 38 2006        Total Population      1
+## 39 2007                     Age     11
+## 40 2007                  Gender      2
+## 41 2007 Gender * Race-Ethnicity     16
+## 42 2007          Race-Ethnicity      8
+## 43 2007        Total Population      1
+## 44 2008                     Age     11
+## 45 2008                  Gender      2
+## 46 2008 Gender * Race-Ethnicity     16
+## 47 2008          Race-Ethnicity      8
+## 48 2008        Total Population      1
+## 49 2009                     Age     11
+## 50 2009                  Gender      2
+## 51 2009 Gender * Race-Ethnicity     16
+## 52 2009          Race-Ethnicity      8
+## 53 2009        Total Population      1
+## 54 2010                     Age     11
+## 55 2010                  Gender      2
+## 56 2010 Gender * Race-Ethnicity     16
+## 57 2010          Race-Ethnicity      8
+## 58 2010        Total Population      1
+## 59 2011                     Age     11
+## 60 2011                  Gender      2
+## 61 2011 Gender * Race-Ethnicity     16
+## 62 2011          Race-Ethnicity      8
+## 63 2011        Total Population      1
+## 64 2012                     Age     11
+## 65 2012                  Gender      2
+## 66 2012 Gender * Race-Ethnicity     16
+## 67 2012          Race-Ethnicity      8
+## 68 2012        Total Population      1
+## 69 2013                     Age     11
+## 70 2013                  Gender      2
+## 71 2013 Gender * Race-Ethnicity     16
+## 72 2013          Race-Ethnicity      8
+## 73 2013        Total Population      1</code></pre>
+<pre class="r"><code>mortality14_23 %&gt;%
+  filter(Cause == &quot;ALL&quot;) %&gt;%
+  count(Year, Strata, name = &quot;n_rows&quot;)</code></pre>
+<pre><code>##    Year                       Strata n_rows
+## 1  2014                          Age     11
+## 2  2014                       Gender      2
+## 3  2014      Gender * Race-Ethnicity     16
+## 4  2014               Race-Ethnicity      8
+## 5  2014             Total Population      1
+## 6  2015                          Age     11
+## 7  2015                       Gender      2
+## 8  2015      Gender * Race-Ethnicity     16
+## 9  2015               Race-Ethnicity      8
+## 10 2015             Total Population      1
+## 11 2016                          Age     11
+## 12 2016                       Gender      2
+## 13 2016      Gender * Race-Ethnicity     16
+## 14 2016               Race-Ethnicity      8
+## 15 2016             Total Population      1
+## 16 2017                          Age     11
+## 17 2017                       Gender      2
+## 18 2017      Gender * Race-Ethnicity     16
+## 19 2017               Race-Ethnicity      8
+## 20 2017             Total Population      1
+## 21 2018                          Age     11
+## 22 2018                       Gender      2
+## 23 2018      Gender * Race-Ethnicity     16
+## 24 2018               Race-Ethnicity      8
+## 25 2018             Total Population      1
+## 26 2019                          Age     11
+## 27 2019                       Gender      2
+## 28 2019      Gender * Race-Ethnicity     16
+## 29 2019 Race Alone or In Combination     18
+## 30 2019               Race-Ethnicity      8
+## 31 2019             Total Population      1
+## 32 2020                          Age     11
+## 33 2020                       Gender      2
+## 34 2020      Gender * Race-Ethnicity     16
+## 35 2020 Race Alone or In Combination     18
+## 36 2020               Race-Ethnicity      8
+## 37 2020             Total Population      1
+## 38 2021                          Age     11
+## 39 2021                       Gender      3
+## 40 2021      Gender * Race-Ethnicity     16
+## 41 2021 Race Alone or In Combination     18
+## 42 2021               Race-Ethnicity      8
+## 43 2021             Total Population      1
+## 44 2022                          Age     11
+## 45 2022                       Gender      3
+## 46 2022      Gender * Race-Ethnicity     16
+## 47 2022 Race Alone or In Combination     18
+## 48 2022               Race-Ethnicity      8
+## 49 2022             Total Population      1
+## 50 2023                          Age     11
+## 51 2023                       Gender      3
+## 52 2023      Gender * Race-Ethnicity     16
+## 53 2023 Race Alone or In Combination     26
+## 54 2023               Race-Ethnicity      8
+## 55 2023             Total Population      1</code></pre>
+<pre class="r"><code>mortality14_23_all &lt;- mortality14_23 %&gt;% 
+  filter(Cause == &quot;ALL&quot;) %&gt;% 
+  select(Year, Strata, Strata_Name, Count) 
+glimpse(mortality14_23_all) #481 rows</code></pre>
+<pre><code>## Rows: 481
+## Columns: 4
+## $ Year        &lt;int&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
+## $ Strata      &lt;chr&gt; &quot;Total Population&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Ag…
+## $ Strata_Name &lt;chr&gt; &quot;Total Population&quot;, &quot;Under 1 year&quot;, &quot;1-4 years&quot;, &quot;5-14 yea…
+## $ Count       &lt;int&gt; 245705, 2162, 358, 511, 2886, 4481, 6693, 16634, 32441, 41…</code></pre>
+<pre class="r"><code>mortality99_13_all &lt;- mortality99_13 %&gt;% 
+   filter(Cause == &quot;ALL&quot;) %&gt;% 
+ select(Year, Strata, Strata_Name, Count)
+glimpse(mortality99_13_all) #546 rows</code></pre>
+<pre><code>## Rows: 546
+## Columns: 4
+## $ Year        &lt;int&gt; 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999…
+## $ Strata      &lt;chr&gt; &quot;Total Population&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Ag…
+## $ Strata_Name &lt;chr&gt; &quot;Total Population&quot;, &quot;Under 1 year&quot;, &quot;1-4 years&quot;, &quot;5-14 yea…
+## $ Count       &lt;int&gt; 227965, 2787, 595, 793, 3018, 4296, 9109, 15907, 22454, 41…</code></pre>
+<pre class="r"><code>all_cause_mort &lt;- full_join(mortality99_13_all, mortality14_23_all)  
+glimpse(all_cause_mort)</code></pre>
+<pre><code>## Rows: 1,027
+## Columns: 4
+## $ Year        &lt;int&gt; 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999, 1999…
+## $ Strata      &lt;chr&gt; &quot;Total Population&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Age&quot;, &quot;Ag…
+## $ Strata_Name &lt;chr&gt; &quot;Total Population&quot;, &quot;Under 1 year&quot;, &quot;1-4 years&quot;, &quot;5-14 yea…
+## $ Count       &lt;int&gt; 227965, 2787, 595, 793, 3018, 4296, 9109, 15907, 22454, 41…</code></pre>
+<pre class="r"><code>range(all_cause_mort$Year)</code></pre>
+<pre><code>## [1] 1999 2023</code></pre>
+<pre class="r"><code>write_csv(all_cause_mort, &quot;../CleanData/all_cause_mort.csv&quot;)</code></pre>
+</div>
+</div>
+<div id="cdc-wonder" class="section level2">
+<h2>CDC Wonder</h2>
+<p>This is just where I am going to import all of the data from CDC
+Wonder. The goal of this data cleaning process will be to add a col for
+race_eth, add a cause of death (cod) column, and merge all my data.</p>
+<p>Let’s start just with the all-cause mortality datasets. I am going to
+make a cleaning function for both white_black dfs and hispanic dfs that
+can be reused for the rest of this process.</p>
+<pre class="r"><code>#function creation 
+white_black_clean &lt;- function(df, cod_character) {
+
+  df &lt;- df %&gt;% 
+    select(
+      -any_of(c(&quot;Notes&quot;,
+                &quot;Five.Year.Age.Groups.Code&quot;,
+                &quot;Year.Code&quot;,
+                &quot;Sex.Code&quot;,
+                &quot;Race.Code&quot;,
+                &quot;Single.Race.6.Code&quot;,
+                &quot;Population&quot;))
+    )
+
+  if (&quot;Race&quot; %in% names(df)) {
+    df &lt;- df %&gt;% rename(race_eth = Race)
+  } else if (&quot;Single.Race.6&quot; %in% names(df)) {
+    df &lt;- df %&gt;% rename(race_eth = Single.Race.6)
+  }
+
+  df %&gt;% 
+    rename(age_group = Five.Year.Age.Groups) %&gt;% 
+        rename_with(tolower) %&gt;% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %&gt;% 
+    filter(!is.na(year))
+}
+
+
+
+hispanic_clean &lt;- function(df, cod_character) {
+
+  df %&gt;% 
+    select(
+      -any_of(c(&quot;Notes&quot;,
+                &quot;Five.Year.Age.Groups.Code&quot;,
+                &quot;Year.Code&quot;,
+                &quot;Sex.Code&quot;,
+                &quot;Population&quot;))
+    ) %&gt;% 
+    rename(age_group = Five.Year.Age.Groups) %&gt;% 
+    rename_with(tolower) %&gt;% 
+    mutate(
+      cod = cod_character,
+      race_eth = &quot;Hispanic&quot;,
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %&gt;% 
+    filter(!is.na(year))
+}
+
+
+
+#all_cause datasets
+all_cause_white_black_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_White_Black.csv&quot;)
+all_cause_hispanic_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_Hispanic.csv&quot;) 
+all_cause_white_black_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/All_Cause/All_Cause_White_Black.csv&quot;)
+all_cause_hispanic_18_23    &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/All_Cause/All_Cause_Hispanic.csv&quot;)
+
+
+#cleaning all cause 
+all_cause_white_black_99_17_clean &lt;- white_black_clean(all_cause_white_black_99_17, &quot;all_cause&quot;)
+all_cause_hispanic_99_17_clean &lt;- hispanic_clean(all_cause_hispanic_99_17, &quot;all_cause&quot;) 
+all_cause_white_black_18_23_clean &lt;- white_black_clean(all_cause_white_black_18_23, &quot;all_cause&quot;)
+all_cause_hispanic_18_23_clean &lt;- hispanic_clean(all_cause_hispanic_18_23, &quot;all_cause&quot;)  
+
+
+#homicide datasets 
+hom__white_black_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/homicide/Homicide_White_Black.csv&quot;)
+hom_hispanic_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/homicide/Homicide_Hispanic.csv&quot;)
+hom_white_black_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Homicide/Homicide_White_Black.csv&quot;)
+hom_hispanic_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Homicide/Homicide_Hispanic.csv&quot;)
+
+#homicide cleaning 
+hom_white_black_99_17_clean &lt;- white_black_clean(
+  hom__white_black_99_17,
+  cod_character = &quot;homicide&quot;
+)
+
+hom_white_black_18_23_clean &lt;- white_black_clean(
+  hom_white_black_18_23,
+  cod_character = &quot;homicide&quot;
+)
+
+hom_hispanic_99_17_clean &lt;- hispanic_clean(
+  hom_hispanic_99_17,
+  cod_character = &quot;homicide&quot;
+)
+
+hom_hispanic_18_23_clean &lt;- hispanic_clean(
+  hom_hispanic_18_23,
+  cod_character = &quot;homicide&quot;
+)
+
+
+#mvc datasets 
+mvc_hispanic_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/mvc/MVC_Hispanic.csv&quot;)
+mvc_white_black_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/mvc/MVC_White_Black.csv&quot;)
+mvc_white_black_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/MVC/MVC_White_Black.csv&quot;)
+mvc_hispanic_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/MVC/MVC_Hispanic.csv&quot;)
+
+#mvc cleaning 
+mvc_white_black_99_17_clean &lt;- white_black_clean(
+  mvc_white_black_99_17,
+  cod_character = &quot;mvc&quot;
+)
+
+mvc_white_black_18_23_clean &lt;- white_black_clean(
+  mvc_white_black_18_23,
+  cod_character = &quot;mvc&quot;
+)
+
+mvc_hispanic_99_17_clean &lt;- hispanic_clean(
+  mvc_hispanic_99_17,
+  cod_character = &quot;mvc&quot;
+)
+
+mvc_hispanic_18_23_clean &lt;- hispanic_clean(
+  mvc_hispanic_18_23,
+  cod_character = &quot;mvc&quot;
+)
+
+
+#other_disease datasets 
+disease_hispanic_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/other_disease/Disease_Hispanic.csv&quot;)
+disease_white_black_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/other_disease/Disease_White_Black.csv&quot;)
+disease_white_black_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Other_Disease/Other_Disease_White_Black.csv&quot;)
+disease_hispanic_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Other_Disease/Other_Disease_Hispanic.csv&quot;)
+
+#other_disease cleaning 
+disease_white_black_99_17_clean &lt;- white_black_clean(
+  disease_white_black_99_17,
+  cod_character = &quot;other_disease&quot;
+)
+
+disease_white_black_18_23_clean &lt;- white_black_clean(
+  disease_white_black_18_23,
+  cod_character = &quot;other_disease&quot;
+)
+
+disease_hispanic_99_17_clean &lt;- hispanic_clean(
+  disease_hispanic_99_17,
+  cod_character = &quot;other_disease&quot;
+)
+
+disease_hispanic_18_23_clean &lt;- hispanic_clean(
+  disease_hispanic_18_23,
+  cod_character = &quot;other_disease&quot;
+)
+
+
+#other_injuries datasets 
+inj_hispanic_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/other_injuries/Injuries_Hispanic.csv&quot;)
+inj_white_black_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/other_injuries/Injuries_White_Black.csv&quot;)
+inj_white_black_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Other_Injury/Other_Injury_White_Black.csv&quot;)
+inj_hispanic_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Other_Injury/Other_Injury_Hispanic.csv&quot;)
+
+#other_injuries cleaning 
+inj_white_black_99_17_clean &lt;- white_black_clean(
+  inj_white_black_99_17,
+  cod_character = &quot;other_injury&quot;
+)
+
+inj_white_black_18_23_clean &lt;- white_black_clean(
+  inj_white_black_18_23,
+  cod_character = &quot;other_injury&quot;
+)
+
+inj_hispanic_99_17_clean &lt;- hispanic_clean(
+  inj_hispanic_99_17,
+  cod_character = &quot;other_injury&quot;
+)
+
+inj_hispanic_18_23_clean &lt;- hispanic_clean(
+  inj_hispanic_18_23,
+  cod_character = &quot;other_injury&quot;
+)
+
+
+#suicide datasets 
+sui_hispanic_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/suicide/Suicide_Hispanic.csv&quot;)
+sui_white_black_99_17 &lt;- read.csv(&quot;../RawData/cdcWONDER/1999_2017/suicide/Suicide_White_Black.csv&quot;)
+sui_white_black_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Suicide/Suicide_White_Black.csv&quot;)
+sui_hispanic_18_23 &lt;- read.csv(&quot;../RawData/cdcWONDER/2018_2023/Suicide/Suicide_Hispanic.csv&quot;)
+
+#suicide cleaning
+sui_white_black_99_17_clean &lt;- white_black_clean(
+  sui_white_black_99_17,
+  cod_character = &quot;suicide&quot;
+)
+
+sui_white_black_18_23_clean &lt;- white_black_clean(
+  sui_white_black_18_23,
+  cod_character = &quot;suicide&quot;
+)
+
+sui_hispanic_99_17_clean &lt;- hispanic_clean(
+  sui_hispanic_99_17,
+  cod_character = &quot;suicide&quot;
+)
+
+sui_hispanic_18_23_clean &lt;- hispanic_clean(
+  sui_hispanic_18_23,
+  cod_character = &quot;suicide&quot;
+)</code></pre>
+<p>Merging the cleaned data:</p>
+<pre class="r"><code>all_cleaned &lt;- bind_rows(
+  # all-cause
+  all_cause_white_black_99_17_clean,
+  all_cause_white_black_18_23_clean,
+  all_cause_hispanic_99_17_clean,
+  all_cause_hispanic_18_23_clean,
+
+  # homicide
+  hom_white_black_99_17_clean,
+  hom_white_black_18_23_clean,
+  hom_hispanic_99_17_clean,
+  hom_hispanic_18_23_clean,
+
+  # MVC
+  mvc_white_black_99_17_clean,
+  mvc_white_black_18_23_clean,
+  mvc_hispanic_99_17_clean,
+  mvc_hispanic_18_23_clean,
+
+  # other disease
+  disease_white_black_99_17_clean,
+  disease_white_black_18_23_clean,
+  disease_hispanic_99_17_clean,
+  disease_hispanic_18_23_clean,
+
+  # other injury
+  inj_white_black_99_17_clean,
+  inj_white_black_18_23_clean,
+  inj_hispanic_99_17_clean,
+  inj_hispanic_18_23_clean,
+
+  # suicide
+  sui_white_black_99_17_clean,
+  sui_white_black_18_23_clean,
+  sui_hispanic_99_17_clean,
+  sui_hispanic_18_23_clean
+)
+
+glimpse(all_cleaned)</code></pre>
+<pre><code>## Rows: 13,068
+## Columns: 9
+## $ age_group          &lt;chr&gt; &quot;&lt; 1 year&quot;, &quot;&lt; 1 year&quot;, &quot;&lt; 1 year&quot;, &quot;&lt; 1 year&quot;, &quot;&lt; …
+## $ year               &lt;int&gt; 1999, 1999, 1999, 1999, 2000, 2000, 2000, 2000, 200…
+## $ sex                &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Fema…
+## $ race_eth           &lt;chr&gt; &quot;Black or African American&quot;, &quot;White&quot;, &quot;Black or Afr…
+## $ deaths             &lt;dbl&gt; 210, 370, 226, 461, 200, 383, 238, 454, 203, 372, 2…
+## $ crude.rate         &lt;chr&gt; &quot;1256.3&quot;, &quot;454.2&quot;, &quot;1306.7&quot;, &quot;536.9&quot;, &quot;1183.9&quot;, &quot;48…
+## $ cod                &lt;chr&gt; &quot;all_cause&quot;, &quot;all_cause&quot;, &quot;all_cause&quot;, &quot;all_cause&quot;,…
+## $ single.race.6      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ single.race.6.code &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
+<pre class="r"><code>count(all_cleaned, cod)</code></pre>
+<pre><code>##             cod    n
+## 1     all_cause 3552
+## 2      homicide 1045
+## 3           mvc 1594
+## 4 other_disease 3231
+## 5  other_injury 2306
+## 6       suicide 1340</code></pre>
+<pre class="r"><code>count(all_cleaned, cod, race_eth)</code></pre>
+<pre><code>##              cod                  race_eth    n
+## 1      all_cause Black or African American 1080
+## 2      all_cause                  Hispanic 1361
+## 3      all_cause                     White 1111
+## 4       homicide Black or African American  285
+## 5       homicide                  Hispanic  389
+## 6       homicide                     White  371
+## 7            mvc Black or African American  212
+## 8            mvc                  Hispanic  592
+## 9            mvc                     White  790
+## 10 other_disease Black or African American 1023
+## 11 other_disease                  Hispanic 1102
+## 12 other_disease                     White 1106
+## 13  other_injury Black or African American  517
+## 14  other_injury                  Hispanic  854
+## 15  other_injury                     White  935
+## 16       suicide Black or African American  150
+## 17       suicide                  Hispanic  416
+## 18       suicide                     White  774</code></pre>
+<pre class="r"><code>range(all_cleaned$year, na.rm = TRUE)  </code></pre>
+<pre><code>## [1] 1999 2023</code></pre>
+<pre class="r"><code>#making codings consistent with dof_data_grouped.csv dataset: 
+
+all_cleaned &lt;- all_cleaned %&gt;%
+  select(-&quot;single.race.6&quot;, -&quot;single.race.6.code&quot;) %&gt;% #getting rid of extraneous vars 
+  mutate(sex = str_to_lower(sex),
+         race_eth = case_when(
+      race_eth == &quot;Black or African American&quot; ~ &quot;black&quot;,
+      race_eth == &quot;White&quot; ~ &quot;white&quot;,
+      race_eth == &quot;Hispanic&quot; ~ &quot;hispanic&quot;,
+      TRUE ~ race_eth),
+      age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c(&quot;&lt; 1 year&quot;, &quot;1-4 years&quot;) ~ &quot;0-4&quot;,
+      age_group == &quot;5-9 years&quot;   ~ &quot;5-9&quot;,
+      age_group == &quot;10-14 years&quot; ~ &quot;10-14&quot;,
+      age_group == &quot;15-19 years&quot; ~ &quot;15-19&quot;,
+      age_group == &quot;20-24 years&quot; ~ &quot;20-24&quot;,
+      age_group == &quot;25-29 years&quot; ~ &quot;25-29&quot;,
+      age_group == &quot;30-34 years&quot; ~ &quot;30-34&quot;,
+      age_group == &quot;35-39 years&quot; ~ &quot;35-39&quot;,
+      age_group == &quot;40-44 years&quot; ~ &quot;40-44&quot;,
+      age_group == &quot;45-49 years&quot; ~ &quot;45-49&quot;,
+      age_group == &quot;50-54 years&quot; ~ &quot;50-54&quot;,
+      age_group == &quot;55-59 years&quot; ~ &quot;55-59&quot;,
+      age_group == &quot;60-64 years&quot; ~ &quot;60-64&quot;,
+      age_group == &quot;65-69 years&quot; ~ &quot;65-69&quot;,
+      age_group == &quot;70-74 years&quot; ~ &quot;70-74&quot;,
+      age_group == &quot;75-79 years&quot; ~ &quot;75-79&quot;,
+      age_group == &quot;80-84 years&quot; ~ &quot;80-84&quot;,
+      age_group == &quot;85-89 years&quot; ~ &quot;85-89&quot;,
+      age_group %in% c(&quot;90-94 years&quot;, &quot;95-99 years&quot;, &quot;100+ years&quot;) ~ &quot;90+&quot;,
+      age_group == &quot;Not Stated&quot; ~ NA_character_,
+      TRUE ~ NA_character_))
+  
+
+
+
+#saving my data 
+write_csv(all_cleaned, &quot;../CleanData/cdc_mortality.csv&quot;)</code></pre>
 </div>
 </div>
 <div id="population-data" class="section level1">
 <h1>Population Data</h1>
+<p>Next, we are going to import the Population Estimates from 2001-2025
+from the DOF. There are 4 separate datasets we will need to clean and
+merge (1990-1999,2001-2010, 2011-2020, 2021-2025).</p>
+<div id="section-2" class="section level3">
+<h3>1990-1999</h3>
+<p>For this dataset, we only need the year 1999 to supply population
+data for our entire study period. The data is not tidy, so we will need
+to write specific race_eth designations.</p>
+<pre class="r"><code>raw&lt;- read_excel(&quot;../RawData/dof/Intercensal_1990_1999/California.xlsx&quot;, col_names = FALSE)
+# Extract header rows
+header1 &lt;- raw[1, ]
+header2 &lt;- raw[2, ]
+
+# Combine headers
+colnames(raw) &lt;- c(
+  &quot;area&quot;, &quot;year&quot;, &quot;sex&quot;, &quot;age&quot;,
+  paste(header1[5:ncol(raw)], header2[5:ncol(raw)], sep = &quot;_&quot;)
+)
+
+# Drop header rows
+dat &lt;- raw %&gt;% slice(-(1:2)) %&gt;% clean_names()
+
+head(dat)</code></pre>
+<pre><code>## # A tibble: 6 × 12
+##   area       year  sex    age   non_hispanic_white non_hispanic_asian_pacific
+##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt;                     
+## 1 California 1990  Female 0     118642.24449636556 24077.583943511876        
+## 2 California 1990  Female 1     111459.79038120688 22948.950959689042        
+## 3 California 1990  Female 2     107599.1405951692  22307.458968222505        
+## 4 California 1990  Female 3     105603.66170543458 21546.969160965284        
+## 5 California 1990  Female 4     105659.96383975829 21841.016581807275        
+## 6 California 1990  Female 5     103929.41204485891 22135.182458122374        
+## # ℹ 6 more variables: non_hispanic_black &lt;chr&gt;, non_hispanic_indian &lt;chr&gt;,
+## #   hispanic_white &lt;chr&gt;, hispanic_asian_pacific &lt;chr&gt;, hispanic_black &lt;chr&gt;,
+## #   hispanic_indian &lt;chr&gt;</code></pre>
+<pre class="r"><code>#keeping Hispanic total
+dat &lt;- dat %&gt;%
+  mutate(
+    across(
+      starts_with(c(&quot;non_hispanic&quot;, &quot;hispanic&quot;)),
+      ~ as.numeric(.)
+    )
+  )
+
+dof_99_tidy &lt;- dat %&gt;%
+  filter(year == &quot;1999&quot;) %&gt;% 
+  mutate(
+    hispanic_total =
+      hispanic_white +
+      hispanic_black +
+      hispanic_asian_pacific +
+      hispanic_indian
+  ) %&gt;%
+  select(
+    -area, year, sex, age,
+    non_hispanic_white,
+    non_hispanic_black,
+    hispanic_total
+  ) %&gt;%
+  pivot_longer(
+    cols = c(
+      non_hispanic_white,
+      non_hispanic_black,
+      hispanic_total
+    ),
+    names_to = &quot;race_eth&quot;,
+    values_to = &quot;population&quot;
+  ) %&gt;%
+  mutate(
+    race_eth = case_when(
+      race_eth == &quot;non_hispanic_white&quot; ~ &quot;white&quot;,
+      race_eth == &quot;non_hispanic_black&quot; ~ &quot;black&quot;,
+      race_eth == &quot;hispanic_total&quot;     ~ &quot;hispanic&quot;
+    ),
+    year = as.numeric(year),
+    age = as.numeric(age), 
+    sex = str_to_lower(sex)
+  )
+
+head(dof_99_tidy)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##    year sex      age non_hispanic_asian_pac…¹ non_hispanic_indian hispanic_white
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;                    &lt;dbl&gt;               &lt;dbl&gt;          &lt;dbl&gt;
+## 1  1999 female     0                   25598.               2146.        108352.
+## 2  1999 female     0                   25598.               2146.        108352.
+## 3  1999 female     0                   25598.               2146.        108352.
+## 4  1999 female     1                   26238.               2329.        107060.
+## 5  1999 female     1                   26238.               2329.        107060.
+## 6  1999 female     1                   26238.               2329.        107060.
+## # ℹ abbreviated name: ¹​non_hispanic_asian_pacific
+## # ℹ 5 more variables: hispanic_asian_pacific &lt;dbl&gt;, hispanic_black &lt;dbl&gt;,
+## #   hispanic_indian &lt;dbl&gt;, race_eth &lt;chr&gt;, population &lt;dbl&gt;</code></pre>
+</div>
+<div id="section-3" class="section level3">
+<h3>2000-2010</h3>
+<p>I was unable to locate an Intercensal estimate record that was
+statewide, just county-level. We will have to sum the values for
+corresponding Year, Race, Gender, and Age to get the state-level
+total.</p>
+<p>We need to do some cleaning to make the variables consistent with
+other datasets. We will convert the Year to a proper “date” variable and
+select only the races/ethnic groups to be used in the study.</p>
+<pre class="r"><code>dof1 &lt;- read.csv(&quot;../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt&quot;) 
+head(dof1) </code></pre>
+<pre><code>##   CountyCode CountyName             Year RaceCode RaceName Gender Age
+## 1          1    Alameda 4/1/2000 0:00:00        1    White Female   0
+## 2          1    Alameda 4/1/2000 0:00:00        1    White Female   1
+## 3          1    Alameda 4/1/2000 0:00:00        1    White Female   2
+## 4          1    Alameda 4/1/2000 0:00:00        1    White Female   3
+## 5          1    Alameda 4/1/2000 0:00:00        1    White Female   4
+## 6          1    Alameda 4/1/2000 0:00:00        1    White Female   5
+##   Population
+## 1       2701
+## 2       2722
+## 3       2707
+## 4       2710
+## 5       2888
+## 6       2891</code></pre>
+<pre class="r"><code>dof1 &lt;- dof1 %&gt;%
+  mutate(
+    year = year(mdy_hms(Year)),  # convert Year to numeric
+    age = as.numeric(Age),
+    population = as.numeric(Population),
+    race_eth = str_to_lower(RaceName),
+    sex = str_to_lower(Gender)
+  )
+
+dof1 &lt;- dof1 %&gt;%
+  filter(race_eth %in% c(&quot;white&quot;, &quot;black&quot;, &quot;hispanic&quot;))
+
+dof1_tidy &lt;- dof1 %&gt;%
+  group_by(year, race_eth, sex, age) %&gt;%
+  summarise(population = sum(population, na.rm = TRUE), .groups = &quot;drop&quot;) %&gt;%
+  arrange(year, race_eth, sex, age)
+
+nrow(dof1_tidy) </code></pre>
+<pre><code>## [1] 6666</code></pre>
+</div>
+<div id="section-4" class="section level3">
+<h3>2010-2020</h3>
+<pre class="r"><code>dof2 &lt;- read_excel(&quot;../RawData/dof/Intercensal_Excel_California.xlsx&quot;,
+                   sheet = &quot;California-State&quot;,
+                   col_names = TRUE) 
+dof2 &lt;- dof2 %&gt;% 
+  select(Sex:&quot;April 1, 2020&quot;) %&gt;% 
+  rename(age = &quot;Age (0-100+)&quot;,
+         race_eth = &quot;Race/ethnicity recode&quot;) %&gt;% 
+  rename_with(tolower)</code></pre>
+<p>Each row contains the population count for a given age, race, and
+sex. We are going to tidy this data by making a new “Year” variable and
+“Population” variable to contain the values that are in wide format
+right now. We also have two population values for 2010 (April, when the
+census took effect, then July). We will retain just the April counts, as
+they require no estimation and are the most accurate approximation of
+the population that year.</p>
+<pre class="r"><code>dof2_tidy &lt;- pivot_longer(dof2,
+                     cols = &#39;april 1, 2010&#39;:&#39;april 1, 2020&#39;,
+                     names_to = &quot;Year&quot;,
+                     values_to = &quot;Population&quot;)
+dof2_tidy &lt;- dof2_tidy %&gt;% 
+  filter(Year != &quot;july 1, 2010&quot;) %&gt;% 
+  mutate(
+    Year = year(mdy(Year)),
+    sex = str_to_lower(sex)
+  ) %&gt;% 
+   rename_with(tolower) %&gt;% 
+  filter(race_eth %in% c(&quot;White NH&quot;, &quot;Black NH&quot;, &quot;Hispanic&quot;)) %&gt;% 
+  mutate(race_eth = recode(
+    race_eth, 
+    &quot;White NH&quot; = &quot;White&quot;, 
+    &quot;Black NH&quot; = &quot;Black&quot;),
+    race_eth = str_to_lower(race_eth),
+    population = as.numeric(population)
+  )</code></pre>
+<p>Now that our datasets have consistent tidy structure and naming
+conventions, we can stack them.</p>
+<pre class="r"><code>#Checking counts prior to merge
+nrow(dof1_tidy) #6666</code></pre>
+<pre><code>## [1] 6666</code></pre>
+<pre class="r"><code>nrow(dof2_tidy) #6666</code></pre>
+<pre><code>## [1] 6666</code></pre>
+<pre class="r"><code>nrow(dof_99_tidy) #606</code></pre>
+<pre><code>## [1] 606</code></pre>
+<pre class="r"><code>dof_data &lt;- full_join(dof1_tidy, dof2_tidy)
+dof_data &lt;- full_join(dof_99_tidy, dof_data)
+head(dof_data) </code></pre>
+<pre><code>## # A tibble: 6 × 11
+##    year sex      age non_hispanic_asian_pac…¹ non_hispanic_indian hispanic_white
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;                    &lt;dbl&gt;               &lt;dbl&gt;          &lt;dbl&gt;
+## 1  1999 female     0                   25598.               2146.        108352.
+## 2  1999 female     0                   25598.               2146.        108352.
+## 3  1999 female     0                   25598.               2146.        108352.
+## 4  1999 female     1                   26238.               2329.        107060.
+## 5  1999 female     1                   26238.               2329.        107060.
+## 6  1999 female     1                   26238.               2329.        107060.
+## # ℹ abbreviated name: ¹​non_hispanic_asian_pacific
+## # ℹ 5 more variables: hispanic_asian_pacific &lt;dbl&gt;, hispanic_black &lt;dbl&gt;,
+## #   hispanic_indian &lt;dbl&gt;, race_eth &lt;chr&gt;, population &lt;dbl&gt;</code></pre>
+<pre class="r"><code>nrow(dof_data) #13938, correct number of observations</code></pre>
+<pre><code>## [1] 13938</code></pre>
+<p>We will have two dataframes, one with the continuous ages so we may
+replicate one of the figures that has trends by each individual age. We
+will create a different dataframe that have age groups separately.</p>
+<pre class="r"><code>age_breaks &lt;- c(seq(0, 90, by = 5), Inf)  # 0,5,10,...,90, Inf
+age_labels &lt;- c(paste(seq(0, 85, by = 5), seq(4, 89, by = 5), sep = &quot;-&quot;), &quot;90+&quot;)
+
+dof_data_grouped &lt;- dof_data %&gt;%
+  mutate(age_group = cut(age, breaks = age_breaks, labels = age_labels, right = TRUE, include.lowest = TRUE)) %&gt;%
+  group_by(sex, race_eth, age_group, year) %&gt;%
+  summarise(population = sum(population, na.rm = TRUE), .groups = &quot;drop&quot;) 
+head(dof_data_grouped) </code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   sex    race_eth age_group  year population
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;fct&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 female black    0-4        1999    117672.
+## 2 female black    0-4        2000    393576.
+## 3 female black    0-4        2001    189370.
+## 4 female black    0-4        2002    182291.
+## 5 female black    0-4        2003    176310.
+## 6 female black    0-4        2004    170940.</code></pre>
+</div>
+<div id="section-5" class="section level2">
+<h2>2021-2025</h2>
+<p>For 2021-2025, the only option (that I can ascertain) is to use the
+population projections for the years 2021-2025. We will be using the
+“Complete P-3 Race/Ethnicity and Sex by Age for California and Counties,
+Excel Compatible” California-State section from the <a href="https://dof.ca.gov/forecasting/demographics/projections/">Projection
+webpage of the dof</a>.</p>
+<pre class="r"><code>dof3 &lt;- read_excel(&quot;../RawData/dof/Projections/P3_California-and-Counties.xlsx&quot;,
+                   sheet = &quot;California-State&quot;,
+                   col_names = TRUE) 
+dof3 &lt;- dof3 %&gt;% 
+  select(Sex:&quot;2025&quot;, -&quot;2020&quot;) %&gt;% 
+  rename(age = &quot;Age (0-110+)&quot;,
+         race_eth = &quot;Race/ethnicity recode&quot;) %&gt;% 
+  rename_with(tolower) %&gt;% 
+  filter(race_eth %in% c(1,2,7)) %&gt;% 
+  mutate(sex = str_to_lower(sex),
+         race_eth = recode(
+    race_eth, 
+    &quot;1&quot; = &quot;White&quot;, 
+    &quot;2&quot; = &quot;Black&quot;,
+    &quot;7&quot; = &quot;Hispanic&quot;)) %&gt;% 
+  pivot_longer(
+                     cols = &#39;2021&#39;:&#39;2025&#39;,
+                     names_to = &quot;year&quot;,
+                     values_to = &quot;population&quot;
+                     )</code></pre>
+<p>I am also going to create a dataset that is just the population by
+gender and race_eth, ignoring age all together.</p>
+<pre class="r"><code>dof_no_age &lt;- dof_data %&gt;% 
+  group_by(year, race_eth, sex) %&gt;% 
+  summarize(population = sum(population))
+head(dof_no_age)</code></pre>
+<pre><code>## # A tibble: 6 × 4
+## # Groups:   year, race_eth [3]
+##    year race_eth sex    population
+##   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;
+## 1  1999 black    female   1173834.
+## 2  1999 black    male     1128634.
+## 3  1999 hispanic female   5200785.
+## 4  1999 hispanic male     5460148.
+## 5  1999 white    female   8140118.
+## 6  1999 white    male     7943206.</code></pre>
+<p>#Saving population datasets</p>
+<pre class="r"><code>write_csv(dof_data_grouped, &quot;../CleanData/dof_data_grouped.csv&quot;) 
+write_csv(dof_data, &quot;../CleanData/dof_data.csv&quot;)
+write_csv(dof_no_age, &quot;../CleanData/dof_no_age.csv&quot;)</code></pre>
+</div>
 </div>
 
 

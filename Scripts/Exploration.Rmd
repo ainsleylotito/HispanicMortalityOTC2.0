@@ -9,12 +9,14 @@ library(ggplot2)
 library(readxl) 
 library(lubridate)
 library(ggthemes)
+library(knitr)
 
 # Global options
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ```
-#Exploring population data 
+# Exploring population data 
+
 We are going to explore the distribution of our population data by individual ages and age categories, respectively. 
 
 ```{r explore_population, include = FALSE}
@@ -23,11 +25,19 @@ dof_data <- read.csv("../CleanData/dof_data.csv")
 ```
 
 Let's examine the trends for the whole study period (data for 2000-2009):
+
 ```{r explore_age_groups, echo = FALSE} 
+age_levels <- c(
+  "0-4", "5-9", "10-14", "15-19", "20-24",
+  "25-29", "30-34", "35-39", "40-44",
+  "45-49", "50-54", "55-59", "60-64",
+  "65-69", "70-74", "75-79", "80-84", "85-89", "90+"
+)
 agg_data <- dof_data_grouped %>%
+  mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE)) %>%
   group_by(race_eth, age_group) %>%
-  summarise(total_population = sum(population, na.rm = TRUE)) %>%
-  ungroup() %>%
+  summarise(total_population = sum(population, na.rm = TRUE), .groups = "drop") %>%
+  
   # convert to per 100,000
   mutate(pop_per_100k = total_population / 100000)
 
@@ -46,8 +56,10 @@ ggplot(agg_data, aes(x = age_group, y = pop_per_100k, color = race_eth, group = 
 ``` 
 
 Now let's look through the decades: 
+
 ```{r, echo = FALSE}
 agg_period <- dof_data_grouped %>%
+  mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE)) %>%
   mutate(period = case_when(
     year >= 2000 & year <= 2009 ~ "2000-2009",
     year >= 2010 & year <= 2020 ~ "2010-2020",
@@ -72,8 +84,9 @@ ggplot(agg_period, aes(x = age_group, y = pop_per_100k, color = race_eth, group 
   theme_minimal()
 
 ```
-#sex differences 
-```{r, echo = FALSE}
+# Sex differences 
+
+```{r, include = FALSE}
 population_table_wide <- dof_data_grouped %>%
   tidyr::pivot_wider(
     names_from = sex,
@@ -90,6 +103,7 @@ population_table_wide %>%
 
 
 #All-cause mortality
+
 To start, let's just look at all-cause mortality for males by racial/ethnic group. We are going to create a new dataframe for just this information: 
 ```{r all_cause_mort, echo = FALSE}
 all_cause_mort <- read.csv("../CleanData/all_cause_mort.csv")
@@ -190,6 +204,7 @@ sex_stratified_table%>%
 *Mortality rates are expressed per 100,000 persons. 95% confidence intervals were calculated using the log-normal approximation to the Poisson distribution.*
 
 Now, we are going to plot. We are going to use White as the referent category. 
+
 ```{r plot_no_age_rr, echo = FALSE}
 rr_data <- all_cause_with_pop %>%
   group_by(year, sex) %>%
@@ -248,6 +263,7 @@ ggplot(
 ```
 
 # CDC Mortality Data 
+
 ```{r cdc_merge, include = FALSE}
 cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
 head(cdc_mort)
@@ -360,6 +376,7 @@ table1_final
 
 
 ```
+
 None of the numbers match. Gr. Let's return to this later. In the meanwhile, I'd like to replicate figure 5 instead, as I think it may be easier to produce? 
 
 

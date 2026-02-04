@@ -489,6 +489,12 @@ dof1 <- dof1 %>%
     race_eth = str_to_lower(RaceName),
     sex = str_to_lower(Gender)
   )
+head(dof1) 
+unique(dof1$Year) 
+
+dof1 <- dof1 %>% 
+  filter(Year != "7/1/2000 0:00:00")
+nrow(dof1)
 
 dof1 <- dof1 %>%
   filter(race_eth %in% c("white", "black", "hispanic"))
@@ -499,6 +505,7 @@ dof1_tidy <- dof1 %>%
   arrange(year, race_eth, sex, age)
 
 nrow(dof1_tidy) 
+head(dof1_tidy)
 
 ``` 
 
