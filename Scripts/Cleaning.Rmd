@@ -561,6 +561,15 @@ head(dof_data)
 nrow(dof_data) #13938, correct number of observations
 ```
 
+Checking how the data may/may not change by different years.. 
+```{r comparison_graphs}
+dof_99_tidy %>% 
+  filter(sex = "female",
+         race_eth = "black")
+
+```
+
+
 We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.   
 
 ```{r age_groups}
