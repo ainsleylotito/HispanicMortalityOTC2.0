@@ -340,7 +340,7 @@ dof_data_grouped <- dof_data_grouped %>%
   ) 
 
 #Step 1 
-figure1_data <- cdc_mort %>% 
+figure2_data <- cdc_mort %>% 
   filter(
     year %in% 1999:2006,
     sex == "female", 
@@ -353,10 +353,10 @@ figure1_data <- cdc_mort %>%
   )
 
 #Step 2
-figure1_pop <- dof_data_grouped %>% 
+figure2_pop <- dof_data_grouped %>% 
   filter(
     year %in% 1999:2006,
-    sex == "male"
+    sex == "female"
   ) %>% 
   group_by(race_eth, age_group) %>%
   summarise(
@@ -367,9 +367,9 @@ figure1_pop <- dof_data_grouped %>%
 
 # Step 3: merge deaths + population, calculate rates, then rate ratios
 
-figure1_rates <- figure1_data %>%
+figure2_rates <- figure2_data %>%
   left_join(
-    figure1_pop,
+    figure2_pop,
     by = c("race_eth", "age_group")
   ) %>%
   mutate(
@@ -377,7 +377,7 @@ figure1_rates <- figure1_data %>%
   )
 
 # Calculate rate ratios using NH White as reference within age group
-rr_data <- figure1_rates %>%
+rr_data_2 <- figure2_rates %>%
   group_by(age_group) %>%
   mutate(
     ref_rate  = rate[race_eth == "white"],
@@ -392,14 +392,14 @@ rr_data <- figure1_rates %>%
   )
 
 
-rr_data <- rr_data %>%
+rr_data_2 <- rr_data_2 %>%
   mutate(
     age_group = factor(age_group, levels = age_levels, ordered = TRUE)
   )
 
 #plotting
 ggplot(
-  rr_data,
+  rr_data_2,
   aes(x = age_group, y = rr, color = race_eth, group = race_eth)
 ) +
   geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
@@ -422,7 +422,86 @@ ggplot(
 
 ## Figure 3 
 
-## Figure 4
+Next, we are going to replicate Figure 2, which is "Male homicide mortality rate ratios comparing Latino and non-Latino black mortality to non-Latino white mortality, by 5 year age groups with 95% CI, California, 1999-2006 (Overlapping 95% CI for age group 80 years and older not shown.)". 
+
+We will start by selecting just homicide data, then replicate previous steps.
+
+**1. Subset to females, all-cause only, retaining age groups, summing deaths for years 1999:2006**
+
+**2. Use population data from 1999-2006 to calculate overall rates by age groups**
+
+**3. Calculate death rates ** 
+
+```{r figure_3}
+
+#Step 1 
+figure3_data <- cdc_mort %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male", 
+    cod == "homicide"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+figure3_data
+
+#Step 2
+figure3_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_1999_2006 = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3: merge deaths + population, calculate rates, then 95% CI
+figure3_rates <- figure3_data %>%
+  left_join(
+    figure3_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_1999_2006) * 100000,
+    rate_lcl = rate * exp(-1.96 * sqrt(1 / death_count)),
+    rate_ucl = rate * exp( 1.96 * sqrt(1 / death_count))
+  ) %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+
+#plotting
+ggplot(
+  figure3_rates,
+  aes(x = age_group, y = rate, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rate_lcl, ymax = rate_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Male homicide mortality rate ratios by Race/Ethnicity",
+    subtitle = "1999 - 2006",
+    x = "Age (years)",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal() 
+```
+This plot differs a little bit from the one we are replicating, just because it excludes the white data that is missing (it is likely that these values didn't populate in the CDC query due to being less than 10 for the years in question). It also excludes deaths for ages 70+, most likely for the same exact reason. Looking at the figure in Vaca et al, it appears as though there are some homicides among Blacks at age 90+ and maybe for Hispanics, but our data doesn't populate this. This difference is likely negligible, since most of the important trends may be observed at younger age groups. 
+
+## Figure 4 
+
+
 
 ## Figure 5 
 
