@@ -1,9 +1,12 @@
 ---
-title: "Exploration"
+title: "Replication"
+author: "Ainsley Lotito"
+date: "2026-02-06"
 output:
   html_document:
 output_dir: ../Output
 ---
+
 ```{r setup, include = FALSE}
 # Load packages
 library(tidyverse)
@@ -17,100 +20,34 @@ library(knitr)
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
                       fig.width=10, fig.height=5)
 
-```
-# Exploring population data 
-
-We are going to explore the distribution of our population data by individual ages and age categories, respectively. 
-
-```{r explore_population, include = FALSE}
+#Loading data 
 dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
 dof_data <- read.csv("../CleanData/dof_data.csv")
-```
-
-Let's examine the trends for the whole study period (data for 1999-2020):
-
-```{r explore_age_groups, echo = FALSE} 
-age_levels <- c(
-  "0-4", "5-9", "10-14", "15-19", "20-24",
-  "25-29", "30-34", "35-39", "40-44",
-  "45-49", "50-54", "55-59", "60-64",
-  "65-69", "70-74", "75-79", "80-84", "85-89", "90+"
-)
-agg_data <- dof_data_grouped %>%
-  mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE)) %>%
-  group_by(race_eth, age_group) %>%
-  summarise(total_population = sum(population, na.rm = TRUE), .groups = "drop") %>%
-  
-  # convert to per 100,000
-  mutate(pop_per_100k = total_population / 100000)
-
-ggplot(agg_data, aes(x = age_group, y = pop_per_100k, color = race_eth, group = race_eth)) +
-  geom_line(size = 1.2) +
-  geom_point(size = 2) +
-  labs(
-    title = "Overall Population by Age Group and Race/Ethnicity (per 100,000)",
-    x = "Age Group",
-    y = "Population per 100,000",
-    color = "Race/Ethnicity"
-  ) +
-  theme_minimal()
-
-
-``` 
-
-Now let's look through the decades: 
-
-```{r, echo = FALSE}
-agg_period <- dof_data_grouped %>%
-  mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE)) %>%
-  mutate(period = case_when(
-    year >= 2000 & year <= 2009 ~ "2000-2009",
-    year >= 2010 & year <= 2020 ~ "2010-2020",
-    TRUE ~ NA_character_
-  )) %>%
-  filter(!is.na(period)) %>%
-  group_by(race_eth, age_group, period) %>%
-  summarise(total_population = sum(population, na.rm = TRUE)) %>%
-  ungroup() %>% 
-   mutate(pop_per_100k = total_population / 100000)
-
-ggplot(agg_period, aes(x = age_group, y = pop_per_100k, color = race_eth, group = race_eth)) +
-  facet_wrap(~period, ncol = 1) +
-  geom_line(size = 1.2) +
-  geom_point(size = 2) +
-  labs(
-    title = "Overall Population by Age Group and Race/Ethnicity (per 100,000)",
-    x = "Age Group",
-    y = "Population per 100,000",
-    color = "Race/Ethnicity"
-  ) +
-  theme_minimal()
-
-```
-# Sex differences 
-
-```{r, include = FALSE}
-population_table_wide <- dof_data_grouped %>%
-  tidyr::pivot_wider(
-    names_from = sex,
-    values_from = population
-  ) %>%
-  arrange(age_group, year)
-
-population_table_wide %>%
-  kable(
-    caption = "Population by Sex, Age Group, and Year"
-  )
-
-```
-
-
-#All-cause mortality
-
-To start, let's just look at all-cause mortality for males by racial/ethnic group. We are going to create a new dataframe for just this information: 
-```{r all_cause_mort, echo = FALSE}
 all_cause_mort <- read.csv("../CleanData/all_cause_mort.csv")
+dof_no_age <- read_csv("../CleanData/dof_no_age.csv")
+cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
+head(cdc_mort)
 
+#merging
+cdc_with_pop <- left_join(cdc_mort,dof_data_grouped,
+                                by = c("year", "sex", "race_eth", "age_group"))
+
+cdc_with_pop <- cdc_with_pop %>% 
+  mutate( #mortality rate
+          rate = deaths/population,
+         rate_per_100k = rate*100000,
+         
+         # log-normal Poisson CI
+    rate_lcl = rate * exp(-1.96 / sqrt(deaths)),
+    rate_ucl = rate * exp( 1.96 / sqrt(deaths)),
+
+    rate_lcl_100k = rate_lcl * 100000,
+    rate_ucl_100k = rate_ucl * 100000) 
+
+```
+
+All cause-mortality 
+```{r}
 race_eth_all_cause <- all_cause_mort %>% 
   filter(Strata_Name %in% c("Female * Black", 
                             "Female * Hispanic", "Female * White",
@@ -127,13 +64,6 @@ race_eth_all_cause <- race_eth_all_cause %>% #tidying
   rename_with(tolower) %>% 
   mutate(sex = str_to_lower(sex),
          race_eth = str_to_lower(race_eth))
-head(race_eth_all_cause)
-
-```
-Now that all of the naming conventions are the same as the population data, we can bring in the pop dataset and merge it with our race_eth_all_cause dataframe and calculate the death rate. We also need to apply the log-normal (Posson) CI for the rates.
-
-```{r all_cause_with_pop, echo = FALSE}
-dof_no_age <- read_csv("../CleanData/dof_no_age.csv")
 
 all_cause_with_pop <- left_join(race_eth_all_cause,dof_no_age,
                                 by = c("year", "sex", "race_eth"))
@@ -149,156 +79,10 @@ all_cause_with_pop <- all_cause_with_pop %>%
 
     rate_lcl_100k = rate_lcl * 100000,
     rate_ucl_100k = rate_ucl * 100000)
-head(all_cause_with_pop)
-``` 
 
-
-Let's summarize these trends: 
-
-```{r all_c_no_age_trends, include = FALSE}
-all_cause_table <- all_cause_with_pop %>%
-  mutate(
-    rate_ci = sprintf(
-      "%.1f (%.1f–%.1f)",
-      rate_per_100k,
-      rate_lcl_100k,
-      rate_ucl_100k
-    )
-  )
-
-#females
-female_table <- all_cause_table %>%
-  filter(sex == "female") %>%
-  select(year, race_eth, rate_ci)
-
-female_table %>%
-  kable(
-    caption = "ALl-Case Female Death Rate"
-  )
-
-#males 
-male_table <- all_cause_table %>%
-  filter(sex == "male") %>%
-  select(year, race_eth, rate_ci)
-
-male_table%>%
-  kable(
-    caption = "ALl-Case Male Death Rate"
-  )
-``` 
-
-```{r echo = FALSE}
-#sex stratified table
-sex_stratified_table <- all_cause_table %>%
-  select(year, sex, race_eth, rate_ci) %>%
-  pivot_wider(
-    names_from = sex,
-    values_from = rate_ci
-  )
-
-sex_stratified_table%>%
-  kable(
-    caption = "ALl-Case Death Rate Stratified by Sex"
-  )
-```
-
-*Mortality rates are expressed per 100,000 persons. 95% confidence intervals were calculated using the log-normal approximation to the Poisson distribution.*
-
-Now, we are going to plot. We are going to use White as the referent category. 
-
-```{r plot_no_age_rr, echo = FALSE}
-rr_data <- all_cause_with_pop %>%
-  group_by(year, sex) %>%
-  mutate(
-    ref_rate  = rate[race_eth == "white"],
-    ref_count = count[race_eth == "white"]
-  ) %>%
-  ungroup() %>%
-  filter(race_eth != "white") %>%   # drop reference from RR plot
-  mutate(
-    rr = rate / ref_rate,
-    rr_lcl = rr * exp(-1.96 * sqrt(1/count + 1/ref_count)),
-    rr_ucl = rr * exp( 1.96 * sqrt(1/count + 1/ref_count))
-  )
-rr_data
-#females
-ggplot(
-  rr_data %>% filter(sex == "female"),
-  aes(x = year, y = rr, color = race_eth, group = race_eth)
-) +
-  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
-  geom_line(size = 1) +
-  geom_point(size = 2) +
-  geom_errorbar(
-    aes(ymin = rr_lcl, ymax = rr_ucl),
-    width = 0.15
-  ) +
-  labs(
-    title = "Mortality Rate Ratios by Race/Ethnicity — Females",
-    subtitle = "Reference group: White",
-    x = "Year",
-    y = "Rate Ratio"
-  ) +
-  theme_minimal()
-
-#males 
-ggplot(
-  rr_data %>% filter(sex == "male"),
-  aes(x = year, y = rr, color = race_eth, group = race_eth)
-) +
-  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
-  geom_line(size = 1) +
-  geom_point(size = 2) +
-  geom_errorbar(
-    aes(ymin = rr_lcl, ymax = rr_ucl),
-    width = 0.15
-  ) +
-  labs(
-    title = "Mortality Rate Ratios by Race/Ethnicity — Males",
-    subtitle = "Reference group: White",
-    x = "Year",
-    y = "Rate Ratio"
-  ) +
-  theme_minimal()
 
 ```
 
-# CDC Mortality Data 
-
-```{r cdc_merge, include = FALSE}
-cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
-head(cdc_mort)
-
-#adding pop data 
-dof_data<- read_csv("../CleanData/dof_data_grouped.csv")
-head(dof_data)
-
-#merging
-cdc_with_pop <- left_join(cdc_mort,dof_data,
-                                by = c("year", "sex", "race_eth", "age_group"))
-
-head(cdc_with_pop)
-```
-
-We are missing the population for 1999 from dof, but we had the crude rate from the CDC data. We are going to calculate our death rate and compare with the "crude rate" supplied by the CDC wonder query.  
-
-```{r cdc_rate} 
-cdc_with_pop <- cdc_with_pop %>% 
-  mutate( #mortality rate
-          rate = deaths/population,
-         rate_per_100k = rate*100000,
-         
-         # log-normal Poisson CI
-    rate_lcl = rate * exp(-1.96 / sqrt(deaths)),
-    rate_ucl = rate * exp( 1.96 / sqrt(deaths)),
-
-    rate_lcl_100k = rate_lcl * 100000,
-    rate_ucl_100k = rate_ucl * 100000)
-head(cdc_with_pop)
-cdc_with_pop %>% 
-  slice(6:20)
-```
-The rate per 100k does not match the crude rate given by the CDC. I want to compare the rates calculated by Dr. Vaca and see how they match up.  
 
 # Replication of tables/figures from Vaca et al. (2011)
 
@@ -424,12 +208,11 @@ table1_final
 
 
 ```
-The numbers aren't quite the same as Vaca et al. (2011), but they are pretty consistent. 
-
 
 ## Figure 1 
 
-Next, we are going to rep
+Next, we are going to rep 
+
 
 ## Figure 5 
 
