@@ -471,9 +471,9 @@ head(dof_99_tidy)
 ```
 
 
-### 2000-2010  
+### 2000-2009  
 
-I was unable to locate an Intercensal estimate record that was statewide, just county-level. We will have to sum the values for corresponding Year, Race, Gender, and Age to get the state-level total. 
+This file contains both county-level and state-level population estimates. We will filter to only include the population estimates when county = 59, which corresponds with state-level estimates. We also will drop the estimate for the year 2010. After cleaning and cross-examining with the following dataframe, I found that the estimates were identical (Census-based) from this dataset and the 2010-2020 dataset. To ensure we don't inflate the estimate for 2010 by summing both datsets, we're just going to drop it from this one. 
 
 We need to do some cleaning to make the variables consistent with other datasets. We will convert the Year to a proper "date" variable and select only the races/ethnic groups to be used in the study.
 
@@ -492,7 +492,7 @@ dof1_tidy <- dof1 %>%
   filter(
     CountyCode == 59,
     race_eth %in% c("white", "black", "hispanic"),
-    Year != "7/1/2000 0:00:00"
+    !Year %in% c("7/1/2000 0:00:00", "4/1/2010 0:00:00") #getting rid of duplicate 2000 and 2010 census
   ) %>%
   group_by(year, race_eth, sex, age) %>%
   summarise(population = sum(population), .groups = "drop") %>%
@@ -557,9 +557,27 @@ nrow(dof_data) #13938, correct number of observations
 
 Checking how the data may/may not change by different years.. 
 ```{r comparison_graphs}
-dof_99_tidy %>% 
-  filter(sex = "female",
-         race_eth = "black")
+dof1 <- dof1_tidy %>% mutate(source = "dof1")
+dof2 <- dof2_tidy %>% mutate(source = "dof2")
+dof99 <- dof_99_tidy %>% mutate(source = "dof99")
+
+dof_all <- bind_rows(dof1, dof2, dof99)
+
+pop_totals <- dof_all%>%
+  group_by(source, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop")
+
+pop_totals
+
+ggplot(pop_totals, aes(x = year, y = population, color = source)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  theme_minimal() +
+  labs(
+    title = "Total population by year and data source",
+    y = "Total population"
+  )
+
 
 ```
 
