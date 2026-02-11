@@ -12,9 +12,10 @@ library(readxl)
 library(lubridate)
 library(ggthemes)
 library(knitr)
+library(tidyr)
 
 # Global options
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
                       fig.width=10, fig.height=5)
 
 ```
@@ -408,6 +409,137 @@ knitr::kable(
 )
 
 ``` 
+We are going to use some of the functions defined in our functions.R script to conduct our exploration.
+
+```{r figures}
+
+source("../Scripts/functions.R")
+
+#-----------------------------------
+# MERGE ONCE
+#-----------------------------------
+
+cdc <- cdc_mort %>%
+  left_join(dof_data_grouped,
+            by=c("year","sex","race_eth","age_group"))
+
+
+yrs_9906 <- 1999:2006
+yrs_0620 <- 2006:2020
+
+
+
+#================================================
+# FIGURE 1 — Male all-cause RR
+#================================================
+fig1 <- cdc %>%
+  calc_rates(yrs_0620,"male","all_cause") %>%
+  calc_rr()
+
+plot_rr(fig1,"Male All-Cause Mortality Rate Ratios")
+
+
+
+#================================================
+# FIGURE 2 — Female all-cause RR
+#================================================
+fig2 <- cdc %>%
+  calc_rates(yrs_0620,"female","all_cause") %>%
+  calc_rr()
+
+plot_rr(fig2,"Female All-Cause Mortality Rate Ratios")
+
+
+
+#================================================
+# FIGURE 3 — Male homicide rates
+#================================================
+fig3 <- cdc %>%
+  calc_rates(yrs_0620,"male","homicide") %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_rate(fig3,"Male Homicide Mortality Rates")
+
+
+
+#================================================
+# FIGURE 4 — Male all-cause minus homicide RR
+#================================================
+fig4 <- cdc %>%
+  filter(year %in% yrs_9906, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_9906, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-homicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4,"Male Non-Homicide Mortality RR")
+
+
+
+#================================================
+# FIGURE 5 — Homicide yearly (15–24 males)
+#================================================
+fig5 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="homicide",
+         year<=2006) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_yearly(fig5,"Homicide Mortality Males 15–24")
+
+
+
+#================================================
+# FIGURE 6 — MVC rates by age
+#================================================
+fig6 <- cdc %>%
+  calc_rates(yrs_9906,"male","mvc") %>%
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+  ungroup()
+
+plot_rate(fig6,"Motor Vehicle Crash Mortality Rates")
+
+
+
+#================================================
+# FIGURE 7 — MVC yearly (15–24)
+#================================================
+fig7 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="mvc",
+         year<=2006) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_yearly(fig7,"MVC Mortality Males 15–24")
+
+```
+
+
 
 ## Figure 1 
  
@@ -516,4 +648,606 @@ ggplot(
   ) +
   theme_minimal()
 
+```
+
+
+## Figure 2 
+
+Next, we are going to replicate Figure 2, which is "Female all cause mortality rate ratios comparing Latino and non-Latino black mortality to non-Latino white mortality, by 5 year age groups with 95% CI, California, 2006-2020. 
+
+We will need to replicate the previous steps, except subsetting to **females** instead of males. 
+
+**1. Subset to females, all-cause only, retaining age groups, summing deaths for years 2006-2020**
+
+**2. Use population data from 2006-2020 to calculate overall rates by age groups**
+
+**3. Calculate rate ratios with NH white as reference group ** 
+For each 5-year age group, we first calculate all-cause mortality rates for each race/ethnicity as the total number of deaths from 1999–2006 divided by the corresponding summed population for the same period. Rates are expressed per 100,000 population.
+Within each age group, we then calculate mortality rate ratios (RRs) by dividing the mortality rate for Latino males and non-Latino Black males by the mortality rate for non-Latino White males (reference group).
+Ninety-five percent confidence intervals for the rate ratios are estimated using a Poisson approximation based on the number of deaths in the comparison and reference groups.
+
+```{r figure_2}
+#reordering ages
+age_levels <- c(
+  "0-4", "5-9", "10-14", "15-19", "20-24",
+  "25-29", "30-34", "35-39", "40-44",
+  "45-49", "50-54", "55-59", "60-64",
+  "65-69", "70-74", "75-79", "80-84",
+  "85-89", "90+"
+)
+
+dof_data_grouped <- dof_data_grouped %>% 
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  ) 
+
+#Step 1 
+figure2_data <- cdc_mort %>% 
+  filter(
+    year %in% 2006:2020,
+    sex == "female", 
+    cod == "all_cause"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+#Step 2
+figure2_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 2006:2020,
+    sex == "female"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_2006_2020 = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3: merge deaths + population, calculate rates, then rate ratios
+
+figure2_rates <- figure2_data %>%
+  left_join(
+    figure2_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_2006_2020) * 100000
+  )
+
+# Calculate rate ratios using NH White as reference within age group
+rr_data_2 <- figure2_rates %>%
+  group_by(age_group) %>%
+  mutate(
+    ref_rate  = rate[race_eth == "white"],
+    ref_count = death_count[race_eth == "white"]
+  ) %>%
+  ungroup() %>%
+  filter(race_eth != "white") %>%   # exclude reference group from plotting
+  mutate(
+    rr = rate / ref_rate,
+    rr_lcl = rr * exp(-1.96 * sqrt(1 / death_count + 1 / ref_count)),
+    rr_ucl = rr * exp( 1.96 * sqrt(1 / death_count + 1 / ref_count))
+  )
+
+rr_data_2 <- rr_data_2 %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+#plotting
+ggplot(
+  rr_data_2,
+  aes(x = age_group, y = rr, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rr_lcl, ymax = rr_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Mortality Rate Ratios by Race/Ethnicity — Females 2006-2020",
+    subtitle = "Reference group: White",
+    x = "Age (years)",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal()
+
+``` 
+
+## Figure 3 
+
+Next, we are going to replicate Figure 3, which is "Male homicide mortality rate ratios comparing Latino and non-Latino black mortality to non-Latino white mortality, by 5 year age groups with 95% CI, California, 2006-2020 (Overlapping 95% CI for age group 80 years and older not shown.)". 
+
+We will start by selecting just homicide data, then replicate previous steps.
+
+**1. Subset to females, all-cause only, retaining age groups, summing deaths for years 2006-2020**
+
+**2. Use population data from 2006-2020 to calculate overall rates by age groups**
+
+**3. Calculate death rates ** 
+
+```{r figure_3}
+
+#Step 1 
+figure3_data <- cdc_mort %>% 
+  filter(
+    year %in% 2006:2020,
+    sex == "male", 
+    cod == "homicide"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+#Step 2
+figure3_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 2006:2020,
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_2006_2020= sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3: merge deaths + population, calculate rates, then 95% CI
+figure3_rates <- figure3_data %>%
+  left_join(
+    figure3_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_2006_2020) * 100000,
+    rate_lcl = rate * exp(-1.96 * sqrt(1 / death_count)),
+    rate_ucl = rate * exp( 1.96 * sqrt(1 / death_count))
+  ) %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+
+#plotting
+ggplot(
+  figure3_rates,
+  aes(x = age_group, y = rate, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rate_lcl, ymax = rate_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Male homicide mortality rate ratios by Race/Ethnicity",
+    subtitle = "1999 - 2006",
+    x = "Age (years)",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal() 
+```
+
+## Figure 4
+
+Next, we are going to replicate Figure 4, which is "Male mortality rate ratios for all causes except homicide, comparing Latino and non-Latino black mortality to non-Latino white mortality, by 5 year age groups with 95% CI, California, 1999-2006". 
+
+We will start by calculating all cause - homicides, then replicate previous steps.
+
+**1. Calculate all-case deaths - homicides**
+
+**2. Subset to male, subtract homicides from all cause, retaining age groups, summing deaths for years 1999:2006**
+
+**3. Use population data from 1999-2006 to calculate overall rates by age groups**
+
+**4. Calculate rate ratios with NH white as reference group **  
+
+```{r figure_4}
+#Step 1  
+#all-cause deaths
+all_cause <- cdc_mort %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male",
+    cod == "all_cause"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    all_deaths = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+#homicides 
+homicide <- cdc_mort %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male",
+    cod == "homicide"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    homicide_deaths = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+#subtracting 
+figure4_data <- all_cause %>%
+  left_join(
+    homicide,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    homicide_deaths = replace_na(homicide_deaths, 0),
+    death_count = all_deaths - homicide_deaths
+  ) %>%
+  select(race_eth, age_group, death_count) %>% 
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+
+
+#Step 2
+figure4_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_1999_2006 = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3: merge deaths + population, calculate rates, then rate ratios
+
+figure4_rates <- figure4_data %>%
+  left_join(
+    figure4_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_1999_2006) * 100000
+  )
+
+# Calculate rate ratios using NH White as reference within age group
+rr4_data <- figure4_rates %>%
+  group_by(age_group) %>%
+  mutate(
+    ref_rate  = rate[race_eth == "white"],
+    ref_count = death_count[race_eth == "white"]
+  ) %>%
+  ungroup() %>%
+  filter(race_eth != "white") %>%   # exclude reference group from plotting
+  mutate(
+    rr = rate / ref_rate,
+    rr_lcl = rr * exp(-1.96 * sqrt(1 / death_count + 1 / ref_count)),
+    rr_ucl = rr * exp( 1.96 * sqrt(1 / death_count + 1 / ref_count))
+  )
+
+
+
+rr4_data <- rr4_data %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+#plotting
+ggplot(
+  rr4_data,
+  aes(x = age_group, y = rr, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rr_lcl, ymax = rr_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Mortality Rate Ratios all causes except homicide by Race/Ethnicity — Males",
+    subtitle = "Reference group: White",
+    x = "Age (years)",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal()
+
+
+```
+
+
+## Figure 5  
+
+Next, we are going to replicate Figure 5, which is "Homicide mortality rates, among males 15-24 years of age, comparing Latino, non-Latino black, and non-Latino white, by year with 95% CI, California 1999-2006". 
+
+We will start by selecting homicides among males 15-24, then replicate previous steps.
+
+**1. Subset to males aged 15-24, homicides only, summing deaths for years 1999:2006**
+
+**2. Use population data from 1999-2006 to calculate overall rates by age groups**
+
+**3. Calculate death rates **
+
+
+```{r figure_5, echo = FALSE, fig.width=9, fig.height= 4}
+fig5_data <- cdc_with_pop %>%
+  filter(
+    sex == "male",
+    age_group %in% c("15-19", "20-24"),
+    cod == "homicide",
+    year <= 2006
+  )
+
+fig5_yearly <- fig5_data %>%
+  group_by(year, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig5_yearly <- fig5_yearly %>%
+  mutate(
+    rate = deaths / population,
+    rate_per_100k = rate * 100000
+  )
+
+fig5_yearly <- fig5_yearly %>%
+  mutate(
+    rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population * 100000
+  )
+
+
+ggplot(fig5_yearly,
+       aes(x = year, y = rate_per_100k, color = race_eth)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rate_lcl, ymax = rate_ucl),
+    width = 0.2
+  ) +
+  scale_x_continuous(breaks = 1999:2006) +
+  scale_y_continuous(
+    name = "Mortality rate per 100,000"
+  ) +
+  scale_color_manual(
+    values = c(
+      "hispanic" = "#E69F00",
+      "black" = "#000000",
+      "white" = "#56B4E9"
+    ),
+    labels = c(
+      "hispanic" = "Latino",
+      "black" = "Non-Latino Black",
+      "white" = "Non-Latino White"
+    )
+  ) +
+  labs(
+    title= "Homicide Mortality Rate, Males 15-24 y/o, 2000-2006",
+    x = "Year",
+    color = "Race/Ethnicity"
+  ) +
+ theme_minimal()
+
+```
+
+## Figure 6 
+
+This figure is comparing death rates for motor vehicle crashes by age groups ("Male motor vehicle crash mortality rates, comparing Latino, non-Latino black, and non-Latino white, 5 year age groups with 95% CI, California 1999-2006. (Points are offset to show CI; upper CI above 50/100,000 not shown).") 
+
+
+```{r figure_6, echo = FALSE, fig.width=9, fig.height= 4}
+#Step 1 
+figure6_data <- cdc_mort %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male", 
+    cod == "mvc"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+#Step 2
+figure6_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_1999_2006 = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3: merge deaths + population, calculate rates, then rate ratios
+
+figure6_rates <- figure6_data %>%
+  left_join(
+    figure6_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_1999_2006) * 100000,
+    rate_lcl = rate * exp(-1.96 * sqrt(1 / death_count)),
+    rate_ucl = rate * exp( 1.96 * sqrt(1 / death_count))
+  ) %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+
+#plotting
+ggplot(
+  figure6_rates,
+  aes(x = age_group, y = rate, color = race_eth, group = race_eth)
+) +
+  geom_point(size = 2, position = position_dodge(width = 0.3)) +
+  geom_line(position = position_dodge(width = 0.3)) +
+  geom_errorbar(
+    aes(ymin = rate_lcl, ymax = rate_ucl),
+    width = 0.15,
+    position = position_dodge(width = 0.3)
+  ) +
+  coord_cartesian(ylim = c(0, 50)) +
+  labs(
+    title = "Motor Vehicle Crash Mortality Rates by Race/Ethnicity — Males",
+    subtitle = "California, 1999–2006",
+    x = "Age group (years)",
+    y = "Deaths per 100,000 population"
+  ) +
+  theme_minimal()
+``` 
+
+As you may notice, we are missing data for some age groups, more prominently surrounding NH Blacks that are less than 15 years old and over 60 years old. I ran the following check, but it appears that similar to the other plot, we just don't have mvc data for these age groups. We likely observe this because our cdc query just doesn't populate due to insufficient cell size. However, this is a bit surprising since MVC deaths appear pretty large among Non-Latino Blacks in Vaca et al (2011). One thing we might try is importing another dataset from cdc wonder, this time stratifying by 10 year age groups. For now, we will continue on... 
+```{r checking_black_mvcs}
+cdc_mort %>% 
+  filter(cod == "mvc" 
+         & sex == "male" 
+         & age_group %in% c("60-64", "65-69")
+         & race_eth == "black"
+         & year %in% 1999:2006
+           )
+```
+
+## Figure 7 
+
+This figure also displays motor vehicle crash mortality rates, this time only including ages 15-24, comparing the rates for each race/ethnicity over each year in the study period. 
+
+```{r figure_7, echo = FALSE}
+fig7_data <- cdc_with_pop %>%
+  filter(
+    sex == "male",
+    age_group %in% c("15-19", "20-24"),
+    cod == "mvc",
+    year <= 2006
+  )
+
+fig7_yearly <- fig7_data %>%
+  group_by(year, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig7_yearly <- fig7_yearly %>%
+  mutate(
+    rate = deaths / population,
+    rate_per_100k = rate * 100000
+  )
+
+fig7_yearly <- fig7_yearly %>%
+  mutate(
+    rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population * 100000
+  )
+
+fig7_yearly %>% arrange(desc(rate_per_100k))
+
+
+pd <- position_dodge(width = 0.3)
+
+ggplot(fig7_yearly, aes(x = year, y = rate_per_100k, color = race_eth)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2, position = pd) +
+  geom_errorbar(
+    aes(ymin = rate_lcl, ymax = rate_ucl),
+    width = 0.2,
+    position = pd
+  ) +
+  scale_x_continuous(breaks = 1999:2006) +
+  scale_y_continuous(
+    name = "Mortality rate per 100,000",
+    limits = c(0, 50),
+    breaks = seq(0, 50, by = 10)
+  ) +
+  labs(
+    title = "Motor Vehicle Crash Mortality Rates, Males 15–24",
+    x = "Year",
+    color = "Race/Ethnicity"
+  ) +
+  theme_minimal()
+
+
+```
+
+
+
+We are going to do the same thing, except this time we will extend the data to go through years 2006-2021:
+
+```{r figure_7_extended, echo = FALSE, fig.width=11, fig.height= 6}
+fig7x_data <- cdc_with_pop %>%
+  filter(
+    sex == "male",
+    age_group %in% c("15-19", "20-24"),
+    cod == "mvc",
+    year >= 2006, 
+    year < 2021
+  )
+
+fig7x_yearly <- fig7x_data %>%
+  group_by(year, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig7x_yearly <- fig7x_yearly %>%
+  mutate(
+    rate = deaths / population,
+    rate_per_100k = rate * 100000
+  )
+
+fig7x_yearly <- fig7x_yearly %>%
+  mutate(
+    rate_lcl = (qchisq(0.025, 2 * deaths) / 2) / population * 100000,
+    rate_ucl = (qchisq(0.975, 2 * (deaths + 1)) / 2) / population * 100000
+  )
+
+fig7x_yearly %>% arrange(desc(rate_per_100k))
+
+
+pd <- position_dodge(width = 0.3)
+
+ggplot(fig7x_yearly, aes(x = year, y = rate_per_100k, color = race_eth)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2, position = pd) +
+  geom_errorbar(aes(ymin = rate_lcl, ymax = rate_ucl), width = 0.2, position = pd) +
+  scale_x_continuous(breaks = 2006:2023) +
+  scale_y_continuous(name = "Mortality rate per 100,000",
+                     limits = c(0, 60) ) +
+  
+  labs(
+    title = "Motor vehicle crash mortality rates males 15-24",
+    x = "Year",
+    color = "Race/Ethnicity",
+    linetype = "Race/Ethnicity"
+  ) +
+  theme_minimal()
+``` 
+
+```{r fig7x_table, include = FALSE}
+fig7x_table <- fig7x_yearly %>%
+  select(year, race_eth, rate_per_100k) %>%
+  pivot_wider(
+    names_from = race_eth,       # new columns from race_eth
+    values_from = rate_per_100k  # values to fill in
+  )
+
+fig7x_table
 ```
