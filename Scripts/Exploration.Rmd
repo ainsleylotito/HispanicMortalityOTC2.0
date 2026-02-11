@@ -435,7 +435,7 @@ cdc <- cdc_mort %>%
             by=c("year","sex","race_eth","age_group"))
 
 
-yrs_9906 <- 1999:2006
+
 yrs_0620 <- 2006:2020
 
 
@@ -479,12 +479,12 @@ plot_rate(fig3,"Male Homicide Mortality Rates")
 # FIGURE 4 — Male all-cause minus homicide RR
 #================================================
 fig4 <- cdc %>%
-  filter(year %in% yrs_9906, sex=="male") %>%
+  filter(year %in% yrs_0620, sex=="male") %>%
   group_by(race_eth,age_group,cod) %>%
 summarise(deaths=sum(deaths), .groups="drop") %>%
 left_join(
   cdc %>%
-    filter(year %in% yrs_9906, sex=="male") %>%
+    filter(year %in% yrs_0620, sex=="male") %>%
     group_by(race_eth,age_group) %>%
     summarise(pop=sum(population), .groups="drop"),
   by=c("race_eth","age_group")
@@ -506,7 +506,7 @@ fig5 <- cdc %>%
   filter(sex=="male",
          age_group %in% c("15-19","20-24"),
          cod=="homicide",
-         year<=2006) %>%
+         year %in% 2006:2020) %>%
   group_by(year,race_eth) %>%
   summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
   mutate(rate=deaths/pop*100000) %>%
@@ -522,12 +522,12 @@ plot_yearly(fig5,"Homicide Mortality Males 15–24")
 # FIGURE 6 — MVC rates by age
 #================================================
 fig6 <- cdc %>%
-  calc_rates(yrs_9906,"male","mvc") %>%
+  calc_rates(yrs_0620,"male","mvc") %>%
   rowwise() %>%
   mutate(ci_log(rate,deaths)) %>%
   ungroup()
 
-plot_rate(fig6,"Motor Vehicle Crash Mortality Rates")
+plot_rate(fig6,"Male Motor Vehicle Crash Mortality Rates")
 
 
 
