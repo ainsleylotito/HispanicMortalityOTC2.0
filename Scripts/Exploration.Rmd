@@ -28,9 +28,9 @@ dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
 dof_data <- read.csv("../CleanData/dof_data.csv")
 ```
 
-Let's examine the trends for the whole study period (data for 1999-2020):
 
-```{r explore_age_groups, echo = FALSE} 
+```{r explore_age_groups, include = FALSE} 
+#Let's examine the trends for the whole study period (data for 1999-2020):
 age_levels <- c(
   "0-4", "5-9", "10-14", "15-19", "20-24",
   "25-29", "30-34", "35-39", "40-44",
@@ -59,9 +59,9 @@ ggplot(agg_data, aes(x = age_group, y = pop_per_100k, color = race_eth, group = 
 
 ``` 
 
-Now let's look through the decades: 
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
+#Now let's look through the decades: 
 agg_period <- dof_data_grouped %>%
   mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE)) %>%
   mutate(period = case_when(
@@ -88,9 +88,10 @@ ggplot(agg_period, aes(x = age_group, y = pop_per_100k, color = race_eth, group 
   theme_minimal()
 
 ```
-# Sex differences 
+
 
 ```{r, include = FALSE}
+# Sex differences 
 population_table_wide <- dof_data_grouped %>%
   tidyr::pivot_wider(
     names_from = sex,
@@ -106,163 +107,6 @@ population_table_wide %>%
 ```
 
 
-#All-cause mortality
-
-To start, let's just look at all-cause mortality for males by racial/ethnic group. We are going to create a new dataframe for just this information: 
-```{r all_cause_mort, echo = FALSE}
-all_cause_mort <- read.csv("../CleanData/all_cause_mort.csv")
-
-race_eth_all_cause <- all_cause_mort %>% 
-  filter(Strata_Name %in% c("Female * Black", 
-                            "Female * Hispanic", "Female * White",
-                            "Male * Black", "Male * Hispanic",
-                            "Male * White")) #excluding deaths for Multi-Race and Other/Unknown 
-
-race_eth_all_cause <- race_eth_all_cause %>% #tidying
-  separate(
-    Strata_Name,
-    into = c("sex", "race_eth"),
-    sep = " \\* "
-  ) %>% 
-  select(-Strata) %>% 
-  rename_with(tolower) %>% 
-  mutate(sex = str_to_lower(sex),
-         race_eth = str_to_lower(race_eth))
-head(race_eth_all_cause)
-
-```
-Now that all of the naming conventions are the same as the population data, we can bring in the pop dataset and merge it with our race_eth_all_cause dataframe and calculate the death rate. We also need to apply the log-normal (Posson) CI for the rates.
-
-```{r all_cause_with_pop, echo = FALSE}
-dof_no_age <- read_csv("../CleanData/dof_no_age.csv")
-
-all_cause_with_pop <- left_join(race_eth_all_cause,dof_no_age,
-                                by = c("year", "sex", "race_eth"))
-
-all_cause_with_pop <- all_cause_with_pop %>% 
-  mutate( #mortality rate
-          rate = count/population,
-         rate_per_100k = rate*100000,
-         
-         # log-normal Poisson CI
-    rate_lcl = rate * exp(-1.96 / sqrt(count)),
-    rate_ucl = rate * exp( 1.96 / sqrt(count)),
-
-    rate_lcl_100k = rate_lcl * 100000,
-    rate_ucl_100k = rate_ucl * 100000)
-head(all_cause_with_pop)
-``` 
-
-
-Let's summarize these trends: 
-
-```{r all_c_no_age_trends, include = FALSE}
-all_cause_table <- all_cause_with_pop %>%
-  mutate(
-    rate_ci = sprintf(
-      "%.1f (%.1f–%.1f)",
-      rate_per_100k,
-      rate_lcl_100k,
-      rate_ucl_100k
-    )
-  )
-
-#females
-female_table <- all_cause_table %>%
-  filter(sex == "female") %>%
-  select(year, race_eth, rate_ci)
-
-female_table %>%
-  kable(
-    caption = "ALl-Case Female Death Rate"
-  )
-
-#males 
-male_table <- all_cause_table %>%
-  filter(sex == "male") %>%
-  select(year, race_eth, rate_ci)
-
-male_table%>%
-  kable(
-    caption = "ALl-Case Male Death Rate"
-  )
-``` 
-
-```{r echo = FALSE}
-#sex stratified table
-sex_stratified_table <- all_cause_table %>%
-  select(year, sex, race_eth, rate_ci) %>%
-  pivot_wider(
-    names_from = sex,
-    values_from = rate_ci
-  )
-
-sex_stratified_table%>%
-  kable(
-    caption = "ALl-Case Death Rate Stratified by Sex"
-  )
-```
-
-*Mortality rates are expressed per 100,000 persons. 95% confidence intervals were calculated using the log-normal approximation to the Poisson distribution.*
-
-Now, we are going to plot. We are going to use White as the referent category. 
-
-```{r plot_no_age_rr, echo = FALSE}
-rr_data <- all_cause_with_pop %>%
-  group_by(year, sex) %>%
-  mutate(
-    ref_rate  = rate[race_eth == "white"],
-    ref_count = count[race_eth == "white"]
-  ) %>%
-  ungroup() %>%
-  filter(race_eth != "white") %>%   # drop reference from RR plot
-  mutate(
-    rr = rate / ref_rate,
-    rr_lcl = rr * exp(-1.96 * sqrt(1/count + 1/ref_count)),
-    rr_ucl = rr * exp( 1.96 * sqrt(1/count + 1/ref_count))
-  )
-rr_data
-#females
-ggplot(
-  rr_data %>% filter(sex == "female"),
-  aes(x = year, y = rr, color = race_eth, group = race_eth)
-) +
-  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
-  geom_line(size = 1) +
-  geom_point(size = 2) +
-  geom_errorbar(
-    aes(ymin = rr_lcl, ymax = rr_ucl),
-    width = 0.15
-  ) +
-  labs(
-    title = "Mortality Rate Ratios by Race/Ethnicity — Females",
-    subtitle = "Reference group: White",
-    x = "Year",
-    y = "Rate Ratio"
-  ) +
-  theme_minimal()
-
-#males 
-ggplot(
-  rr_data %>% filter(sex == "male"),
-  aes(x = year, y = rr, color = race_eth, group = race_eth)
-) +
-  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
-  geom_line(size = 1) +
-  geom_point(size = 2) +
-  geom_errorbar(
-    aes(ymin = rr_lcl, ymax = rr_ucl),
-    width = 0.15
-  ) +
-  labs(
-    title = "Mortality Rate Ratios by Race/Ethnicity — Males",
-    subtitle = "Reference group: White",
-    x = "Year",
-    y = "Rate Ratio"
-  ) +
-  theme_minimal()
-
-```
 
 # CDC Mortality Data 
 
@@ -420,7 +264,11 @@ knitr::kable(
 
 
 ``` 
+
+## Figures 
+
 We are going to use some of the functions defined in our functions.R script to conduct our exploration.
+
 
 ```{r figures}
 
@@ -547,6 +395,126 @@ fig7 <- cdc %>%
   ungroup()
 
 plot_yearly(fig7,"MVC Mortality Males 15–24")
+
+```
+
+
+
+## Overlaid figure 
+
+```{r fig1}
+#Loading data 
+
+cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
+
+age_levels <- c(
+  "0-4", "5-9", "10-14", "15-19", "20-24",
+  "25-29", "30-34", "35-39", "40-44",
+  "45-49", "50-54", "55-59", "60-64",
+  "65-69", "70-74", "75-79", "80-84",
+  "85-89", "90+"
+)
+
+dof_data_grouped <- dof_data_grouped %>% 
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  ) 
+
+#Step 1 
+figure1_data <- cdc_mort %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male", 
+    cod == "all_cause"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+
+#Step 2
+figure1_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 1999:2006,
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_1999_2006 = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3:
+
+figure1_rates <- figure1_data %>%
+  left_join(
+    figure1_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_1999_2006) * 100000
+  )
+
+# Calculate rate ratios using NH White as reference within age group
+rr_data <- figure1_rates %>%
+  group_by(age_group) %>%
+  mutate(
+    ref_rate  = rate[race_eth == "white"],
+    ref_count = death_count[race_eth == "white"]
+  ) %>%
+  ungroup() %>%
+  filter(race_eth != "white") %>%   # exclude reference group from plotting
+  mutate(
+    rr = rate / ref_rate,
+    rr_lcl = rr * exp(-1.96 * sqrt(1 / death_count + 1 / ref_count)),
+    rr_ucl = rr * exp( 1.96 * sqrt(1 / death_count + 1 / ref_count))
+  )
+
+
+rr_data <- rr_data %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+ggplot(fig1,
+       aes(x = age_group, y = rr, color = race_eth, group = race_eth)) +
+
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+
+  # MAIN PERIOD (solid)
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = rr_lcl, ymax = rr_ucl), width = 0.15) +
+
+  # OVERLAY PERIOD (dashed)
+  geom_line(
+    data = rr_data,
+    linetype = "dashed",
+    size = 1
+  ) +
+  geom_point(
+    data = rr_data,
+    shape = 1,
+    size = 2
+  ) +
+  geom_errorbar(
+    data = rr_data,
+    aes(ymin = rr_lcl, ymax = rr_ucl),
+    width = 0.15,
+    linetype = "dashed"
+  ) +
+
+  labs(
+    title = "Mortality Rate Ratios by Race/Ethnicity — Males",
+    subtitle = "Solid = 2006–2020, Dashed = 1999–2006 | Reference: White",
+    x = "Age (years)",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal()
+
 
 ```
 

@@ -139,5 +139,8 @@ plot_yearly <- function(df,title){
          y="Rate per 100,000",
          color="Race/Ethnicity")+
     
+    
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), by = 1))+
+    
     theme_minimal()
 }
