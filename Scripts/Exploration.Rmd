@@ -407,4 +407,113 @@ knitr::kable(
   caption = "Table 1. Annual mortality rates (95% CI) per 100,000 by cause of death and race/ethnic group. California males age 15–24 years, 2006–2020."
 )
 
+``` 
+
+## Figure 1 
+ 
+We will need to 
+
+**1. subset to males, all-cause only, retaining age groups, summing deaths for years 2006-2020**
+
+**2. use population data from 2006-2020 to calculate overall rates by age groups**
+
+**3. Calculate rate ratios with NH white as reference group ** 
+For each 5-year age group, we first calculate all-cause mortality rates for each race/ethnicity as the total number of deaths from 1999–2006 divided by the corresponding summed population for the same period. Rates are expressed per 100,000 population.
+Within each age group, we then calculate mortality rate ratios (RRs) by dividing the mortality rate for Latino males and non-Latino Black males by the mortality rate for non-Latino White males (reference group).
+Ninety-five percent confidence intervals for the rate ratios are estimated using a Poisson approximation based on the number of deaths in the comparison and reference groups.
+
+```{r figure_1}
+#reordering ages
+age_levels <- c(
+  "0-4", "5-9", "10-14", "15-19", "20-24",
+  "25-29", "30-34", "35-39", "40-44",
+  "45-49", "50-54", "55-59", "60-64",
+  "65-69", "70-74", "75-79", "80-84",
+  "85-89", "90+"
+)
+
+dof_data_grouped <- dof_data_grouped %>% 
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  ) 
+
+#Step 1 
+figure1_data <- cdc_mort %>% 
+  filter(
+    year %in% 2006:2020,
+    sex == "male", 
+    cod == "all_cause"
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarise(
+    death_count = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+
+#Step 2
+figure1_pop <- dof_data_grouped %>% 
+  filter(
+    year %in% 2006:2020,
+    sex == "male"
+  ) %>% 
+  group_by(race_eth, age_group) %>%
+  summarise(
+    pop_2006_2020 = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+# Step 3:
+
+figure1_rates <- figure1_data %>%
+  left_join(
+    figure1_pop,
+    by = c("race_eth", "age_group")
+  ) %>%
+  mutate(
+    rate = (death_count / pop_2006_2020) * 100000
+  )
+
+# Calculate rate ratios using NH White as reference within age group
+rr_data <- figure1_rates %>%
+  group_by(age_group) %>%
+  mutate(
+    ref_rate  = rate[race_eth == "white"],
+    ref_count = death_count[race_eth == "white"]
+  ) %>%
+  ungroup() %>%
+  filter(race_eth != "white") %>%   # exclude reference group from plotting
+  mutate(
+    rr = rate / ref_rate,
+    rr_lcl = rr * exp(-1.96 * sqrt(1 / death_count + 1 / ref_count)),
+    rr_ucl = rr * exp( 1.96 * sqrt(1 / death_count + 1 / ref_count))
+  )
+
+
+rr_data <- rr_data %>%
+  mutate(
+    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
+  )
+
+#plotting
+ggplot(
+  rr_data,
+  aes(x = age_group, y = rr, color = race_eth, group = race_eth)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = rr_lcl, ymax = rr_ucl),
+    width = 0.15
+  ) +
+  labs(
+    title = "Mortality Rate Ratios by Race/Ethnicity — Males 2006-2020",
+    subtitle = "Reference group: White",
+    x = "Age (years)",
+    y = "Rate Ratio"
+  ) +
+  theme_minimal()
+
 ```
