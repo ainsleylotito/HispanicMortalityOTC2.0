@@ -139,5 +139,7 @@ plot_yearly <- function(df,title){
          y="Rate per 100,000",
          color="Race/Ethnicity")+
     
+    scale_x_continuous(breaks = 2006:2020) + 
+    
     theme_minimal()
 }
