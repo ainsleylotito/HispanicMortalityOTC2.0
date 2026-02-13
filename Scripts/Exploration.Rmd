@@ -127,7 +127,7 @@ head(cdc_with_pop)
 
 
 # Replicating tables and figures 
-## 2006-2023 data 
+## 2007-2023 data 
 
 To start, I am going to exclude the data from 2023, as we will need to figure out whether we are going to make two separate tables (standardizing to 2010 and 2020 population, with understanding that years after 2020 come from population *projections*, not estimates) or just include 2006-2020 data.
 
@@ -135,7 +135,7 @@ To start, I am going to exclude the data from 2023, as we will need to figure ou
 
 To replicate the table, we need to:  
 
-1. subset deaths to males 15-24, years 2006-2020
+1. subset deaths to males 15-24, years 2007-2020
 
 2. create a population weighting variable for 2010
 
@@ -151,7 +151,7 @@ To replicate the table, we need to:
 #Step 1: keep deaths and population by age group 
 data_age <- cdc_mort %>%
   filter(
-    year %in% 2006:2020,
+    year %in% 2007:2020,
     age_group %in% c("15-19","20-24"),
     sex=="male"
   ) %>%
@@ -160,7 +160,7 @@ data_age <- cdc_mort %>%
   left_join(
     dof_data_grouped %>%
       filter(
-        year %in% 2006:2020,
+        year %in% 2007:2020,
         age_group %in% c("15-19","20-24"),
         sex=="male"
       ) %>%
@@ -259,7 +259,7 @@ table1_wide <- table1_final %>%
 
 knitr::kable(
   table1_wide,
-  caption = "Table 1. Annual mortality rates (95% CI) per 100,000 by cause of death and race/ethnic group. California males age 15–24 years, 2006–2020."
+  caption = "Table 1. Annual mortality rates (95% CI) per 100,000 by cause of death and race/ethnic group. California males age 15–24 years, 2007–2020."
 )
 
 
@@ -284,7 +284,7 @@ cdc <- cdc_mort %>%
 
 
 
-yrs_0620 <- 2006:2020
+yrs_0720 <- 2007:2020
 
 
 
@@ -292,7 +292,7 @@ yrs_0620 <- 2006:2020
 # FIGURE 1 — Male all-cause RR
 #================================================
 fig1 <- cdc %>%
-  calc_rates(yrs_0620,"male","all_cause") %>%
+  calc_rates(yrs_0720,"male","all_cause") %>%
   calc_rr()
 
 plot_rr(fig1,"Male All-Cause Mortality Rate Ratios")
@@ -303,7 +303,7 @@ plot_rr(fig1,"Male All-Cause Mortality Rate Ratios")
 # FIGURE 2 — Female all-cause RR
 #================================================
 fig2 <- cdc %>%
-  calc_rates(yrs_0620,"female","all_cause") %>%
+  calc_rates(yrs_0720,"female","all_cause") %>%
   calc_rr()
 
 plot_rr(fig2,"Female All-Cause Mortality Rate Ratios")
@@ -314,7 +314,7 @@ plot_rr(fig2,"Female All-Cause Mortality Rate Ratios")
 # FIGURE 3 — Male homicide rates
 #================================================
 fig3 <- cdc %>%
-  calc_rates(yrs_0620,"male","homicide") %>%
+  calc_rates(yrs_0720,"male","homicide") %>%
   rowwise() %>%
   mutate(ci_exact(deaths,pop)) %>%
   ungroup()
@@ -327,12 +327,12 @@ plot_rate(fig3,"Male Homicide Mortality Rates")
 # FIGURE 4 — Male all-cause minus homicide RR
 #================================================
 fig4 <- cdc %>%
-  filter(year %in% yrs_0620, sex=="male") %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
   group_by(race_eth,age_group,cod) %>%
 summarise(deaths=sum(deaths), .groups="drop") %>%
 left_join(
   cdc %>%
-    filter(year %in% yrs_0620, sex=="male") %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
     group_by(race_eth,age_group) %>%
     summarise(pop=sum(population), .groups="drop"),
   by=c("race_eth","age_group")
@@ -354,7 +354,7 @@ fig5 <- cdc %>%
   filter(sex=="male",
          age_group %in% c("15-19","20-24"),
          cod=="homicide",
-         year %in% 2006:2020) %>%
+         year %in% 2007:2020) %>%
   group_by(year,race_eth) %>%
   summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
   mutate(rate=deaths/pop*100000) %>%
@@ -370,7 +370,7 @@ plot_yearly(fig5,"Homicide Mortality Males 15–24")
 # FIGURE 6 — MVC rates by age
 #================================================
 fig6 <- cdc %>%
-  calc_rates(yrs_0620,"male","mvc") %>%
+  calc_rates(yrs_0720,"male","mvc") %>%
   rowwise() %>%
   mutate(ci_log(rate,deaths)) %>%
   ungroup()
@@ -386,7 +386,7 @@ fig7 <- cdc %>%
   filter(sex=="male",
          age_group %in% c("15-19","20-24"),
          cod=="mvc",
-         year %in% 2006:2020) %>%
+         year %in% 2007:2020) %>%
   group_by(year,race_eth) %>%
   summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
   mutate(rate=deaths/pop*100000) %>%
