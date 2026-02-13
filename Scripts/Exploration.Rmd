@@ -137,7 +137,7 @@ To replicate the table, we need to:
 
 1. subset deaths to males 15-24, years 2007-2020
 
-2. create a population weighting variable for 2010
+2. create a population weighting variable for 2000 to standardize age-adjustments
 
 3. compute age-specific weights 
 
@@ -172,7 +172,7 @@ data_age <- cdc_mort %>%
 #Step 2: get standard population weights 
 std_pop <- dof_data_grouped %>%
   filter(
-    year == 2010,
+    year == 2000,
     age_group %in% c("15-19","20-24"),
     sex == "male"
   ) %>%
