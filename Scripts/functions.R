@@ -144,3 +144,54 @@ plot_yearly <- function(df,title){
     
     theme_minimal()
 }
+
+# ---------------------------- 
+# OVERLAY FUNCTIONS 
+# ---------------------------- 
+plot_rate_overlay <- function(new, old, title){
+  
+  ggplot(new, aes(age_group, rate, color=race_eth, group=race_eth)) +
+    
+    geom_line(size=1) +
+    geom_point(size=2) +
+    geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.15) +
+    
+    geom_line(data=old, linetype="dashed", size=1) +
+    geom_point(data=old, shape=1, size=2) +
+    geom_errorbar(data=old,
+                  aes(ymin=lcl,ymax=ucl),
+                  linetype="dashed",
+                  width=.15) +
+    
+    labs(title=title,
+         subtitle="Solid = 2007–2020, Dashed = 1999–2006",
+         x="Age", y="Rate per 100k") +
+    theme_minimal()
+} 
+
+
+plot_rr_overlay <- function(new, old, title){
+  
+  ggplot(new, aes(age_group, rr, color=race_eth, group=race_eth)) +
+    geom_hline(yintercept=1, linetype="dashed", color="gray50") +
+    
+    geom_line(size=1) +
+    geom_point(size=2) +
+    geom_errorbar(aes(ymin=rr_lcl, ymax=rr_ucl), width=.15) +
+    
+    geom_line(data=old, linetype="dashed", size=1) +
+    geom_point(data=old, shape=1, size=2) +
+    geom_errorbar(data=old,
+                  aes(ymin=rr_lcl,ymax=rr_ucl),
+                  linetype="dashed",
+                  width=.15) +
+    
+    labs(title=title,
+         subtitle="Solid = 2007–2020, Dashed = 1999–2006",
+         x="Age", y="Rate Ratio") +
+    theme_minimal()
+}
+
+plot_rr_overlay(fig1, fig1_old, "Male All-Cause Mortality RR")
+
+

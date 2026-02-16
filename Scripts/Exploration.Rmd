@@ -400,122 +400,129 @@ plot_yearly(fig7,"MVC Mortality Males 15–24")
 
 
 
-## Overlaid figure 
-
-```{r fig1}
-#Loading data 
-
-cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
-
-age_levels <- c(
-  "0-4", "5-9", "10-14", "15-19", "20-24",
-  "25-29", "30-34", "35-39", "40-44",
-  "45-49", "50-54", "55-59", "60-64",
-  "65-69", "70-74", "75-79", "80-84",
-  "85-89", "90+"
-)
-
-dof_data_grouped <- dof_data_grouped %>% 
-  mutate(
-    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
-  ) 
-
-#Step 1 
-figure1_data <- cdc_mort %>% 
-  filter(
-    year %in% 1999:2006,
-    sex == "male", 
-    cod == "all_cause"
-  ) %>% 
-  group_by(race_eth, age_group) %>% 
-  summarise(
-    death_count = sum(deaths, na.rm = TRUE),
-    .groups = "drop"
-  )
+## Overlaid figures
 
 
-#Step 2
-figure1_pop <- dof_data_grouped %>% 
-  filter(
-    year %in% 1999:2006,
-    sex == "male"
-  ) %>% 
-  group_by(race_eth, age_group) %>%
-  summarise(
-    pop_1999_2006 = sum(population, na.rm = TRUE),
-    .groups = "drop"
-  ) 
+
+```{r fig2}
+fig2_old <- cdc %>%
+  calc_rates(1999:2006,"female","all_cause") %>%
+  calc_rr()
+
+plot_rr_overlay(fig2, fig2_old, "Female All-Cause Mortality RR")
 
 
-# Step 3:
+```
 
-figure1_rates <- figure1_data %>%
+
+
+```{r fig3_overlay}
+fig3_old <- cdc %>%
+  calc_rates(1999:2006,"male","homicide") %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_rate_overlay(fig3, fig3_old,
+                  "Male Homicide Mortality Rates")
+
+
+``` 
+
+
+```{r fig4overlay}
+fig4_old <- cdc %>%
+  filter(year %in% 1999:2006, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+  summarise(deaths=sum(deaths), .groups="drop") %>%
   left_join(
-    figure1_pop,
-    by = c("race_eth", "age_group")
+    cdc %>%
+      filter(year %in% 1999:2006, sex=="male") %>%
+      group_by(race_eth,age_group) %>%
+      summarise(pop=sum(population), .groups="drop"),
+    by=c("race_eth","age_group")
   ) %>%
-  mutate(
-    rate = (death_count / pop_1999_2006) * 100000
-  )
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-homicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
 
-# Calculate rate ratios using NH White as reference within age group
-rr_data <- figure1_rates %>%
-  group_by(age_group) %>%
-  mutate(
-    ref_rate  = rate[race_eth == "white"],
-    ref_count = death_count[race_eth == "white"]
-  ) %>%
-  ungroup() %>%
-  filter(race_eth != "white") %>%   # exclude reference group from plotting
-  mutate(
-    rr = rate / ref_rate,
-    rr_lcl = rr * exp(-1.96 * sqrt(1 / death_count + 1 / ref_count)),
-    rr_ucl = rr * exp( 1.96 * sqrt(1 / death_count + 1 / ref_count))
-  )
+plot_rr_overlay(fig4, fig4_old,
+                "Male Non-Homicide Mortality RR")
 
 
-rr_data <- rr_data %>%
-  mutate(
-    age_group = factor(age_group, levels = age_levels, ordered = TRUE)
-  )
+```
 
-ggplot(fig1,
-       aes(x = age_group, y = rr, color = race_eth, group = race_eth)) +
 
-  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+```{r fig5overlay}
+fig5_old <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="homicide",
+         year %in% 1999:2006) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
 
-  # MAIN PERIOD (solid)
-  geom_line(size = 1) +
-  geom_point(size = 2) +
-  geom_errorbar(aes(ymin = rr_lcl, ymax = rr_ucl), width = 0.15) +
+fig5$period <- "2007–2020"
+fig5_old$period <- "1999–2006"
 
-  # OVERLAY PERIOD (dashed)
-  geom_line(
-    data = rr_data,
-    linetype = "dashed",
-    size = 1
-  ) +
-  geom_point(
-    data = rr_data,
-    shape = 1,
-    size = 2
-  ) +
-  geom_errorbar(
-    data = rr_data,
-    aes(ymin = rr_lcl, ymax = rr_ucl),
-    width = 0.15,
-    linetype = "dashed"
-  ) +
+combo <- bind_rows(fig5, fig5_old)
 
-  labs(
-    title = "Mortality Rate Ratios by Race/Ethnicity — Males",
-    subtitle = "Solid = 2006–2020, Dashed = 1999–2006 | Reference: White",
-    x = "Age (years)",
-    y = "Rate Ratio"
-  ) +
+ggplot(combo,
+       aes(year, rate, color=race_eth, linetype=period))+
+  geom_line()+
+  geom_point()+
+  geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.2)+
   theme_minimal()
 
 
 ```
 
 
+
+```{r fig6overlay}
+fig6_old <- cdc %>%
+  calc_rates(1999:2006,"male","mvc") %>%
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+  ungroup()
+
+plot_rate_overlay(fig6, fig6_old,
+                  "Male MVC Mortality Rates")
+
+
+```
+
+
+```{r}
+fig7_old <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="mvc",
+         year %in% 1999:2006) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+fig7$period <- "2007–2020"
+fig7_old$period <- "1999–2006"
+
+combo7 <- bind_rows(fig7, fig7_old)
+
+ggplot(combo7,
+       aes(year, rate, color=race_eth, linetype=period))+
+  geom_line()+
+  geom_point()+
+  geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.2)+
+  theme_minimal()
+
+
+```
