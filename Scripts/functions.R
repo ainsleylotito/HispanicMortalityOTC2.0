@@ -192,6 +192,6 @@ plot_rr_overlay <- function(new, old, title){
     theme_minimal()
 }
 
-plot_rr_overlay(fig1, fig1_old, "Male All-Cause Mortality RR")
+
 
 
