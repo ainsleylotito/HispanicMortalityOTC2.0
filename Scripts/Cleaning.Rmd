@@ -1,6 +1,12 @@
 ---
 title: "Cleaning"
-output: html_document
+output:
+  html_document:
+output_dir: ../Output 
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
 --- 
 ```{r setup}
 # Load packages

@@ -2,8 +2,13 @@
 title: "Exploration"
 output:
   html_document:
-output_dir: ../Output
+output_dir: ../Output 
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
 ---
+
 ```{r setup, include = FALSE}
 # Load packages
 library(tidyverse)
@@ -562,4 +567,6 @@ ggplot(combo7,
   theme_minimal()
 
 
-```
+``` 
+
+
