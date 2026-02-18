@@ -135,7 +135,7 @@ head(cdc_with_pop)
 
 To start, I am going to exclude the data from 2023, as we will need to figure out whether we are going to make two separate tables (standardizing to 2010 and 2020 population, with understanding that years after 2020 come from population *projections*, not estimates) or just include 2006-2020 data.
 
-## Table 1
+### Table 1
 
 To replicate the table, we need to:  
 
@@ -269,7 +269,7 @@ knitr::kable(
 
 ``` 
 
-## Figures 
+### Figures 
 
 We are going to use some of the functions defined in our functions.R script to conduct our exploration.
 
@@ -404,7 +404,13 @@ plot_yearly(fig7,"MVC Mortality Males 15–24")
 
 
 
-## Comparison of 1999-2006 and 2007-2023
+## Comparison of 1999-2006 and 2007-2023 
+
+For all of these comparisons, the old data will be dashed, and the new data solid. 
+
+We will start by comparing Figure 1 (All-Cause mortality Rate Ratios comparing black/hispanic males to white males, each age group). 
+
+### Figure 1: All-Casue RRs Black and Hispanic Males to White
 
 ```{r fig1}
 
@@ -419,9 +425,49 @@ plot_rr_overlay(fig1, fig1_old, "Male All-Cause Mortality RR")
 
 ```
 
+Looking at this figure, we can see that the RR decreased (significantly) for black males for ages 15-64. It increased for 0-4 and 5-9.  
+
+Among Hispanic males, we can se that the RR went from over 1 (increased risk) to less than 1 (protective) for ages 0-4 and 15-29. The largest deviation in this graph from past data is that **black males aged 60-90+ now have increased mortality risk compared to whites, when they used to have decreased risk.**
+
+Let's review the absolute difference in RR:  
+
+<details>
+<summary>Click to expand table</summary>
+
+```{r}
+comparison <- comparison_data(fig1, fig1_old)
 
 
+comparison %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, diff)
+```
+</details>
 
+
+The percent change in RR: 
+<details>
+<summary>Click to expand table</summary>
+```{r}
+comparison %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, pct_change)
+```
+</details>
+
+**The Ratio of RRs:**
+
+We will use a heatmap. white means no change (ratio =1), red means the disparity increased, and blue means the disparity decreased
+```{r}
+heatmap_rr_comparison(comparison)
+
+```
+
+Looking at this heatmap, it appears that the groups to focus on where the disparity increased is hispanic youths and black males ages 20-29.
+
+### Figure 2: All-Casue RRs Black and Hispanic Females to White
+
+Now let's examine females instead of males: 
 ```{r fig2}
 fig2_old <- cdc %>%
   calc_rates(1999:2006,"female","all_cause") %>%
@@ -432,30 +478,46 @@ plot_rr_overlay(fig2, fig2_old, "Female All-Cause Mortality RR")
 
 ```
 
-```{r rate_funct_overlay}
-plot_rate_overlay <- function(new, old, title){
+We can see that the same relationship appeared among black females aged 65-90+, where they now have increased mortality risk compared to whites when they used to have decreased risk. 
 
-ggplot(new, aes(age_group, rate, color=race_eth, group=race_eth)) +
+We also see among the younger ages that the RR for black females appears to have increased (ages 0-19), 15-19 appears consistent, 25-39 y/olds have insignificantly higher risk, and 45-54 y/olds have significantly reduced RR's.
 
-  geom_line(size=1) +
-  geom_point(size=2) +
-  geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.15) +
+Let's review the absolute difference in RR:  
 
-  geom_line(data=old, linetype="dashed", size=1) +
-  geom_point(data=old, shape=1, size=2) +
-  geom_errorbar(data=old,
-                aes(ymin=lcl,ymax=ucl),
-                linetype="dashed",
-                width=.15) +
+<details>
+<summary>Click to expand table</summary>
 
-  labs(title=title,
-       subtitle="Solid = 2007–2020, Dashed = 1999–2006",
-       x="Age", y="Rate per 100k") +
-  theme_minimal()
-}
+```{r}
+comparison2 <- comparison_data(fig2, fig2_old)
+
+comparison2 %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, diff)
+```
+</details>
+
+The percent change in RR: 
+<details>
+<summary>Click to expand table</summary>
+```{r}
+comparison2 %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, pct_change)
+```
+</details>
+
+**The Ratio of RRs: ** 
+
+We will use a heatmap. white means no change (ratio =1), red means the disparity increased, and blue means the disparity decreased
+```{r}
+heatmap_rr_comparison(comparison2)
+```
+It appears that the groups to pay the most attention to are Hispanic female youths, in particular ages 10-14.
 
 
-``` 
+### Figure 3: Male Homicide Mortality Rates 
+
+Next we will plot the mortality rates among males for homicide only.
 
 ```{r fig3_overlay}
 fig3_old <- cdc %>%
@@ -467,9 +529,16 @@ fig3_old <- cdc %>%
 plot_rate_overlay(fig3, fig3_old,
                   "Male Homicide Mortality Rates")
 
-
 ``` 
 
+Let's compare the rates: 
+```{r}
+fig3comparison<- rate_comparison_data(fig3, fig3_old)
+
+heatmap_rate_comparison(fig3comparison)
+```
+
+### Figure 4:  Male mortality rate ratios for all causes except homicide, comparing Black/Hispanic mortality to White mortality 
 
 ```{r fig4overlay}
 fig4_old <- cdc %>%
@@ -492,9 +561,17 @@ fig4_old <- cdc %>%
 plot_rr_overlay(fig4, fig4_old,
                 "Male Non-Homicide Mortality RR")
 
+```
+ 
+Let's compare the rate ratios: 
+```{r}
+comparison4 <- comparison_data(fig4, fig4_old)
 
+
+heatmap_rr_comparison(comparison4) 
 ```
 
+### Figure 5: Homicide mortality rates, among males 15-24 years, comparing Hispanic, Black, and White mortality by year 
 
 ```{r fig5overlay}
 fig5_old <- cdc %>%
@@ -523,8 +600,14 @@ ggplot(combo,
 
 
 ```
+Let's compare the rates: 
+```{r}
+fig5comparison<- rate_comparison_data(fig5, fig5_old)
 
+heatmap_rate_comparison(fig5comparison)
 
+```
+### Figure 6: Male motor vehicle crash mortality rates, comparing Hispanic, Black, and Whites, 5-year age groups 
 
 ```{r fig6overlay}
 fig6_old <- cdc %>%
@@ -536,9 +619,17 @@ fig6_old <- cdc %>%
 plot_rate_overlay(fig6, fig6_old,
                   "Male MVC Mortality Rates")
 
-
 ```
 
+Let's compare the rates: 
+```{r}
+fig6comparison<- rate_comparison_data(fig6, fig6_old)
+
+heatmap_rate_comparison(fig6comparison)
+```
+
+
+### Figure 7: Motor vehicle crash mortality rates, among males 15-24 years of age 
 
 ```{r}
 fig7_old <- cdc %>%
@@ -565,7 +656,13 @@ ggplot(combo7,
   geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.2)+
   theme_minimal()
 
-
 ``` 
 
+Let's compare the rates: 
 
+```{r}
+fig7comparison<- rate_comparison_data(fig7, fig7_old)
+
+heatmap_rate_comparison(fig7comparison)
+
+```

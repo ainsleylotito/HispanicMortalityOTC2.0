@@ -192,6 +192,48 @@ plot_rr_overlay <- function(new, old, title){
     theme_minimal()
 }
 
+#comparison data for RRs
+comparison_data <- function(df1, df2) {df1 %>%
+  left_join(df2,
+            by=c("age_group","race_eth"),
+            suffix=c("_new","_old")) %>%
+  mutate(diff = rr_new - rr_old,
+         pct_change = ((rr_new - rr_old)/rr_old * 100),
+         rr_ratio = rr_new / rr_old)
+}
 
+#making heatmap to compare old/new rrs
+heatmap_rr_comparison <- function(df){ 
+  ggplot(df, aes(age_group, race_eth, fill = rr_ratio)) +
+  geom_tile() +
+  scale_fill_gradient2(midpoint = 1) +
+  labs(title="Change in Disparity (RR Ratio)",
+       x="Age Group",
+       y="Race/Ethnicity")
+}
 
+#comparing rates 
+rate_comparison_data <- function(df_new, df_old){
+  
+  df_new %>%
+    left_join(df_old,
+              by = c("age_group","race_eth"),
+              suffix = c("_new","_old")) %>%
+    mutate(
+      rate_diff = rate_new - rate_old,
+      pct_change = ((rate_new - rate_old)/rate_old) * 100,
+      rate_ratio = rate_new / rate_old
+    )
+}
 
+#heatmap for rate changes 
+heatmap_rate_comparison <- function(df){
+  
+  ggplot(df,
+         aes(age_group, race_eth, fill = rate_ratio)) +
+    geom_tile() +
+    scale_fill_gradient2(midpoint = 1) +
+    labs(title = "Change in Mortality Rates (Rate Ratio)",
+         x = "Age Group",
+         y = "Race/Ethnicity")
+}
