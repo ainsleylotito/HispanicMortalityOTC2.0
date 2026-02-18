@@ -1,8 +1,8 @@
 ---
 title: "Exploration"
+output_dir: ../Output 
 output:
   html_document:
-output_dir: ../Output 
     toc: true
     toc_depth: 3
     number_sections: true
@@ -405,7 +405,7 @@ plot_yearly(fig7,"MVC Mortality Males 15–24")
 
 
 
-## Overlaid figures
+## Comparison of 1999-2006 and 2007-2023
 
 ```{r fig1}
 

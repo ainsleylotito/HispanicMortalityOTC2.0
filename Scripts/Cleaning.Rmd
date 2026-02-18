@@ -1,8 +1,8 @@
 ---
 title: "Cleaning"
+output_dir: ../Output 
 output:
   html_document:
-output_dir: ../Output 
     toc: true
     toc_depth: 3
     number_sections: true
