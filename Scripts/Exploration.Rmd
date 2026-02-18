@@ -639,11 +639,11 @@ heatmap_rate_comparison(fig6comparison)
 ### Figure 7: Motor vehicle crash mortality rates, among males 15-24 years of age 
 
 ```{r}
-fig7_old <- cdc %>%
+fig7 <- cdc %>%
   filter(sex=="male",
          age_group %in% c("15-19","20-24"),
          cod=="mvc",
-         year %in% 1999:2006) %>%
+         year %in% 1999:2020) %>%
   group_by(year,race_eth) %>%
   summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
   mutate(rate=deaths/pop*100000) %>%
@@ -651,13 +651,11 @@ fig7_old <- cdc %>%
   mutate(ci_exact(deaths,pop)) %>%
   ungroup()
 
-fig7$period <- "2007–2020"
-fig7_old$period <- "1999–2006"
 
-combo7 <- bind_rows(fig7, fig7_old)
-
-ggplot(combo7,
-       aes(year, rate, color=race_eth, linetype=period))+
+ggplot(fig7,
+       aes(year, rate, color=race_eth))+ 
+  scale_x_continuous(breaks=1999:2020)+ 
+  geom_vline(xintercept=2006.5, linetype=2)+
   geom_line()+
   geom_point()+
   geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.2)+
