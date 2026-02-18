@@ -24,9 +24,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
                       fig.width=10, fig.height=5)
 
 ```
-# Exploring population data 
+# Introduction 
 
-We are going to explore the distribution of our population data by individual ages and age categories, respectively. 
+This document will be used to explore our mortality data from 2007-2023, using the mortality statistics from CDC Wonder and population statistics from DOF. We will also compare the results from 2007-2023 to the earlier statistics from 1999-2006 to evaluate what has changed over time. All cleaned datasets can be found in the `/CleanData` directory, which were previously generated in the `Scripts/Cleaning.Rmd` file. 
 
 ```{r explore_population, include = FALSE}
 dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
@@ -113,7 +113,6 @@ population_table_wide %>%
 
 
 
-# CDC Mortality Data 
 
 ```{r cdc_merge, include = FALSE}
 cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
