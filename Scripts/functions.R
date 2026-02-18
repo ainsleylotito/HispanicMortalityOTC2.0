@@ -238,28 +238,3 @@ heatmap_rate_comparison <- function(df){
          y = "Race/Ethnicity")
 }
 
-#comparing years
-rate_comparison_year <- function(df_new, df_old){
-  
-  df_new %>%
-    left_join(df_old,
-              by = c("year","race_eth"),
-              suffix = c("_new","_old")) %>%
-    mutate(
-      rate_diff = rate_new - rate_old,
-      pct_change = ((rate_new - rate_old)/rate_old) * 100,
-      rate_ratio = rate_new / rate_old
-    )
-}
-
-#heatmap for rate changes 
-heatmap_rate_year <- function(df){
-  
-  ggplot(df,
-         aes(year, race_eth, fill = rate_ratio)) +
-    geom_tile() +
-    scale_fill_gradient2(midpoint = 1) +
-    labs(title = "Change in Mortality Rates (Rate Ratio)",
-         x = "Year",
-         y = "Race/Ethnicity")
-}

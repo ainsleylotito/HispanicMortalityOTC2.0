@@ -600,13 +600,7 @@ ggplot(combo,
 
 
 ```
-Let's compare the rates: 
-```{r}
-fig5comparison<- rate_comparison_year(fig5, fig5_old)
 
-heatmap_rate_year(fig5comparison)
-
-```
 ### Figure 6: Male motor vehicle crash mortality rates, comparing Hispanic, Black, and Whites, 5-year age groups 
 
 ```{r fig6overlay}
@@ -621,7 +615,20 @@ plot_rate_overlay(fig6, fig6_old,
 
 ```
 
-Let's compare the rates: 
+Visually, it does not appear as though there are any significant changes, except between the old 85-84 and new for whites. Let's also try just plotting ages 15-24 to see what we observe: 
+
+```{r} 
+fig6_old_15_24 <- fig6_old %>% 
+  filter(age_group %in% c("15-19", "20-24"))
+  
+fig6_15_24 <- fig6 %>% 
+  filter(age_group %in% c("15-19", "20-24"))
+ 
+plot_rate_overlay(fig6_15_24,fig6_old_15_24, "Male MVC Mortality ages 15-24")  
+```
+It looks as though all of them are lower! Significant differences for 15-19 y/olds that are white and hispanic.
+
+Let's compare the rates between all ages: 
 ```{r}
 fig6comparison<- rate_comparison_data(fig6, fig6_old)
 
@@ -658,11 +665,4 @@ ggplot(combo7,
 
 ``` 
 
-Let's compare the rates: 
 
-```{r}
-fig7comparison<- rate_comparison_year(fig7, fig7_old)
-
-heatmap_rate_year(fig7comparison)
-
-```
