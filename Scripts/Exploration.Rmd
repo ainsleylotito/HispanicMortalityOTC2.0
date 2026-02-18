@@ -602,9 +602,9 @@ ggplot(combo,
 ```
 Let's compare the rates: 
 ```{r}
-fig5comparison<- rate_comparison_data(fig5, fig5_old)
+fig5comparison<- rate_comparison_year(fig5, fig5_old)
 
-heatmap_rate_comparison(fig5comparison)
+heatmap_rate_year(fig5comparison)
 
 ```
 ### Figure 6: Male motor vehicle crash mortality rates, comparing Hispanic, Black, and Whites, 5-year age groups 
@@ -661,8 +661,8 @@ ggplot(combo7,
 Let's compare the rates: 
 
 ```{r}
-fig7comparison<- rate_comparison_data(fig7, fig7_old)
+fig7comparison<- rate_comparison_year(fig7, fig7_old)
 
-heatmap_rate_comparison(fig7comparison)
+heatmap_rate_year(fig7comparison)
 
 ```
