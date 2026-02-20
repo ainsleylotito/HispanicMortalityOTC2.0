@@ -144,3 +144,14 @@ fig1 %>%
   select(rr, rr_lcl, rr_ucl) %>% 
   arrange(rr)
 ```
+
+## Fig 1- Female 
+
+```{r}
+fig2 <- cdc %>%
+  calc_rates(yrs_0720,"female","all_cause") %>%
+  calc_rr()
+
+plot_rr(fig2, NULL)
+
+```
