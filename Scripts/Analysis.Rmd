@@ -1,9 +1,42 @@
 ---
 title: "Analysis"
-output: html_document
+output_dir: ../Output 
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
 ---
 
+```{r setup, include = FALSE}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(ggthemes)
+library(knitr)
+library(tidyr)
+
+# Global options
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
+                      fig.width=10, fig.height=5)
+
+``` 
+
 This document contains the analyses used to replicate Vaca et al. (2011). Datasets are pulled from the `/Cleandata` directory, which were produced in the `/scripts/Cleaning.Rmd` document.  
+
+# Descriptive Analysis 
+
+We will begin by exploring general descriptive statistics from our mortality data (2007-2020). 
+
+
+```{r explore_population, include = FALSE}
+dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
+dof_data <- read.csv("../CleanData/dof_data.csv")
+```
+
 
 #Mortality rates per 100,000 
 
@@ -19,7 +52,7 @@ We will first calculate the all-cause mortality rates stratified by sex and age.
 
 #Overall comparisons 
 "For the overall comparisons, mortality rates were
-adjusted to the age distribution of the 2000 California Department of Finance population estimates." 
+adjusted to the age distribution of the 2000 California Department of Finance population estimates." 
 
 #Racial/ethnic mortality rate ratios 
 "To compare Latino and
