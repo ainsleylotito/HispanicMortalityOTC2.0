@@ -84,7 +84,7 @@ ci_exact <- function(deaths,pop){
 # PLOTTING FUNCTIONS
 # -----------------------------
 
-plot_rr <- function(df,title){
+plot_rr <- function(df, title){
   
   ggplot(df,
          aes(age_group, rr, color=race_eth, group=race_eth))+
@@ -99,7 +99,14 @@ plot_rr <- function(df,title){
          y="Rate Ratio",
          color="Race/Ethnicity")+
     
-    theme_minimal()
+    scale_color_discrete(labels = c(
+      "hispanic" = "Hispanic",
+      "white" = "Non-Hispanic White",
+      "black" = "Non-Hispanic Black"
+    ))+
+    
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 }
 
 
@@ -118,7 +125,15 @@ plot_rate <- function(df,title,ylabel="Rate per 100,000"){
          y=ylabel,
          color="Race/Ethnicity")+
     
-    theme_minimal()
+    scale_color_discrete(labels = c(
+      "hispanic" = "Hispanic",
+      "white" = "Non-Hispanic White",
+      "black" = "Non-Hispanic Black"
+    ))+
+    
+    theme_minimal()+ 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
 }
 
 
@@ -142,7 +157,15 @@ plot_yearly <- function(df,title){
     
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), by = 1))+
     
-    theme_minimal()
+    scale_color_discrete(labels = c(
+      "hispanic" = "Hispanic",
+      "white" = "Non-Hispanic White",
+      "black" = "Non-Hispanic Black"
+    ))+
+    
+    theme_minimal()+ 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
 }
 
 # ---------------------------- 
@@ -166,7 +189,9 @@ plot_rate_overlay <- function(new, old, title){
     labs(title=title,
          subtitle="Solid = 2007–2020, Dashed = 1999–2006",
          x="Age", y="Rate per 100k") +
-    theme_minimal()
+    theme_minimal()+ 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
 } 
 
 
@@ -189,7 +214,9 @@ plot_rr_overlay <- function(new, old, title){
     labs(title=title,
          subtitle="Solid = 2007–2020, Dashed = 1999–2006",
          x="Age", y="Rate Ratio") +
-    theme_minimal()
+    theme_minimal()+ 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
 }
 
 #comparison data for RRs

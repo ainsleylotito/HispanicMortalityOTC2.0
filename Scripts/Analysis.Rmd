@@ -21,7 +21,7 @@ library(tidyr)
 
 # Global options
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
-                      fig.width=10, fig.height=5)
+                      fig.width=10, fig.height=7)
 
 ``` 
 
@@ -41,6 +41,7 @@ dof_data<- read_csv("../CleanData/dof_data_grouped.csv")
 cdc_with_pop <- left_join(cdc_mort,dof_data,
                                 by = c("year", "sex", "race_eth", "age_group"))
 head(cdc_with_pop)
+
 ```
 ## Total Death Count 
 
@@ -105,3 +106,34 @@ table1_adj
 # All cause mortality rates
 
 ## Fig 1- Male 
+```{r}
+source("../Scripts/functions.R")
+
+#-----------------------------------
+# MERGE ONCE
+#-----------------------------------
+
+cdc <- cdc_mort %>%
+  left_join(dof_data_grouped,
+            by=c("year","sex","race_eth","age_group"))
+
+
+yrs_0720 <- 2007:2020
+
+
+#================================================
+# FIGURE 1 — Male all-cause RR
+#================================================
+fig1 <- cdc %>%
+  calc_rates(yrs_0720,"male","all_cause") %>%
+  calc_rr()
+
+#plotting
+plot_rr(fig1,"Male All-Cause Mortality Rate Ratios")
+
+fig1 %>% 
+  filter(age_group %in% 
+           c("60-64", "65-69", "70-74", "75-89", "90+")) %>% 
+  group_by(race_eth, age_group) %>% 
+  select(rr, rr_lcl, rr_ucl)
+```
