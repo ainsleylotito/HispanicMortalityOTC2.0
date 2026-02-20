@@ -65,7 +65,8 @@ What are the age-adjusted mortality rates for each race/ethnicity group?
 data_age <- cdc_with_pop %>%
   filter(
     year %in% 2007:2020, 
-    cod == "all_cause"
+    cod == "all_cause",
+    !is.na(age_group)
   ) %>%
   group_by(race_eth, age_group) %>%
   summarise(deaths = sum(deaths),
@@ -76,36 +77,31 @@ head(data_age)
 # Step 2: Obtain standard population weight
 std_pop <- dof_data %>%
   filter(
-    year == 2000,
-    sex == "male"
+    year == 2000
   ) %>%
   group_by(age_group) %>%
   summarise(std_pop = sum(population), .groups="drop") %>%
   mutate(weight = std_pop / sum(std_pop))
 
+# Step 3: compute age-specific rates
+data_age <- data_age %>%
+  mutate(rate = deaths / pop)
+ 
+# Step 4: join weights + calculate weighted rates 
+adj_rates <- data_age %>%
+  left_join(std_pop, by="age_group") %>%
+  mutate(weighted_rate = rate * weight)
+
+#sum weighted rates --> age-adjusted rates
+table1_adj <- adj_rates %>%
+  group_by(race_eth) %>%
+  summarise(
+    age_adj_rate = sum(weighted_rate) * 100000,
+    .groups="drop"
+  )
+table1_adj
 ```
 
+# All cause mortality rates
 
-#Mortality rates per 100,000 
-
-"Mortality rates per 100 000 population were computed for
-Latinos, non-Latino whites, and non-Latino blacks by sex and by
-5 year age groups (with ages 90 and older forming one age
-group)." 
-
-We will first calculate the all-cause mortality rates stratified by sex and age. 
-
-
-
-
-#Overall comparisons 
-"For the overall comparisons, mortality rates were
-adjusted to the age distribution of the 2000 California Department of Finance population estimates." 
-
-#Racial/ethnic mortality rate ratios 
-"To compare Latino and
-non-Latino black mortality to non-Latino white mortality, we
-calculated mortality rate ratios. For both mortality rates and rate
-ratios, confidence intervals (95% CI) were calculated using the
-log normal approximation to the Poisson distribution. Trends
-were assessed using variance weighted least squares regression"
+## Fig 1- Male 
