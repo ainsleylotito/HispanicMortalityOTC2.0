@@ -144,6 +144,21 @@ fig1 %>%
   select(rr, rr_lcl, rr_ucl) %>% 
   arrange(rr)
 ```
+Looking through the numbers: 
+
+```{r}
+tables_by_race <- fig1 %>%
+  mutate(rr_ci = sprintf("%.2f (%.2f, %.2f)", rr, rr_lcl, rr_ucl)) %>%
+  select(race_eth, age_group, rr_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(tables_by_race) <- unique(fig1$race_eth)
+
+tables_by_race
+
+```
+
 
 ## Fig 1- Female 
 
@@ -154,4 +169,46 @@ fig2 <- cdc %>%
 
 plot_rr(fig2, NULL)
 
+```
+
+Looking through the numbers: 
+
+```{r}
+tables_by_race <- fig2 %>%
+  mutate(rr_ci = sprintf("%.2f (%.2f, %.2f)", rr, rr_lcl, rr_ucl)) %>%
+  select(race_eth, age_group, rr_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(tables_by_race) <- unique(fig1$race_eth)
+
+tables_by_race
+
+``` 
+
+# Homicide mortality rates
+
+## Fig 3- Male 
+```{r}
+fig3 <- cdc %>%
+  calc_rates(yrs_0720,"male","homicide") %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_rate(fig3,"Male Homicide Mortality Rates")
+
+``` 
+
+By number: 
+```{r}
+tables_by_race <- fig3 %>%
+  mutate(r_ci = sprintf("%.2f (%.2f, %.2f)", rate, lcl, ucl)) %>%
+  select(race_eth, age_group, r_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(tables_by_race) <- unique(fig3$race_eth)
+
+tables_by_race
 ```
