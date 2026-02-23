@@ -401,7 +401,88 @@ fig7 <- cdc %>%
 plot_yearly(fig7,"MVC Mortality Males 15–24")
 
 ```
+Trying to isolate which cod is bringing about 15-24 y/old spike?
 
+```{r} 
+#mvc
+fig4.1 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-mvc,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.1,"Male Non-MVC Mortality RR")  
+
+#suicide 
+fig4.2 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-suicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.2,"Male Non-Suicide Mortality RR")  
+
+#other injuries 
+fig4.3 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-other_injury,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.3,"Male Non-Injury Mortality RR") 
+#other disease
+fig4.4 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-other_disease,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.4,"Male Non-disease Mortality RR") 
+```
 
 
 ## Comparison of 1999-2006 and 2007-2023 

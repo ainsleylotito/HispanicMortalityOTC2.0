@@ -196,7 +196,7 @@ fig3 <- cdc %>%
   mutate(ci_exact(deaths,pop)) %>%
   ungroup()
 
-plot_rate(fig3,"Male Homicide Mortality Rates")
+plot_rate(fig3,NULL)
 
 ``` 
 
@@ -210,5 +210,44 @@ tables_by_race <- fig3 %>%
 
 names(tables_by_race) <- unique(fig3$race_eth)
 
-tables_by_race
+tables_by_race 
 ```
+
+# All cause minus homicide 
+## Figure 4: Male mortality rate ratios 
+
+```{r}
+fig4 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-homicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4,"Male Non-Homicide Mortality RR")
+``` 
+
+Numerically: 
+```{r}
+table4_by_race <- fig4 %>%
+  mutate(rr_ci = sprintf("%.2f (%.2f, %.2f)", rr, rr_lcl, rr_ucl)) %>%
+  select(race_eth, age_group, rr_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(table4_by_race) <- unique(fig4$race_eth)
+
+table4_by_race
+``` 
+
+# 
