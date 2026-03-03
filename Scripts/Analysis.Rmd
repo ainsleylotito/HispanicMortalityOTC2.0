@@ -234,7 +234,15 @@ left_join(
   set_age_order() %>%
   calc_rr()
 
-plot_rr(fig4,NULL)
+plot_rr(fig4,NULL) 
+
+fig4 <- plot_rr(fig4,NULL)  
+ggsave(
+  filename = "../Output/fig4.png",
+  plot = fig4,
+  width = 10,
+  height = 6
+)
 ``` 
 
 Numerically: 
