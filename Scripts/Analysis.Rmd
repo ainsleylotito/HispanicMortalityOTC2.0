@@ -234,7 +234,7 @@ left_join(
   set_age_order() %>%
   calc_rr()
 
-plot_rr(fig4,"Male Non-Homicide Mortality RR")
+plot_rr(fig4,NULL)
 ``` 
 
 Numerically: 
