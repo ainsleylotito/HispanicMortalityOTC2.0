@@ -124,7 +124,14 @@ fig1 <- cdc %>%
   calc_rr()
 
 #plotting
-plot_rr(fig1,NULL)
+plot_rr(fig1,NULL) 
+fig1_plot <- plot_rr(fig1,NULL)
+ggsave(
+  filename = "../Output/fig1.png",
+  plot = fig1_plot,
+  width = 10,
+  height = 6
+)
 
 #range for 60+
 fig1 %>% 
@@ -142,7 +149,9 @@ fig1 %>%
   "45-49", "50-54", "55-59")) %>% 
   group_by(age_group) %>% 
   select(rr, rr_lcl, rr_ucl) %>% 
-  arrange(rr)
+  arrange(rr) 
+
+
 ```
 Looking through the numbers: 
 
@@ -168,6 +177,14 @@ fig2 <- cdc %>%
   calc_rr()
 
 plot_rr(fig2, NULL)
+
+fig2_plot <- plot_rr(fig2, NULL)
+ggsave(
+  filename = "../Output/fig2.png",
+  plot = fig2_plot,
+  width = 10,
+  height = 6
+)
 
 ```
 
@@ -196,7 +213,14 @@ fig3 <- cdc %>%
   mutate(ci_exact(deaths,pop)) %>%
   ungroup()
 
-plot_rate(fig3,NULL)
+plot_rate(fig3,NULL) 
+fig3_plot <- plot_rate(fig3, NULL)
+ggsave(
+  filename = "../Output/fig3.png",
+  plot = fig3_plot,
+  width = 10,
+  height = 6
+)
 
 ``` 
 
@@ -236,10 +260,10 @@ left_join(
 
 plot_rr(fig4,NULL) 
 
-fig4 <- plot_rr(fig4,NULL)  
+fig4_plot <- plot_rr(fig4,NULL)  
 ggsave(
   filename = "../Output/fig4.png",
-  plot = fig4,
+  plot = fig4_plot,
   width = 10,
   height = 6
 )
@@ -258,4 +282,78 @@ names(table4_by_race) <- unique(fig4$race_eth)
 table4_by_race
 ``` 
 
-# 
+# Homicide 
+
+##Figure 5: Male 15-24 
+```{r}
+fig5 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="homicide",
+         year %in% 2007:2020) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_yearly(fig5, NULL) 
+
+fig5 <- plot_yearly(fig5, NULL) 
+ggsave(
+  filename = "../Output/fig5.png",
+  plot = fig5,
+  width = 10,
+  height = 6
+)
+
+```
+
+#Motor vehicle  
+
+## Figure 6: Male by age
+
+```{r}
+fig6 <- cdc %>%
+  calc_rates(yrs_0720,"male","mvc") %>%
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+  ungroup()
+
+plot_rate(fig6,NULL)
+fig6 <- plot_rate(fig6,NULL)
+ggsave(
+  filename = "../Output/fig6.png",
+  plot = fig6,
+  width = 10,
+  height = 6
+)
+
+```
+
+## Figure 7: Male by year (15-24)
+
+```{r}
+fig7 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="mvc",
+         year %in% 2007:2020) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_yearly(fig7,NULL) 
+
+fig7 <- plot_yearly(fig7,NULL) 
+ggsave(
+  filename = "../Output/fig7.png",
+  plot = fig7,
+  width = 10,
+  height = 6
+)
+```
