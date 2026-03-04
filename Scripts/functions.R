@@ -141,7 +141,9 @@ plot_rate <- function(df,title,ylabel="Rate per 100,000"){
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
           legend.title = element_text(size = 14),
           legend.text  = element_text(size = 12),
-          legend.key.size = unit(1.2, "cm")
+          legend.key.size = unit(1.2, "cm"),
+          legend.position = c(0.98, 0.98),
+          legend.justification = c(1, 1)
     )  
 }
 
