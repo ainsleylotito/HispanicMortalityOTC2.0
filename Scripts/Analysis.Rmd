@@ -392,11 +392,23 @@ fig7 <- cdc %>%
 
 plot_yearly(fig7,NULL) 
 
-fig7 <- plot_yearly(fig7,NULL) 
+fig7_plot <- plot_yearly(fig7,NULL) 
 ggsave(
   filename = "../Output/fig7.png",
-  plot = fig7,
+  plot = fig7_plot,
   width = 10,
   height = 6
 )
+``` 
+
+```{r}
+table7 <- fig7 %>%
+  mutate(r_ci = sprintf("%.2f (%.2f, %.2f)", rate, lcl, ucl)) %>%
+  select(race_eth, year, r_ci) %>%
+  arrange(race_eth, year) %>%
+  group_split(race_eth)
+
+names(table7) <- unique(fig7$race_eth)
+
+table7
 ```
