@@ -343,14 +343,36 @@ Male motor vehicle crash mortality rates, comparing Hispanic, non-Hispanic black
 
 ```{r}
 
+fig6 <- cdc %>%
+ calc_rates(yrs_0720,"male","mvc") %>%
+  mutate(rate = deaths/pop*100000) %>%
+  set_age_order() %>% 
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+ungroup()
+ 
+
+
 fig6data <- read.csv("../CleanData/fig6data")  
 
 #adding population  
-pop <- cdc %>% 
-  filter(year %in% c(2007:2020),
-         sex == "male") %>% 
-  group_by(age_group, race_eth) %>% 
-  summarise(pop = sum(population)) 
+pop <- cdc %>%
+  filter(year %in% 2007:2020, 
+         sex=="male",
+         cod == "mvc") %>%
+  group_by(year, age_group, race_eth) %>%
+  summarise(population = sum(population), .groups="drop") %>%
+  group_by(age_group, race_eth) %>%
+  summarise(pop = sum(population), .groups="drop") 
+
+#ensuring they are the same between datasets
+pop %>% 
+  select(race_eth, age_group, pop) %>% 
+  head() 
+
+fig6 %>% 
+  select(race_eth, age_group, pop) %>% 
+  head()
   #pull from previous dataset!!! select it, save to population df, then full join.
 #rerunning
 fig6data <- left_join(fig6data,pop) %>%
