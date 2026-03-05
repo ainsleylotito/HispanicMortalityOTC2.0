@@ -422,6 +422,83 @@ all_cleaned <- all_cleaned %>%
 write_csv(all_cleaned, "../CleanData/cdc_mortality.csv")
 
 ```
+### Male motor vehicle 2007-2020 
+
+We ran into a snag where we didn't have the stats populate for figure 6, which will analyze male MVC mortality by age group over the study period. Due to the CDC privacy suppression removing results with fewer than 10 deaths, we are missing data for a lot of black deaths. To mitigate this specifically, we pulled data without stratifying by year. We are going to clean that data up so we can see how figure 6 looks. 
+
+```{r}
+nh_w_b <- read.csv("../RawData/cdcWONDER/2007_2020_MVC/NH_W_B.csv") 
+his <- read.csv("../RawData/cdcWONDER/2007_2020_MVC/Hispanic.csv")
+
+nh_w_b <- nh_w_b %>%
+  select("Five.Year.Age.Groups", "Race", "Deaths") %>% 
+  rename(age_group = Five.Year.Age.Groups,
+         race_eth = Race,
+         deaths = Deaths) %>% 
+   mutate(race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth),
+      age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+      age_group == "5-9 years"   ~ "5-9",
+      age_group == "10-14 years" ~ "10-14",
+      age_group == "15-19 years" ~ "15-19",
+      age_group == "20-24 years" ~ "20-24",
+      age_group == "25-29 years" ~ "25-29",
+      age_group == "30-34 years" ~ "30-34",
+      age_group == "35-39 years" ~ "35-39",
+      age_group == "40-44 years" ~ "40-44",
+      age_group == "45-49 years" ~ "45-49",
+      age_group == "50-54 years" ~ "50-54",
+      age_group == "55-59 years" ~ "55-59",
+      age_group == "60-64 years" ~ "60-64",
+      age_group == "65-69 years" ~ "65-69",
+      age_group == "70-74 years" ~ "70-74",
+      age_group == "75-79 years" ~ "75-79",
+      age_group == "80-84 years" ~ "80-84",
+      age_group == "85-89 years" ~ "85-89",
+      age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+      age_group == "Not Stated" ~ NA_character_,
+      TRUE ~ NA_character_)) 
+
+his <- his %>% 
+  select("Five.Year.Age.Groups","Deaths") %>% 
+  rename(age_group = Five.Year.Age.Groups,
+         deaths = Deaths) %>% 
+   mutate(race_eth = "hispanic",
+      age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+      age_group == "5-9 years"   ~ "5-9",
+      age_group == "10-14 years" ~ "10-14",
+      age_group == "15-19 years" ~ "15-19",
+      age_group == "20-24 years" ~ "20-24",
+      age_group == "25-29 years" ~ "25-29",
+      age_group == "30-34 years" ~ "30-34",
+      age_group == "35-39 years" ~ "35-39",
+      age_group == "40-44 years" ~ "40-44",
+      age_group == "45-49 years" ~ "45-49",
+      age_group == "50-54 years" ~ "50-54",
+      age_group == "55-59 years" ~ "55-59",
+      age_group == "60-64 years" ~ "60-64",
+      age_group == "65-69 years" ~ "65-69",
+      age_group == "70-74 years" ~ "70-74",
+      age_group == "75-79 years" ~ "75-79",
+      age_group == "80-84 years" ~ "80-84",
+      age_group == "85-89 years" ~ "85-89",
+      age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+      age_group == "Not Stated" ~ NA_character_,
+      TRUE ~ NA_character_))  
+
+fig6data <- full_join(his,nh_w_b)
+head(fig6data) 
+
+write_csv(fig6data, "../CleanData/fig6data")
+```
+
 # Population Data 
 
 Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 4 separate datasets we will need to clean and merge (1990-1999,2001-2010, 2011-2020, 2021-2025). 
