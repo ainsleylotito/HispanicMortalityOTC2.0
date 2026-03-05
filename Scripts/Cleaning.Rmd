@@ -493,8 +493,10 @@ his <- his %>%
       age_group == "Not Stated" ~ NA_character_,
       TRUE ~ NA_character_))  
 
-fig6data <- full_join(his,nh_w_b)
+fig6data <- bind_rows(his, nh_w_b)
 head(fig6data) 
+fig6data <- bind_rows(his, nh_w_b) %>%
+  filter(!is.na(age_group))
 
 write_csv(fig6data, "../CleanData/fig6data")
 ```

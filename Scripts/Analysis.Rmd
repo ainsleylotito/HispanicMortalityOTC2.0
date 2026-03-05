@@ -339,17 +339,31 @@ table5_by_race
 
 ## Figure 6: Male by age 
 
-Male motor vehicle crash mortality rates, comparing Hispanic, non-Hispanic black, and non-Hispanic white, 5 year age groups with 95% CI, California 2007-2020.  
+Male motor vehicle crash mortality rates, comparing Hispanic, non-Hispanic black, and non-Hispanic white, 5 year age groups with 95% CI, California 2007-2020.  We start by following the same methods as before, but run into an issue with missing data due to the CDC query suppression rules. We cleaned a unique dataset with the information needed for this specifically, which we will use.
 
 ```{r}
-fig6 <- cdc %>%
-  calc_rates(yrs_0720,"male","mvc") %>%
+
+fig6data <- read.csv("../CleanData/fig6data")  
+
+#adding population  
+pop <- cdc %>% 
+  filter(year %in% c(2007:2020),
+         sex == "male") %>% 
+  group_by(age_group, race_eth) %>% 
+  summarise(pop = sum(population)) 
+  #pull from previous dataset!!! select it, save to population df, then full join.
+#rerunning
+fig6data <- left_join(fig6data,pop) %>%
+  mutate(rate = deaths/pop*100000) %>%
+    set_age_order() %>% 
   rowwise() %>%
   mutate(ci_log(rate,deaths)) %>%
   ungroup()
 
-plot_rate(fig6,NULL)
-fig6_plot <- plot_rate(fig6,NULL)
+plot_rate(fig6data, NULL)  
+
+fig6_plot <- plot_rate(fig6data, NULL)   
+
 ggsave(
   filename = "../Output/fig6.png",
   plot = fig6_plot,
