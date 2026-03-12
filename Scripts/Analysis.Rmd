@@ -351,6 +351,7 @@ fig6 <- cdc %>%
   mutate(ci_log(rate,deaths)) %>%
 ungroup()
  
+head(fig6)
 
 
 fig6data <- read.csv("../CleanData/fig6data")  
@@ -358,12 +359,12 @@ fig6data <- read.csv("../CleanData/fig6data")
 #adding population  
 pop <- cdc %>%
   filter(year %in% 2007:2020, 
-         sex=="male",
-         cod == "mvc") %>%
+         sex == "male",
+         cod == "all_cause") %>%
   group_by(year, age_group, race_eth) %>%
-  summarise(population = sum(population), .groups="drop") %>%
+  summarise(population = sum(population), .groups = "drop") %>%
   group_by(age_group, race_eth) %>%
-  summarise(pop = sum(population), .groups="drop") 
+  summarise(pop = sum(population), .groups = "drop")
 
 #ensuring they are the same between datasets
 pop %>% 
@@ -371,11 +372,21 @@ pop %>%
   head() 
 
 fig6 %>% 
-  select(race_eth, age_group, pop) %>% 
+  select(race_eth, age_group, deaths, pop) %>% 
+  head() 
+
+fig6data %>% 
+  select(race_eth, age_group, deaths) %>% 
   head()
+
+fig6data %>% 
+  group_by(race_eth, age_group)
   #pull from previous dataset!!! select it, save to population df, then full join.
 #rerunning
-fig6data <- left_join(fig6data,pop) %>%
+fig6data <- left_join(fig6data, pop, by = c("race_eth", "age_group"))
+head(fig6data)
+
+fig6data <- fig6data %>% 
   mutate(rate = deaths/pop*100000) %>%
     set_age_order() %>% 
   rowwise() %>%
@@ -391,7 +402,44 @@ ggsave(
   plot = fig6_plot,
   width = 10,
   height = 6
-)
+) 
+
+``` 
+Checking to see if the number of deaths are consistent (ish) between datasets??
+```{r}
+fig6 %>% 
+  filter(race_eth == "hispanic", 
+         age_group %in% c("65-69", "70-74","75-79")) %>% 
+  select(race_eth, age_group, deaths, pop)
+fig6data %>% 
+   filter(race_eth == "hispanic", 
+         age_group %in% c("65-69", "70-74","75-79")) %>% 
+  select(race_eth, age_group, deaths, pop)
+
+``` 
+
+previous one: 
+```{r}
+fig6data <- read.csv("../CleanData/fig6data")  
+
+#adding population  
+pop <- cdc %>% 
+  filter(year %in% c(2007:2020),
+         sex == "male") %>% 
+  group_by(age_group, race_eth) %>% 
+  summarise(pop = sum(population)) 
+  #pull from previous dataset!!! select it, save to population df, then full join.
+#rerunning
+fig6data <- left_join(fig6data,pop) %>%
+  mutate(rate = deaths/pop*100000) %>%
+    set_age_order() %>% 
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+  ungroup()
+
+plot_rate(fig6data, NULL)  
+
+fig6_plot <- plot_rate(fig6data, NULL)   
 
 ```
 
