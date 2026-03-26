@@ -109,7 +109,14 @@ annual_pop %>%
   select(race_eth, total_population)
 
 ```  
-Let's try doing the same for 2010???
+Let's try doing the same for 2010??? 
+
+```{r}
+#DOF Populations 
+annual_pop %>%
+  filter(year == 2010)%>%
+  select(race_eth, total_population)
+```
 
 It appears as though the DOF populations are pretty off.... For instance the white population is much smaller than it should be.
 
@@ -765,8 +772,49 @@ ggplot(fig7,
 
 # Mortality by Year 
 
-We are going to plot how each cause of death changes annually for each racial/ethnic group. 
+We are going to plot how each cause of death changes annually for each racial/ethnic group.  
+
+All-cause:
+```{r} 
+head(cdc_with_pop)
+all_cause_rates <- cdc_with_pop %>%  
+  filter(year < 2021) %>% 
+  filter(cod == "all_cause") %>%
+  group_by(year, race_eth, sex) %>% 
+  summarize(
+    deaths = sum(deaths, na.rm = TRUE),
+    pop = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) %>% 
+  mutate(rate_per_100k = (deaths / pop) * 100000) 
+
+ggplot(all_cause_rates, aes(x = year, y = rate_per_100k, color = race_eth)) +
+  geom_line() +
+  facet_wrap(~sex)
+``` 
+There appears to be a dramatic shift from
+
+```{r}
+
+``` 
+
+
+```{r}
+
+```
 
 ## 15-24 y/olds 
 
-Next, we are going to look at the trends over time for JUST 15-24 year olds. 
+Next, we are going to look at the trends over time for JUST 15-24 year olds.  
+
+```{r}
+
+``` 
+
+```{r}
+
+``` 
+
+```{r}
+
+```

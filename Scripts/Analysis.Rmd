@@ -243,6 +243,11 @@ tables_by_race <- fig3 %>%
 names(tables_by_race) <- unique(fig3$race_eth)
 
 tables_by_race 
+``` 
+
+Examining Black homicide rate for ages 15-24 over the years. 
+```{r}
+
 ```
 
 # All cause minus homicide 
