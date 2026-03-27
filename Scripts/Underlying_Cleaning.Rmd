@@ -1,0 +1,107 @@
+---
+title: "Cleaning"
+output_dir: Output 
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
+--- 
+```{r setup}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(janitor)
+
+# Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+source("../Scripts/functions.R")
+```
+ 
+# All-Cause Mortality by Year 
+
+```{r}
+#H 
+all_cause_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/All_Cause/H.xlsx",
+                          col_names = TRUE)
+all_cause_h <- H_ucd_clean(all_cause_h, "all_cause")  
+glimpse(all_cause_h)
+
+#NH 
+all_cause_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/All_Cause/NH.xlsx",
+                          col_names = TRUE) 
+
+all_cause_nh <- NH_ucd_clean(all_cause_nh, "all_cause") 
+glimpse(all_cause_nh)  
+
+#Binding rows 
+all_cleaned <- bind_rows(
+  all_cause_h,
+  all_cause_nh
+)
+
+glimpse(all_cleaned)
+#Cleaning final merge
+
+all_cleaned <- all_cleaned %>%
+  filter(age_group != "Not Stated") %>% 
+  mutate(
+    sex = str_to_lower(sex),
+    race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth
+    ), 
+    age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+      age_group == "5-9 years"   ~ "5-9",
+      age_group == "10-14 years" ~ "10-14",
+      age_group == "15-19 years" ~ "15-19",
+      age_group == "20-24 years" ~ "20-24",
+      age_group == "25-29 years" ~ "25-29",
+      age_group == "30-34 years" ~ "30-34",
+      age_group == "35-39 years" ~ "35-39",
+      age_group == "40-44 years" ~ "40-44",
+      age_group == "45-49 years" ~ "45-49",
+      age_group == "50-54 years" ~ "50-54",
+      age_group == "55-59 years" ~ "55-59",
+      age_group == "60-64 years" ~ "60-64",
+      age_group == "65-69 years" ~ "65-69",
+      age_group == "70-74 years" ~ "70-74",
+      age_group == "75-79 years" ~ "75-79",
+      age_group == "80-84 years" ~ "80-84",
+      age_group == "85-89 years" ~ "85-89",
+      age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+      TRUE ~ NA_character_
+    )
+  )
+all_cleaned <- all_cleaned %>% 
+  group_by(year, sex, age_group, cod, race_eth) %>%
+  summarise(
+    deaths = sum(deaths, na.rm = FALSE),
+    .groups = "drop"
+  ) %>% 
+  arrange(year,age_group)
+
+# checking NA values
+all_cleaned %>% 
+  filter(is.na(deaths))  
+
+head(all_cleaned)
+
+write.csv(all_cleaned, "../CleanData/all_cause_UCD.csv")
+
+  
+``` 
+
+The only NA death values (they were suppressed due to data constraints) are among Black children, usually 5-9 years old. This makes some sense, as they are the smallest racial group in CA. This provides more reason to condense the future data inquiries, in my opinion. 
+
+
+
+# Homicide 

@@ -1,0 +1,171 @@
+---
+title: "Underlying Exploration"
+output_dir: Output 
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
+--- 
+```{r setup}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(janitor)
+
+# Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+source("../Scripts/functions.R")
+```
+ 
+ 
+ 
+This document contains the analyses used to replicate Vaca et al. (2011). Datasets are pulled from the `/Cleandata` directory, which were produced in the `/scripts/Cleaning.Rmd` document.  
+
+
+# All-Cause Mortality  
+
+We are going to start by importing our all-cause data and plot the rates by year.  
+```{r}
+all_cause <- read.csv("../CleanData/all_cause_UCD.csv")
+head(all_cause)
+
+#adding pop data 
+dof_data<- read_csv("../CleanData/dof_data_grouped.csv")
+
+#merging
+all_cause <- left_join(all_cause,dof_data,
+                                by = c("year", "sex", "race_eth", "age_group")) 
+head(all_cause) 
+
+#making a rate per 100k variable 
+
+all_cause <- all_cause %>% 
+  mutate(rate = deaths/(population*100000)) 
+
+#plotting by year 
+ggplot(all_cause, aes(year, rate, col= race_eth))+
+  facet_wrap(~age_group)+
+  geom_line()  
+
+#table of all ages by year, sex, and race/eth
+all_cause %>% 
+    group_by(race_eth, year, sex) %>%
+    summarise(
+      deaths = sum(deaths, na.rm=TRUE),
+      pop    = sum(population, na.rm=TRUE),
+      .groups="drop"
+    ) %>%
+    mutate(rate = deaths/pop*100000) 
+
+youths <- c("15-19", "20-24")
+
+#table of 15-24 year old males by year 
+all_cause %>% 
+  filter(sex == "male", 
+         age_group %in% youths ) %>% 
+    group_by(race_eth, year, sex) %>%
+    summarise(
+      deaths = sum(deaths, na.rm=TRUE),
+      pop    = sum(population, na.rm=TRUE),
+      .groups="drop"
+    ) %>%
+    mutate(rate = deaths/pop*100000) %>% 
+  select(-deaths, -pop)
+
+```  
+
+# Descriptive Analysis 
+
+## Total Death Count 
+
+How many deaths occurred over the study period?
+```{r}  
+all_cause %>% 
+  filter(year %in% 2007:2020) %>% 
+  summarize(total_deaths = sum(deaths, na.rm = TRUE))
+
+``` 
+## Age-adjusted mortality rates 
+
+
+## Fig 1- Male 
+
+Male all-cause mortality rate ratios comparing Hispanic and non-Hispanic black mortality to non-Hispanic white mortality, by 5 year age groups with 95% CI, California, 2007-2020.
+```{r}
+yrs_0720 <- 2007:2020
+fig1 <- calc_rates(all_cause,yrs_0720,"male","all_cause") %>%
+  calc_rr() 
+
+plot_rr(fig1,NULL)  
+
+#trying again, this time for the other years 
+yrs_9906 <-c(1999:2006)
+fig1_old <- calc_rates(all_cause,yrs_9906,"male","all_cause") %>%
+  calc_rr() 
+
+plot_rr(fig1_old,NULL)  
+
+``` 
+
+
+Looking through the numbers: 
+
+```{r}
+tables_by_race <- fig1 %>%
+  mutate(rr_ci = sprintf("%.2f (%.2f, %.2f)", rr, rr_lcl, rr_ucl)) %>%
+  select(race_eth, age_group, rr_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(tables_by_race) <- unique(fig1$race_eth)
+
+tables_by_race
+
+``` 
+
+
+## Fig 2- Female
+
+Female all cause mortality rate ratios comparing Hispanic and non-Hispanic black mortality to non-Hispanic white mortality, by 5 year age groups with 95% CI, California, 2007-2020.
+
+```{r}
+fig2 <- all_cause %>%
+  calc_rates(yrs_0720,"female","all_cause") %>%
+  calc_rr()
+
+plot_rr(fig2, NULL)
+
+fig2_plot <- plot_rr(fig2, NULL)
+ggsave(
+  filename = "../Output/fig2.png",
+  plot = fig2_plot,
+  width = 10,
+  height = 6
+)
+
+``` 
+There is a slight problem here, because we are missing the 5-9 counts for Blacks most of the years due to data suppression. Because of this, we will eventually need to exclude this group. 
+
+Looking through the numbers: 
+
+```{r}
+tables_by_race <- fig2 %>%
+  mutate(rr_ci = sprintf("%.2f (%.2f, %.2f)", rr, rr_lcl, rr_ucl)) %>%
+  select(race_eth, age_group, rr_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(tables_by_race) <- unique(fig1$race_eth)
+
+tables_by_race
+
+```  
+
+
+# Homicide 
+

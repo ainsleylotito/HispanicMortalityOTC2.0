@@ -1,5 +1,125 @@
 library(dplyr)
-library(ggplot2)
+library(ggplot2) 
+
+
+# -----------------------------
+# CLEANING FUNCTIONS
+# -----------------------------
+
+# MCD --------------------
+
+
+#NH white and black data
+white_black_clean <- function(df, cod_character) {
+  
+  df <- df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five.Year.Age.Groups.Code",
+                "Year.Code",
+                "Sex.Code",
+                "Race.Code",
+                "Single.Race.6.Code",
+                "Population"))
+    )
+  
+  if ("Race" %in% names(df)) {
+    df <- df %>% rename(race_eth = Race)
+  } else if ("Single.Race.6" %in% names(df)) {
+    df <- df %>% rename(race_eth = Single.Race.6)
+  }
+  
+  df %>% 
+    rename(age_group = Five.Year.Age.Groups) %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
+    filter(!is.na(year))
+}
+
+
+#hispanic all race data
+hispanic_clean <- function(df, cod_character) {
+  
+  df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five.Year.Age.Groups.Code",
+                "Year.Code",
+                "Sex.Code",
+                "Population"))
+    ) %>% 
+    rename(age_group = Five.Year.Age.Groups) %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      race_eth = "Hispanic",
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
+    filter(!is.na(year))
+}
+
+# UCD ----------- 
+#NH white and black data
+NH_ucd_clean <- function(df, cod_character) {
+  
+  df <- df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five-Year Age Groups Code",
+                "Year Code",
+                "Sex Code",
+                "Race Code",
+                "Population",
+                'Crude Rate'))
+    )
+  
+  if ("Race" %in% names(df)) {
+    df <- df %>% rename(race_eth = Race)
+  } else if ("Single.Race.6" %in% names(df)) {
+    df <- df %>% rename(race_eth = Single.Race.6)
+  }
+  
+  df %>% 
+    rename(age_group = 'Five-Year Age Groups') %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
+    filter(!is.na(year))
+}
+
+
+#hispanic all race data
+H_ucd_clean <- function(df, cod_character) {
+  
+  df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five-Year Age Groups Code",
+                "Year Code",
+                "Sex Code",
+                "Population",
+                "Crude Rate"))
+    ) %>% 
+    rename(age_group = "Five-Year Age Groups") %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      race_eth = "Hispanic",
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
+    filter(!is.na(year))
+}
+
+
 
 # -----------------------------
 # GLOBAL CONSTANTS
