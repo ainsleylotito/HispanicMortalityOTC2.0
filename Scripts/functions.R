@@ -117,7 +117,95 @@ H_ucd_clean <- function(df, cod_character) {
       year = as.integer(year)
     ) %>% 
     filter(!is.na(year))
+} 
+
+#By Age Group Hispanic 
+ucd_age_clean_h <- function(df, cod_character) {
+  
+  df %>% 
+    filter(is.na(Notes) | Notes == "") %>%   # keep only rows with no notes
+    select(
+      -any_of(c("Notes",
+                "Five-Year Age Groups Code",
+                "Population",
+                "Crude Rate",
+                "Race",
+                "Race Code"))
+    ) %>% 
+    rename(age_group = "Five-Year Age Groups") %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      race_eth = "hispanic",
+      deaths = as.numeric(deaths)
+    ) 
 }
+
+
+#By Age Group NH 
+ucd_age_clean_nh <- function(df, cod_character) {
+  
+  df %>% 
+    filter(is.na(Notes) | Notes == "") %>%   # keep only rows with no notes
+    select(
+      -any_of(c("Notes",
+                "Five-Year Age Groups Code",
+                "Population",
+                "Crude Rate",
+                "Race Code"))
+    ) %>% 
+    rename(age_group = "Five-Year Age Groups",
+           race_eth = "Race") %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths)
+    ) 
+} 
+
+#Formatting race and age 
+race_age_format <- function(df) {
+  
+  df %>%
+    filter(age_group != "Not Stated") %>% 
+    mutate(
+      race_eth = case_when(
+        race_eth == "Black or African American" ~ "black",
+        race_eth == "White" ~ "white",
+        race_eth == "Hispanic" ~ "hispanic",
+        TRUE ~ race_eth
+      ), 
+      age_group = stringr::str_trim(age_group),
+      age_group = case_when(
+        age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+        age_group == "5-9 years"   ~ "5-9",
+        age_group == "10-14 years" ~ "10-14",
+        age_group == "15-19 years" ~ "15-19",
+        age_group == "20-24 years" ~ "20-24",
+        age_group == "25-29 years" ~ "25-29",
+        age_group == "30-34 years" ~ "30-34",
+        age_group == "35-39 years" ~ "35-39",
+        age_group == "40-44 years" ~ "40-44",
+        age_group == "45-49 years" ~ "45-49",
+        age_group == "50-54 years" ~ "50-54",
+        age_group == "55-59 years" ~ "55-59",
+        age_group == "60-64 years" ~ "60-64",
+        age_group == "65-69 years" ~ "65-69",
+        age_group == "70-74 years" ~ "70-74",
+        age_group == "75-79 years" ~ "75-79",
+        age_group == "80-84 years" ~ "80-84",
+        age_group == "85-89 years" ~ "85-89",
+        age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+        TRUE ~ NA_character_
+      )
+    ) %>%  
+    group_by(race_eth, age_group, cod) %>%
+    summarise(deaths = sum(deaths, na.rm = TRUE), .groups = "drop")
+}
+
+#By Year Hispanic 
+
+#By Year NH
 
 
 

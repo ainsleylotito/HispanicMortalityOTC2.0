@@ -169,3 +169,6 @@ tables_by_race
 
 # Homicide 
 
+We will pull two cleaned datasets for this, including the homicide counts by age group for the whole study period, and the homicide counts by year. 
+
+

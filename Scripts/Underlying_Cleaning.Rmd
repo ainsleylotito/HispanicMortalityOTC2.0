@@ -100,8 +100,59 @@ write.csv(all_cleaned, "../CleanData/all_cause_UCD.csv")
   
 ``` 
 
-The only NA death values (they were suppressed due to data constraints) are among Black children, usually 5-9 years old. This makes some sense, as they are the smallest racial group in CA. This provides more reason to condense the future data inquiries, in my opinion. 
+The only NA death values (they were suppressed due to data constraints) are among Black children, usually 5-9 years old. This makes some sense, as they are the smallest racial group in CA.  
 
 
 
-# Homicide 
+# Homicide  
+
+```{r}
+# By Age Group 
+hom_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Homicide/Age/H.xlsx", col_names = TRUE)
+hom_h <- ucd_age_clean_h(hom_h, "homicide")  
+glimpse(hom_h) 
+
+#we have 23 obs, which is equivalent to one hispanic row for each age group. looks good. 
+
+#NH
+hom_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Homicide/Age/NH.xlsx", col_names = TRUE)
+hom_nh <- ucd_age_clean_nh(hom_nh, "homicide")  
+glimpse(hom_nh)
+
+age_homicide <-  bind_rows(
+  hom_nh,
+  hom_h
+) 
+
+
+#Cleaning final merge
+
+age_homicide <- race_age_format(age_homicide) 
+glimpse(age_homicide)
+
+#adding population data 
+#(for all of 2007-2020, by age group)
+pop <- read.csv("../CleanData/dof_data_grouped.csv")
+head(pop) 
+
+pop <- pop %>% 
+  filter(
+    sex == "male",
+    year %in% c(2007:2020)
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarize(population = sum(population))
+head(pop) 
+
+age_hom2 <- age_homicide %>%
+  left_join(pop, by = c("race_eth", "age_group"))
+head(age_hom2)
+
+write.csv(age_hom2, "../CleanData/homicide_UCD_age_groups.csv")
+
+  
+#By Year (15-24 year olds)
+
+
+
+```
