@@ -1,0 +1,43 @@
+"","year","race","deaths","cod","race_eth","population"
+"1",2007,"Black or African American",236,"homicide","black",179362.45673971
+"2",2007,"White",51,"homicide","white",991318.616160279
+"3",2008,"Black or African American",196,"homicide","black",181169.854059038
+"4",2008,"White",51,"homicide","white",986375.527500636
+"5",2009,"Black or African American",200,"homicide","black",184163.92190485
+"6",2009,"White",53,"homicide","white",954906.971302954
+"7",2010,"Black or African American",200,"homicide","black",183240
+"8",2010,"White",37,"homicide","white",945191
+"9",2011,"Black or African American",181,"homicide","black",183504
+"10",2011,"White",31,"homicide","white",921388
+"11",2012,"Black or African American",166,"homicide","black",182640
+"12",2012,"White",37,"homicide","white",900099
+"13",2013,"Black or African American",193,"homicide","black",180234
+"14",2013,"White",51,"homicide","white",876251
+"15",2014,"Black or African American",147,"homicide","black",176926
+"16",2014,"White",30,"homicide","white",851444
+"17",2015,"Black or African American",149,"homicide","black",172720
+"18",2015,"White",51,"homicide","white",825357
+"19",2016,"Black or African American",153,"homicide","black",167554
+"20",2016,"White",33,"homicide","white",798283
+"21",2017,"Black or African American",126,"homicide","black",161591
+"22",2017,"White",34,"homicide","white",773085
+"23",2018,"Black or African American",94,"homicide","black",155564
+"24",2018,"White",37,"homicide","white",751038
+"25",2019,"Black or African American",100,"homicide","black",149541
+"26",2019,"White",27,"homicide","white",733233
+"27",2020,"Black or African American",131,"homicide","black",144493
+"28",2020,"White",53,"homicide","white",723608
+"29",2007,NA,471,"homicide","hispanic",1231596.40422613
+"30",2008,NA,427,"homicide","hispanic",1261239.48790819
+"31",2009,NA,402,"homicide","hispanic",1297117.3887894
+"32",2010,NA,329,"homicide","hispanic",1325804
+"33",2011,NA,324,"homicide","hispanic",1337031
+"34",2012,NA,321,"homicide","hispanic",1344830
+"35",2013,NA,272,"homicide","hispanic",1349373
+"36",2014,NA,249,"homicide","hispanic",1353468
+"37",2015,NA,281,"homicide","hispanic",1356089
+"38",2016,NA,277,"homicide","hispanic",1355290
+"39",2017,NA,263,"homicide","hispanic",1350362
+"40",2018,NA,227,"homicide","hispanic",1336269
+"41",2019,NA,220,"homicide","hispanic",1306410
+"42",2020,NA,296,"homicide","hispanic",1302200

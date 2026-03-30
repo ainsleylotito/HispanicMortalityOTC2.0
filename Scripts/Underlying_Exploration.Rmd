@@ -171,4 +171,64 @@ tables_by_race
 
 We will pull two cleaned datasets for this, including the homicide counts by age group for the whole study period, and the homicide counts by year. 
 
+## Figure 3 
 
+```{r}
+hom_age <- read.csv("../CleanData/homicide_UCD_age_groups.csv")
+head(hom_age) 
+
+fig3 <- hom_age %>%
+    mutate(rate = deaths/population*100000) %>%
+    set_age_order() %>% 
+   rowwise() %>%
+  mutate(ci_exact(deaths,population)) %>%
+  ungroup()
+
+plot_rate(fig3,NULL) 
+
+fig3_plot <- plot_rate(fig3, NULL)
+ggsave(
+  filename = "../Output/fig3UCD.png",
+  plot = fig3_plot,
+  width = 10,
+  height = 6
+)
+``` 
+
+By number: 
+```{r}
+tables_by_race <- fig3 %>%
+  mutate(r_ci = sprintf("%.2f (%.2f, %.2f)", rate, lcl, ucl)) %>%
+  select(race_eth, age_group, r_ci) %>%
+  arrange(race_eth, age_group) %>%
+  group_split(race_eth)
+
+names(tables_by_race) <- unique(fig3$race_eth)
+
+tables_by_race 
+``` 
+
+
+
+## Figure 5: Male 15-24  
+
+Homicide mortality rates, among males 15-24 years of age, comparing Hispanic, non-Hispanic black, and non-Hispanic white, by year with 95% CI, California 2007-2020.
+```{r} 
+fig5data <- read.csv("../CleanData/homicide_UCD_yearly.csv")
+fig5 <- fig5data %>%
+  mutate(rate=deaths/population*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,population)) %>%
+  ungroup()
+
+plot_yearly(fig5, NULL) 
+
+fig5_plot <- plot_yearly(fig5, NULL) 
+ggsave(
+  filename = "../Output/fig5UCD.png",
+  plot = fig5_plot,
+  width = 10,
+  height = 6
+)
+
+``` 

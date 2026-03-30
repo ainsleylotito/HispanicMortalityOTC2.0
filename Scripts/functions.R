@@ -163,6 +163,42 @@ ucd_age_clean_nh <- function(df, cod_character) {
     ) 
 } 
 
+#By year H 
+ucd_year_clean_h <- function(df, cod_character) {
+  
+  df %>% 
+    filter(is.na(Notes) | Notes == "") %>%   # keep only rows with no notes
+    select(
+      -any_of(c("Notes",
+                "Year Code",
+                "Population",
+                "Crude Rate"))
+    ) %>% 
+  rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      race_eth = "Hispanic",
+      deaths = as.numeric(deaths))
+}
+
+#By year NH
+ucd_year_clean_nh <- function(df, cod_character) {
+  
+  df %>% 
+    filter(is.na(Notes) | Notes == "") %>%   # keep only rows with no notes
+    select(
+      -any_of(c("Notes",
+                "Year Code",
+                "Population",
+                "Crude Rate",
+                "Race Code"))
+    ) %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths)
+    ) 
+}
 #Formatting race and age 
 race_age_format <- function(df) {
   
