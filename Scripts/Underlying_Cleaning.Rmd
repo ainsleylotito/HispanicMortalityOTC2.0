@@ -315,3 +315,34 @@ write.csv(year_mvc, "../CleanData/mvc_UCD_yearly.csv")
 
 
 ```
+
+# COD Males 15-24 2007-2020 
+
+For our table 1 data, we need to make a larger dataframe that combines all the causes of death by race/ethnicity among just males aged 15-24 over the study period.  
+
+We will start by pulling up the dataframes that already meet these conventions. We are also going to just retain cod, race_eth, and deaths.
+
+```{r}
+#mvc
+age_mvc <- age_mvc %>% 
+  filter(age_group %in% c("15-19", "20-24")) %>% 
+  select(cod, race_eth, age_group, deaths) 
+head(age_mvc)
+#homicide
+age_hom <- age_hom2 %>% 
+  filter(age_group %in% c("15-19", "20-24")) %>% 
+  select(cod, race_eth, age_group, deaths)
+head(age_hom)
+#all cause
+head(all_cleaned) 
+all_cause_table1 <- all_cleaned %>% 
+  filter(year %in% c(2007:2020),
+         sex == "male", 
+         age_group %in% c("15-19", "20-24")) 
+#disease 
+
+#injury 
+
+
+
+```
