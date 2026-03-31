@@ -1,0 +1,43 @@
+"","year","race","deaths","cod","race_eth","population"
+"1",2007,"Black or African American",95,"mvc","black",179362.45673971
+"2",2007,"White",497,"mvc","white",991318.616160279
+"3",2008,"Black or African American",60,"mvc","black",181169.854059038
+"4",2008,"White",452,"mvc","white",986375.527500636
+"5",2009,"Black or African American",76,"mvc","black",184163.92190485
+"6",2009,"White",360,"mvc","white",954906.971302954
+"7",2010,"Black or African American",85,"mvc","black",183240
+"8",2010,"White",287,"mvc","white",945191
+"9",2011,"Black or African American",73,"mvc","black",183504
+"10",2011,"White",341,"mvc","white",921388
+"11",2012,"Black or African American",73,"mvc","black",182640
+"12",2012,"White",353,"mvc","white",900099
+"13",2013,"Black or African American",64,"mvc","black",180234
+"14",2013,"White",383,"mvc","white",876251
+"15",2014,"Black or African American",94,"mvc","black",176926
+"16",2014,"White",376,"mvc","white",851444
+"17",2015,"Black or African American",90,"mvc","black",172720
+"18",2015,"White",402,"mvc","white",825357
+"19",2016,"Black or African American",108,"mvc","black",167554
+"20",2016,"White",405,"mvc","white",798283
+"21",2017,"Black or African American",108,"mvc","black",161591
+"22",2017,"White",398,"mvc","white",773085
+"23",2018,"Black or African American",121,"mvc","black",155564
+"24",2018,"White",321,"mvc","white",751038
+"25",2019,"Black or African American",117,"mvc","black",149541
+"26",2019,"White",321,"mvc","white",733233
+"27",2020,"Black or African American",162,"mvc","black",144493
+"28",2020,"White",378,"mvc","white",723608
+"29",2007,NA,721,"mvc","hispanic",1231596.40422613
+"30",2008,NA,570,"mvc","hispanic",1261239.48790819
+"31",2009,NA,486,"mvc","hispanic",1297117.3887894
+"32",2010,NA,420,"mvc","hispanic",1325804
+"33",2011,NA,396,"mvc","hispanic",1337031
+"34",2012,NA,451,"mvc","hispanic",1344830
+"35",2013,NA,505,"mvc","hispanic",1349373
+"36",2014,NA,520,"mvc","hispanic",1353468
+"37",2015,NA,599,"mvc","hispanic",1356089
+"38",2016,NA,640,"mvc","hispanic",1355290
+"39",2017,NA,626,"mvc","hispanic",1350362
+"40",2018,NA,654,"mvc","hispanic",1336269
+"41",2019,NA,580,"mvc","hispanic",1306410
+"42",2020,NA,720,"mvc","hispanic",1302200

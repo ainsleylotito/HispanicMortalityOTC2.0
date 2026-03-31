@@ -137,7 +137,8 @@ table1_adj <- adj_rates %>%
 table1_adj
 ```
 
-# All Cause
+# All Cause 
+
 ## Fig 1- Male 
 
 Male all-cause mortality rate ratios comparing Hispanic and non-Hispanic black mortality to non-Hispanic white mortality, by 5 year age groups with 95% CI, California, 2007-2020.
@@ -350,105 +351,33 @@ table4_by_race
 Male motor vehicle crash mortality rates, comparing Hispanic, non-Hispanic black, and non-Hispanic white, 5 year age groups with 95% CI, California 2007-2020.  We start by following the same methods as before, but run into an issue with missing data due to the CDC query suppression rules. We cleaned a unique dataset with the information needed for this specifically, which we will use.
 
 ```{r}
-fig6 <- cdc %>%
- calc_rates(yrs_0720,"male","mvc") %>%
-  mutate(rate = deaths/pop*100000) %>%
+mvc_age <- read.csv("../CleanData/mvc_UCD_age.csv")
+fig6 <- mvc_age %>%
+  mutate(rate = deaths/population*100000) %>%
   set_age_order() %>% 
   rowwise() %>%
   mutate(ci_log(rate,deaths)) %>%
 ungroup()
  
-head(fig6)
+head(fig6) 
 
+fig6 <- fig6 %>% 
+  filter(!(race_eth == "black" & age_group == "90+"))
 
-fig6data <- read.csv("../CleanData/fig6data")  
+plot_rate(fig6, NULL)  
 
-#adding population  
-pop <- cdc %>%
-  filter(year %in% 2007:2020, 
-         sex == "male",
-         cod == "all_cause") %>%
-  group_by(year, age_group, race_eth) %>%
-  summarise(population = sum(population), .groups = "drop") %>%
-  group_by(age_group, race_eth) %>%
-  summarise(pop = sum(population), .groups = "drop")
-
-#ensuring they are the same between datasets
-pop %>% 
-  select(race_eth, age_group, pop) %>% 
-  head() 
-
-fig6 %>% 
-  select(race_eth, age_group, deaths, pop) %>% 
-  head() 
-
-fig6data %>% 
-  select(race_eth, age_group, deaths) %>% 
-  head()
-
-fig6data %>% 
-  group_by(race_eth, age_group)
-  #pull from previous dataset!!! select it, save to population df, then full join.
-#rerunning
-fig6data <- left_join(fig6data, pop, by = c("race_eth", "age_group"))
-head(fig6data)
-
-fig6data <- fig6data %>% 
-  mutate(rate = deaths/pop*100000) %>%
-    set_age_order() %>% 
-  rowwise() %>%
-  mutate(ci_log(rate,deaths)) %>%
-  ungroup()
-
-plot_rate(fig6data, NULL)  
-
-fig6_plot <- plot_rate(fig6data, NULL)   
+fig6_plot <- plot_rate(fig6, NULL)   
 
 ggsave(
-  filename = "../Output/fig6.png",
+  filename = "../Output/fig6UCD.png",
   plot = fig6_plot,
   width = 10,
   height = 6
 ) 
 
-``` 
-Checking to see if the number of deaths are consistent (ish) between datasets??
-```{r}
-fig6 %>% 
-  filter(race_eth == "hispanic", 
-         age_group %in% c("65-69", "70-74","75-79")) %>% 
-  select(race_eth, age_group, deaths, pop)
-fig6data %>% 
-   filter(race_eth == "hispanic", 
-         age_group %in% c("65-69", "70-74","75-79")) %>% 
-  select(race_eth, age_group, deaths, pop)
+```  
+One thing important to note is that we are missing data for 90+ due to data suppression for Non-Hispanic Blacks, so we will exclude that from the plot and data. 
 
-``` 
-
-previous one: 
-```{r}
-fig6data <- read.csv("../CleanData/fig6data")  
-
-#adding population  
-pop <- cdc %>% 
-  filter(year %in% c(2007:2020),
-         sex == "male") %>% 
-  group_by(age_group, race_eth) %>% 
-  summarise(pop = sum(population)) 
-  #pull from previous dataset!!! select it, save to population df, then full join.
-#rerunning
-fig6data <- left_join(fig6data,pop) %>%
-  mutate(rate = deaths/pop*100000) %>%
-    set_age_order() %>% 
-  rowwise() %>%
-  mutate(ci_log(rate,deaths)) %>%
-  ungroup()
-
-plot_rate(fig6data, NULL)  
-
-fig6_plot <- plot_rate(fig6data, NULL)   
-
-```
 
 ```{r}
 table_6 <- fig6 %>%
@@ -469,27 +398,24 @@ table_6
 Motor vehicle mortality rates, among males 15-24 years of age, comparing Hispanic, non-Hispanic black, and non-Hispanic white, by year with 95% CI, California 2007-2020.
 
 ```{r}
-fig7 <- cdc %>%
-  filter(sex=="male",
-         age_group %in% c("15-19","20-24"),
-         cod=="mvc",
-         year %in% 2007:2020) %>%
-  group_by(year,race_eth) %>%
-  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
-  mutate(rate=deaths/pop*100000) %>%
+yearly_mvc <- read.csv("../CleanData/mvc_UCD_yearly.csv")
+
+fig7 <- yearly_mvc%>%
+  mutate(rate=deaths/population*100000) %>%
   rowwise() %>%
-  mutate(ci_exact(deaths,pop)) %>%
+  mutate(ci_exact(deaths,population)) %>%
   ungroup()
 
-plot_yearly(fig7,NULL) 
+plot_yearly(fig7, NULL) 
 
-fig7_plot <- plot_yearly(fig7,NULL) 
+fig7_plot <- plot_yearly(fig7, NULL) 
 ggsave(
-  filename = "../Output/fig7.png",
+  filename = "../Output/fig7UCD.png",
   plot = fig7_plot,
   width = 10,
   height = 6
 )
+
 ``` 
 
 ```{r}

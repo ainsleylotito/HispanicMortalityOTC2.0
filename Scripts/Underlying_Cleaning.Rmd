@@ -216,8 +216,102 @@ mvc_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/MVC/Age/NH.xlsx", 
 head(mvc_nh)
 
 mvc_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/MVC/Age/H.xlsx", col_names = TRUE)
-head(mvc_h)
+head(mvc_h) 
 
-mvc_nh <- ucd_age_clean_nh(mvc_nh, "mvc")
-mvc_h <- ucd_age_clean_h(mvc_h, "mvc")
+mvc_nh <- mvc_nh %>% 
+  filter(Sex == "Male") %>% 
+  ucd_age_clean_nh( "mvc")
+
+mvc_h <- mvc_h %>% 
+  filter(Sex == "Male") %>%
+  ucd_age_clean_h( "mvc") 
+
+age_mvc <-  bind_rows(
+  mvc_nh,
+  mvc_h
+) 
+head(age_mvc)
+
+age_mvc <- race_age_format(age_mvc)
+age_mvc %>% 
+  group_by(race_eth) %>% 
+  slice(1:3)
+
+#adding population data
+#(for all of 2007-2020, by age group)
+pop <- read.csv("../CleanData/dof_data_grouped.csv")
+head(pop) 
+
+pop <- pop %>% 
+  filter(
+    sex == "male",
+    year %in% c(2007:2020)
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarize(population = sum(population))
+head(pop) 
+
+age_mvc <- age_mvc %>%
+  left_join(pop, by = c("race_eth", "age_group"))
+head(age_mvc)
+write.csv(age_mvc, "../CleanData/mvc_UCD_age.csv")
+``` 
+
+## By Year 
+
+```{r}
+#NH
+mvc_y_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/MVC/Year/NH.xlsx", col_names = TRUE)
+head(mvc_y_nh)
+mvc_y_nh <- ucd_year_clean_nh(mvc_y_nh, "mvc") 
+
+#H
+mvc_y_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/MVC/Year/H.xlsx", col_names = TRUE)
+head(mvc_y_h)
+mvc_y_h <- ucd_year_clean_h(mvc_y_h, "mvc") 
+
+#Binding
+year_mvc <-  bind_rows(
+  mvc_y_nh,
+  mvc_y_h
+) 
+
+
+#Cleaning final merge
+
+year_mvc <- year_mvc %>% 
+  mutate(
+    race_eth = case_when(
+      race == "Black or African American" ~ "black",
+      race == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth
+    )
+  )
+
+glimpse(year_mvc) 
+unique(year_mvc$race_eth) 
+
+#adding population data 
+#(for all of 2007-2020, by age group)
+pop <- read.csv("../CleanData/dof_data_grouped.csv")
+head(pop) 
+
+pop <- pop %>% 
+  filter(
+    sex == "male",
+    age_group %in% c("15-19","20-24"),
+    year %in% c(2007:2020)
+  ) %>% 
+  group_by(race_eth, year) %>% 
+  summarize(population = sum(population))
+head(pop) 
+
+year_mvc <- year_mvc %>%
+  left_join(pop, by = c("race_eth", "year"))
+head(year_mvc)
+
+write.csv(year_mvc, "../CleanData/mvc_UCD_yearly.csv")
+
+
 ```
