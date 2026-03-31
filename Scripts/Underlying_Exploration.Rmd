@@ -137,7 +137,7 @@ table1_adj <- adj_rates %>%
 table1_adj
 ```
 
-
+# All Cause
 ## Fig 1- Male 
 
 Male all-cause mortality rate ratios comparing Hispanic and non-Hispanic black mortality to non-Hispanic white mortality, by 5 year age groups with 95% CI, California, 2007-2020.
@@ -297,18 +297,15 @@ table5_by_race
 Male mortality rate ratios for all causes except homicide, comparing Hispanic and non-Hispanic black mortality to non-Hispanic white mortality, by 5 year age groups with 95% CI, California, 2007-2020. 
 
 ```{r}
-fig4 <- cdc %>%
-  filter(year %in% yrs_0720, sex=="male") %>%
-  group_by(race_eth,age_group,cod) %>%
-summarise(deaths=sum(deaths), .groups="drop") %>%
-left_join(
-  cdc %>%
-    filter(year %in% yrs_0720, sex=="male") %>%
-    group_by(race_eth,age_group) %>%
-    summarise(pop=sum(population), .groups="drop"),
-  by=c("race_eth","age_group")
-) %>%
-  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+all_cause_age <- all_cause %>% 
+  group_by(race_eth, age_group) %>%
+    summarise(
+      deaths = sum(deaths, na.rm=TRUE),
+      pop    = sum(population, na.rm=TRUE)
+    )
+fig4 <- full_join(all_cause_age,hom_age, by = c("race_eth", "age_group")) %>%
+  rename(all_cause = deaths.x,
+         homicide = deaths.y) %>% 
   mutate(deaths=all_cause-homicide,
          rate=deaths/pop*100000) %>%
   set_age_order() %>%
@@ -316,9 +313,17 @@ left_join(
 
 plot_rr(fig4,NULL) 
 
+#do we not have homicide deaths for 0-4? 
+hom_age %>% 
+  filter(race_eth == "black",
+         age_group == "0-4")
+all_cause_age %>% 
+   filter(race_eth == "black",
+         age_group == "0-4")
+
 fig4_plot <- plot_rr(fig4,NULL)  
 ggsave(
-  filename = "../Output/fig4.png",
+  filename = "../Output/fig4UCD.png",
   plot = fig4_plot,
   width = 10,
   height = 6
@@ -345,7 +350,6 @@ table4_by_race
 Male motor vehicle crash mortality rates, comparing Hispanic, non-Hispanic black, and non-Hispanic white, 5 year age groups with 95% CI, California 2007-2020.  We start by following the same methods as before, but run into an issue with missing data due to the CDC query suppression rules. We cleaned a unique dataset with the information needed for this specifically, which we will use.
 
 ```{r}
-
 fig6 <- cdc %>%
  calc_rates(yrs_0720,"male","mvc") %>%
   mutate(rate = deaths/pop*100000) %>%

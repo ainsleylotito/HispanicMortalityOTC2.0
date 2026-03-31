@@ -106,6 +106,7 @@ The only NA death values (they were suppressed due to data constraints) are amon
 
 # Homicide  
 
+## By age
 ```{r}
 # By Age Group 
 hom_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Homicide/Age/H.xlsx", col_names = TRUE)
@@ -151,7 +152,7 @@ head(age_hom2)
 write.csv(age_hom2, "../CleanData/homicide_UCD_age_groups.csv")
 ```
 
-By year: 
+## By year: 
 ```{r}
 #By Year (15-24 year olds)
 hom_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Homicide/Year/H.xlsx", col_names = TRUE)
@@ -204,4 +205,19 @@ head(year_hom2)
 
 write.csv(year_hom2, "../CleanData/homicide_UCD_yearly.csv")
 
+```
+
+# MVC 
+
+## By Age 
+
+```{r}
+mvc_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/MVC/Age/NH.xlsx", col_names = TRUE)
+head(mvc_nh)
+
+mvc_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/MVC/Age/H.xlsx", col_names = TRUE)
+head(mvc_h)
+
+mvc_nh <- ucd_age_clean_nh(mvc_nh, "mvc")
+mvc_h <- ucd_age_clean_h(mvc_h, "mvc")
 ```
