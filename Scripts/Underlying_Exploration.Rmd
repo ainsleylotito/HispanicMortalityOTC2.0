@@ -152,99 +152,6 @@ Steps:
 
 5. Calculate 95% CIs using log normal approximation to the Poisson distribution  
 
-```{r}
-#Step 1: keep deaths and population by age group 
-data_age <- cdc_mort %>%
-  filter(
-    year %in% 2007:2020,
-    age_group %in% c("15-19","20-24"),
-    sex=="male"
-  ) %>%
-  group_by(race_eth, cod, age_group) %>%
-  summarise(deaths = sum(deaths), .groups="drop") %>%
-  left_join(
-    dof_data_grouped %>%
-      filter(
-        year %in% 2007:2020,
-        age_group %in% c("15-19","20-24"),
-        sex=="male"
-      ) %>%
-      group_by(race_eth, age_group) %>%
-      summarise(pop = sum(population), .groups="drop"),
-    by=c("race_eth","age_group")
-  )
-
-#Step 2: get standard population weights 
-std_pop <- dof_data_grouped %>%
-  filter(
-    year == 2000,
-    age_group %in% c("15-19","20-24"),
-    sex == "male"
-  ) %>%
-  group_by(age_group) %>%
-  summarise(std_pop = sum(population), .groups="drop") %>%
-  mutate(weight = std_pop / sum(std_pop))
-
-# Step 3: compute age-specific rates
-data_age <- data_age %>%
-  mutate(rate = deaths / pop)
- 
-# Step 4: join weights + calculate weighted rates 
-adj_rates <- data_age %>%
-  left_join(std_pop, by="age_group") %>%
-  mutate(weighted_rate = rate * weight)
-
-#sum weighted rates --> age-adjusted rates
-table1_adj <- adj_rates %>%
-  group_by(race_eth, cod) %>%
-  summarise(
-    age_adj_rate = sum(weighted_rate) * 100000,
-    .groups="drop"
-  )
-
-# Step 5: adding poisson CI 
-table1_adj <- adj_rates %>%
-  group_by(race_eth, cod) %>%
-  summarise(
-    adj_rate = sum(weighted_rate),
-    deaths_total = sum(deaths),
-    .groups="drop"
-  ) %>%
-  mutate(
-    rate_100k = adj_rate * 100000,
-
-    se_log = 1 / sqrt(deaths_total),
-
-    lcl = rate_100k * exp(-1.96 * se_log),
-    ucl = rate_100k * exp( 1.96 * se_log)
-  )
-
-#formatting
-table1_adj <- table1_adj %>%
-  mutate(
-    rate_ci = sprintf(
-      "%.1f (%.1f–%.1f)",
-      rate_100k, lcl, ucl
-    )
-  )
-cod_levels <- c(
-  "homicide",
-  "mvc",
-  "suicide",
-  "other_injury",
-  "other_disease",
-  "all_cause"
-)
-
-cod_labels <- c(
-  homicide = "Homicide",
-  mvc = "Motor Vehicle Crashes",
-  suicide = "Suicide",
-  other_injury = "Other Injuries",
-  other_disease = "Other Disease",
-  all_cause = "Total (All Causes)"
-)
-```
 
 # All Cause 
 
@@ -291,7 +198,11 @@ Female all cause mortality rate ratios comparing Hispanic and non-Hispanic black
 ```{r}
 fig2 <- all_cause %>%
   calc_rates(yrs_0720,"female","all_cause") %>%
-  calc_rr()
+  calc_rr() 
+
+fig2 <- fig2 %>% 
+   filter(!(race_eth == "black" & age_group == "5-9")) 
+
 
 plot_rr(fig2, NULL)
 
