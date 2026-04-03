@@ -288,14 +288,14 @@ fig5 <- fig5data %>%
   mutate(ci_exact(deaths,population)) %>%
   ungroup()
 
-plot_yearly(fig5, NULL) 
+plot_yearly(fig5, NULL, c(0.8,0.8)) 
 
-fig5_plot <- plot_yearly(fig5, NULL) 
+fig5_plot <- plot_yearly(fig5, NULL,c(0.8,0.8)) 
 ggsave(
   filename = "../Output/fig5UCD.png",
   plot = fig5_plot,
-  width = 10,
-  height = 6
+  width = 11,
+  height = 7
 )
 
 ``` 
@@ -384,15 +384,15 @@ head(fig6)
 fig6 <- fig6 %>% 
   filter(!(race_eth == "black" & age_group == "90+"))
 
-plot_rate(fig6, NULL)  
+plot_rate(fig6, NULL, legend_pos = c(0.8,0.9))  
 
-fig6_plot <- plot_rate(fig6, NULL)   
+fig6_plot <- plot_rate(fig6, NULL, legend_pos = c(0.8,0.95))   
 
 ggsave(
   filename = "../Output/fig6UCD.png",
   plot = fig6_plot,
-  width = 10,
-  height = 6
+  width = 11,
+  height = 7
 ) 
 
 ```  

@@ -361,72 +361,93 @@ plot_rr <- function(df, title){
 
 
 
-plot_rate <- function(df,title,ylabel="Rate per 100,000"){
+plot_rate <- function(df, title,
+                      ylabel = "Rate per 100,000",
+                      legend_pos = "right",
+                      dodge_width = 0.5) {
+  
+  pd <- position_dodge(width = dodge_width)
   
   ggplot(df,
-         aes(age_group, rate, color=race_eth, group=race_eth))+
+         aes(age_group, rate, color = race_eth, group = race_eth)) +
     
-    geom_line(linewidth=1)+
-    geom_point(size=2)+
-    geom_errorbar(aes(ymin=lcl, ymax=ucl), width=.15)+
+    geom_line(linewidth = 1, position = pd) +
+    geom_point(size = 2, position = pd) +
+    geom_errorbar(aes(ymin = lcl, ymax = ucl),
+                  width = .15,
+                  position = pd) +
     
-    labs(title=title,
-         x="Age group",
-         y=ylabel,
-         color="Race/Ethnicity")+
-    
-    scale_color_discrete(labels = c(
-      "hispanic" = "Hispanic",
-      "white" = "Non-Hispanic White",
-      "black" = "Non-Hispanic Black"
-    ))+
-    
-    theme_minimal()+ 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
-          legend.title = element_text(size = 14),
-          legend.text  = element_text(size = 12),
-          legend.key.size = unit(1.2, "cm"),
-          legend.position = c(0.98, 0.98),
-          legend.justification = c(1, 1)
-    )  
-}
-
-
-
-plot_yearly <- function(df,title){
-  
-  pd <- position_dodge(.3)
-  
-  ggplot(df,aes(year, rate, color=race_eth))+
-    
-    geom_line(linewidth=1)+
-    geom_point(size=2,position=pd)+
-    geom_errorbar(aes(ymin=lcl,ymax=ucl),
-                  width=.2,position=pd)+
-    
-    labs(title=title,
-         x="Year",
-         y="Rate per 100,000",
-         color="Race/Ethnicity")+
-    
-    
-    scale_x_continuous(breaks = seq(min(df$year), max(df$year), by = 1))+
+    labs(title = title,
+         x = "Age group",
+         y = ylabel,
+         color = "Race/Ethnicity") +
     
     scale_color_discrete(labels = c(
       "hispanic" = "Hispanic",
       "white" = "Non-Hispanic White",
       "black" = "Non-Hispanic Black"
-    ))+
+    )) +
     
-    theme_minimal()+ 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
-          legend.title = element_text(size = 14),
-          legend.text  = element_text(size = 12),
-          legend.key.size = unit(1.2, "cm"),
-          legend.position = c(0.98, 0.98),
-          legend.justification = c(1, 1)
-    )  
+    theme_minimal() + 
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.title = element_text(size = 14),
+      legend.text  = element_text(size = 12),
+      legend.key.size = unit(1.2, "cm"),
+      legend.position = legend_pos
+    )
 }
+
+
+
+plot_yearly <- function(df, title,
+                        legend_pos = "right",
+                        offset = 0.2) {
+  
+  df <- df %>%
+    mutate(
+      race_offset = case_when(
+        race_eth == "hispanic" ~ -offset,
+        race_eth == "white"    ~  0,
+        race_eth == "black"    ~  offset
+      ),
+      year_adj = year + race_offset
+    )
+  
+  ggplot(df, aes(year_adj, rate, color = race_eth, group = race_eth)) +
+    
+    geom_line(linewidth = 1) +
+    geom_point(size = 2) +
+    geom_errorbar(aes(ymin = lcl, ymax = ucl),
+                  width = .15) +
+    
+    labs(title = title,
+         x = "Year",
+         y = "Rate per 100,000",
+         color = "Race/Ethnicity") +
+    
+    scale_x_continuous(
+      breaks = unique(df$year),
+      labels = unique(df$year)
+    ) +
+    
+    scale_color_discrete(labels = c(
+      "hispanic" = "Hispanic",
+      "white" = "Non-Hispanic White",
+      "black" = "Non-Hispanic Black"
+    )) +
+    
+    theme_minimal() + 
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.title = element_text(size = 14),
+      legend.text  = element_text(size = 12),
+      legend.key.size = unit(1.2, "cm"),
+      legend.position = legend_pos
+    )
+}
+
+
 
 # ---------------------------- 
 # OVERLAY FUNCTIONS 
