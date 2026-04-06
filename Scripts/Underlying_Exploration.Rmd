@@ -163,14 +163,23 @@ yrs_0720 <- 2007:2020
 fig1 <- calc_rates(all_cause,yrs_0720,"male","all_cause") %>%
   calc_rr() 
 
-plot_rr(fig1,NULL)  
+plot_rr(fig1,NULL) 
+
+fig1_plot <- plot_rr(fig1, NULL)
+ggsave(
+  filename = "../Output/fig1UCD.png",
+  plot = fig1_plot,
+  width = 10,
+  height = 6
+)
 
 #trying again, this time for the other years 
 yrs_9906 <-c(1999:2006)
 fig1_old <- calc_rates(all_cause,yrs_9906,"male","all_cause") %>%
   calc_rr() 
+ plot_rr(fig1_old,NULL)   
 
-plot_rr(fig1_old,NULL)  
+
 
 ``` 
 
@@ -208,7 +217,7 @@ plot_rr(fig2, NULL)
 
 fig2_plot <- plot_rr(fig2, NULL)
 ggsave(
-  filename = "../Output/fig2.png",
+  filename = "../Output/fig2UCD.png",
   plot = fig2_plot,
   width = 10,
   height = 6
@@ -254,7 +263,7 @@ fig3 <- hom_age %>%
 
 plot_rate(fig3,NULL) 
 
-fig3_plot <- plot_rate(fig3, NULL)
+fig3_plot <- plot_rate(fig3, NULL, legend_pos = c(.8,.8))
 ggsave(
   filename = "../Output/fig3UCD.png",
   plot = fig3_plot,
@@ -384,9 +393,9 @@ head(fig6)
 fig6 <- fig6 %>% 
   filter(!(race_eth == "black" & age_group == "90+"))
 
-plot_rate(fig6, NULL, legend_pos = c(0.8,0.9))  
+plot_rate(fig6, NULL, legend_pos = c(0.75,0.82))  
 
-fig6_plot <- plot_rate(fig6, NULL, legend_pos = c(0.8,0.95))   
+fig6_plot <- plot_rate(fig6, NULL, legend_pos = c(0.75,0.82))   
 
 ggsave(
   filename = "../Output/fig6UCD.png",
@@ -428,12 +437,12 @@ fig7 <- yearly_mvc%>%
 
 plot_yearly(fig7, NULL) 
 
-fig7_plot <- plot_yearly(fig7, NULL) 
+fig7_plot <- plot_yearly(fig7, NULL, legend_pos = c(0.8,0.85)) 
 ggsave(
   filename = "../Output/fig7UCD.png",
   plot = fig7_plot,
-  width = 10,
-  height = 6
+  width = 11,
+  height = 7
 )
 
 ``` 
