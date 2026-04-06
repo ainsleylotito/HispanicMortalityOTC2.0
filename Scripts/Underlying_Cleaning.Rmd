@@ -338,11 +338,139 @@ head(all_cleaned)
 all_cause_table1 <- all_cleaned %>% 
   filter(year %in% c(2007:2020),
          sex == "male", 
-         age_group %in% c("15-19", "20-24")) 
-#disease 
+         age_group %in% c("15-19", "20-24")) %>% 
+  group_by(age_group, race_eth, cod) %>% 
+  summarize(deaths = sum(deaths))
+head(all_cause_table1)
+``` 
 
-#injury 
+Next we have to clean disease and injury accordingly: 
+```{r} 
+
+#function for later (import labeled the years strangely): 
+
+#Disease 
+
+#NH
+dis_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Disease/Age/NH.xlsx", col_names = TRUE)
+head(dis_nh)
+dis_nh <- ucd_age_clean_nh(dis_nh, "disease")  
 
 
+#H
+dis_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Disease/Age/H.xlsx", col_names = TRUE)
+head(dis_h)
+dis_h <- ucd_age_clean_h(dis_h, "disease") 
+ sum(is.na(dis_nh$Deaths) | dis_nh$Deaths == 0, na.rm = FALSE)
+  
 
+#Binding
+age_dis <-  bind_rows(
+ dis_h,
+ dis_nh
+) 
+
+#Cleaning final merge
+age_dis <- age_dis %>% 
+  mutate(
+    race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth
+    ),
+    age_group = gsub(" years", "", age_group),
+      age_group = trimws(age_group)
+  )
+
+head(age_dis)
+
+# --------------------- 
+#Injury  
+#NH
+inj_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Injuries/Age/NH.xlsx", col_names = TRUE)
+head(inj_nh)
+inj_nh <- ucd_age_clean_nh(inj_nh, "injury") 
+
+#H
+inj_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Injuries/Age/H.xlsx", col_names = TRUE)
+head(inj_h)
+inj_h <- ucd_age_clean_h(inj_h, "injury") 
+ sum(is.na(inj_nh$Deaths) | inj_nh$Deaths == 0, na.rm = FALSE)
+
+#Binding
+age_inj <-  bind_rows(
+ inj_h,
+ inj_nh
+) 
+
+#Cleaning final merge
+age_inj <- age_inj %>% 
+  mutate(
+    race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth
+    ),
+    age_group = gsub(" years", "", age_group),
+      age_group = trimws(age_group)
+  )
+  
+
+head(age_inj) 
+
+# --------------------- 
+#Suicide  
+#NH
+sui_nh <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Suicide/Age/NH.xlsx", col_names = TRUE)
+head(sui_nh)
+sui_nh  <- ucd_age_clean_nh(sui_nh , "suicide") 
+
+#H
+sui_h <- read_excel("../RawData/cdcWONDER/UnderlyingCOD99_20/Suicide/Age/H.xlsx", col_names = TRUE)
+head(sui_h)
+sui_h <- ucd_age_clean_h(sui_h, "suicide") 
+ sum(is.na(sui_h$Deaths) | sui_h$Deaths == 0, na.rm = FALSE)
+
+#Binding
+age_sui <-  bind_rows(
+ sui_h,
+ sui_nh
+) 
+
+#Cleaning final merge
+age_sui <- age_sui %>% 
+ mutate(
+    race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth
+    ),
+    age_group = gsub(" years", "", age_group),
+      age_group = trimws(age_group)
+  )
+  
+
+head(age_sui) 
+
+``` 
+
+Now that we have our datasets in the right configuration, we can bind all of them to make one large dataset with all causes of death among the population (15-24 year old males).
+
+```{r}
+table1 <- bind_rows(
+  all_cause_table1,
+  age_hom,
+  age_mvc,
+  age_inj,
+  age_sui,
+  age_dis
+) 
+
+head(table1) 
+glimpse(table1) 
+
+write_csv(table1, "../CleanData/table1.csv")
 ```

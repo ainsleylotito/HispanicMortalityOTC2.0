@@ -152,6 +152,166 @@ Steps:
 
 5. Calculate 95% CIs using log normal approximation to the Poisson distribution  
 
+```{r}
+#Step 1: keep deaths and population by age group  
+  #Will use the table1 dataframe previously created and add the appropriate populations 
+table1 <- read.csv("../CleanData/table1.csv") 
+table1 %>% 
+  group_by(cod) %>% 
+  slice(1:3)
+
+#pulling up population data
+pop <- read.csv("../CleanData/dof_data_grouped.csv")  
+
+pop %>%  
+  filter(
+    sex == "male",
+    age_group %in% c("15-19","20-24"),
+    year %in% c(2007:2020)
+  ) %>% 
+  group_by(race_eth) %>% 
+  slice(1:3)
+
+
+grouped_pop <- pop %>% 
+  filter(
+    sex == "male",
+    age_group %in% c("15-19","20-24"),
+    year %in% c(2007:2020)
+  ) %>% 
+  group_by(race_eth, age_group) %>% 
+  summarize(population = sum(population)) 
+head(grouped_pop)
+
+table1 <- table1 %>% 
+  left_join(grouped_pop, by = c("race_eth", "age_group"))
+head(table1) 
+table1 %>%
+  filter(cod %in% c("disease", "injury")) %>%
+  summarise(
+    n = n(),
+    missing_pop = sum(is.na(population))
+  )
+``` 
+
+```{r}
+#Step 2: get standard population weights 
+std_pop <- pop %>%
+  filter(
+    year == 2000,
+    age_group %in% c("15-19","20-24"),
+    sex == "male"
+  ) %>%
+  group_by(age_group) %>%
+  summarise(std_pop = sum(population), .groups="drop") %>%
+  mutate(weight = std_pop / sum(std_pop))
+
+# Step 3: compute age-specific rates
+table1 <- table1 %>%
+  mutate(rate = deaths / population)
+table1 %>% 
+  group_by(cod) %>% 
+  slice(1:3)
+ 
+# Step 4: join weights + calculate weighted rates 
+adj_rates <- table1 %>%
+  left_join(std_pop, by="age_group") %>%
+  mutate(weighted_rate = rate * weight) 
+
+#sum weighted rates --> age-adjusted rates
+n_years <- 14
+
+table1_adj <- adj_rates %>%
+  group_by(race_eth, cod) %>%
+  summarise(
+    adj_rate = sum(weighted_rate) / n_years,
+    deaths_total = sum(deaths),
+    .groups="drop"
+  ) %>%
+  mutate(
+    rate_100k = adj_rate * 100000,
+    se_log = 1 / sqrt(deaths_total),
+    lcl = rate_100k * exp(-1.96 * se_log),
+    ucl = rate_100k * exp( 1.96 * se_log)
+  ) 
+
+table1_adj %>%
+  summarise(n = n(), .by = c(cod, race_eth)) %>%
+  filter(n > 1)
+
+# Step 5: adding poisson CI 
+table1_adj <- adj_rates %>%
+  group_by(race_eth, cod) %>%
+  summarise(
+    adj_rate = sum(weighted_rate),
+    deaths_total = sum(deaths),
+    .groups="drop"
+  ) %>%
+  mutate(
+    rate_100k = adj_rate * 100000,
+
+    se_log = 1 / sqrt(deaths_total),
+
+    lcl = rate_100k * exp(-1.96 * se_log),
+    ucl = rate_100k * exp( 1.96 * se_log)
+  )
+
+#formatting
+table1_adj <- table1_adj %>%
+  mutate(
+    rate_ci = sprintf(
+      "%.1f (%.1f–%.1f)",
+      rate_100k, lcl, ucl
+    )
+  ) 
+
+table1_adj %>% 
+  group_by(cod) %>% 
+  slice(1:3) 
+```
+
+Formatting table 1: 
+```{r}
+
+cod_levels <- c(
+  "homicide",
+  "mvc",
+  "suicide",
+  "injury",
+  "disease",
+  "all_cause"
+)
+
+cod_labels <- c(
+  homicide = "Homicide",
+  mvc = "Motor Vehicle Crashes",
+  suicide = "Suicide",
+  injury = "Other Injuries",
+  disease = "Other Disease",
+  all_cause = "Total (All Causes)"
+) 
+
+table1_final <- table1_adj %>%
+  mutate(
+    cod = factor(cod, levels = cod_levels, ordered = TRUE),
+    cod = recode(cod, !!!cod_labels)
+  ) %>%
+  arrange(cod)
+
+
+table1_wide <- table1_final %>%
+  select(cod, race_eth, rate_ci) %>%
+  pivot_wider(
+    names_from = race_eth,
+    values_from = rate_ci
+  ) %>%
+  arrange(cod)
+
+knitr::kable(
+  table1_wide,
+  caption = "Table 1. Annual mortality rates (95% CI) per 100,000 by cause of death and race/ethnic group. California males age 15–24 years, 2007–2020."
+)
+```
 
 # All Cause 
 
