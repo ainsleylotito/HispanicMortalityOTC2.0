@@ -21,7 +21,14 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 source("../Scripts/functions.R")
 ```
- 
+
+This script will contain the code necessary to clean the data stored in the `/RawData` folder. The first data cleaning section will focus on mortality data, using data retried from CDC Wonder. Documentation for exact queries used to pull specific data are contained within each datafile itself. 
+
+The second cleaning section will focus on population data from the California Department of Finance. 
+
+Functions used to clean data are contained in the `/Scripts/functions.R` document. 
+
+
 # All-Cause Mortality by Year 
 
 ```{r}
