@@ -198,13 +198,7 @@ ucd_year_clean_nh <- function(df, cod_character) {
       cod = cod_character,
       deaths = as.numeric(deaths)
     ) 
-} 
- 
-
-
-
-# Formats # 
-
+}
 #Formatting race and age 
 race_age_format <- function(df) {
   
@@ -244,6 +238,10 @@ race_age_format <- function(df) {
     group_by(race_eth, age_group, cod) %>%
     summarise(deaths = sum(deaths, na.rm = TRUE), .groups = "drop")
 }
+
+#By Year Hispanic 
+
+#By Year NH
 
 
 

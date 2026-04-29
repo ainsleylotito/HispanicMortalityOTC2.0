@@ -1,0 +1,785 @@
+---
+title: "Cleaning"
+output_dir: ../Output 
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
+--- 
+```{r setup}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(janitor)
+
+# Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+```
+
+# Mortality Data 
+## 1999-2013 
+```{r importm99}
+mortality99_13 <- read.csv("../RawData/cdph/2021-05-14_deaths_final_1999_2013_state_year_sup.csv")
+```
+
+First, we need to restrict the dataset to only observations with CA residents. We will do so by restricting the data to only cases where the `Geography_Type` column is "Residence", as per the data dictionary definition: 
+
+**Whether the geography is based on the place of residence or place of occurrence. A geography type of Residence includes events for California residents even if they occurred outside of California, whereas a geography type of Occurrence includes events that occurred within California even if they were not California residents.** 
+
+```{r residents}
+table(mortality99_13$Geography_Type) 
+mortality99_13 <- mortality99_13 %>% 
+  filter(Geography_Type == "Residence")
+```
+There were the same count of occurrence and residence deaths. This makes sense, as there should be a row for each residence type and strata. After restricting the data, we have 2744 observations. 
+
+```{r tidy_99}
+glimpse(mortality99_13)
+
+
+```
+We will retain this data to calculate an all-cause mortality count, but we also need to create another dataframe that only includes the Cause of Death included in the analysis.
+
+Next, we are going to apply the exclusion criteria and recode the ICD codes into the same groups used in [Vaca et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21134905/): 
+
+*"The ICD-10 underlying cause of death codes were grouped as follows: disease (001-294), motor vehicle (296-306), suicide (331-337), homicide (338-346), and all other injury (295, 307-330, 347-358). We restricted the data to three racial and ethnic groups: Latinos (defined as having Hispanic ethnicity and any race), non-Latino whites, and non-Latino blacks. We used race and ethnicity data recorded on the death certificate."* 
+
+```{r}
+#mortality99_13_icd
+```
+
+## 2014-2023
+```{r importm14}
+mortality14_23 <- read.csv("../RawData/cdph/20250116_deaths_final_2014_2023_state_year_sup.csv")
+table(mortality14_23$Geography_Type) #checking counts of Residents/Non-Residents 
+
+mortality14_23 <- mortality14_23 %>% 
+  filter(Geography_Type == "Residence",
+         Strata != "Place Type")
+```
+
+
+### All-cause mortality 
+We are going to merge the mortality datasets so we may calculate all-cause mortality rates. We will start by looking at how many unique combinations of Gender, Age, and Race_Eth exist for the All-cause mortality data within each set.
+
+```{r all_cause_data}
+mortality99_13 %>%
+  filter(Cause == "ALL") %>%
+  count(Year, Strata, name = "n_rows") 
+
+mortality14_23 %>%
+  filter(Cause == "ALL") %>%
+  count(Year, Strata, name = "n_rows")
+
+
+mortality14_23_all <- mortality14_23 %>% 
+  filter(Cause == "ALL") %>% 
+  select(Year, Strata, Strata_Name, Count) 
+glimpse(mortality14_23_all) #481 rows
+
+mortality99_13_all <- mortality99_13 %>% 
+   filter(Cause == "ALL") %>% 
+ select(Year, Strata, Strata_Name, Count)
+glimpse(mortality99_13_all) #546 rows
+
+all_cause_mort <- bind_rows(
+  mortality99_13_all,
+  mortality14_23_all
+)
+glimpse(all_cause_mort)
+range(all_cause_mort$Year)
+write_csv(all_cause_mort, "../CleanData/all_cause_mort.csv") 
+
+race_eth_all_cause <- all_cause_mort %>% 
+  filter(Strata_Name %in% c("Female * Black", 
+                            "Female * Hispanic", "Female * White",
+                            "Male * Black", "Male * Hispanic",
+                            "Male * White")) #excluding deaths for Multi-Race and Other/Unknown 
+
+race_eth_all_cause <- race_eth_all_cause %>% #tidying
+  separate(
+    Strata_Name,
+    into = c("sex", "race_eth"),
+    sep = " \\* "
+  ) %>% 
+  select(-Strata) %>% 
+  rename_with(tolower) %>% 
+  mutate(sex = str_to_lower(sex),
+         race_eth = str_to_lower(race_eth)) 
+
+#return to this later, we didn't save the data with this filtering
+```
+
+
+
+## CDC Wonder
+
+This is just where I am going to import all of the data from CDC Wonder. The goal of this data cleaning process will be to add a col for race_eth, add a cause of death (cod) column, and merge all my data. 
+
+Let's start just with the all-cause mortality datasets. I am going to make a cleaning function for both white_black dfs and hispanic dfs that can be reused for the rest of this process.
+
+```{r all_cause_cdc}
+#function creation 
+white_black_clean <- function(df, cod_character) {
+
+  df <- df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five.Year.Age.Groups.Code",
+                "Year.Code",
+                "Sex.Code",
+                "Race.Code",
+                "Single.Race.6.Code",
+                "Population"))
+    )
+
+  if ("Race" %in% names(df)) {
+    df <- df %>% rename(race_eth = Race)
+  } else if ("Single.Race.6" %in% names(df)) {
+    df <- df %>% rename(race_eth = Single.Race.6)
+  }
+
+  df %>% 
+    rename(age_group = Five.Year.Age.Groups) %>% 
+        rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
+    filter(!is.na(year))
+}
+
+
+
+hispanic_clean <- function(df, cod_character) {
+
+  df %>% 
+    select(
+      -any_of(c("Notes",
+                "Five.Year.Age.Groups.Code",
+                "Year.Code",
+                "Sex.Code",
+                "Population"))
+    ) %>% 
+    rename(age_group = Five.Year.Age.Groups) %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      cod = cod_character,
+      race_eth = "Hispanic",
+      deaths = as.numeric(deaths),
+      year = as.integer(year)
+    ) %>% 
+    filter(!is.na(year))
+}
+
+
+
+#all_cause datasets
+all_cause_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_White_Black.csv")
+all_cause_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/all_cause/All_Cause_Hispanic.csv") 
+all_cause_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/All_Cause/All_Cause_White_Black.csv")
+all_cause_hispanic_18_23    <- read.csv("../RawData/cdcWONDER/2018_2023/All_Cause/All_Cause_Hispanic.csv")
+
+
+#cleaning all cause 
+all_cause_white_black_99_17_clean <- white_black_clean(all_cause_white_black_99_17, "all_cause")
+all_cause_hispanic_99_17_clean <- hispanic_clean(all_cause_hispanic_99_17, "all_cause") 
+all_cause_white_black_18_23_clean <- white_black_clean(all_cause_white_black_18_23, "all_cause")
+all_cause_hispanic_18_23_clean <- hispanic_clean(all_cause_hispanic_18_23, "all_cause")  
+
+
+#homicide datasets 
+hom__white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/homicide/Homicide_White_Black.csv")
+hom_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/homicide/Homicide_Hispanic.csv")
+hom_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Homicide/Homicide_White_Black.csv")
+hom_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Homicide/Homicide_Hispanic.csv")
+
+#homicide cleaning 
+hom_white_black_99_17_clean <- white_black_clean(
+  hom__white_black_99_17,
+  cod_character = "homicide"
+)
+
+hom_white_black_18_23_clean <- white_black_clean(
+  hom_white_black_18_23,
+  cod_character = "homicide"
+)
+
+hom_hispanic_99_17_clean <- hispanic_clean(
+  hom_hispanic_99_17,
+  cod_character = "homicide"
+)
+
+hom_hispanic_18_23_clean <- hispanic_clean(
+  hom_hispanic_18_23,
+  cod_character = "homicide"
+)
+
+
+#mvc datasets 
+mvc_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/mvc/MVC_Hispanic.csv")
+mvc_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/mvc/MVC_White_Black.csv")
+mvc_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/MVC/MVC_White_Black.csv")
+mvc_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/MVC/MVC_Hispanic.csv")
+
+#mvc cleaning 
+mvc_white_black_99_17_clean <- white_black_clean(
+  mvc_white_black_99_17,
+  cod_character = "mvc"
+)
+
+mvc_white_black_18_23_clean <- white_black_clean(
+  mvc_white_black_18_23,
+  cod_character = "mvc"
+)
+
+mvc_hispanic_99_17_clean <- hispanic_clean(
+  mvc_hispanic_99_17,
+  cod_character = "mvc"
+)
+
+mvc_hispanic_18_23_clean <- hispanic_clean(
+  mvc_hispanic_18_23,
+  cod_character = "mvc"
+)
+
+
+#other_disease datasets 
+disease_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_disease/Disease_Hispanic.csv")
+disease_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_disease/Disease_White_Black.csv")
+disease_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Disease/Other_Disease_White_Black.csv")
+disease_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Disease/Other_Disease_Hispanic.csv")
+
+#other_disease cleaning 
+disease_white_black_99_17_clean <- white_black_clean(
+  disease_white_black_99_17,
+  cod_character = "other_disease"
+)
+
+disease_white_black_18_23_clean <- white_black_clean(
+  disease_white_black_18_23,
+  cod_character = "other_disease"
+)
+
+disease_hispanic_99_17_clean <- hispanic_clean(
+  disease_hispanic_99_17,
+  cod_character = "other_disease"
+)
+
+disease_hispanic_18_23_clean <- hispanic_clean(
+  disease_hispanic_18_23,
+  cod_character = "other_disease"
+)
+
+
+#other_injuries datasets 
+inj_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_injuries/Injuries_Hispanic.csv")
+inj_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/other_injuries/Injuries_White_Black.csv")
+inj_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Injury/Other_Injury_White_Black.csv")
+inj_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Other_Injury/Other_Injury_Hispanic.csv")
+
+#other_injuries cleaning 
+inj_white_black_99_17_clean <- white_black_clean(
+  inj_white_black_99_17,
+  cod_character = "other_injury"
+)
+
+inj_white_black_18_23_clean <- white_black_clean(
+  inj_white_black_18_23,
+  cod_character = "other_injury"
+)
+
+inj_hispanic_99_17_clean <- hispanic_clean(
+  inj_hispanic_99_17,
+  cod_character = "other_injury"
+)
+
+inj_hispanic_18_23_clean <- hispanic_clean(
+  inj_hispanic_18_23,
+  cod_character = "other_injury"
+)
+
+
+#suicide datasets 
+sui_hispanic_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/suicide/Suicide_Hispanic.csv")
+sui_white_black_99_17 <- read.csv("../RawData/cdcWONDER/1999_2017/suicide/Suicide_White_Black.csv")
+sui_white_black_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Suicide/Suicide_White_Black.csv")
+sui_hispanic_18_23 <- read.csv("../RawData/cdcWONDER/2018_2023/Suicide/Suicide_Hispanic.csv")
+
+#suicide cleaning
+sui_white_black_99_17_clean <- white_black_clean(
+  sui_white_black_99_17,
+  cod_character = "suicide"
+)
+
+sui_white_black_18_23_clean <- white_black_clean(
+  sui_white_black_18_23,
+  cod_character = "suicide"
+)
+
+sui_hispanic_99_17_clean <- hispanic_clean(
+  sui_hispanic_99_17,
+  cod_character = "suicide"
+)
+
+sui_hispanic_18_23_clean <- hispanic_clean(
+  sui_hispanic_18_23,
+  cod_character = "suicide"
+)
+
+```
+
+Merging the cleaned data: 
+```{r bind_rows}
+
+all_cleaned <- bind_rows(
+  # all-cause
+  all_cause_white_black_99_17_clean,
+  all_cause_white_black_18_23_clean,
+  all_cause_hispanic_99_17_clean,
+  all_cause_hispanic_18_23_clean,
+
+  # homicide
+  hom_white_black_99_17_clean,
+  hom_white_black_18_23_clean,
+  hom_hispanic_99_17_clean,
+  hom_hispanic_18_23_clean,
+
+  # MVC
+  mvc_white_black_99_17_clean,
+  mvc_white_black_18_23_clean,
+  mvc_hispanic_99_17_clean,
+  mvc_hispanic_18_23_clean,
+
+  # other disease
+  disease_white_black_99_17_clean,
+  disease_white_black_18_23_clean,
+  disease_hispanic_99_17_clean,
+  disease_hispanic_18_23_clean,
+
+  # other injury
+  inj_white_black_99_17_clean,
+  inj_white_black_18_23_clean,
+  inj_hispanic_99_17_clean,
+  inj_hispanic_18_23_clean,
+
+  # suicide
+  sui_white_black_99_17_clean,
+  sui_white_black_18_23_clean,
+  sui_hispanic_99_17_clean,
+  sui_hispanic_18_23_clean
+)
+
+glimpse(all_cleaned)
+
+count(all_cleaned, cod)
+
+count(all_cleaned, cod, race_eth)
+
+range(all_cleaned$year, na.rm = TRUE)  
+
+#making codings consistent with dof_data_grouped.csv dataset: 
+
+all_cleaned <- all_cleaned %>%
+  select(-"single.race.6", -"single.race.6.code") %>% #getting rid of extraneous vars 
+  mutate(sex = str_to_lower(sex),
+         race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth),
+      age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+      age_group == "5-9 years"   ~ "5-9",
+      age_group == "10-14 years" ~ "10-14",
+      age_group == "15-19 years" ~ "15-19",
+      age_group == "20-24 years" ~ "20-24",
+      age_group == "25-29 years" ~ "25-29",
+      age_group == "30-34 years" ~ "30-34",
+      age_group == "35-39 years" ~ "35-39",
+      age_group == "40-44 years" ~ "40-44",
+      age_group == "45-49 years" ~ "45-49",
+      age_group == "50-54 years" ~ "50-54",
+      age_group == "55-59 years" ~ "55-59",
+      age_group == "60-64 years" ~ "60-64",
+      age_group == "65-69 years" ~ "65-69",
+      age_group == "70-74 years" ~ "70-74",
+      age_group == "75-79 years" ~ "75-79",
+      age_group == "80-84 years" ~ "80-84",
+      age_group == "85-89 years" ~ "85-89",
+      age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+      age_group == "Not Stated" ~ NA_character_,
+      TRUE ~ NA_character_))
+  
+
+
+
+#saving my data 
+write_csv(all_cleaned, "../CleanData/cdc_mortality.csv")
+
+```
+### Male motor vehicle 2007-2020 
+
+We ran into a snag where we didn't have the stats populate for figure 6, which will analyze male MVC mortality by age group over the study period. Due to the CDC privacy suppression removing results with fewer than 10 deaths, we are missing data for a lot of black deaths. To mitigate this specifically, we pulled data without stratifying by year. We are going to clean that data up so we can see how figure 6 looks. 
+
+```{r}
+nh_w_b <- read.csv("../RawData/cdcWONDER/2007_2020_MVC/NH_W_B.csv") 
+his <- read.csv("../RawData/cdcWONDER/2007_2020_MVC/Hispanic.csv")
+
+nh_w_b <- nh_w_b %>%
+  select("Five.Year.Age.Groups", "Race", "Deaths") %>% 
+  rename(age_group = Five.Year.Age.Groups,
+         race_eth = Race,
+         deaths = Deaths) %>% 
+   mutate(race_eth = case_when(
+      race_eth == "Black or African American" ~ "black",
+      race_eth == "White" ~ "white",
+      race_eth == "Hispanic" ~ "hispanic",
+      TRUE ~ race_eth),
+      age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+      age_group == "5-9 years"   ~ "5-9",
+      age_group == "10-14 years" ~ "10-14",
+      age_group == "15-19 years" ~ "15-19",
+      age_group == "20-24 years" ~ "20-24",
+      age_group == "25-29 years" ~ "25-29",
+      age_group == "30-34 years" ~ "30-34",
+      age_group == "35-39 years" ~ "35-39",
+      age_group == "40-44 years" ~ "40-44",
+      age_group == "45-49 years" ~ "45-49",
+      age_group == "50-54 years" ~ "50-54",
+      age_group == "55-59 years" ~ "55-59",
+      age_group == "60-64 years" ~ "60-64",
+      age_group == "65-69 years" ~ "65-69",
+      age_group == "70-74 years" ~ "70-74",
+      age_group == "75-79 years" ~ "75-79",
+      age_group == "80-84 years" ~ "80-84",
+      age_group == "85-89 years" ~ "85-89",
+      age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+      age_group == "Not Stated" ~ NA_character_,
+      TRUE ~ NA_character_)) 
+
+his <- his %>% 
+  select("Five.Year.Age.Groups","Deaths") %>% 
+  rename(age_group = Five.Year.Age.Groups,
+         deaths = Deaths) %>% 
+   mutate(race_eth = "hispanic",
+      age_group = str_trim(age_group),
+    age_group = case_when(
+      age_group %in% c("< 1 year", "1-4 years") ~ "0-4",
+      age_group == "5-9 years"   ~ "5-9",
+      age_group == "10-14 years" ~ "10-14",
+      age_group == "15-19 years" ~ "15-19",
+      age_group == "20-24 years" ~ "20-24",
+      age_group == "25-29 years" ~ "25-29",
+      age_group == "30-34 years" ~ "30-34",
+      age_group == "35-39 years" ~ "35-39",
+      age_group == "40-44 years" ~ "40-44",
+      age_group == "45-49 years" ~ "45-49",
+      age_group == "50-54 years" ~ "50-54",
+      age_group == "55-59 years" ~ "55-59",
+      age_group == "60-64 years" ~ "60-64",
+      age_group == "65-69 years" ~ "65-69",
+      age_group == "70-74 years" ~ "70-74",
+      age_group == "75-79 years" ~ "75-79",
+      age_group == "80-84 years" ~ "80-84",
+      age_group == "85-89 years" ~ "85-89",
+      age_group %in% c("90-94 years", "95-99 years", "100+ years") ~ "90+",
+      age_group == "Not Stated" ~ NA_character_,
+      TRUE ~ NA_character_))  
+
+sum(nh_w_b$deaths, na.rm = TRUE)
+sum(his$deaths, na.rm = TRUE)
+
+sum(bind_rows(his, nh_w_b)$deaths, na.rm = TRUE)
+fig6data <- bind_rows(his, nh_w_b) %>%
+  filter(!is.na(age_group)) %>%
+  group_by(race_eth, age_group) %>%
+  summarise(deaths = sum(deaths, na.rm = TRUE), .groups = "drop") 
+
+fig6data %>% 
+    group_by(race_eth, age_group)
+
+
+write_csv(fig6data, "../CleanData/fig6data")
+```
+
+# Population Data 
+
+Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 4 separate datasets we will need to clean and merge (1990-1999,2001-2010, 2011-2020, 2021-2025). 
+
+### 1990-1999 
+For this dataset, we only need the year 1999 to supply population data for our entire study period. The data is not tidy, so we will need to write specific race_eth designations. 
+
+```{r dof_99}
+raw<- read_excel("../RawData/dof/Intercensal_1990_1999/California.xlsx", col_names = FALSE)
+# Extract header rows
+header1 <- raw[1, ]
+header2 <- raw[2, ]
+
+# Combine headers
+colnames(raw) <- c(
+  "area", "year", "sex", "age",
+  paste(header1[5:ncol(raw)], header2[5:ncol(raw)], sep = "_")
+)
+
+# Drop header rows
+dat <- raw %>% slice(-(1:2)) %>% clean_names()
+
+head(dat)
+
+#keeping Hispanic total
+dat <- dat %>%
+  mutate(
+    across(
+      starts_with(c("non_hispanic", "hispanic")),
+      ~ as.numeric(.)
+    )
+  )
+
+dof_99_tidy <- dat %>%
+  filter(year == "1999") %>% 
+  mutate(
+    hispanic_total =
+      hispanic_white +
+      hispanic_black +
+      hispanic_asian_pacific +
+      hispanic_indian
+  ) %>%
+  select(
+    -area, year, sex, age,
+    non_hispanic_white,
+    non_hispanic_black,
+    hispanic_total
+  ) %>%
+  pivot_longer(
+    cols = c(
+      non_hispanic_white,
+      non_hispanic_black,
+      hispanic_total
+    ),
+    names_to = "race_eth",
+    values_to = "population"
+  ) %>%
+  mutate(
+    race_eth = case_when(
+      race_eth == "non_hispanic_white" ~ "white",
+      race_eth == "non_hispanic_black" ~ "black",
+      race_eth == "hispanic_total"     ~ "hispanic"
+    ),
+    year = as.numeric(year),
+    age = as.numeric(age), 
+    sex = str_to_lower(sex)
+  )
+
+head(dof_99_tidy)
+
+
+```
+
+
+### 2000-2009  
+
+This file contains both county-level and state-level population estimates. We will filter to only include the population estimates when county = 59, which corresponds with state-level estimates. We also will drop the estimate for the year 2010. After cleaning and cross-examining with the following dataframe, I found that the estimates were identical (Census-based) from this dataset and the 2010-2020 dataset. To ensure we don't inflate the estimate for 2010 by summing both datsets, we're just going to drop it from this one. 
+
+We need to do some cleaning to make the variables consistent with other datasets. We will convert the Year to a proper "date" variable and select only the races/ethnic groups to be used in the study.
+
+```{r dof1}
+dof1 <- read.csv("../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt") 
+head(dof1) 
+
+dof1_tidy <- dof1 %>%
+  mutate(
+    year = year(mdy_hms(Year)),
+    age = as.numeric(Age),
+    population = as.numeric(Population),
+    race_eth = str_to_lower(RaceName),
+    sex = str_to_lower(Gender)
+  ) %>%
+  filter(
+    CountyCode == 59,
+    race_eth %in% c("white", "black", "hispanic"),
+    !Year %in% c("7/1/2000 0:00:00", "4/1/2010 0:00:00") #getting rid of duplicate 2000 and 2010 census
+  ) %>%
+  group_by(year, race_eth, sex, age) %>%
+  summarise(population = sum(population), .groups = "drop") %>%
+  arrange(year, race_eth, sex, age)
+
+nrow(dof1_tidy) 
+head(dof1_tidy)
+
+``` 
+
+
+### 2010-2020 
+
+```{r dof2}
+dof2 <- read_excel("../RawData/dof/Intercensal_Excel_California.xlsx",
+                   sheet = "California-State",
+                   col_names = TRUE) 
+dof2 <- dof2 %>% 
+  select(Sex:"April 1, 2020") %>% 
+  rename(age = "Age (0-100+)",
+         race_eth = "Race/ethnicity recode") %>% 
+  rename_with(tolower)
+ 
+```
+Each row contains the population count for a given age, race, and sex. We are going to tidy this data by making a new "Year" variable and "Population" variable to contain the values that are in wide format right now. We also have two population values for 2010 (April, when the census took effect, then July). We will retain just the April counts, as they require no estimation and are the most accurate approximation of the population that year. 
+
+```{r tidy_dof2}
+dof2_tidy <- pivot_longer(dof2,
+                     cols = 'april 1, 2010':'april 1, 2020',
+                     names_to = "Year",
+                     values_to = "Population")
+dof2_tidy <- dof2_tidy %>% 
+  filter(Year != "july 1, 2010") %>% 
+  mutate(
+    Year = year(mdy(Year)),
+    sex = str_to_lower(sex)
+  ) %>% 
+   rename_with(tolower) %>% 
+  filter(race_eth %in% c("White NH", "Black NH", "Hispanic")) %>% 
+  mutate(race_eth = recode(
+    race_eth, 
+    "White NH" = "White", 
+    "Black NH" = "Black"),
+    race_eth = str_to_lower(race_eth),
+    population = as.numeric(population)
+  )
+  
+```
+Now that our datasets have consistent tidy structure and naming conventions, we can stack them. 
+
+```{r merge}
+#Checking counts prior to merge
+nrow(dof1_tidy) #6666
+nrow(dof2_tidy) #6666
+nrow(dof_99_tidy) #606
+
+dof_data <- bind_rows(dof_99_tidy, dof1_tidy, dof2_tidy)
+head(dof_data) 
+nrow(dof_data) #13938, correct number of observations
+```
+
+Checking how the data may/may not change by different years.. 
+```{r comparison_graphs}
+dof1 <- dof1_tidy %>% mutate(source = "dof1")
+dof2 <- dof2_tidy %>% mutate(source = "dof2")
+dof99 <- dof_99_tidy %>% mutate(source = "dof99")
+
+dof_all <- bind_rows(dof1, dof2, dof99)
+
+pop_totals <- dof_all%>%
+  group_by(source, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop")
+
+pop_totals
+
+ggplot(pop_totals, aes(x = year, y = population, color = source)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  theme_minimal() +
+  labs(
+    title = "Total population by year and data source",
+    y = "Total population"
+  )
+
+#for each race/eth 
+pop_race <- dof_all %>% 
+  group_by(year, race_eth) %>% 
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop")
+
+
+ggplot(pop_race, aes(year, population, color = race_eth))+
+  geom_line(linewidth = 1) +
+  geom_point() +
+  theme_minimal() 
+```
+
+
+We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.   
+
+```{r age_groups}
+age_breaks <- c(seq(0, 90, by = 5), Inf)  # 0,5,10,...,90, Inf
+age_labels <- c(paste(seq(0, 85, by = 5), seq(4, 89, by = 5), sep = "-"), "90+")
+
+dof_data_grouped <- dof_data %>%
+  mutate(age_group = cut(age, breaks = age_breaks, labels = age_labels, right = TRUE, include.lowest = TRUE)) %>%
+  group_by(sex, race_eth, age_group, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop") 
+head(dof_data_grouped)  
+
+dof_data_grouped %>% 
+  filter(race_eth == "black") %>% 
+  group_by(year, sex, age_group) %>% 
+  summarize(n = n(), .groups = "drop") %>% 
+  filter(n > 1) 
+
+#how black population changes by age
+dof_data_grouped %>% 
+  filter(race_eth == "black") %>% 
+  group_by(year, age_group) %>% 
+  summarize(pop = sum(population, na.rm = TRUE)) %>% 
+  ggplot(aes(year, pop, color = age_group)) +
+  geom_line()
+
+dof_data_grouped %>% 
+  filter(race_eth == "black") %>% 
+  group_by(year) %>% 
+  summarize(pop = sum(population))
+```
+## 2021-2025
+
+For 2021-2025, the only option (that I can ascertain) is to use the population projections for the years 2021-2025. We will be using the "Complete P-3 Race/Ethnicity and Sex by Age for California and Counties, Excel Compatible" California-State section from the [Projection webpage of the dof](https://dof.ca.gov/forecasting/demographics/projections/). 
+
+```{r dof3}
+dof3 <- read_excel("../RawData/dof/Projections/P3_California-and-Counties.xlsx",
+                   sheet = "California-State",
+                   col_names = TRUE) 
+dof3 <- dof3 %>% 
+  select(Sex:"2025", -"2020") %>% 
+  rename(age = "Age (0-110+)",
+         race_eth = "Race/ethnicity recode") %>% 
+  rename_with(tolower) %>% 
+  filter(race_eth %in% c(1,2,7)) %>% 
+  mutate(sex = str_to_lower(sex),
+         race_eth = recode(
+    race_eth, 
+    "1" = "White", 
+    "2" = "Black",
+    "7" = "Hispanic")) %>% 
+  pivot_longer(
+                     cols = '2021':'2025',
+                     names_to = "year",
+                     values_to = "population"
+                     )
+```
+
+Checking that continuity is good. 
+
+```{r} 
+
+all_cleaned %>%
+  filter(year %in% c(2016, 2017, 2018)) %>%
+  group_by(year, race_eth) %>%
+  summarise(deaths = sum(deaths)) 
+
+  
+```
+#Saving population datasets 
+
+```{r save}
+write_csv(dof_data_grouped, "../CleanData/dof_data_grouped.csv") 
+write_csv(dof_data, "../CleanData/dof_data.csv")
+``` 
+
+
+

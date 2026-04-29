@@ -1,0 +1,429 @@
+---
+title: "PopulationCleaning"
+output: html_document
+--- 
+```{r setup}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(janitor)
+
+# Global options
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+```
+
+The purpose of this document is to run some checks to ensure that the DOF population data has been cleaned properly. We are going to replicate the cleaning steps used, and generate some plots/cross check with other data sources potentially to ensure that the process went correct. 
+
+# Population Data 
+
+Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 4 separate datasets we will need to clean and merge (1990-1999,2001-2010, 2011-2020, 2021-2025). 
+
+### 1990-1999 
+For this dataset, we only need the year 1999 to supply population data for our entire study period. The data is not tidy, so we will need to write specific race_eth designations. 
+
+```{r dof_99}
+raw<- read_excel("../RawData/dof/Intercensal_1990_1999/California.xlsx", col_names = FALSE)
+# Extract header rows
+header1 <- raw[1, ]
+header2 <- raw[2, ]
+
+# Combine headers
+colnames(raw) <- c(
+  "area", "year", "sex", "age",
+  paste(header1[5:ncol(raw)], header2[5:ncol(raw)], sep = "_")
+)
+
+# Drop header rows
+dat <- raw %>% slice(-(1:2)) %>% clean_names()
+
+head(dat)
+
+#keeping Hispanic total, rounding to whole numberds
+dat <- dat %>%
+  mutate(
+    across(
+      starts_with(c("non_hispanic", "hispanic")),
+      ~ round(as.numeric(.))
+    )
+  )
+
+
+dof_99_tidy <- dat %>%
+  filter(year == "1999") %>% 
+  mutate(
+    hispanic_total =
+      hispanic_white +
+      hispanic_black +
+      hispanic_asian_pacific +
+      hispanic_indian
+  ) %>%
+  select(
+    -area, year, sex, age,
+    non_hispanic_white,
+    non_hispanic_black,
+    hispanic_total
+  ) %>%
+  pivot_longer(
+    cols = c(
+      non_hispanic_white,
+      non_hispanic_black,
+      hispanic_total
+    ),
+    names_to = "race_eth",
+    values_to = "population"
+  ) %>%
+  mutate(
+    race_eth = case_when(
+      race_eth == "non_hispanic_white" ~ "white",
+      race_eth == "non_hispanic_black" ~ "black",
+      race_eth == "hispanic_total"     ~ "hispanic"
+    ),
+    year = as.numeric(year),
+    age = as.numeric(age), 
+    sex = str_to_lower(sex)
+  ) %>% 
+  select(-non_hispanic_asian_pacific:-hispanic_indian)
+
+head(dof_99_tidy)
+
+dof_99_tidy %>%  #should be 115,132 female
+  filter(age == 0 & race_eth == "hispanic")
+
+dof_99_tidy %>%  #should be 79,764 female
+  filter(age == 0 & race_eth == "white")
+
+dof_99_tidy %>%  #should be 17855 female
+  filter(age == 0 & race_eth == "black") 
+
+dof_age_cont_99 <- dof_99_tidy 
+
+age_breaks <- c(seq(0, 90, by = 5), Inf)  # 0,5,10,...,90, Inf
+age_labels <- c(paste(seq(0, 85, by = 5), seq(4, 89, by = 5), sep = "-"), "90+")
+
+dof_age_grouped_99 <- dof_age_cont_99  %>%
+  mutate(age_group = cut(age, breaks = age_breaks, labels = age_labels, right = TRUE, include.lowest = TRUE)) %>%
+  group_by(sex, race_eth, age_group, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop") 
+head(dof_age_grouped_99)  
+
+dof_age_grouped_99 %>% 
+  filter(sex == "female" & age_group == "0-4")
+#sum for females 0-5 white = 497,912
+
+#looks good.
+
+unique(dof_99_tidy$race_eth) 
+
+#606 obs for 101 ages, 3 races, 2 sexes.
+```
+
+### 2000-2010  
+
+I was unable to locate an Intercensal estimate record that was statewide, just county-level. We will have to sum the values for corresponding Year, Race, Gender, and Age to get the state-level total. 
+
+We need to do some cleaning to make the variables consistent with other datasets. We will convert the Year to a proper "date" variable and select only the races/ethnic groups to be used in the study.
+
+```{r dof1}
+dof1 <- read.csv("../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt") 
+head(dof1) 
+
+dof1 <- dof1 %>%
+  mutate(
+    year = year(mdy_hms(Year)),  # convert Year to numeric
+    age = as.numeric(Age),
+    population = as.numeric(Population),
+    race_eth = str_to_lower(RaceName),
+    sex = str_to_lower(Gender)
+  )
+head(dof1) 
+unique(dof1$Year) 
+ 
+#we don't want a repeat for the year 2000
+dof1 <- dof1 %>% 
+  filter(Year != "7/1/2000 0:00:00")  #we just want to keep the numeric year
+
+nrow(dof1) #917686
+
+dof1 <- dof1 %>%
+  filter(race_eth %in% c("white", "black", "hispanic"))
+
+dof1_tidy <- dof1 %>%
+  group_by(year, race_eth, sex, age) %>%
+  summarise(population = round(sum(population, na.rm = TRUE)), .groups = "drop") %>%
+  arrange(year, race_eth, sex, age)
+
+nrow(dof1_tidy) 
+head(dof1_tidy)
+
+``` 
+Let's run some checks to see whether the population dramatically changes between any age group,sex,race combination through the years. 
+
+```{r}
+dof_age_grouped_2000 <- dof1_tidy  %>%
+  mutate(age_group = cut(age, breaks = age_breaks, labels = age_labels, right = TRUE, include.lowest = TRUE)) %>%
+  group_by(sex, race_eth, age_group, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop") 
+
+dof_age_grouped_2000 %>% 
+  filter(sex == "female", race_eth == "black") %>% 
+  mutate(
+    age_group = factor(age_group, levels = unique(age_group)),
+    year = factor(year)
+  ) %>% 
+  ggplot(aes(x = age_group, y = population, group = year)) +
+  geom_line(aes(color = year), alpha = 0.6, linewidth = 1) +
+  geom_point(aes(color = year), size = 1.8) +
+  theme_minimal() +
+  labs(
+    x = "Age group",
+    y = "Population",
+    color = "Year",
+    title = "Age distribution of Black females over time"
+  )
+#nothing jumps out like crazy.  
+
+dof_age_grouped_2000 %>% 
+  filter(sex == "male", race_eth == "black") %>% 
+  mutate(
+    age_group = factor(age_group, levels = unique(age_group)),
+    year = factor(year)
+  ) %>% 
+  ggplot(aes(x = age_group, y = population, group = year)) +
+  geom_line(aes(color = year), alpha = 0.6, linewidth = 1) +
+  geom_point(aes(color = year), size = 1.8) +
+  theme_minimal() +
+  labs(
+    x = "Age group",
+    y = "Population",
+    color = "Year",
+    title = "Age distribution of Black males over time"
+  ) 
+
+#checking the totals before vs. after: 
+# Original totals
+orig_totals <- dof1_tidy %>%
+  group_by(sex, race_eth, year) %>%
+  summarise(total = sum(population, na.rm = TRUE), .groups = "drop")
+
+# Aggregated totals
+grouped_totals <- dof_age_grouped_2000 %>%
+  group_by(sex, race_eth, year) %>%
+  summarise(total = sum(population), .groups = "drop")
+
+# Compare
+orig_totals %>%
+  left_join(grouped_totals, by = c("sex", "race_eth", "year"),
+            suffix = c("_orig", "_grouped")) %>%
+  mutate(diff = total_orig - total_grouped) %>%
+  filter(diff != 0)
+
+table(is.na(dof_age_grouped_2000$age_group))
+
+summary(dof1_tidy$age)
+age_breaks
+
+#checking one slice by hand
+dof1_tidy %>%
+  filter(sex == "female", race_eth == "black", year == 2010) %>%
+  summarise(total = sum(population))
+dof_age_grouped_2000 %>%
+  filter(sex == "female", race_eth == "black", year == 2010) %>%
+  summarise(total = sum(population))
+
+
+``` 
+
+
+
+
+### 2010-2020 
+
+```{r dof2}
+dof2 <- read_excel("../RawData/dof/Intercensal_Excel_California.xlsx",
+                   sheet = "California-State",
+                   col_names = TRUE) 
+dof2 <- dof2 %>% 
+  select(Sex:"April 1, 2020") %>% 
+  rename(age = "Age (0-100+)",
+         race_eth = "Race/ethnicity recode") %>% 
+  rename_with(tolower)
+ 
+```
+Each row contains the population count for a given age, race, and sex. We are going to tidy this data by making a new "Year" variable and "Population" variable to contain the values that are in wide format right now. We also have two population values for 2010 (April, when the census took effect, then July). We will retain just the April counts, as they require no estimation and are the most accurate approximation of the population that year. 
+
+```{r tidy_dof2}
+dof2_tidy <- pivot_longer(dof2,
+                     cols = 'april 1, 2010':'april 1, 2020',
+                     names_to = "Year",
+                     values_to = "Population")
+dof2_tidy <- dof2_tidy %>% 
+  filter(Year != "july 1, 2010") %>% 
+  mutate(
+    Year = year(mdy(Year)),
+    sex = str_to_lower(sex)
+  ) %>% 
+   rename_with(tolower) %>% 
+  filter(race_eth %in% c("White NH", "Black NH", "Hispanic")) %>% 
+  mutate(race_eth = recode(
+    race_eth, 
+    "White NH" = "White", 
+    "Black NH" = "Black"),
+    race_eth = str_to_lower(race_eth),
+    population = as.numeric(population)
+  )
+
+head(dof2_tidy)
+  
+```
+Now that our datasets have consistent tidy structure and naming conventions, we can stack them. 
+
+```{r merge}
+#Checking counts prior to merge
+nrow(dof1_tidy) #6666
+nrow(dof2_tidy) #6666
+nrow(dof_99_tidy) #606
+
+dof_data <- full_join(dof1_tidy, dof2_tidy)
+nrow(dof_data)
+dof_data <- full_join(dof_99_tidy, dof_data)
+head(dof_data) 
+nrow(dof_data) #13938, correct number of observations
+``` 
+
+We are now going to apply a seies of checks. I know that we have the correct number of observations already. 
+
+We are going to make sure that each datset is unique by the join keys: 
+```{r}
+dof1_tidy %>% count(year, sex, race_eth, age, name = "n") %>% filter(n > 1)
+dof2_tidy %>% count(year, sex, race_eth, age, name = "n") %>% filter(n > 1)
+dof_99_tidy %>% count(year, sex, race_eth, age, name = "n") %>% filter(n > 1) 
+#looks good.
+
+```
+
+# Checks 
+
+Next, we are going to plot the population trends by year. 
+
+```{r}
+dof1 <- dof1_tidy %>% mutate(source = "dof1")
+dof2 <- dof2_tidy %>% mutate(source = "dof2")
+dof99 <- dof_99_tidy %>% mutate(source = "dof99")
+
+dof_all <- bind_rows(dof1, dof2, dof99)
+
+pop_totals <- dof_all%>%
+  group_by(source, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop")
+
+pop_totals
+
+ggplot(pop_totals, aes(x = year, y = population, color = source)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  theme_minimal() +
+  labs(
+    title = "Total population by year and data source",
+    y = "Total population"
+  )
+
+
+``` 
+Ok, so this chart is showing me what I think is the problem. The population counts for years 1999 and dof2 (2010-2020) appear to be on the same relative scale, but dof1 is WAY higher. This would be the culprit for having some weird results from the rates, if we only use data from 2000 to standardize.
+
+We need to go back in and run some better checks of dof1. 
+
+After reviewing the data dictionary, I found the issue! the CountyCode is 01-58 for counties, while 59 = California. So I doubled the estimates. We need to go back in and clean the dof1 data, this time filtering so the CountyCode == 59. Below is the corrected pipeline: 
+
+```{r}
+dof1 <- read.csv("../RawData/dof/Intercensal_2000-2010_DBInput_csv/Intercensal_2000-2010_DBInput_csv.txt") 
+
+dof1_tidy <- dof1 %>%
+  mutate(
+    year = year(mdy_hms(Year)),
+    age = as.numeric(Age),
+    population = as.numeric(Population),
+    race_eth = str_to_lower(RaceName),
+    sex = str_to_lower(Gender)
+  ) %>%
+  filter(
+    CountyCode == 59,
+    race_eth %in% c("white", "black", "hispanic"),
+    Year != "7/1/2000 0:00:00"
+  ) %>%
+  group_by(year, race_eth, sex, age) %>%
+  summarise(population = sum(population), .groups = "drop") %>%
+  arrange(year, race_eth, sex, age)
+
+#Looking at the totals for each year
+dof1_tidy %>%
+  group_by(year) %>%
+  summarise(total = sum(population))
+
+dof2_tidy %>%
+  group_by(year) %>%
+  summarise(total = sum(population)) 
+
+dof_99_tidy%>%
+  group_by(year) %>%
+  summarise(total = sum(population)) 
+
+
+``` 
+
+Checking how the data may/may not change by different years.. 
+```{r comparison_graphs}
+dof_99_tidy %>% 
+  filter(sex = "female",
+         race_eth = "black")
+
+```
+
+
+We will have two dataframes, one with the continuous ages so we may replicate one of the figures that has trends by each individual age. We will create a different dataframe that have age groups separately.   
+
+```{r age_groups}
+age_breaks <- c(seq(0, 90, by = 5), Inf)  # 0,5,10,...,90, Inf
+age_labels <- c(paste(seq(0, 85, by = 5), seq(4, 89, by = 5), sep = "-"), "90+")
+
+dof_data_grouped <- dof_data %>%
+  mutate(age_group = cut(age, breaks = age_breaks, labels = age_labels, right = TRUE, include.lowest = TRUE)) %>%
+  group_by(sex, race_eth, age_group, year) %>%
+  summarise(population = sum(population, na.rm = TRUE), .groups = "drop") 
+head(dof_data_grouped) 
+``` 
+
+
+## 2021-2025
+
+For 2021-2025, the only option (that I can ascertain) is to use the population projections for the years 2021-2025. We will be using the "Complete P-3 Race/Ethnicity and Sex by Age for California and Counties, Excel Compatible" California-State section from the [Projection webpage of the dof](https://dof.ca.gov/forecasting/demographics/projections/). 
+
+```{r dof3}
+dof3 <- read_excel("../RawData/dof/Projections/P3_California-and-Counties.xlsx",
+                   sheet = "California-State",
+                   col_names = TRUE) 
+dof3 <- dof3 %>% 
+  select(Sex:"2025", -"2020") %>% 
+  rename(age = "Age (0-110+)",
+         race_eth = "Race/ethnicity recode") %>% 
+  rename_with(tolower) %>% 
+  filter(race_eth %in% c(1,2,7)) %>% 
+  mutate(sex = str_to_lower(sex),
+         race_eth = recode(
+    race_eth, 
+    "1" = "White", 
+    "2" = "Black",
+    "7" = "Hispanic")) %>% 
+  pivot_longer(
+                     cols = '2021':'2025',
+                     names_to = "year",
+                     values_to = "population"
+                     )
+```
+
+
+```
+

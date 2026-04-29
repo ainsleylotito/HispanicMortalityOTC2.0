@@ -1,0 +1,820 @@
+---
+title: "Exploration"
+output_dir: Output 
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    toc_float: true
+---
+
+```{r setup, include = FALSE}
+# Load packages
+library(tidyverse)
+library(ggplot2) 
+library(readxl) 
+library(lubridate)
+library(ggthemes)
+library(knitr)
+library(tidyr)
+
+# Global options
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
+                      fig.width=10, fig.height=5)
+
+```
+# Introduction 
+
+This document will be used to explore our mortality data from 2007-2023, using the mortality statistics from CDC Wonder and population statistics from DOF. We will also compare the results from 2007-2023 to the earlier statistics from 1999-2006 to evaluate what has changed over time. All cleaned datasets can be found in the `/CleanData` directory, which were previously generated in the `Scripts/Cleaning.Rmd` file. 
+
+```{r explore_population, include = FALSE}
+dof_data_grouped <- read.csv("../CleanData/dof_data_grouped.csv")
+dof_data <- read.csv("../CleanData/dof_data.csv")
+```
+
+Looking through the two datasets: 
+```{r}  
+age_levels <- c(
+  "0-4", "5-9", "10-14", "15-19", "20-24",
+  "25-29", "30-34", "35-39", "40-44",
+  "45-49", "50-54", "55-59", "60-64",
+  "65-69", "70-74", "75-79", "80-84", "85-89", "90+"
+) 
+
+dof_data_grouped <- dof_data_grouped %>%
+  mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE), 
+         year = as.numeric(year))
+
+dof_data <- dof_data %>%
+  mutate(year = as.numeric(year))
+
+head(dof_data) 
+head(dof_data_grouped) 
+
+range(dof_data$year) 
+range(dof_data_grouped$year)
+```
+
+Population through each year: 
+
+```{r, include = FALSE} 
+
+annual_pop <- dof_data_grouped %>%
+  mutate(age_group = factor(age_group, levels = age_levels, ordered = TRUE), 
+         year = as.numeric(year)) %>%
+  group_by(race_eth, year) %>%
+  summarise(total_population = sum(population, na.rm = TRUE), 
+            pop_per_100k = total_population/100000) %>%
+  ungroup()  
+head(annual_pop)
+
+ggplot(annual_pop, aes(x = year, y = pop_per_100k, color = race_eth, group = race_eth)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = "Annual Population by Race/Ethnicity",
+    x = "Year",
+    y = "Population per 100k",
+    color = "Race/Ethnicity"
+  ) +
+  scale_x_continuous(breaks = unique(annual_pop$year)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+```
+Based on the Census, the population for 2020 should be as follows: 
+White alone 69.8% of 39,538,223. Black alone 6.4% of that. Hispanic or Latino 40.8% of that. 
+
+We can compare with our DOF estimates. 
+
+```{r} 
+#2010 populations 
+white <- 13714587
+black <- 2119286
+hispanic <- 8146667+4132513+2581535+474931+117758+107152+19096
+
+census_pop <- tibble(
+  race_eth = c("black", "hispanic", "white"),
+  total_population = c(black, hispanic, white)
+)
+
+census_pop
+
+#DOF Populations 
+annual_pop %>%
+  filter(year == 2020)%>%
+  select(race_eth, total_population)
+
+```  
+Let's try doing the same for 2010??? 
+
+```{r}
+#DOF Populations 
+annual_pop %>%
+  filter(year == 2010)%>%
+  select(race_eth, total_population)
+```
+
+It appears as though the DOF populations are pretty off.... For instance the white population is much smaller than it should be.
+
+```{r, include = FALSE}
+# Sex differences 
+population_table_wide <- dof_data_grouped %>%
+  tidyr::pivot_wider(
+    names_from = sex,
+    values_from = population
+  ) %>%
+  arrange(age_group, year)
+
+population_table_wide %>%
+  kable(
+    caption = "Population by Sex, Age Group, and Year"
+  )
+
+```
+
+
+
+
+```{r cdc_merge, include = FALSE}
+cdc_mort <- read.csv("../CleanData/cdc_mortality.csv") 
+head(cdc_mort)
+
+#adding pop data 
+dof_data<- read_csv("../CleanData/dof_data_grouped.csv")
+head(dof_data)
+
+#merging
+cdc_with_pop <- left_join(cdc_mort,dof_data,
+                                by = c("year", "sex", "race_eth", "age_group"))
+
+head(cdc_with_pop)
+```
+
+
+# Replicating tables and figures 
+## 2007-2023 data 
+
+To start, I am going to exclude the data from 2023, as we will need to figure out whether we are going to make two separate tables (standardizing to 2010 and 2020 population, with understanding that years after 2020 come from population *projections*, not estimates) or just include 2006-2020 data.
+
+### Table 1
+
+To replicate the table, we need to:  
+
+1. subset deaths to males 15-24, years 2007-2020
+
+2. create a population weighting variable for 2000 to standardize age-adjustments
+
+3. compute age-specific weights 
+
+4. Join weights to calculate age-adjusted rates 
+
+5. Calculate 95% CIs using log normal approximation to the Poisson distribution 
+
+
+```{r}
+
+#Step 1: keep deaths and population by age group 
+data_age <- cdc_mort %>%
+  filter(
+    year %in% 2007:2020,
+    age_group %in% c("15-19","20-24"),
+    sex=="male"
+  ) %>%
+  group_by(race_eth, cod, age_group) %>%
+  summarise(deaths = sum(deaths), .groups="drop") %>%
+  left_join(
+    dof_data_grouped %>%
+      filter(
+        year %in% 2007:2020,
+        age_group %in% c("15-19","20-24"),
+        sex=="male"
+      ) %>%
+      group_by(race_eth, age_group) %>%
+      summarise(pop = sum(population), .groups="drop"),
+    by=c("race_eth","age_group")
+  )
+
+#Step 2: get standard population weights 
+std_pop <- dof_data_grouped %>%
+  filter(
+    year == 2000,
+    age_group %in% c("15-19","20-24"),
+    sex == "male"
+  ) %>%
+  group_by(age_group) %>%
+  summarise(std_pop = sum(population), .groups="drop") %>%
+  mutate(weight = std_pop / sum(std_pop))
+
+# Step 3: compute age-specific rates
+data_age <- data_age %>%
+  mutate(rate = deaths / pop)
+ 
+# Step 4: join weights + calculate weighted rates 
+adj_rates <- data_age %>%
+  left_join(std_pop, by="age_group") %>%
+  mutate(weighted_rate = rate * weight)
+
+#sum weighted rates --> age-adjusted rates
+table1_adj <- adj_rates %>%
+  group_by(race_eth, cod) %>%
+  summarise(
+    age_adj_rate = sum(weighted_rate) * 100000,
+    .groups="drop"
+  )
+
+# Step 5: adding poisson CI 
+table1_adj <- adj_rates %>%
+  group_by(race_eth, cod) %>%
+  summarise(
+    adj_rate = sum(weighted_rate),
+    deaths_total = sum(deaths),
+    .groups="drop"
+  ) %>%
+  mutate(
+    rate_100k = adj_rate * 100000,
+
+    se_log = 1 / sqrt(deaths_total),
+
+    lcl = rate_100k * exp(-1.96 * se_log),
+    ucl = rate_100k * exp( 1.96 * se_log)
+  )
+
+#formatting
+table1_adj <- table1_adj %>%
+  mutate(
+    rate_ci = sprintf(
+      "%.1f (%.1f–%.1f)",
+      rate_100k, lcl, ucl
+    )
+  )
+cod_levels <- c(
+  "homicide",
+  "mvc",
+  "suicide",
+  "other_injury",
+  "other_disease",
+  "all_cause"
+)
+
+cod_labels <- c(
+  homicide = "Homicide",
+  mvc = "Motor Vehicle Crashes",
+  suicide = "Suicide",
+  other_injury = "Other Injuries",
+  other_disease = "Other Disease",
+  all_cause = "Total (All Causes)"
+)
+
+table1_final <- table1_adj %>%
+  mutate(
+    cod = factor(cod, levels = cod_levels, ordered = TRUE),
+    cod = recode(cod, !!!cod_labels)
+  ) %>%
+  arrange(cod)
+library(tidyr)
+library(dplyr)
+
+table1_wide <- table1_final %>%
+  select(cod, race_eth, rate_ci) %>%
+  pivot_wider(
+    names_from = race_eth,
+    values_from = rate_ci
+  ) %>%
+  arrange(cod)
+
+knitr::kable(
+  table1_wide,
+  caption = "Table 1. Annual mortality rates (95% CI) per 100,000 by cause of death and race/ethnic group. California males age 15–24 years, 2007–2020."
+)
+
+
+``` 
+
+### Figures 
+
+We are going to use some of the functions defined in our functions.R script to conduct our exploration.
+
+
+```{r figures}
+
+source("../Scripts/functions.R")
+
+#-----------------------------------
+# MERGE ONCE
+#-----------------------------------
+
+cdc <- cdc_mort %>%
+  left_join(dof_data_grouped,
+            by=c("year","sex","race_eth","age_group"))
+
+
+
+yrs_0720 <- 2007:2020
+
+
+
+#================================================
+# FIGURE 1 — Male all-cause RR
+#================================================
+fig1 <- cdc %>%
+  calc_rates(yrs_0720,"male","all_cause") %>%
+  calc_rr()
+
+plot_rr(fig1,"Male All-Cause Mortality Rate Ratios")
+
+
+
+#================================================
+# FIGURE 2 — Female all-cause RR
+#================================================
+fig2 <- cdc %>%
+  calc_rates(yrs_0720,"female","all_cause") %>%
+  calc_rr()
+
+plot_rr(fig2,"Female All-Cause Mortality Rate Ratios")
+
+
+
+#================================================
+# FIGURE 3 — Male homicide rates
+#================================================
+fig3 <- cdc %>%
+  calc_rates(yrs_0720,"male","homicide") %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_rate(fig3,"Male Homicide Mortality Rates")
+
+
+
+#================================================
+# FIGURE 4 — Male all-cause minus homicide RR
+#================================================
+fig4 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-homicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4,"Male Non-Homicide Mortality RR")
+
+
+
+#================================================
+# FIGURE 5 — Homicide yearly (15–24 males)
+#================================================
+fig5 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="homicide",
+         year %in% 2007:2020) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_yearly(fig5,"Homicide Mortality Males 15–24")
+
+
+
+#================================================
+# FIGURE 6 — MVC rates by age
+#================================================
+fig6 <- cdc %>%
+  calc_rates(yrs_0720,"male","mvc") %>%
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+  ungroup()
+
+plot_rate(fig6,"Male Motor Vehicle Crash Mortality Rates")
+
+
+
+#================================================
+# FIGURE 7 — MVC yearly (15–24)
+#================================================
+fig7 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="mvc",
+         year %in% 2007:2020) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_yearly(fig7,"MVC Mortality Males 15–24")
+
+```
+Trying to isolate which cod is bringing about 15-24 y/old spike?
+
+```{r} 
+#mvc
+fig4.1 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-mvc,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.1,"Male Non-MVC Mortality RR")  
+
+#suicide 
+fig4.2 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-suicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.2,"Male Non-Suicide Mortality RR")  
+
+#other injuries 
+fig4.3 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-other_injury,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.3,"Male Non-Injury Mortality RR") 
+#other disease
+fig4.4 <- cdc %>%
+  filter(year %in% yrs_0720, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+summarise(deaths=sum(deaths), .groups="drop") %>%
+left_join(
+  cdc %>%
+    filter(year %in% yrs_0720, sex=="male") %>%
+    group_by(race_eth,age_group) %>%
+    summarise(pop=sum(population), .groups="drop"),
+  by=c("race_eth","age_group")
+) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-other_disease,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr(fig4.4,"Male Non-disease Mortality RR") 
+```
+
+
+## Comparison of 1999-2006 and 2007-2023 
+
+For all of these comparisons, the old data will be dashed, and the new data solid. 
+
+We will start by comparing Figure 1 (All-Cause mortality Rate Ratios comparing black/hispanic males to white males, each age group). 
+
+### Figure 1: All-Casue RRs Black and Hispanic Males to White
+
+```{r fig1}
+
+fig1 <- cdc %>%
+  calc_rates(yrs_0720,"male","all_cause") %>%
+  calc_rr()
+fig1_old <- cdc %>%
+  calc_rates(1999:2006,"male","all_cause") %>%
+  calc_rr()
+
+plot_rr_overlay(fig1, fig1_old, "Male All-Cause Mortality RR")
+
+```
+
+Looking at this figure, we can see that the RR decreased (significantly) for black males for ages 15-64. It increased for 0-4 and 5-9.  
+
+Among Hispanic males, we can se that the RR went from over 1 (increased risk) to less than 1 (protective) for ages 0-4 and 15-29. The largest deviation in this graph from past data is that **black males aged 60-90+ now have increased mortality risk compared to whites, when they used to have decreased risk.**
+
+Let's review the absolute difference in RR:  
+
+<details>
+<summary>Click to expand table</summary>
+
+```{r}
+comparison <- comparison_data(fig1, fig1_old)
+
+
+comparison %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, diff)
+```
+</details>
+
+
+The percent change in RR: 
+<details>
+<summary>Click to expand table</summary>
+```{r}
+comparison %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, pct_change)
+```
+</details>
+
+**The Ratio of RRs:**
+
+We will use a heatmap. white means no change (ratio =1), red means the disparity increased, and blue means the disparity decreased
+```{r}
+heatmap_rr_comparison(comparison)
+
+```
+
+Looking at this heatmap, it appears that the groups to focus on where the disparity increased is hispanic youths and black males ages 20-29.
+
+### Figure 2: All-Casue RRs Black and Hispanic Females to White
+
+Now let's examine females instead of males: 
+```{r fig2}
+fig2_old <- cdc %>%
+  calc_rates(1999:2006,"female","all_cause") %>%
+  calc_rr()
+
+plot_rr_overlay(fig2, fig2_old, "Female All-Cause Mortality RR")
+
+
+```
+
+We can see that the same relationship appeared among black females aged 65-90+, where they now have increased mortality risk compared to whites when they used to have decreased risk. 
+
+We also see among the younger ages that the RR for black females appears to have increased (ages 0-19), 15-19 appears consistent, 25-39 y/olds have insignificantly higher risk, and 45-54 y/olds have significantly reduced RR's.
+
+Let's review the absolute difference in RR:  
+
+<details>
+<summary>Click to expand table</summary>
+
+```{r}
+comparison2 <- comparison_data(fig2, fig2_old)
+
+comparison2 %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, diff)
+```
+</details>
+
+The percent change in RR: 
+<details>
+<summary>Click to expand table</summary>
+```{r}
+comparison2 %>% 
+  group_by(race_eth, age_group) %>% 
+  select(race_eth, age_group, pct_change)
+```
+</details>
+
+**The Ratio of RRs: ** 
+
+We will use a heatmap. white means no change (ratio =1), red means the disparity increased, and blue means the disparity decreased
+```{r}
+heatmap_rr_comparison(comparison2)
+```
+It appears that the groups to pay the most attention to are Hispanic female youths, in particular ages 10-14.
+
+
+### Figure 3: Male Homicide Mortality Rates 
+
+Next we will plot the mortality rates among males for homicide only.
+
+```{r fig3_overlay}
+fig3_old <- cdc %>%
+  calc_rates(1999:2006,"male","homicide") %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+plot_rate_overlay(fig3, fig3_old,
+                  "Male Homicide Mortality Rates")
+
+``` 
+
+Let's compare the rates: 
+```{r}
+fig3comparison<- rate_comparison_data(fig3, fig3_old)
+
+heatmap_rate_comparison(fig3comparison)
+```
+
+### Figure 4:  Male mortality rate ratios for all causes except homicide, comparing Black/Hispanic mortality to White mortality 
+
+```{r fig4overlay}
+fig4_old <- cdc %>%
+  filter(year %in% 1999:2006, sex=="male") %>%
+  group_by(race_eth,age_group,cod) %>%
+  summarise(deaths=sum(deaths), .groups="drop") %>%
+  left_join(
+    cdc %>%
+      filter(year %in% 1999:2006, sex=="male") %>%
+      group_by(race_eth,age_group) %>%
+      summarise(pop=sum(population), .groups="drop"),
+    by=c("race_eth","age_group")
+  ) %>%
+  pivot_wider(names_from=cod, values_from=deaths, values_fill=0) %>%
+  mutate(deaths=all_cause-homicide,
+         rate=deaths/pop*100000) %>%
+  set_age_order() %>%
+  calc_rr()
+
+plot_rr_overlay(fig4, fig4_old,
+                "Male Non-Homicide Mortality RR")
+
+```
+ 
+Let's compare the rate ratios: 
+```{r}
+comparison4 <- comparison_data(fig4, fig4_old)
+
+
+heatmap_rr_comparison(comparison4) 
+```
+
+### Figure 5: Homicide mortality rates, among males 15-24 years, comparing Hispanic, Black, and White mortality by year 
+
+```{r fig5overlay}
+fig5_old <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="homicide",
+         year %in% 1999:2006) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+fig5$period <- "2007–2020"
+fig5_old$period <- "1999–2006"
+
+combo <- bind_rows(fig5, fig5_old)
+
+ggplot(combo,
+       aes(year, rate, color=race_eth, linetype=period))+
+  geom_line()+
+  geom_point()+
+  geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.2)+
+  theme_minimal()
+
+
+```
+
+### Figure 6: Male motor vehicle crash mortality rates, comparing Hispanic, Black, and Whites, 5-year age groups 
+
+```{r fig6overlay}
+fig6_old <- cdc %>%
+  calc_rates(1999:2006,"male","mvc") %>%
+  rowwise() %>%
+  mutate(ci_log(rate,deaths)) %>%
+  ungroup()
+
+plot_rate_overlay(fig6, fig6_old,
+                  "Male MVC Mortality Rates")
+
+```
+
+Visually, it does not appear as though there are any significant changes, except between the old 85-84 and new for whites. Let's also try just plotting ages 15-24 to see what we observe: 
+
+```{r} 
+fig6_old_15_24 <- fig6_old %>% 
+  filter(age_group %in% c("15-19", "20-24"))
+  
+fig6_15_24 <- fig6 %>% 
+  filter(age_group %in% c("15-19", "20-24"))
+ 
+plot_rate_overlay(fig6_15_24,fig6_old_15_24, "Male MVC Mortality ages 15-24")  
+```
+It looks as though all of them are lower! Significant differences for 15-19 y/olds that are white and hispanic.
+
+Let's compare the rates between all ages: 
+```{r}
+fig6comparison<- rate_comparison_data(fig6, fig6_old)
+
+heatmap_rate_comparison(fig6comparison)
+```
+
+
+### Figure 7: Motor vehicle crash mortality rates, among males 15-24 years of age 
+
+```{r}
+fig7 <- cdc %>%
+  filter(sex=="male",
+         age_group %in% c("15-19","20-24"),
+         cod=="mvc",
+         year %in% 1999:2020) %>%
+  group_by(year,race_eth) %>%
+  summarise(deaths=sum(deaths),pop=sum(population),.groups="drop") %>%
+  mutate(rate=deaths/pop*100000) %>%
+  rowwise() %>%
+  mutate(ci_exact(deaths,pop)) %>%
+  ungroup()
+
+
+ggplot(fig7,
+       aes(year, rate, color=race_eth))+ 
+  scale_x_continuous(breaks=1999:2020)+ 
+  geom_vline(xintercept=2006.5, linetype=2)+
+  geom_line()+
+  geom_point()+
+  geom_errorbar(aes(ymin=lcl,ymax=ucl), width=.2)+
+  theme_minimal()
+
+``` 
+
+
+# Mortality by Year 
+
+We are going to plot how each cause of death changes annually for each racial/ethnic group.  
+
+All-cause:
+```{r} 
+head(cdc_with_pop)
+all_cause_rates <- cdc_with_pop %>%  
+  filter(year < 2021) %>% 
+  filter(cod == "all_cause") %>%
+  group_by(year, race_eth, sex) %>% 
+  summarize(
+    deaths = sum(deaths, na.rm = TRUE),
+    pop = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  ) %>% 
+  mutate(rate_per_100k = (deaths / pop) * 100000) 
+
+ggplot(all_cause_rates, aes(x = year, y = rate_per_100k, color = race_eth)) +
+  geom_line() +
+  facet_wrap(~sex)
+``` 
+There appears to be a dramatic shift from
+
+```{r}
+
+``` 
+
+
+```{r}
+
+```
+
+## 15-24 y/olds 
+
+Next, we are going to look at the trends over time for JUST 15-24 year olds.  
+
+```{r}
+
+``` 
+
+```{r}
+
+``` 
+
+```{r}
+
+```
