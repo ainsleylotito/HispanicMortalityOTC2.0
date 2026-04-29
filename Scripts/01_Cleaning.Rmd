@@ -482,7 +482,7 @@ glimpse(table1)
 write_csv(table1, "../CleanData/table1.csv")
 ``` 
 
-#Population Data 
+
 # Population Data 
 
 Next, we are going to import the Population Estimates from 2001-2025 from the DOF. There are 4 separate datasets we will need to clean and merge (1990-1999,2001-2010, 2011-2020, 2021-2025). 
