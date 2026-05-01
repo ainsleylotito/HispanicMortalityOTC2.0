@@ -14,7 +14,7 @@ Raw datafiles are in the `/RawData` directory.
 ### Data sources: 
 
 - **CDC WONDER**  
-  Mortality Data were obtained from CDC Wonder queries. These are contained within the /RawData/cdcWONDER folder. Individual queries used to obtain data are within each file itself; generally, data were pulled for California Residents from 2007-2020 by race/ethnicity.
+  Mortality Data were obtained from CDC Wonder Underlying Cause of Death queries. These are contained within the /RawData/cdcWONDER folder. Individual queries used to obtain data are within each file itself; generally, data were pulled for California Residents from 2007-2020 by race/ethnicity.
   
   
   - **Population Estimates, 2001–2010**  
