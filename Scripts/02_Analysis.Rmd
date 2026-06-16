@@ -33,7 +33,9 @@ This document contains the analyses used to replicate Vaca et al. (2011). Datase
 We are going to start by importing our all-cause data and plot the rates by year.  
 ```{r}
 all_cause <- read.csv("../CleanData/all_cause_UCD.csv")
-head(all_cause)
+head(all_cause) 
+all_cause %>% 
+  filter(deaths == 0)
 
 #adding pop data 
 dof_data<- read_csv("../CleanData/dof_data_grouped.csv")
@@ -413,14 +415,23 @@ Male homicide mortality rates, comparing Hispanic, non-Hispanic black, and non-L
 
 ```{r}
 hom_age <- read.csv("../CleanData/homicide_UCD_age_groups.csv")
-head(hom_age) 
+head(hom_age)  
+
+#missing data 
+hom_age %>% 
+  filter(deaths == 0) 
+
+#removing
+hom_age <- hom_age %>% 
+  filter(deaths !=0)
 
 fig3 <- hom_age %>%
     mutate(rate = deaths/population*100000) %>%
     set_age_order() %>% 
    rowwise() %>%
   mutate(ci_exact(deaths,population)) %>%
-  ungroup()
+  ungroup() 
+
 
 plot_rate(fig3,NULL) 
 
@@ -451,7 +462,8 @@ tables_by_race
 
 Homicide mortality rates, among males 15-24 years of age, comparing Hispanic, non-Hispanic black, and non-Hispanic white, by year with 95% CI, California 2007-2020.
 ```{r} 
-fig5data <- read.csv("../CleanData/homicide_UCD_yearly.csv")
+fig5data <- read.csv("../CleanData/homicide_UCD_yearly.csv") 
+
 fig5 <- fig5data %>%
   mutate(rate=deaths/population*100000) %>%
   rowwise() %>%
@@ -541,7 +553,15 @@ table4_by_race
 Male motor vehicle crash mortality rates, comparing Hispanic, non-Hispanic black, and non-Hispanic white, 5 year age groups with 95% CI, California 2007-2020.  We start by following the same methods as before, but run into an issue with missing data due to the CDC query suppression rules. We cleaned a unique dataset with the information needed for this specifically, which we will use.
 
 ```{r}
-mvc_age <- read.csv("../CleanData/mvc_UCD_age.csv")
+mvc_age <- read.csv("../CleanData/mvc_UCD_age.csv") 
+
+#missing data 
+mvc_age %>% 
+  filter(deaths == 0) 
+
+#removing
+mvc_age <- mvc_age %>% 
+  filter(deaths !=0)
 fig6 <- mvc_age %>%
   mutate(rate = deaths/population*100000) %>%
   set_age_order() %>% 
@@ -563,10 +583,11 @@ ggsave(
   plot = fig6_plot,
   width = 11,
   height = 7
-) 
+)  
+
 
 ```  
-One thing important to note is that we are missing data for 90+ due to data suppression for Non-Hispanic Blacks, so we will exclude that from the plot and data. 
+One thing important to note is that we are missing data for 90+ due to data suppression for Non-Hispanic Blacks, so we will exclude that from the plot and data.  
 
 
 ```{r}
@@ -620,3 +641,12 @@ names(table7) <- unique(fig7$race_eth)
 table7
 ```
 
+## Supplementary: RR by age 
+
+```{r}
+calc_rr(fig6) %>% 
+  select(race_eth, age_group, rr, rr_lcl, rr_ucl) %>% 
+  mutate(rr = round(rr, 2),
+         rr_lcl = round(rr_lcl, 2),
+         rr_ucl = round(rr_ucl,2))
+```
