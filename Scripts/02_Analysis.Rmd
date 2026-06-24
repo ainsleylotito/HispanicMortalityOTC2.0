@@ -650,3 +650,9 @@ calc_rr(fig6) %>%
          rr_lcl = round(rr_lcl, 2),
          rr_ucl = round(rr_ucl,2))
 ```
+
+
+# Black and White Figure Versions 
+
+Lastly, we are going to save the same plots, this time with a version that is in black and white and has different tick markers to delineate. 
+

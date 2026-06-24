@@ -450,6 +450,173 @@ plot_yearly <- function(df, title,
 }
 
 
+# -----------------------
+# BLACK AND WHITE VERSIONS
+# ------------------------  
+
+#  B&W SCALES
+
+
+bw_colors <- c(
+  "hispanic" = "black",
+  "white"    = "grey40",
+  "black"    = "grey70"
+)
+
+bw_shapes <- c(
+  "hispanic" = 16,  # circle
+  "white"    = 17,  # triangle
+  "black"    = 15   # square
+)
+
+bw_labels <- c(
+  "hispanic" = "Hispanic",
+  "white"    = "non-Hispanic White",
+  "black"    = "non-Hispanic Black"
+)
+
+
+# RR Black and White
+plot_rr_bw <- function(df, title){
+  
+  ggplot(df,
+         aes(age_group, rr,
+             color = race_eth,
+             shape = race_eth,
+             group = race_eth)) +
+    
+    geom_hline(yintercept = 1, linetype = "dashed") +
+    geom_line(linewidth = 1) +
+    geom_point(size = 3) +
+    geom_errorbar(aes(ymin = rr_lcl, ymax = rr_ucl),
+                  width = .15) +
+    
+    labs(title = title,
+         x = "Age group",
+         y = "Rate Ratio",
+         color = "Race/Ethnicity",
+         shape = "Race/Ethnicity") +
+    
+    scale_color_manual(values = bw_colors,
+                       labels = bw_labels) +
+    
+    scale_shape_manual(values = bw_shapes,
+                       labels = bw_labels) +
+    
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.title = element_text(size = 14),
+      legend.text  = element_text(size = 12),
+      legend.key.size = unit(1.2, "cm"),
+      legend.position = c(0.98,0.98),
+      legend.justification = c(1,1)
+    )
+}
+
+
+# Rate B&W 
+plot_rate_bw <- function(df, title,
+                         ylabel = "Rate per 100,000",
+                         legend_pos = "right",
+                         dodge_width = 0.5){
+  
+  pd <- position_dodge(width = dodge_width)
+  
+  ggplot(df,
+         aes(age_group, rate,
+             color = race_eth,
+             shape = race_eth,
+             group = race_eth)) +
+    
+    geom_line(linewidth = 1,
+              position = pd) +
+    
+    geom_point(size = 3,
+               position = pd) +
+    
+    geom_errorbar(aes(ymin = lcl,
+                      ymax = ucl),
+                  width = .15,
+                  position = pd) +
+    
+    labs(title = title,
+         x = "Age group",
+         y = ylabel,
+         color = "Race/Ethnicity",
+         shape = "Race/Ethnicity") +
+    
+    scale_color_manual(values = bw_colors,
+                       labels = bw_labels) +
+    
+    scale_shape_manual(values = bw_shapes,
+                       labels = bw_labels) +
+    
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.title = element_text(size = 14),
+      legend.text  = element_text(size = 12),
+      legend.key.size = unit(1.2, "cm"),
+      legend.position = legend_pos
+    )
+} 
+
+# Yearly B&W 
+
+plot_yearly_bw <- function(df, title,
+                           legend_pos = "right",
+                           offset = 0.2){
+  
+  df <- df %>%
+    mutate(
+      race_offset = case_when(
+        race_eth == "hispanic" ~ -offset,
+        race_eth == "white"    ~ 0,
+        race_eth == "black"    ~ offset
+      ),
+      year_adj = year + race_offset
+    )
+  
+  ggplot(df,
+         aes(year_adj, rate,
+             color = race_eth,
+             shape = race_eth,
+             group = race_eth)) +
+    
+    geom_line(linewidth = 1) +
+    geom_point(size = 3) +
+    
+    geom_errorbar(aes(ymin = lcl,
+                      ymax = ucl),
+                  width = .15) +
+    
+    labs(title = title,
+         x = "Year",
+         y = "Rate per 100,000",
+         color = "Race/Ethnicity",
+         shape = "Race/Ethnicity") +
+    
+    scale_x_continuous(
+      breaks = unique(df$year),
+      labels = unique(df$year)
+    ) +
+    
+    scale_color_manual(values = bw_colors,
+                       labels = bw_labels) +
+    
+    scale_shape_manual(values = bw_shapes,
+                       labels = bw_labels) +
+    
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.title = element_text(size = 14),
+      legend.text  = element_text(size = 12),
+      legend.key.size = unit(1.2, "cm"),
+      legend.position = legend_pos
+    )
+}
 
 # ---------------------------- 
 # OVERLAY FUNCTIONS 
