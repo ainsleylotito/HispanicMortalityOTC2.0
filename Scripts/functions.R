@@ -347,8 +347,8 @@ plot_rr <- function(df, title){
     
     scale_color_discrete(labels = c(
       "hispanic" = "Hispanic",
-      "white" = "Non-Hispanic White",
-      "black" = "Non-Hispanic Black"
+      "white" = "non-Hispanic White",
+      "black" = "non-Hispanic Black"
     ))+
     
     theme_minimal() +
@@ -386,8 +386,8 @@ plot_rate <- function(df, title,
     
     scale_color_discrete(labels = c(
       "hispanic" = "Hispanic",
-      "white" = "Non-Hispanic White",
-      "black" = "Non-Hispanic Black"
+      "white" = "non-Hispanic White",
+      "black" = "non-Hispanic Black"
     )) +
     
     theme_minimal() + 
@@ -435,8 +435,8 @@ plot_yearly <- function(df, title,
     
     scale_color_discrete(labels = c(
       "hispanic" = "Hispanic",
-      "white" = "Non-Hispanic White",
-      "black" = "Non-Hispanic Black"
+      "white" = "non-Hispanic White",
+      "black" = "non-Hispanic Black"
     )) +
     
     theme_minimal() + 
