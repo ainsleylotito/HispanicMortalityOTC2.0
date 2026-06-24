@@ -654,5 +654,68 @@ calc_rr(fig6) %>%
 
 # Black and White Figure Versions 
 
-Lastly, we are going to save the same plots, this time with a version that is in black and white and has different tick markers to delineate. 
+Lastly, we are going to save the same plots, this time with a version that is in black and white and has different tick markers to delineate.  
+
+
+
+```{r}
+# Figure 1
+fig1_bw <- plot_rr_bw(fig1, NULL)
+
+ggsave(
+  filename = "../Output/fig1_bw.png",
+  plot = fig1_bw,
+  width = 10,
+  height = 6
+)
+
+# Figure 2
+ggsave(
+  filename = "../Output/fig2_bw.png",
+  plot = plot_rr_bw(fig2, NULL),
+  width = 10,
+  height = 6
+)
+
+# Figure 3
+ggsave(
+  filename = "../Output/fig3_bw.png",
+  plot = plot_rate_bw(fig3, NULL, legend_pos = c(.8,.8)),
+  width = 10,
+  height = 6
+)
+
+# Figure 4
+ggsave(
+  filename = "../Output/fig4_bw.png",
+  plot = plot_rr_bw(fig4, NULL),
+  width = 10,
+  height = 6
+)
+
+# Figure 5
+ggsave(
+  filename = "../Output/fig5_bw.png",
+  plot = plot_yearly_bw(fig5, NULL, c(.8,.8)),
+  width = 11,
+  height = 7
+)
+
+# Figure 6
+ggsave(
+  filename = "../Output/fig6_bw.png",
+  plot = plot_rate_bw(fig6, NULL, legend_pos = c(.75,.82)),
+  width = 11,
+  height = 7
+)
+
+# Figure 7
+ggsave(
+  filename = "../Output/fig7_bw.png",
+  plot = plot_yearly_bw(fig7, NULL, legend_pos = c(.8,.85)),
+  width = 11,
+  height = 7
+)
+
+```
 
